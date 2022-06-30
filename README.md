@@ -2,6 +2,8 @@
 
 # NV:MP Software Development Kit Source
 
+**Server Binary is yet to be released. Please watch this space.**
+
 **Attention: If you are looking to download the SDK kit, please visit the releases section of this repository!**
 It is not recommended to download the source code if you have no intention of recompiling the NVMP.dll or it's sister libraries. 
 
