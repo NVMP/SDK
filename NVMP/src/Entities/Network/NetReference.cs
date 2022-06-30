@@ -106,6 +106,12 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_IsActor(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetVirtualWorldID")]
+        private static extern uint Internal_GetVirtualWorldID(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetVirtualWorldID")]
+        private static extern void Internal_SetVirtualWorldID(IntPtr self, uint val);
+
         [DllImport("Native", EntryPoint = "GameNetReference_IsIdle")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_IsIdle(IntPtr self);
@@ -491,6 +497,12 @@ namespace NVMP.Entities
         public bool IsActor => Internal_IsActor(__UnmanagedAddress);
 
         public bool IsIdle => Internal_IsIdle(__UnmanagedAddress);
+
+        public uint VirtualWorldID
+        {
+            get => Internal_GetVirtualWorldID(__UnmanagedAddress);
+            set => Internal_SetVirtualWorldID(__UnmanagedAddress, value);
+        }
 
         public bool IsInPVS(INetReference other) =>  Internal_IsInPVS(__UnmanagedAddress, (other as NetReference).__UnmanagedAddress);
 

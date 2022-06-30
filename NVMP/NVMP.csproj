@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	<Configurations>Debug;Release;DebugXNative;ReleaseXNative</Configurations>
   </PropertyGroup>
 
   <PropertyGroup>
-    <OutputPath>..\..\..\..\..\build\app\app_server\$(Configuration)\Plugins</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AssemblyName>NVMP</AssemblyName>
@@ -13,11 +13,21 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NVMP.xml</DocumentationFile>
+    <OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">
     <DocumentationFile>..\..\..\..\..\build\app\app_server\Debug\Plugins\NVMP.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\..\build\app\app_server\Debug\Plugins</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NVMP.xml</DocumentationFile>
+    <OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseXNative|AnyCPU'">
     <DocumentationFile>..\..\..\..\..\build\app\app_server\Release\Plugins\NVMP.xml</DocumentationFile>
+    <OutputPath>..\..\..\..\..\build\app\app_server\Release\Plugins</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

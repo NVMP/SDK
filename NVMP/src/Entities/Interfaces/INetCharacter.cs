@@ -39,7 +39,7 @@ namespace NVMP.Entities
         /// The reference the character is currently aiming at. This only applies to synchronised references aimed at, 
         /// unsynced entities will not appear on this synced data.
         /// </summary>
-        public INetReference CrosshairReference { get; }
+        public NetAbstractReference CrosshairReference { get; }
 
         /// <summary>
         /// How far away from an entity the spectate mode will be. This is disregarded if the player is not spectating an entity.

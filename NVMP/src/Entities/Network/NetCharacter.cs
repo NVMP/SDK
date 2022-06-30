@@ -52,7 +52,7 @@ namespace NVMP.Entities
         private static extern IntPtr Internal_GetSpectateEntity(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetCharacter_GetCrosshairReference")]
-        private static extern IntPtr Internal_GetCrosshairReference(IntPtr self);
+        private static extern void Internal_GetCrosshairReference(IntPtr self, out IntPtr netObject, out uint refId);
 
         [DllImport("Native", EntryPoint = "GameNetCharacter_GetEnabledEncounter")]
         [return: MarshalAs(UnmanagedType.I1)]
@@ -157,11 +157,20 @@ namespace NVMP.Entities
         /// The reference the character is currently aiming at. This only applies to synchronised references aimed at, 
         /// unsynced entities will not appear on this synced data.
         /// </summary>
-        public INetReference CrosshairReference
+        public NetAbstractReference CrosshairReference
         {
             get
             {
-                return Marshals.NetReferenceMarshaler.Instance.MarshalNativeToManaged(Internal_GetCrosshairReference(__UnmanagedAddress)) as INetReference;
+                Internal_GetCrosshairReference(__UnmanagedAddress, out IntPtr netRef, out uint refId);
+
+                var result = new NetAbstractReference();
+                if (netRef != IntPtr.Zero)
+                {
+                    result.NetReference = Marshals.NetReferenceMarshaler.Instance.MarshalNativeToManaged(netRef) as INetReference;
+                }
+
+                result.RefID = refId;
+                return result;
             }
         }
 

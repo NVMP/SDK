@@ -19,25 +19,43 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DebugXNative|Any CPU = DebugXNative|Any CPU
 		Release|Any CPU = Release|Any CPU
+		ReleaseXNative|Any CPU = ReleaseXNative|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.DebugXNative|Any CPU.ActiveCfg = DebugXNative|Any CPU
+		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.DebugXNative|Any CPU.Build.0 = DebugXNative|Any CPU
 		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.ReleaseXNative|Any CPU.ActiveCfg = ReleaseXNative|Any CPU
+		{5E6D0173-BED9-43BB-AEA7-9E61AD6B2980}.ReleaseXNative|Any CPU.Build.0 = ReleaseXNative|Any CPU
 		{0CD06026-F410-4DB4-B23E-D62B842C8390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CD06026-F410-4DB4-B23E-D62B842C8390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD06026-F410-4DB4-B23E-D62B842C8390}.DebugXNative|Any CPU.ActiveCfg = DebugXNative|Any CPU
+		{0CD06026-F410-4DB4-B23E-D62B842C8390}.DebugXNative|Any CPU.Build.0 = DebugXNative|Any CPU
 		{0CD06026-F410-4DB4-B23E-D62B842C8390}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD06026-F410-4DB4-B23E-D62B842C8390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD06026-F410-4DB4-B23E-D62B842C8390}.ReleaseXNative|Any CPU.ActiveCfg = ReleaseXNative|Any CPU
+		{0CD06026-F410-4DB4-B23E-D62B842C8390}.ReleaseXNative|Any CPU.Build.0 = ReleaseXNative|Any CPU
 		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.DebugXNative|Any CPU.ActiveCfg = DebugXNative|Any CPU
+		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.DebugXNative|Any CPU.Build.0 = DebugXNative|Any CPU
 		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.ReleaseXNative|Any CPU.ActiveCfg = ReleaseXNative|Any CPU
+		{76B5422A-A722-4CB2-A4A0-CE34DD7F1E7F}.ReleaseXNative|Any CPU.Build.0 = ReleaseXNative|Any CPU
 		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.DebugXNative|Any CPU.ActiveCfg = DebugXNative|Any CPU
+		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.DebugXNative|Any CPU.Build.0 = DebugXNative|Any CPU
 		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.ReleaseXNative|Any CPU.ActiveCfg = ReleaseXNative|Any CPU
+		{5D4D3877-75E9-48DE-AAB0-9249A426839D}.ReleaseXNative|Any CPU.Build.0 = ReleaseXNative|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

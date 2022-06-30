@@ -19,6 +19,11 @@ namespace NVMP.Entities
         public static readonly Vector3 UpVector = new Vector3(0.0f, 0.0f, 1.0f);
 
         /// <summary>
+        /// The default virtual world ID all objects are synchronised in when created.
+        /// </summary>
+        public static readonly uint DefaultVirtualWorldID = 0;
+
+        /// <summary>
         /// Base form ID of this reference. If refID is not set, this is used to instanciate a new reference of this form ID.
         /// </summary>
         public uint FormID { get; }
@@ -62,6 +67,12 @@ namespace NVMP.Entities
         /// If an overhead title has been set, this changes the colour of it in RGBA (0-255) format
         /// </summary>
         public Color TitleColor { get; set; }
+
+        /// <summary>
+        /// Objects that are inside the same virtual world are synchronised together, but if they are not then they have no understanding 
+        /// of eachother's state other than existance. By default all objects are DEFAULT_VWID
+        /// </summary>
+        public uint VirtualWorldID { get; set; }
 
         /// <summary>
         /// The 3D coordinates of the actor in the world

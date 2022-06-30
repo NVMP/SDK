@@ -1,31 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Configurations>Debug;Release;DebugXNative;ReleaseXNative</Configurations>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <OutputPath>..\..\..\..\..\build\app\app_server\$(Configuration)\Plugins</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AssemblyName>NVMP.BuiltinPlugins.ServerReporter</AssemblyName>
-    <RootNamespace>NVMP.BuiltinPlugins</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<AssemblyName>NVMP.BuiltinPlugins.ServerReporter</AssemblyName>
+		<RootNamespace>NVMP.BuiltinPlugins</RootNamespace>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>..\..\..\..\..\build\app\app_server\Debug\Plugins\NVMP.BuiltinPlugins.ServerReporter.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">
+		<OutputPath>..\..\..\..\..\build\app\app_server\Debug\Plugins</OutputPath>
+		<DocumentationFile>..\..\..\..\..\build\app\app_server\Debug\Plugins\NVMP.BuiltinPlugins.ServerReporter.xml</DocumentationFile>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NVMP.BuiltinPlugins.ServerReporter.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>..\..\..\..\..\build\app\app_server\Release\Plugins\NVMP.BuiltinPlugins.ServerReporter.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseXNative|AnyCPU'">
+		<OutputPath>..\..\..\..\..\build\app\app_server\Release\Plugins</OutputPath>
+		<DocumentationFile>..\..\..\..\..\build\app\app_server\Release\Plugins\NVMP.BuiltinPlugins.ServerReporter.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="RestSharp" Version="106.11.7" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NVMP.BuiltinPlugins.ServerReporter.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NVMP\NVMP.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="RestSharp" Version="106.11.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\NVMP\NVMP.csproj" />
+	</ItemGroup>
 
 </Project>
