@@ -5,7 +5,7 @@
 **Attention: If you are looking to download the SDK kit, please visit the releases section of this repository!**
 It is not recommended to download the source code if you have no intention of recompiling the NVMP.dll or it's sister libraries. 
 
-This is the source code for NV:MP's SDK libraries, primarily the NVMP.dll. It encapsulates all native objects, provides interfaces to communicating to the native program, and implements common  services such as server reporting and mod download web helpers.
+This is the source code for NV:MP's SDK libraries, primarily the NVMP.dll. It encapsulates all native objects, provides interfaces for communicating with the native program, and implements common services such as server reporting and mod download web helpers.
 
 This page is mainly for reference, and to allow community driven improvements to the SDK.
 
