@@ -1,0 +1,4 @@
+apiRules:
+- exclude:
+    uidRegex: ^NVMP\.Internal$
+    type: Namespace

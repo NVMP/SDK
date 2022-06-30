@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputPath>..\..\..\..\..\build\app\app_server\$(Configuration)\Plugins\NVMP.ExampleServer</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AssemblyName>NVMP.ExampleServer</AssemblyName>
+    <RootNamespace>NVMP</RootNamespace>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NVMP\NVMP.csproj" />
+    <ProjectReference Include="..\NVMP.BuiltinPlugins.ServerReporter\NVMP.BuiltinPlugins.ServerReporter.csproj" />
+  </ItemGroup>
+
+</Project>
