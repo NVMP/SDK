@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NVMP.Internal;
+using System;
 using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
@@ -21,6 +22,16 @@ namespace NVMP.Entities
 
         public override uint ObjectType { get; } = Hashing.Compute("GameNetZone");
 
+        /// <summary>
+        /// Subscribes new middleware for when a new zone is created, called directly after the managed object is initialized.
+        /// </summary>
+        public event Action<INetZone> OnCreateMiddleware
+        {
+            add { CreationSubscriptions.Add(value); }
+            remove { CreationSubscriptions.Remove(value); }
+        }
+        internal readonly SubscriptionDelegate<Action<INetZone>> CreationSubscriptions = new SubscriptionDelegate<Action<INetZone>>();
+
         public override NetUnmanaged Allocate(IntPtr unmanagedAddress)
         {
             var instance = Activator.CreateInstance(Implementation);
@@ -34,6 +45,9 @@ namespace NVMP.Entities
             {
                 // we will want to pin this as it comes from unmanaged creation
                 reference.Pin();
+
+                foreach (var midf in CreationSubscriptions.Subscriptions)
+                    midf(reference);
             }
 
             return reference;
@@ -52,6 +66,9 @@ namespace NVMP.Entities
                 var inst = Allocate(IntPtr.Zero) as NetZone;
                 inst.__UnmanagedAddress = unmanaged;
                 inst.MarkWeak();
+
+                foreach (var midf in CreationSubscriptions.Subscriptions)
+                    midf(inst);
 
                 return inst;
 			}

@@ -84,16 +84,16 @@ namespace NVMP
 		/// <summary>
 		/// The worldspace formID 
 		/// </summary>
-		public Worldspace.WorldspaceType FormID { get; set; }
+		public Worldspace.WorldspaceType FormID { get; internal set; }
 
 		/// <summary>
 		/// X coordinate
 		/// </summary>
-		public int X { get; set; }
+		public int X { get; internal set; }
 
 		/// <summary>
 		/// Y coordinate
 		/// </summary>
-		public int Y { get; set; }
+		public int Y { get; internal set; }
     }
 }

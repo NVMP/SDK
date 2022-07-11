@@ -19,6 +19,11 @@ namespace NVMP.Entities
         public void Pop();
 
         /// <summary>
+        /// Removes all labels
+        /// </summary>
+        public void Clear();
+
+        /// <summary>
         /// Number of lines currently allocated
         /// </summary>
         public int Count { get; }

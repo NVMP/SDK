@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NVMP.Internal;
+using System;
 using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
@@ -11,6 +12,16 @@ namespace NVMP.Entities
 		public override Type Implementation { get; } = typeof(NetActor);
 
 		public override uint ObjectType { get; } = Hashing.Compute("GameNetActor");
+
+		/// <summary>
+		/// Subscribes new middleware for when a new actor is created, called directly after the managed object is initialized.
+		/// </summary>
+		public event Action<INetActor> OnCreateMiddleware
+        {
+			add { CreationSubscriptions.Add(value); }
+			remove { CreationSubscriptions.Remove(value); }
+        }
+		internal readonly SubscriptionDelegate<Action<INetActor>> CreationSubscriptions = new SubscriptionDelegate<Action<INetActor>>();
 
 		public override NetUnmanaged Allocate(IntPtr unmanagedAddress)
 		{
@@ -25,6 +36,9 @@ namespace NVMP.Entities
 			{
 				// we will want to pin this as it comes from unmanaged creation
 				reference.Pin();
+
+				foreach (var midf in CreationSubscriptions.Subscriptions)
+					midf(reference);
 			}
 
 			return reference;
@@ -44,6 +58,9 @@ namespace NVMP.Entities
 				var instance = Allocate(IntPtr.Zero) as NetActor;
 				instance.__UnmanagedAddress = unmanaged;
 				instance.MarkWeak();
+
+				foreach (var midf in CreationSubscriptions.Subscriptions)
+					midf(instance);
 
 				return instance;
             }

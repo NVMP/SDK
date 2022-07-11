@@ -53,6 +53,18 @@ namespace NVMP.Entities
         public NetReferenceSimulationType SimType { get; set; }
 
         /// <summary>
+        /// A delegate you can bind to track when this reference activates another reference. If you return false on the delegate, it will
+        /// reject the activation on the activator's machine
+        /// </summary>
+        public OnActivatedReference ActivatedOtherReference { get; set; }
+
+        /// <summary>
+        /// A delegaet you can bind to track when this reference is activated by another reference. If you return false on the delegate, it will
+        /// reject the activation on the activator's machine.
+        /// </summary>
+        public OnActivatedReference Activated { get; set; }
+
+        /// <summary>
         /// If an name has been set, this changes the colour of it in RGBA (0-255) format
         /// </summary>
         public Color NameColor { get; set; }

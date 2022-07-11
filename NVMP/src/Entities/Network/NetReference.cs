@@ -11,6 +11,8 @@ namespace NVMP.Entities
 {
     internal class NetReference : NetUnmanaged, INetReference, IDisposable
     {
+        internal delegate NetReferencePVSTestTypes PVSCheckDelegate(NetPlayer player);
+
         #region Natives
         [DllImport("Native", EntryPoint = "GameNetReference_GetTitle", CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.LPWStr)]
@@ -141,13 +143,24 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetIsInvisible")]
         private static extern void Internal_SetIsInvisible(IntPtr self, bool invisible);
 
-        public delegate NetReferencePVSTestTypes PVSCheckDelegate(NetPlayer player);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetPVSCheckDelegate")]
         private static extern void Internal_SetPVSCheckDelegate(IntPtr self, PVSCheckDelegate del);
 
         [DllImport("Native", EntryPoint = "GameNetReference_GetPVSCheckDelegate")]
         private static extern PVSCheckDelegate Internal_GetPVSCheckDelegate(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetOnActivatedOtherReferenceDelegate")]
+        private static extern void Internal_SetOnActivatedOtherReferenceDelegate(IntPtr self, OnActivatedReference del);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetOnActivatedOtherReferenceDelegate")]
+        private static extern OnActivatedReference Internal_GetOnActivatedOtherReferenceDelegate(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetOnActivatedDelegate")]
+        private static extern void Internal_SetOnActivatedDelegate(IntPtr self, OnActivatedReference del);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetOnActivatedDelegate")]
+        private static extern OnActivatedReference Internal_GetOnDelegate(IntPtr self);
         #endregion
 
         public class PVSController : INetReferencePVSController
@@ -174,6 +187,29 @@ namespace NVMP.Entities
         }
 
         public INetReferencePVSController PVS { get; }
+
+        internal OnActivatedReference OnActivatedDelegate;
+        internal OnActivatedReference OnActivatedOtherReferenceDelegate;
+
+        public OnActivatedReference ActivatedOtherReference
+        {
+            set
+            {
+                OnActivatedOtherReferenceDelegate = value;
+                Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, OnActivatedOtherReferenceDelegate);
+            }
+            get => OnActivatedOtherReferenceDelegate;
+        }
+
+        public OnActivatedReference Activated
+        {
+            set
+            {
+                OnActivatedDelegate = value;
+                Internal_SetOnActivatedDelegate(__UnmanagedAddress, OnActivatedDelegate);
+            }
+            get => OnActivatedDelegate;
+        }
 
         public NetReference()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NVMP.Internal;
+using System;
 using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
@@ -11,6 +12,16 @@ namespace NVMP.Entities
 	{
 		public override Type Implementation { get; } = typeof(NetCharacter);
 		public override uint ObjectType { get; } = Hashing.Compute("GameNetCharacter");
+
+		/// <summary>
+		/// Subscribes new middleware for when a new character is created, called directly after the managed object is initialized.
+		/// </summary>
+		public event Action<INetCharacter> OnCreateMiddleware
+		{
+			add { CreationSubscriptions.Add(value); }
+			remove { CreationSubscriptions.Remove(value); }
+		}
+		internal readonly SubscriptionDelegate<Action<INetCharacter>> CreationSubscriptions = new SubscriptionDelegate<Action<INetCharacter>>();
 
 		public override NetUnmanaged Allocate(IntPtr unmanagedAddress)
 		{
@@ -25,6 +36,9 @@ namespace NVMP.Entities
 			{
 				// we will want to pin this as it comes from unmanaged creation
 				reference.Pin();
+
+				foreach (var midf in CreationSubscriptions.Subscriptions)
+					midf(reference);
 			}
 
 			return reference;
