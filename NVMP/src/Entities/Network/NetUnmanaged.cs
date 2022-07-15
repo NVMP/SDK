@@ -92,6 +92,10 @@ namespace NVMP.Entities
             }
         }
 
+        internal virtual void OnCreate()
+        {
+        }
+
         internal void Pin()
         {
             if (__InternalUnmanagedAddress != IntPtr.Zero)

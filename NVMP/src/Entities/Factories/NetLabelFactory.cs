@@ -47,6 +47,8 @@ namespace NVMP.Entities
 
                 foreach (var midf in CreationSubscriptions.Subscriptions)
                     midf(reference);
+
+                reference.OnCreate();
             }
 
             return reference;
@@ -67,6 +69,8 @@ namespace NVMP.Entities
 
                 foreach (var midf in CreationSubscriptions.Subscriptions)
                     midf(inst);
+
+                inst.OnCreate();
 
                 return inst;
             }

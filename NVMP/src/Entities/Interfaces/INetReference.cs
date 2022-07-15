@@ -56,13 +56,13 @@ namespace NVMP.Entities
         /// A delegate you can bind to track when this reference activates another reference. If you return false on the delegate, it will
         /// reject the activation on the activator's machine
         /// </summary>
-        public OnActivatedReference ActivatedOtherReference { get; set; }
+        public event OnActivatedReference ActivatedOtherReference;
 
         /// <summary>
-        /// A delegaet you can bind to track when this reference is activated by another reference. If you return false on the delegate, it will
+        /// A delegate you can bind to track when this reference is activated by another reference. If you return false on the delegate, it will
         /// reject the activation on the activator's machine.
         /// </summary>
-        public OnActivatedReference Activated { get; set; }
+        public event OnActivatedReference Activated;
 
         /// <summary>
         /// If an name has been set, this changes the colour of it in RGBA (0-255) format

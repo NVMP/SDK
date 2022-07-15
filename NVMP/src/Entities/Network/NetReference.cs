@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NVMP.Entities.Encoding;
+using NVMP.Internal;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
@@ -188,32 +189,52 @@ namespace NVMP.Entities
 
         public INetReferencePVSController PVS { get; }
 
-        internal OnActivatedReference OnActivatedDelegate;
-        internal OnActivatedReference OnActivatedOtherReferenceDelegate;
-
-        public OnActivatedReference ActivatedOtherReference
+        internal class OnActivatedSubscription : SubscriptionDelegate<OnActivatedReference>
         {
-            set
+            public OnActivatedReference Execute;
+
+            public OnActivatedSubscription()
             {
-                OnActivatedOtherReferenceDelegate = value;
-                Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, OnActivatedOtherReferenceDelegate);
+                Execute = InternalExecute;
             }
-            get => OnActivatedOtherReferenceDelegate;
+
+            internal bool InternalExecute(INetReference reference, uint refId, NetReferenceFormType formType, ReadOnlyExtraDataList extraDataList)
+            {
+                foreach (var sub in Subscriptions)
+                {
+                    if (!sub.Invoke(reference, refId, formType, extraDataList))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
         }
 
-        public OnActivatedReference Activated
+        internal OnActivatedSubscription OnActivatedDelegate = new OnActivatedSubscription();
+        internal OnActivatedSubscription OnActivatedOtherReferenceDelegate = new OnActivatedSubscription();
+
+        public event OnActivatedReference ActivatedOtherReference
         {
-            set
-            {
-                OnActivatedDelegate = value;
-                Internal_SetOnActivatedDelegate(__UnmanagedAddress, OnActivatedDelegate);
-            }
-            get => OnActivatedDelegate;
+            add { OnActivatedOtherReferenceDelegate.Add(value); }
+            remove { OnActivatedOtherReferenceDelegate.Remove(value); }
+        }
+
+        public event OnActivatedReference Activated
+        {
+            add { OnActivatedDelegate.Add(value); }
+            remove { OnActivatedDelegate.Remove(value); }
         }
 
         public NetReference()
         {
             PVS = new PVSController(this);
+        }
+
+        internal override void OnCreate()
+        {
+            Internal_SetOnActivatedDelegate(__UnmanagedAddress, OnActivatedDelegate.Execute);
+            Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, OnActivatedOtherReferenceDelegate.Execute);
         }
 
         public uint FormID => Internal_GetFormID(__UnmanagedAddress);
@@ -451,7 +472,10 @@ namespace NVMP.Entities
                 SetExterior(other.Worldspace.FormID, cellX, cellY);
             }
 
+            Debugging.Write($"Moving {Name} from {VirtualWorldID} to {other.VirtualWorldID}");
+
             Position = other.Position;
+            VirtualWorldID = other.VirtualWorldID;
         }
 
         /// <summary>
