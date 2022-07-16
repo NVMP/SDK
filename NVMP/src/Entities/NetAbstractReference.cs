@@ -26,5 +26,15 @@ namespace NVMP.Entities
         /// The reference ID based in this interaction. This will always be set
         /// </summary>
         public uint RefID { get; internal set; }
+
+        /// <summary>
+        /// The reference form type based in this interaction.
+        /// </summary>
+        public NetReferenceFormType RefFormType { get; internal set; }
+
+        /// <summary>
+        /// The extralist active type bitset of the reference based in this interaction.
+        /// </summary>
+        public ReadOnlyExtraDataList RefExtraDataList { get; internal set; }
     }
 }

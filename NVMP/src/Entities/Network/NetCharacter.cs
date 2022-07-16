@@ -52,7 +52,11 @@ namespace NVMP.Entities
         private static extern IntPtr Internal_GetSpectateEntity(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetCharacter_GetCrosshairReference")]
-        private static extern void Internal_GetCrosshairReference(IntPtr self, out IntPtr netObject, out uint refId);
+        private static extern void Internal_GetCrosshairReference(IntPtr self, out IntPtr netObject
+            , out uint refId
+            , out NetReferenceFormType formType
+            , [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(ExtraDataListBitsetMarshalerToBitArray))] out ReadOnlyExtraDataList extraDataList
+            );
 
         [DllImport("Native", EntryPoint = "GameNetCharacter_GetEnabledEncounter")]
         [return: MarshalAs(UnmanagedType.I1)]
@@ -161,7 +165,11 @@ namespace NVMP.Entities
         {
             get
             {
-                Internal_GetCrosshairReference(__UnmanagedAddress, out IntPtr netRef, out uint refId);
+                Internal_GetCrosshairReference(__UnmanagedAddress
+                    , out IntPtr netRef
+                    , out uint refId
+                    , out NetReferenceFormType formType
+                    , out ReadOnlyExtraDataList extraDataList);
 
                 var result = new NetAbstractReference();
                 if (netRef != IntPtr.Zero)
@@ -169,6 +177,8 @@ namespace NVMP.Entities
                     result.NetReference = Marshals.NetReferenceMarshaler.Instance.MarshalNativeToManaged(netRef) as INetReference;
                 }
 
+                result.RefExtraDataList = extraDataList;
+                result.RefFormType = formType;
                 result.RefID = refId;
                 return result;
             }
