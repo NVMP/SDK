@@ -33,7 +33,12 @@ namespace NVMP
         static private void FreeGCHandle(IntPtr handle)
         {
             try {
-                GCHandle.FromIntPtr(handle).Free();
+                var gcHandle = GCHandle.FromIntPtr(handle);
+                if (gcHandle.Target is NetUnmanaged)
+                {
+                    (gcHandle.Target as NetUnmanaged).Unbind();
+                }
+                gcHandle.Free();
             } catch (Exception e)
             {
                 Debugging.Error(e);

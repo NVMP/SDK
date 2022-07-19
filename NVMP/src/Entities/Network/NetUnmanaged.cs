@@ -156,13 +156,20 @@ namespace NVMP.Entities
             return __UnmanagedAddress.ToInt32();
         }
 
+        public void Unbind()
+        {
+            var address = __UnmanagedAddress;
+            __UnmanagedAddress = IntPtr.Zero; // removes the handle
+        }
+
         public void Destroy()
         {
             var address = __UnmanagedAddress;
             __UnmanagedAddress = IntPtr.Zero; // removes the handle
-
             Internal_Destroy(address); // removes the object (tags it)
         }
+
+        protected virtual void PreDispose() { }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -173,8 +180,18 @@ namespace NVMP.Entities
                     // TODO: dispose managed state (managed objects)
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                __UnmanagedAddress = IntPtr.Zero; // implicitly untracks
+                if (__UnmanagedAddress != IntPtr.Zero)
+                {
+                    PreDispose();
+
+                    // inform unmanaged side that this managed object is no longer valid
+                    var oldAddress = __UnmanagedAddress;
+
+                    // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                    __UnmanagedAddress = IntPtr.Zero; // implicitly untracks
+
+                    Internal_SetManagedHandle(oldAddress, IntPtr.Zero);
+                }
 
                 // TODO: set large fields to null
                 __Disposed = true;

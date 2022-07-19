@@ -231,6 +231,12 @@ namespace NVMP.Entities
             PVS = new PVSController(this);
         }
 
+        protected override void PreDispose()
+        {
+            Internal_SetOnActivatedDelegate(__UnmanagedAddress, null);
+            Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, null);
+        }
+
         internal override void OnCreate()
         {
             Internal_SetOnActivatedDelegate(__UnmanagedAddress, OnActivatedDelegate.Execute);
