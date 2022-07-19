@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IDiscordAuthenticator
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IDiscordAuthenticator
+   ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator">
+  
+  
+  <h1 id="NVMP_Authenticator_Discord_IDiscordAuthenticator" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator" class="text-break">Interface IDiscordAuthenticator
+  </h1>
+  <div class="markdown level0 summary"><p>Provides authentication based on Discord. You will need to allow the module to run once to populate new entries in server.cfg, and then afterwards
+configure them with your Discord secrets.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_IsAuthenticationValid_NVMP_Entities_NetPlayer_System_String_System_String__">IAuthenticator.IsAuthenticationValid(NetPlayer, String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_Log_System_String_">IAuthenticator.Log(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_GetAuthenticationURL">IAuthenticator.GetAuthenticationURL()</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_SetupAuthentication_NVMP_Entities_NetPlayer_">IAuthenticator.SetupAuthentication(NetPlayer)</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_IsScopeValid_NVMP_Entities_NetPlayer_System_String_">IAuthenticator.IsScopeValid(NetPlayer, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_PlayerLeft_NVMP_Entities_NetPlayer_">IAuthenticator.PlayerLeft(NetPlayer)</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_Ban_NVMP_Entities_NetPlayer_System_String_">IAuthenticator.Ban(NetPlayer, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_Update">IAuthenticator.Update()</a>
+    </div>
+    <div>
+      <a class="xref" href="NVMP.Authenticator.IAuthenticator.html#NVMP_Authenticator_IAuthenticator_GetClientID">IAuthenticator.GetClientID()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NVMP.Authenticator.Discord.html">NVMP.Authenticator.Discord</a></h6>
+  <h6><strong>Assembly</strong>: NVMP.dll</h6>
+  <h5 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IDiscordAuthenticator : IAuthenticator</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_OnDiscordUserRemotelyBanned.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.OnDiscordUserRemotelyBanned%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L37">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_OnDiscordUserRemotelyBanned_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.OnDiscordUserRemotelyBanned*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_OnDiscordUserRemotelyBanned" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.OnDiscordUserRemotelyBanned">OnDiscordUserRemotelyBanned</h4>
+  <div class="markdown level1 summary"><p>Called when a user is banned on the Discord service level, useful for informing the game server about evicting players
+who no longer should have a valid token.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Func&lt;RestGuildUser, string, Task&gt; OnDiscordUserRemotelyBanned { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">Discord.Rest.RestGuildUser</span>, <span class="xref">System.String</span>, <span class="xref">System.Threading.Tasks.Task</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_AddPermittedRole_System_UInt64_.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.AddPermittedRole(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L56">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_AddPermittedRole_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.AddPermittedRole*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_AddPermittedRole_System_UInt64_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.AddPermittedRole(System.UInt64)">AddPermittedRole(UInt64)</h4>
+  <div class="markdown level1 summary"><p>Adds a permitted Discord role to allow to authenticate. Use 0 to allow any role.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void AddPermittedRole(ulong role)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">role</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_AddScopeToRole_System_UInt64_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.AddScopeToRole(System.UInt64%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L50">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_AddScopeToRole_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.AddScopeToRole*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_AddScopeToRole_System_UInt64_System_String_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.AddScopeToRole(System.UInt64,System.String)">AddScopeToRole(UInt64, String)</h4>
+  <div class="markdown level1 summary"><p>Adds a scope type to the Discord ID authenticated to. Scopes are abstract, invent them as you may. They'll just be accounted for when scope checks are
+used on the authenticator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void AddScopeToRole(ulong role, string scope)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">role</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">scope</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_AddWebListener.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.AddWebListener%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L42">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_AddWebListener_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.AddWebListener*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_AddWebListener" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.AddWebListener">AddWebListener()</h4>
+  <div class="markdown level1 summary"><p>Binds a web route to the managed web service to listen for authorization calls.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void AddWebListener()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_BanDiscordID_System_UInt64_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.BanDiscordID(System.UInt64%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L19">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_BanDiscordID_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.BanDiscordID*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_BanDiscordID_System_UInt64_System_String_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.BanDiscordID(System.UInt64,System.String)">BanDiscordID(UInt64, String)</h4>
+  <div class="markdown level1 summary"><p>Remotely bans a specified Discord ID in the primary guild server with the specified reason</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BanDiscordID(ulong id, string reason = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_TryAuthentication_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.TryAuthentication(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L31">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_TryAuthentication_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.TryAuthentication*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_TryAuthentication_System_String_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.TryAuthentication(System.String)">TryAuthentication(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DiscordAuthorizationSession&gt; TryAuthentication(string authtoken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authtoken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="NVMP.Authenticator.Discord.DiscordAuthorizationSession.html">DiscordAuthorizationSession</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator_TryAuthorization_System_String_System_Boolean_System_Boolean_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator.TryAuthorization(System.String%2CSystem.Boolean%2CSystem.Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L29">View Source</a>
+  </span>
+  <a id="NVMP_Authenticator_Discord_IDiscordAuthenticator_TryAuthorization_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.TryAuthorization*"></a>
+  <h4 id="NVMP_Authenticator_Discord_IDiscordAuthenticator_TryAuthorization_System_String_System_Boolean_System_Boolean_System_String_" data-uid="NVMP.Authenticator.Discord.IDiscordAuthenticator.TryAuthorization(System.String,System.Boolean,System.Boolean,System.String)">TryAuthorization(String, Boolean, Boolean, String)</h4>
+  <div class="markdown level1 summary"><p>Tries to authenticate with the authenticator object the passed in authentication token</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;DiscordAuthorizationResult&gt; TryAuthorization(string blob, bool mustNotBeInGame = true, bool persistSession = true, string redirectUriOverride = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">blob</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">mustNotBeInGame</span></td>
+        <td><p>if set, the user associated to this token must not be in-game</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">persistSession</span></td>
+        <td><p>if set, the user associated to this token will be persisted in the session until the player leaves. set this to false if you just want to soft query</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">redirectUriOverride</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="NVMP.Authenticator.Discord.DiscordAuthorizationResult.html">DiscordAuthorizationResult</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Authenticator_Discord_IDiscordAuthenticator.md&amp;value=---%0Auid%3A%20NVMP.Authenticator.Discord.IDiscordAuthenticator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Authenticator/Discord/IDiscordAuthenticator.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

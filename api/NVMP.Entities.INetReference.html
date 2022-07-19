@@ -1,0 +1,1442 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface INetReference
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface INetReference
+   ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NVMP.Entities.INetReference">
+  
+  
+  <h1 id="NVMP_Entities_INetReference" data-uid="NVMP.Entities.INetReference" class="text-break">Interface INetReference
+  </h1>
+  <div class="markdown level0 summary"><p>References are networked TESObjectREFR's. They support basic synchronisation functionality, along with specific networking
+configurations where needed. This interface is inherited by other classes that depend on additional functionality.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.IEquatable&lt;NVMP.Entities.INetReference&gt;.Equals(NVMP.Entities.INetReference)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NVMP.Entities.html">NVMP.Entities</a></h6>
+  <h6><strong>Assembly</strong>: NVMP.dll</h6>
+  <h5 id="NVMP_Entities_INetReference_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface INetReference : IEquatable&lt;INetReference&gt;</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_DefaultVirtualWorldID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.DefaultVirtualWorldID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L24">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetReference_DefaultVirtualWorldID" data-uid="NVMP.Entities.INetReference.DefaultVirtualWorldID">DefaultVirtualWorldID</h4>
+  <div class="markdown level1 summary"><p>The default virtual world ID all objects are synchronised in when created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly uint DefaultVirtualWorldID</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_UpVector.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.UpVector%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L19">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetReference_UpVector" data-uid="NVMP.Entities.INetReference.UpVector">UpVector</h4>
+  <div class="markdown level1 summary"><p>A helper to query Fallout: New Vegas's upwards vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Vector3 UpVector</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Numerics.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Activatable.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Activatable%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L48">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Activatable_" data-uid="NVMP.Entities.INetReference.Activatable*"></a>
+  <h4 id="NVMP_Entities_INetReference_Activatable" data-uid="NVMP.Entities.INetReference.Activatable">Activatable</h4>
+  <div class="markdown level1 summary"><p>Sets whether the reference be interacted with the E key. For actors this may be either dialogue, or looting.
+For containers, this is looting. And for other stuff, just check the GECK.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Activatable { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_FormID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.FormID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L29">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_FormID_" data-uid="NVMP.Entities.INetReference.FormID*"></a>
+  <h4 id="NVMP_Entities_INetReference_FormID" data-uid="NVMP.Entities.INetReference.FormID">FormID</h4>
+  <div class="markdown level1 summary"><p>Base form ID of this reference. If refID is not set, this is used to instanciate a new reference of this form ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint FormID { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Interior.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Interior%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L136">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Interior_" data-uid="NVMP.Entities.INetReference.Interior*"></a>
+  <h4 id="NVMP_Entities_INetReference_Interior" data-uid="NVMP.Entities.INetReference.Interior">Interior</h4>
+  <div class="markdown level1 summary"><p>The interior cell ID, or zero if in an exterior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint Interior { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsActor.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsActor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L188">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsActor_" data-uid="NVMP.Entities.INetReference.IsActor*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsActor" data-uid="NVMP.Entities.INetReference.IsActor">IsActor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsActor { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsDestroyed.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsDestroyed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L211">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsDestroyed_" data-uid="NVMP.Entities.INetReference.IsDestroyed*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsDestroyed" data-uid="NVMP.Entities.INetReference.IsDestroyed">IsDestroyed</h4>
+  <div class="markdown level1 summary"><p>Returns whether an object is destroyed in unmanaged code. This doesn't mean that the object is free'd from memory,
+but is actually waiting for a deletion when all available handles are free.</p>
+<p>If you are handling NetReference handles, you should periodically check this to then release your object to the
+GC collector - else the console will warn about your access being prolongued after death.</p>
+<p>You can set this to true to destroy the object, but it's preferable to use Destroy() as using this implies you
+can undestroy an object (Pro Tip: You can't! Don't even try it!)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsDestroyed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsIdle.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsIdle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L190">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsIdle_" data-uid="NVMP.Entities.INetReference.IsIdle*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsIdle" data-uid="NVMP.Entities.INetReference.IsIdle">IsIdle</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsIdle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsInInterior.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsInInterior%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L141">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsInInterior_" data-uid="NVMP.Entities.INetReference.IsInInterior*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsInInterior" data-uid="NVMP.Entities.INetReference.IsInInterior">IsInInterior</h4>
+  <div class="markdown level1 summary"><p>Returns if the reference is inside an interior, if not then they are in a worldspace cell.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInInterior { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsInvisible.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsInvisible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L125">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsInvisible_" data-uid="NVMP.Entities.INetReference.IsInvisible*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsInvisible" data-uid="NVMP.Entities.INetReference.IsInvisible">IsInvisible</h4>
+  <div class="markdown level1 summary"><p>Sets the network PVS invisibility flag. This makes the entity not visible and becomes unsynced to all players. Changes made
+to this object won't be applied to player's machines until it becomes visible again.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInvisible { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Name.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L42">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Name_" data-uid="NVMP.Entities.INetReference.Name*"></a>
+  <h4 id="NVMP_Entities_INetReference_Name" data-uid="NVMP.Entities.INetReference.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The display name of the actor. This is additionally set as the actor's form name,
+so may have direct Fallout manipulations. Maximum name of 255 characters is permitted.
+Clients may not change the name of actors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_NameColor.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.NameColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L70">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_NameColor_" data-uid="NVMP.Entities.INetReference.NameColor*"></a>
+  <h4 id="NVMP_Entities_INetReference_NameColor" data-uid="NVMP.Entities.INetReference.NameColor">NameColor</h4>
+  <div class="markdown level1 summary"><p>If an name has been set, this changes the colour of it in RGBA (0-255) format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Color NameColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_PlayerOwner.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.PlayerOwner%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L107">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_PlayerOwner_" data-uid="NVMP.Entities.INetReference.PlayerOwner*"></a>
+  <h4 id="NVMP_Entities_INetReference_PlayerOwner" data-uid="NVMP.Entities.INetReference.PlayerOwner">PlayerOwner</h4>
+  <div class="markdown level1 summary"><p>The player who currently owns this actor for synchronisation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">NetPlayer PlayerOwner { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.NetPlayer.html">NetPlayer</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Position.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L92">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Position_" data-uid="NVMP.Entities.INetReference.Position*"></a>
+  <h4 id="NVMP_Entities_INetReference_Position" data-uid="NVMP.Entities.INetReference.Position">Position</h4>
+  <div class="markdown level1 summary"><p>The 3D coordinates of the actor in the world</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Vector3 Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Numerics.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_PVS.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.PVS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L199">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_PVS_" data-uid="NVMP.Entities.INetReference.PVS*"></a>
+  <h4 id="NVMP_Entities_INetReference_PVS" data-uid="NVMP.Entities.INetReference.PVS">PVS</h4>
+  <div class="markdown level1 summary"><p>The implemented PVS controller</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">INetReferencePVSController PVS { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetReferencePVSController.html">INetReferencePVSController</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_RefID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.RefID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L35">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_RefID_" data-uid="NVMP.Entities.INetReference.RefID*"></a>
+  <h4 id="NVMP_Entities_INetReference_RefID" data-uid="NVMP.Entities.INetReference.RefID">RefID</h4>
+  <div class="markdown level1 summary"><p>The unique reference ID of this reference. This can only be set on creation to ensure all clients in PVS use the correct
+reference ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint RefID { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Rotation.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Rotation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L102">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Rotation_" data-uid="NVMP.Entities.INetReference.Rotation*"></a>
+  <h4 id="NVMP_Entities_INetReference_Rotation" data-uid="NVMP.Entities.INetReference.Rotation">Rotation</h4>
+  <div class="markdown level1 summary"><p>The 3D Quaternion rotation of the actor in the world</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Quaternion Rotation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Numerics.Quaternion</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_SimType.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.SimType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L53">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_SimType_" data-uid="NVMP.Entities.INetReference.SimType*"></a>
+  <h4 id="NVMP_Entities_INetReference_SimType" data-uid="NVMP.Entities.INetReference.SimType">SimType</h4>
+  <div class="markdown level1 summary"><p>Sets the actor's simulation type. See NetReferenceSimulationType for options. Default value for SDK references is SimulationType.Static</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">NetReferenceSimulationType SimType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.NetReferenceSimulationType.html">NetReferenceSimulationType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Title.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Title%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L76">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Title_" data-uid="NVMP.Entities.INetReference.Title*"></a>
+  <h4 id="NVMP_Entities_INetReference_Title" data-uid="NVMP.Entities.INetReference.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The overhead title of the actor.
+Clients may not change the title of actors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_TitleColor.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.TitleColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L81">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_TitleColor_" data-uid="NVMP.Entities.INetReference.TitleColor*"></a>
+  <h4 id="NVMP_Entities_INetReference_TitleColor" data-uid="NVMP.Entities.INetReference.TitleColor">TitleColor</h4>
+  <div class="markdown level1 summary"><p>If an overhead title has been set, this changes the colour of it in RGBA (0-255) format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Color TitleColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Drawing.Color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Velocity.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Velocity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L97">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Velocity_" data-uid="NVMP.Entities.INetReference.Velocity*"></a>
+  <h4 id="NVMP_Entities_INetReference_Velocity" data-uid="NVMP.Entities.INetReference.Velocity">Velocity</h4>
+  <div class="markdown level1 summary"><p>The 3D coordinates of the actor in the world</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Vector3 Velocity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Numerics.Vector3</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_VirtualWorldID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.VirtualWorldID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L87">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_VirtualWorldID_" data-uid="NVMP.Entities.INetReference.VirtualWorldID*"></a>
+  <h4 id="NVMP_Entities_INetReference_VirtualWorldID" data-uid="NVMP.Entities.INetReference.VirtualWorldID">VirtualWorldID</h4>
+  <div class="markdown level1 summary"><p>Objects that are inside the same virtual world are synchronised together, but if they are not then they have no understanding
+of eachother's state other than existance. By default all objects are DEFAULT_VWID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint VirtualWorldID { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Worldspace.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Worldspace%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L131">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Worldspace_" data-uid="NVMP.Entities.INetReference.Worldspace*"></a>
+  <h4 id="NVMP_Entities_INetReference_Worldspace" data-uid="NVMP.Entities.INetReference.Worldspace">Worldspace</h4>
+  <div class="markdown level1 summary"><p>An exterior cell information object. Should check for !IsInInterior before accesisng this
+to be sure this data is in use.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">WorldspaceCoordinate Worldspace { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.WorldspaceCoordinate.html">WorldspaceCoordinate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Decode_NVMP_Entities_Encoding_ReferenceData_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Decode(NVMP.Entities.Encoding.ReferenceData)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L177">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Decode_" data-uid="NVMP.Entities.INetReference.Decode*"></a>
+  <h4 id="NVMP_Entities_INetReference_Decode_NVMP_Entities_Encoding_ReferenceData_" data-uid="NVMP.Entities.INetReference.Decode(NVMP.Entities.Encoding.ReferenceData)">Decode(ReferenceData)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Decode(ReferenceData entry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.Encoding.ReferenceData.html">ReferenceData</a></td>
+        <td><span class="parametername">entry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_DecodeFromJSON_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.DecodeFromJSON(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L186">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_DecodeFromJSON_" data-uid="NVMP.Entities.INetReference.DecodeFromJSON*"></a>
+  <h4 id="NVMP_Entities_INetReference_DecodeFromJSON_System_String_" data-uid="NVMP.Entities.INetReference.DecodeFromJSON(System.String)">DecodeFromJSON(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void DecodeFromJSON(string json)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">json</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Destroy.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Destroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L213">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Destroy_" data-uid="NVMP.Entities.INetReference.Destroy*"></a>
+  <h4 id="NVMP_Entities_INetReference_Destroy" data-uid="NVMP.Entities.INetReference.Destroy">Destroy()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Destroy()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Encode.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Encode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L175">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_Encode_" data-uid="NVMP.Entities.INetReference.Encode*"></a>
+  <h4 id="NVMP_Entities_INetReference_Encode" data-uid="NVMP.Entities.INetReference.Encode">Encode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ReferenceData Encode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.Encoding.ReferenceData.html">ReferenceData</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_EncodeToJSON.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.EncodeToJSON%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L179">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_EncodeToJSON_" data-uid="NVMP.Entities.INetReference.EncodeToJSON*"></a>
+  <h4 id="NVMP_Entities_INetReference_EncodeToJSON" data-uid="NVMP.Entities.INetReference.EncodeToJSON">EncodeToJSON()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string EncodeToJSON()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsInPVS_NVMP_Entities_INetReference_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsInPVS(NVMP.Entities.INetReference)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L192">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsInPVS_" data-uid="NVMP.Entities.INetReference.IsInPVS*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsInPVS_NVMP_Entities_INetReference_" data-uid="NVMP.Entities.INetReference.IsInPVS(NVMP.Entities.INetReference)">IsInPVS(INetReference)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInPVS(INetReference other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetReference.html">INetReference</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_IsInZone_NVMP_Entities_INetZone_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.IsInZone(NVMP.Entities.INetZone)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L194">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_IsInZone_" data-uid="NVMP.Entities.INetReference.IsInZone*"></a>
+  <h4 id="NVMP_Entities_INetReference_IsInZone_NVMP_Entities_INetZone_" data-uid="NVMP.Entities.INetReference.IsInZone(NVMP.Entities.INetZone)">IsInZone(INetZone)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsInZone(INetZone zone)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetZone.html">INetZone</a></td>
+        <td><span class="parametername">zone</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_LookAt_NVMP_Entities_INetReference_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.LookAt(NVMP.Entities.INetReference)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L113">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_LookAt_" data-uid="NVMP.Entities.INetReference.LookAt*"></a>
+  <h4 id="NVMP_Entities_INetReference_LookAt_NVMP_Entities_INetReference_" data-uid="NVMP.Entities.INetReference.LookAt(NVMP.Entities.INetReference)">LookAt(INetReference)</h4>
+  <div class="markdown level1 summary"><p>Currently only positions the yaw axis</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void LookAt(INetReference target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetReference.html">INetReference</a></td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_LookAt_System_Numerics_Vector3_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.LookAt(System.Numerics.Vector3)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L119">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_LookAt_" data-uid="NVMP.Entities.INetReference.LookAt*"></a>
+  <h4 id="NVMP_Entities_INetReference_LookAt_System_Numerics_Vector3_" data-uid="NVMP.Entities.INetReference.LookAt(System.Numerics.Vector3)">LookAt(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Currently only positions the yaw axis</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void LookAt(Vector3 target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Numerics.Vector3</span></td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_ReloadState.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.ReloadState%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L184">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_ReloadState_" data-uid="NVMP.Entities.INetReference.ReloadState*"></a>
+  <h4 id="NVMP_Entities_INetReference_ReloadState" data-uid="NVMP.Entities.INetReference.ReloadState">ReloadState()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ReloadState()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_SaveState.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.SaveState%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L182">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_SaveState_" data-uid="NVMP.Entities.INetReference.SaveState*"></a>
+  <h4 id="NVMP_Entities_INetReference_SaveState" data-uid="NVMP.Entities.INetReference.SaveState">SaveState()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SaveState()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_SetCell_System_UInt32_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.SetCell(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L149">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_SetCell_" data-uid="NVMP.Entities.INetReference.SetCell*"></a>
+  <h4 id="NVMP_Entities_INetReference_SetCell_System_UInt32_" data-uid="NVMP.Entities.INetReference.SetCell(System.UInt32)">SetCell(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Teleports the actor to a specific cell ID. Can be used in pair with Position, Rotation
+Do note that the formID must be an interior cell, worldspace cells will come up short if the player has not loaded that region - in which
+case you should be using TeleportToExterior</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetCell(uint formid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">formid</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_SetExterior_NVMP_Worldspace_WorldspaceType_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.SetExterior(NVMP.Worldspace.WorldspaceType%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L161">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_SetExterior_" data-uid="NVMP.Entities.INetReference.SetExterior*"></a>
+  <h4 id="NVMP_Entities_INetReference_SetExterior_NVMP_Worldspace_WorldspaceType_System_Int32_System_Int32_" data-uid="NVMP.Entities.INetReference.SetExterior(NVMP.Worldspace.WorldspaceType,System.Int32,System.Int32)">SetExterior(Worldspace.WorldspaceType, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Teleports the actor to an exterior cell. Can be used in pair with Position, Rotation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetExterior(Worldspace.WorldspaceType worldspace, int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Worldspace.WorldspaceType.html">Worldspace.WorldspaceType</a></td>
+        <td><span class="parametername">worldspace</span></td>
+        <td><p>worldspace area to spawn into</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>grid x coord</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>grid y coord</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_SetExterior_NVMP_Worldspace_WorldspaceType_System_Numerics_Vector3_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.SetExterior(NVMP.Worldspace.WorldspaceType%2CSystem.Numerics.Vector3)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L173">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_SetExterior_" data-uid="NVMP.Entities.INetReference.SetExterior*"></a>
+  <h4 id="NVMP_Entities_INetReference_SetExterior_NVMP_Worldspace_WorldspaceType_System_Numerics_Vector3_" data-uid="NVMP.Entities.INetReference.SetExterior(NVMP.Worldspace.WorldspaceType,System.Numerics.Vector3)">SetExterior(Worldspace.WorldspaceType, Vector3)</h4>
+  <div class="markdown level1 summary"><p>Teleports the actor to an exterior cell. If position is set, the CELL X and Y component on teleport
+is automatically computed to the desired position to move to. The referenec is also moved into the
+specified position.</p>
+<p>This is important to use if you are moving a player, as for LOD reasons the X and Y component must be
+set up appropriately on warp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetExterior(Worldspace.WorldspaceType worldspace, Vector3 position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Worldspace.WorldspaceType.html">Worldspace.WorldspaceType</a></td>
+        <td><span class="parametername">worldspace</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Numerics.Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_TeleportTo_NVMP_Entities_INetReference_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.TeleportTo(NVMP.Entities.INetReference)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L153">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_TeleportTo_" data-uid="NVMP.Entities.INetReference.TeleportTo*"></a>
+  <h4 id="NVMP_Entities_INetReference_TeleportTo_NVMP_Entities_INetReference_" data-uid="NVMP.Entities.INetReference.TeleportTo(NVMP.Entities.INetReference)">TeleportTo(INetReference)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void TeleportTo(INetReference other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetReference.html">INetReference</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_TeleportToMarker_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.TeleportToMarker(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L151">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetReference_TeleportToMarker_" data-uid="NVMP.Entities.INetReference.TeleportToMarker*"></a>
+  <h4 id="NVMP_Entities_INetReference_TeleportToMarker_System_String_" data-uid="NVMP.Entities.INetReference.TeleportToMarker(System.String)">TeleportToMarker(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void TeleportToMarker(string markerID)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">markerID</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_Activated.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.Activated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L65">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetReference_Activated" data-uid="NVMP.Entities.INetReference.Activated">Activated</h4>
+  <div class="markdown level1 summary"><p>A delegate you can bind to track when this reference is activated by another reference. If you return false on the delegate, it will
+reject the activation on the activator's machine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event OnActivatedReference Activated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.OnActivatedReference.html">OnActivatedReference</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference_ActivatedOtherReference.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference.ActivatedOtherReference%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L59">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetReference_ActivatedOtherReference" data-uid="NVMP.Entities.INetReference.ActivatedOtherReference">ActivatedOtherReference</h4>
+  <div class="markdown level1 summary"><p>A delegate you can bind to track when this reference activates another reference. If you return false on the delegate, it will
+reject the activation on the activator's machine</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event OnActivatedReference ActivatedOtherReference</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.OnActivatedReference.html">OnActivatedReference</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetReference.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetReference%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetReference.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

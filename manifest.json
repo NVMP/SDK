@@ -1,0 +1,1376 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/SDK/SDK/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Basic.BasicAuthenticatorFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Basic.BasicAuthenticatorFactory.html",
+          "hash": "oeHVb+8wsjecbmURTfIaXhQZWZ4EX71SszPMmGV4KAM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Basic.IBasicAuthenticator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Basic.IBasicAuthenticator.html",
+          "hash": "X9N8878RMoSdTx5+UsY5yEvT6X3wcpgIJ358pry+O+g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Basic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Basic.html",
+          "hash": "qwXa2GLhjUhevuCNnNqkF8MVgyeYwUHaHfV/XlBYxL0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthenticatorFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthenticatorFactory.html",
+          "hash": "ZTT7LHtzWUE2MY/n4YOovGz8v6QltXETriWB5T7bMN8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthorizationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthorizationResult.html",
+          "hash": "GMpIJvddOluJehRg5il3naLRNZZpPnua6uGTwjv8Hxg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthorizationSession.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthorizationSession.html",
+          "hash": "VmDEGyNe951H1lWaHE2Gwx70b8O1Cu2iGznK14sBmuA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthorizationStatusTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.DiscordAuthorizationStatusTypes.html",
+          "hash": "CFGCdx8NweNHF2zvNEghC3J+bh0srs4OUMr2CvGpxlU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.DiscordOAuthResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.DiscordOAuthResponse.html",
+          "hash": "TdJMLl9CfpSG78CMULikhBCBwJD8JNidVhqVhbbh3yE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.IDiscordAuthenticator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.IDiscordAuthenticator.html",
+          "hash": "7bYV+DxwYlxgGuTyIi8EzGbknCyufoMuuzBtFBcwM5w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.Discord.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.Discord.html",
+          "hash": "eZCb4HI4mMkKtYRSDKvVfJrGojm/mF7kIwFTTmheKK8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.IAuthenticator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.IAuthenticator.html",
+          "hash": "pNzbDTBgTwZuPtYk2T8rd/urPhF0GDe0BKbkIdZ94lg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Authenticator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Authenticator.html",
+          "hash": "Z95JFZcqilQS4WJ3VQLAilwPcm5bqK9NILZU/YbSIf8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ManagedWebService.IManagedWebService.Method.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ManagedWebService.IManagedWebService.Method.html",
+          "hash": "KeF20oMMFWtan95vpdG0XCTboAlbkOBTkzD6ooYYg40="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ManagedWebService.IManagedWebService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ManagedWebService.IManagedWebService.html",
+          "hash": "v/WiNA8QUMfhM60niC0snxLesSCswm8veI9rx3ZoXoY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ManagedWebService.ManagedWebServiceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ManagedWebService.ManagedWebServiceFactory.html",
+          "hash": "jxlD842IoJNi6E2eJTkOC3RMN17OQI2blsdw+ywZ8Ac="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ManagedWebService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ManagedWebService.html",
+          "hash": "NomD38jZJZWt+9B5bzvLew2Ym9pj5aVahG46SKkpCfk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ModDownloadService.IModDownloadService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ModDownloadService.IModDownloadService.html",
+          "hash": "AHzAoBFY5jrMrNgvOUJx7Ai+o9mEdHkB79n+PfjOKrc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ModDownloadService.ModDownloadServiceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ModDownloadService.ModDownloadServiceFactory.html",
+          "hash": "J43vdYqUfCrLGHJyo8Abm72bsaukOlbdqoaa+18ka70="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.BuiltinServices.ModDownloadService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.BuiltinServices.ModDownloadService.html",
+          "hash": "YT7Xq6OavLsupB2fpnGA5lVbwxl5bpxoV27A2xU3mZA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Debugging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Debugging.html",
+          "hash": "twpz4UO6eaGZ1AP+nfBvdhI+P5kpygNdROMY70UT4tM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.ActorDiedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.ActorDiedDelegate.html",
+          "hash": "SYLlglyhJq3fD2OLbjBWgis77ocCL9DOdC7d7euZK5s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.CanCharacterChangeNameDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.CanCharacterChangeNameDelegate.html",
+          "hash": "AfuPCgKJY65eL/qTDsVSytnLiORxqugnsvPPAjZBnL0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.CanResendChatToDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.CanResendChatToDelegate.html",
+          "hash": "cmelrjxSQ3mvgbCqa2X2jjqP/7YSZ0CUMrTADRHFSeI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.CanResendVoiceToDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.CanResendVoiceToDelegate.html",
+          "hash": "UBo9LL1I8QhSuKVWyC4GNlFDb/uQrmIp6+m8yHVxfpc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.InputUpdateDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.InputUpdateDelegate.html",
+          "hash": "N/qVHajhOJ0cB5LlKI4sk9fWDo94hv2FNp/5QoJXn8o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.MouseUpdateDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.MouseUpdateDelegate.html",
+          "hash": "QIFyq/htt11pFjKrp+KWYFP+rc5kBN00VegG6Y0VjBY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerCheatedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerCheatedDelegate.html",
+          "hash": "QWQJkvB4vtnMgiG91n32eujKpeW9ZzGZY9gwAeoLnIc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerCommandDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerCommandDelegate.html",
+          "hash": "iNSt+hJtW8HSSVUMrba0BcNUTSsHc3waRIGq8nYh0bw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerJoinedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerJoinedDelegate.html",
+          "hash": "96bh3ktUVE+mZGhuOC76Pb1IuBoddOCbGJlhEoceRp0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerLeftDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerLeftDelegate.html",
+          "hash": "dWiN641Xh9hsV9O4m5OEt5UK21VKrVVAAeYe2sJK7l0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerMessageDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerMessageDelegate.html",
+          "hash": "mgQly42aDFB/5ib8fRXIUQyTrGqE35gv6NunLqT1ueg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerRequestsPreJoinDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerRequestsPreJoinDelegate.html",
+          "hash": "LidJenGRyrWTGtsfAwBTf3ZJoCmFDZuLZKaGLtOfd+k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerRequestsRespawnDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerRequestsRespawnDelegate.html",
+          "hash": "0McjnS1an+wC54v/Tp0K47593KyvaoAumfsrfcxKrqw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerSaveEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerSaveEventDelegate.html",
+          "hash": "offpaukn9ck+SshWLpJ7tzmzmpqfFCgkWzp2Y3QKnYM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.PlayerUpdatedSaveDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.PlayerUpdatedSaveDelegate.html",
+          "hash": "/vnPy+tyZ1ozax0x69J2lUjXodfVFnCQSJnyExxtQ34="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.UpdateDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.UpdateDelegate.html",
+          "hash": "z6vixDHYj3qlpeAIYAb6gZFyhP4nOgMyD5KfOkBi+ao="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Delegates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Delegates.html",
+          "hash": "6vRaDAYQJOuwSxy4qJdpjSCMlOnVr/0JYc+u5Bi/YCk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.Encoding.ReferenceData.JsonEncodedEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.Encoding.ReferenceData.JsonEncodedEntry.html",
+          "hash": "V5gLQeLcdXx929wUJZIH2bYQydsFJTiVTf3y889sTuw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.Encoding.ReferenceData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.Encoding.ReferenceData.html",
+          "hash": "dTFDgeFl2S/baUUdsNljefZ4q1ZbrC9uYJmzaFSMdCo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.Encoding.ReferenceDataVistor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.Encoding.ReferenceDataVistor.html",
+          "hash": "i4UW20KLKIQx0tV3fqbdOVXMw75jDnbrXFIK+vWv9bE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.Encoding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.Encoding.html",
+          "hash": "zfPzxmejWHAoqGH49Rmcy3HGW57kPiDlviX/A3qfo38="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.Factory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.Factory.html",
+          "hash": "NPiHU5xj0AoXsVwm0d+W2a8f9V2sQFiRSfW+Ays3Kvk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetActor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetActor.html",
+          "hash": "j1ooxmgC11Un0WxGeqAh+SiMDjzB14Xj7Woyboscf3o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetActorPackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetActorPackage.html",
+          "hash": "4an0IhZPRDbxBMPEEThWhAEXbcD36LCmRfkMZ0yEPww="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetCharacter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetCharacter.html",
+          "hash": "mnWi+OmgcHeeDtPRu8eIKPs8bsDs2wTZY4qpl8dZcd0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetCharacterEncounterConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetCharacterEncounterConfig.html",
+          "hash": "VDbJXcuq0uYvVePdelzdDeA6NwNKFWpP87R0Ia6z1b8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetFactory.html",
+          "hash": "CI/xrXwZeCVYRILHFWcukQMhUf5q6Wmo1jKpgvXO6jA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetLabel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetLabel.html",
+          "hash": "fwHNIf9QAlpHZEvcFO0zBRyn4Ai3vzy/yPXJVD2w/Ag="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetLabelLine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetLabelLine.html",
+          "hash": "PsXo2d0xsvfySqHNO1gnabKeezwq+1BqxPT572isp2o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetLabelLineStack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetLabelLineStack.html",
+          "hash": "ppW917eW7anexlvhNqONbAeuKfiq/a9M7pnaD/F3nvk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetReference.html",
+          "hash": "O/8qaVUAjGzSVqwel0n5diFCCL+sE3nxb9C6Vx+1GSY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetReferencePVSController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetReferencePVSController.html",
+          "hash": "99GwULtVOyrXZF2npIxExVLIXMM6JTTRr7+Y5NjRkrw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.INetZone.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.INetZone.html",
+          "hash": "vY2L1f4K78zeb6pmC5nEwQYaf8LIAcUzUtDz2O9jTow="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetAbstractReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetAbstractReference.html",
+          "hash": "LwzbcGm3A/aN5wZdrbwxOr0u5BJceq8gGaVsWEbS+n4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetActorCombatPackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetActorCombatPackage.html",
+          "hash": "ODY6W4WXQ9Q25V4w1Lz+c9sXqPi3PFkHFnwqwemjbpo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetActorFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetActorFactory.html",
+          "hash": "hI5k2NZ0cgJ+jGY1VaWZSYHYFKWxn7tVUja+JQOx/Xw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetActorInventoryReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetActorInventoryReference.html",
+          "hash": "eYWGGTCBorjI83dMSgz68OMAYJZpCPmKPGwUh2Ehbnw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetActorKnockedState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetActorKnockedState.html",
+          "hash": "ue/O/qaHDVkYMo2pxI1J2BrUeLCaqqN0tkjCjFewRQ8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetActorValues.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetActorValues.html",
+          "hash": "tWhTGjr66vopjnjsm4AdlTmg10Zb97UNjwdLOkFdrBs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetCharacterEncounterTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetCharacterEncounterTypes.html",
+          "hash": "SU6YniHIK7enuWUlsl1Em7vXk91ppwgVpK18CgcUJWk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetCharacterFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetCharacterFactory.html",
+          "hash": "oRGRziWTyeZrobxHtij8xD+OrV14HA5VAFhPFgpPbqo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetCharacterSpectateMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetCharacterSpectateMode.html",
+          "hash": "XSVg9tvWOtZ5qccLe4i/8iCIeVXMaWqOwjisPMiJOF4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetLabelFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetLabelFactory.html",
+          "hash": "kNEt729gTOvxhHSs75V3+DKV2zL102YxoSUxirSMyHA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetPlayer.VaultBoyEmotion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetPlayer.VaultBoyEmotion.html",
+          "hash": "OWmvTnF12D4LLztFsx5cCXDdzCjG9z/C6hkclVsxm7g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetPlayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetPlayer.html",
+          "hash": "YoG/ETLG9Ms3spO8KRXIGgEv6mlGu5yTAkji7dR34h8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetReferenceExtraDataType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetReferenceExtraDataType.html",
+          "hash": "SYoPgzcLB5GYsLuCC/UrWbpLVSgpFUuKf4llw+oQEpg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetReferenceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetReferenceFactory.html",
+          "hash": "AQjYJNbT28jcV7RUy3bvlZOfbOj0927/yrWmRTUB0Ys="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetReferenceFormType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetReferenceFormType.html",
+          "hash": "7G+9yhCOzkOPtNmozyIuyFtfWRJFMpfHRMRhyrsOjDA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetReferencePVSTestTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetReferencePVSTestTypes.html",
+          "hash": "BygNe04vuQqJ4jfOFCgQIWKVUYt3B4RQlIxjRBWaIPk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetReferenceSimulationType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetReferenceSimulationType.html",
+          "hash": "YUzywKeEgQSlevZMYDPaM0OufDeVjErlyy/9mGkZES0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetUnmanaged.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetUnmanaged.html",
+          "hash": "uYPZ2U6uI6EZgR+9Xa2b43fEa+A7BG44k/EzFlHsEho="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.NetZoneFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.NetZoneFactory.html",
+          "hash": "qSnWPdSBefrmKHFLITNxN+ROHLBVo8X6mwoGTsxw5wA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.OnActivatedReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.OnActivatedReference.html",
+          "hash": "YIfNtWAWWdnbqNEg+HpcR1kA022HKzpmwCnQC31q6lA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.ReadOnlyExtraDataList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.ReadOnlyExtraDataList.html",
+          "hash": "0lnhbM/lNShRYY7Kobivkgvf2xyUl/N50GiO98AQCjg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Entities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Entities.html",
+          "hash": "Dyjr+i2H/h2nE9JFVZMyOEK5DpXUdWxWxBhp2aDVjq0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Extensions.QuaternionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Extensions.QuaternionExtensions.html",
+          "hash": "fRm4t5H7kVRMeYFZsTIjR7tuHulbuXS5pC9y4ypocTg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Extensions.VectorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Extensions.VectorExtensions.html",
+          "hash": "K0COdRB20xJ5MjC369yKlWXy7lbXZfYIPoAaBpvxpZY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Extensions.html",
+          "hash": "KgkEJ2ESTrSLVAc+Jfy2CVP4uU30bw/pp8RtM/s8xBk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.GameServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.GameServer.html",
+          "hash": "E9kOUuSlSFrCW20hcjITSO8s3FLn5NSrJ/dWP8dEg/k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.GameServerDifficulty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.GameServerDifficulty.html",
+          "hash": "ez/N4tiCWhGZ2lpI4IATRspD0M84CdAsDqy458u/nmg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.GameServerMod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.GameServerMod.html",
+          "hash": "xucMl9PvkOplKq9VDQZrDTE6sJwq/PPnK+023C1ejlk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.GameServerUnrestrictedModeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.GameServerUnrestrictedModeType.html",
+          "hash": "wezsppHSoiVGdJKN/RKZLEqANRskSaV1Vxqz/Buq7cA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Hashing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Hashing.html",
+          "hash": "6JMsQgWsJvESbJmWn5Tbrb5rtl6Z9hPMLYOPwPWrEOM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.IGameServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.IGameServer.html",
+          "hash": "we8wtPekeGb2FFqvlFpaesg64xasn5kodoU9wbHvRA8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.INativeProgramDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.INativeProgramDescription.html",
+          "hash": "70VX89vii8opDb6RpM2uYCxLJhPIZgGROnm1tgo5qHo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.IPlugin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.IPlugin.html",
+          "hash": "395Nf6D5ymJ3TepRfWUE9+1mx+y/VutF49kNkqoin8o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.ISyncBlockInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.ISyncBlockInterface.html",
+          "hash": "Wo+o8DWhDrisq3tRdDJZ6kqppyRrQvZzIAQgSd319rA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Marshals.EncodedReferenceDataMarshaler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Marshals.EncodedReferenceDataMarshaler.html",
+          "hash": "lXaYb0n3DVtDzpUWNNeFoqxuLHQRBfE/6qj9biIZi4Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Marshals.InventoryItemMarshaler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Marshals.InventoryItemMarshaler.html",
+          "hash": "yqh9CW11CjZTcFhcUvi9l7OsdDwezO960sWZRivt414="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Marshals.NativeProgramDescriptionMarshaler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Marshals.NativeProgramDescriptionMarshaler.html",
+          "hash": "Gcz1t8+o1b4z309qBYT3vXSgAtENBlFsccalnlhMfeY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Marshals.NetPlayerMarshaler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Marshals.NetPlayerMarshaler.html",
+          "hash": "qtIzISeNBqkNBw97DuVEYKgYg1ogVntbYOLgghPec4Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Marshals.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Marshals.html",
+          "hash": "hrrpQzgvfpSOpFXHgsXutIKgd+GwUgWQcwqVws7N4Go="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.NativeBuildDetails.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.NativeBuildDetails.html",
+          "hash": "BH3w+TR2uLBDh+d+YSvTOXWAkyikjsHfyc46PtwMB/8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.NativeSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.NativeSettings.html",
+          "hash": "MR1wKV9HlneTSIs1Js9No3YsYTd/IRyGfnN3r/16+JM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.NetActorInventoryItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.NetActorInventoryItem.html",
+          "hash": "Up6MdTssi8bg/s2ob4A8N3QPHCkus906sPTuw9DhsHg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.SyncBlockManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.SyncBlockManager.html",
+          "hash": "Y114BSaGd1GlTGUO5ay3rdy96R3MmZzJH4Kd1IbdZRM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.UserInterface.InputType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.UserInterface.InputType.html",
+          "hash": "gQqiwmGpSC5/+Xdht+Rj5Riin69p7aMFzMg53z4DGlg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.UserInterface.MenuType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.UserInterface.MenuType.html",
+          "hash": "Nk5uoCNOrTqCWF3nYz1fXiLQt6vPXGK1jcNKiViG0lY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.UserInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.UserInterface.html",
+          "hash": "/jnmCK44SCGbT16L1Zs2bjpZqqJ5YK+fGbf2xIHOz0M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Worldspace.WorldspaceBounds.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Worldspace.WorldspaceBounds.html",
+          "hash": "OhuMk+TDNhAc4YZmJgwYgpG4VDRuCCY7QHP7bLIETMQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Worldspace.WorldspaceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Worldspace.WorldspaceType.html",
+          "hash": "w8TFV0S25GJfYJsM2I8n5Otp5KeS0aPUc+HTdFH/w5Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.Worldspace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.Worldspace.html",
+          "hash": "Te/aR+XuXfOfomASemqK3L7Inv3KvpdO6JYkWYQvsI0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.WorldspaceCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.WorldspaceCoordinate.html",
+          "hash": "1Nh9pUN1P9SIfOFzGXEXntp7hg6hMp/11cp9F0CC4/M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NVMP.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NVMP.html",
+          "hash": "KE1DNTdKzPCUJi3HdMSFYRJ+TCs9tEIxGHf1WANCVck="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "cFp07GZrfJgHVjwJgi+OU/khd7P5ZUcN2gCTA3UKTHU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "YvagixgDF1lqJY4s/Otyam1lofT0FoBYdU2PGkKaIWw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "frQxWr82/mX8OQs1caSNdxdC0vohMj99H6cKqLZPs+w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "+ybyRpY69/QdD1LwPy88PebB5KzRU/P6e4aLSadcnXs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Es+TzgnQaUJldm7h85Uy0Fvs5rCMSVVVe4FCPFjCWok="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 104,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
