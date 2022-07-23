@@ -25,6 +25,11 @@ namespace NVMP.Entities
 		public NetActorKnockedState KnockedState { get; set; }
 
 		/// <summary>
+		/// Queries the current playing idle the actor is performing
+		/// </summary>
+		public uint PlayingIdle { get; }
+
+		/// <summary>
 		/// Querys if this actor a player character. Not to be confused with TESCharacter. INetActor's that have this set can be
 		/// safely casted to INetCharacter
 		/// </summary>

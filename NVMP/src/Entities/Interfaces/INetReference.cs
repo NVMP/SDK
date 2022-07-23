@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NVMP.Entities.Encoding;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -27,6 +28,13 @@ namespace NVMP.Entities
         /// Base form ID of this reference. If refID is not set, this is used to instanciate a new reference of this form ID.
         /// </summary>
         public uint FormID { get; }
+
+        /// <summary>
+        /// The GECK form type this reference is. This is only reliable if it has had an existing owner
+        /// beforehand. Server references that have never been synced by another player 
+        /// may not have this set at all as the server cannot infer it alone.
+        /// </summary>
+        public NetReferenceFormType FormType { get; }
 
         /// <summary>
         /// The unique reference ID of this reference. This can only be set on creation to ensure all clients in PVS use the correct
@@ -204,12 +212,13 @@ namespace NVMP.Entities
         /// 
         /// If you are handling NetReference handles, you should periodically check this to then release your object to the
         /// GC collector - else the console will warn about your access being prolongued after death.
-        /// 
-        /// You can set this to true to destroy the object, but it's preferable to use Destroy() as using this implies you
-        /// can undestroy an object (Pro Tip: You can't! Don't even try it!)
         /// </summary>
-        public bool IsDestroyed { get; set; }
+        public bool IsDestroyed { get; }
 
-        public void Destroy();
+        /// <summary>
+        /// Destroys the reference. Using flags controls additional behaviour.
+        /// </summary>
+        /// <param name="flags"></param>
+        public void Destroy(NetReferenceDeletionFlags flags = 0);
     }
 }

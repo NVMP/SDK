@@ -30,7 +30,7 @@ namespace NVMP.Entities
         private static extern void Internal_Untrack(IntPtr self, uint handle);
 
         [DllImport("Native", EntryPoint = "GameNetReference_Destroy")]
-        private static extern void Internal_Destroy(IntPtr self);
+        private static extern void Internal_Destroy(IntPtr self, uint flags);
 
         [DllImport("Native", EntryPoint = "GameNetReference_IsDestroyed")]
         [return: MarshalAs(UnmanagedType.I1)]
@@ -128,18 +128,6 @@ namespace NVMP.Entities
 
         public bool IsDestroyed
         {
-            set
-            {
-                if (value == true)
-                {
-                    Destroy();
-                }
-                else
-                {
-                    throw new Exception("Cannot undestroy objects, it's too late!");
-                }
-            }
-
             get
             {
                 return Internal_IsDestroyed(__UnmanagedAddress);
@@ -162,11 +150,11 @@ namespace NVMP.Entities
             __UnmanagedAddress = IntPtr.Zero; // removes the handle
         }
 
-        public void Destroy()
+        public void Destroy(NetReferenceDeletionFlags flags = 0)
         {
             var address = __UnmanagedAddress;
             __UnmanagedAddress = IntPtr.Zero; // removes the handle
-            Internal_Destroy(address); // removes the object (tags it)
+            Internal_Destroy(address, (uint)flags); // removes the object (tags it)
         }
 
         protected virtual void PreDispose() { }

@@ -9,7 +9,13 @@ namespace NVMP.Entities
 	/// </summary>
 	public class NetReferenceFactory : INetFactory
 	{
-        [DllImport("Native", EntryPoint = "GameNetReference_CreateObject")]
+		[DllImport("Native", EntryPoint = "GameNetReference_GetNumReferences")]
+		internal static extern uint Internal_GetNumReferences();
+
+		[DllImport("Native", EntryPoint = "GameNetReference_GetAllReferences")]
+		internal static extern void Internal_GetAllReferences(IntPtr[] refs, uint containerSize);
+
+		[DllImport("Native", EntryPoint = "GameNetReference_CreateObject")]
 		internal static extern IntPtr Internal_CreateObject(uint formID, uint refID);
 
 		[DllImport("Native", EntryPoint = "GameNetReference_GetNetworkType")]
@@ -78,6 +84,30 @@ namespace NVMP.Entities
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// Returns an array of all references allocated
+		/// </summary>
+		public INetReference[] All
+		{
+			get
+			{
+				// First grab all the native pointers
+				var numRefs = Internal_GetNumReferences();
+
+				var refs = new IntPtr[numRefs];
+				Internal_GetAllReferences(refs, numRefs);
+
+				var marshalledRefs = new INetReference[numRefs];
+				for (uint i = 0; i < numRefs; ++i)
+				{
+					var unmgptr = refs[i];
+					marshalledRefs[i] = Marshals.NetReferenceMarshaler.Instance.MarshalNativeToManaged(unmgptr) as INetReference;
+				}
+
+				return marshalledRefs;
+			}
 		}
 
 		public static uint GetUnmanagedNetworkType(IntPtr ptr)

@@ -91,6 +91,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_PlayIdle")]
         private static extern void Internal_PlayIdle(IntPtr self, uint formID);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_GetPlayingIdle")]
+        private static extern uint Internal_GetPlayingIdle(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetActor_ClearTargets")]
         private static extern void Internal_ClearTargets(IntPtr self);
 
@@ -273,6 +276,11 @@ namespace NVMP.Entities
         {
             get => (NetActorKnockedState)Internal_GetKnockedState(__UnmanagedAddress);
             set => Internal_SetKnockedState(__UnmanagedAddress, (int)value);
+        }
+
+        public uint PlayingIdle
+        {
+            get => Internal_GetPlayingIdle(__UnmanagedAddress);
         }
 
         /// <summary>

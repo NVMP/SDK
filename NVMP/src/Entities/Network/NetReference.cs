@@ -2,6 +2,7 @@
 using NVMP.Entities.Encoding;
 using NVMP.Internal;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Numerics;
@@ -144,6 +145,8 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetIsInvisible")]
         private static extern void Internal_SetIsInvisible(IntPtr self, bool invisible);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetFormType")]
+        private static extern NetReferenceFormType Internal_GetFormType(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetPVSCheckDelegate")]
         private static extern void Internal_SetPVSCheckDelegate(IntPtr self, PVSCheckDelegate del);
@@ -430,6 +433,11 @@ namespace NVMP.Entities
         {
             get => Internal_GetIsInvisible(__UnmanagedAddress);
             set => Internal_SetIsInvisible(__UnmanagedAddress, value);
+        }
+
+        public NetReferenceFormType FormType
+        {
+            get => Internal_GetFormType(__UnmanagedAddress);
         }
 
         public WorldspaceCoordinate Worldspace

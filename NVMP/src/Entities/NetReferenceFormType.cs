@@ -124,4 +124,34 @@
 		HungerStage,
 		SleepDeprivationStage,
 	}
+
+    public static class FormTypeHelpers
+    {
+		public static bool IsInventoryType(this NetReferenceFormType type)
+		{
+			switch (type)
+			{
+				case NetReferenceFormType.Weapon:
+				case NetReferenceFormType.Ammo:
+				case NetReferenceFormType.Armor:
+				case NetReferenceFormType.Book:
+				case NetReferenceFormType.Clothing:
+				case NetReferenceFormType.Ingredient:
+				case NetReferenceFormType.Light:
+				case NetReferenceFormType.Misc:
+				case NetReferenceFormType.Key:
+				case NetReferenceFormType.Ingestible:
+				case NetReferenceFormType.Note:
+				case NetReferenceFormType.ConstructibleObject:
+				case NetReferenceFormType.LeveledItem:
+				case NetReferenceFormType.WeaponMod:
+				case NetReferenceFormType.CasinoChip:
+				case NetReferenceFormType.CaravanCard:
+				case NetReferenceFormType.CaravanMoney:
+					return true;
+				default:
+					return false;
+			}
+		}
+	}
 }

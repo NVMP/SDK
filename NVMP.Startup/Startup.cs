@@ -18,11 +18,15 @@ namespace NVMP
             GC.Collect();
         }
 
-        static private bool IsGCHandleValid(IntPtr handle)
+        static private bool IsGCHandleValid(IntPtr ptrhandle)
         {
             try
             {
-                return GCHandle.FromIntPtr(handle).IsAllocated;
+                var handle = GCHandle.FromIntPtr(ptrhandle);
+                if (handle == null)
+                    return false;
+
+                return handle.IsAllocated && handle.Target != null;
             }
             catch (Exception)
             {
