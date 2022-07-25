@@ -12,7 +12,7 @@ namespace NVMP.Entities
     /// References are networked TESObjectREFR's. They support basic synchronisation functionality, along with specific networking
     /// configurations where needed. This interface is inherited by other classes that depend on additional functionality.
     /// </summary>
-    public interface INetReference : IEquatable<INetReference>
+    public interface INetReference : IEquatable<INetReference>, IDisposable
     {
         /// <summary>
         /// A helper to query Fallout: New Vegas's upwards vector.

@@ -15,6 +15,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">
     <OutputPath>..\..\..\..\..\build\app\app_server\Debug\Plugins</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>

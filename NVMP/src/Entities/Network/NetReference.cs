@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
 {
-    internal class NetReference : NetUnmanaged, INetReference, IDisposable
+    internal class NetReference : NetUnmanaged, INetReference
     {
         internal delegate NetReferencePVSTestTypes PVSCheckDelegate(NetPlayer player);
 

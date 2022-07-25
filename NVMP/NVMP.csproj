@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">
     <DocumentationFile>..\..\..\..\..\build\app\app_server\Debug\Plugins\NVMP.xml</DocumentationFile>
     <OutputPath>..\..\..\..\..\build\app\app_server\Debug\Plugins</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
