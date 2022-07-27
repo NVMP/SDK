@@ -13,7 +13,7 @@ This page is mainly for reference, and to allow community driven improvements to
 
 ## Documentation
 The documentation website that is inside this source code can be accessed here:
-https://nv-mp.com/sdk
+https://nvmp.github.io/SDK/
 
 ## Unamanged-managed Relationships
 Most native objects encapsulated in the SDK are provided via interfaces to managed objects associated to the data. Every native object provided to the C# engine constructs its own managed object twin. This is an important relationship to be aware of, as depending on how objects were created - the way they may want to cleanup may differ.
