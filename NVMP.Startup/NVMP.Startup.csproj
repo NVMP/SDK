@@ -11,6 +11,9 @@
     <AssemblyName>NVMP.Startup</AssemblyName>
     <RootNamespace></RootNamespace>
     <OutputType>Exe</OutputType>
+    <Authors>NVMP Team</Authors>
+    <Company>NVMP Team</Company>
+    <Product>NVMP Startup Scripts</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">

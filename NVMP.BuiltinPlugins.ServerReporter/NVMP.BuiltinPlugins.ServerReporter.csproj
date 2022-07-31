@@ -10,6 +10,9 @@
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<AssemblyName>NVMP.BuiltinPlugins.ServerReporter</AssemblyName>
 		<RootNamespace>NVMP.BuiltinPlugins</RootNamespace>
+		<Authors>NVMP Team</Authors>
+		<Company>NVMP Team</Company>
+		<Product>NVMP Server Reporter Plugin</Product>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">

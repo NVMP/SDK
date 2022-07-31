@@ -11,6 +11,8 @@
     <AssemblyName>NVMP.ExampleServer</AssemblyName>
     <RootNamespace>NVMP</RootNamespace>
     <OutputType>Library</OutputType>
+    <Authors>NVMP Team</Authors>
+    <Product>NVMP Example Server</Product>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugXNative|AnyCPU'">
