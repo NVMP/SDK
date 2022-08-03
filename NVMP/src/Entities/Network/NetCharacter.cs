@@ -64,6 +64,13 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "GameNetCharacter_SetEnabledEncounter")]
         private static extern void Internal_SetEnabledEncounter(IntPtr self, uint key, bool value);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetTCL")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetTCL(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetTCL")]
+        private static extern void Internal_SetTCL(IntPtr self, bool value);
         #endregion
 
         public class EncounterConfig : INetCharacterEncounterConfig
@@ -186,39 +193,26 @@ namespace NVMP.Entities
 
         public float SpectateDistance
         {
-            get
-            {
-                return Internal_GetSpectateDistance(__UnmanagedAddress);
-            }
-            set
-            {
-                Internal_SetSpectateDistance(__UnmanagedAddress, value);
-            }
+            get => Internal_GetSpectateDistance(__UnmanagedAddress);
+            set => Internal_SetSpectateDistance(__UnmanagedAddress, value);
         }
 
         public float SpectateSpeed
         {
-            get
-            {
-                return Internal_GetSpectateSpeed(__UnmanagedAddress);
-            }
-            set
-            {
-                Internal_SetSpectateSpeed(__UnmanagedAddress, value);
-            }
+            get => Internal_GetSpectateSpeed(__UnmanagedAddress);
+            set => Internal_SetSpectateSpeed(__UnmanagedAddress, value);
         }
 
         public bool CanFastTravel
         {
-            get
-            {
-                return Internal_GetCanFastTravel(__UnmanagedAddress);
-            }
-            set
-            {
-                Internal_SetCanFastTravel(__UnmanagedAddress, value);
-            }
+            get => Internal_GetCanFastTravel(__UnmanagedAddress);
+            set => Internal_SetCanFastTravel(__UnmanagedAddress, value);
         }
 
+        public bool HasTCL
+        {
+            get => Internal_GetTCL(__UnmanagedAddress);
+            set => Internal_SetTCL(__UnmanagedAddress, value);
+        }
     }
 }

@@ -52,8 +52,13 @@ namespace NVMP.Entities
         public float SpectateSpeed { get; set; }
 
         /// <summary>
-        /// Modifies if they player can use player driven fast travel. As of NVMPx4, this flag does not work.
+        /// Modifies if the player can use player driven fast travel. As of NVMPx4, this flag does not work.
         /// </summary>
         public bool CanFastTravel { get; set; }
+
+        /// <summary>
+        /// Modifies if the player can use TCL (essentially no clip).
+        /// </summary>
+        public bool HasTCL { get; set; }
     }
 }
