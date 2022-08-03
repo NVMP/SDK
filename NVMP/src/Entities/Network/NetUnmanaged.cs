@@ -130,6 +130,9 @@ namespace NVMP.Entities
         {
             get
             {
+                if (__UnmanagedAddress == IntPtr.Zero)
+                    return true;
+
                 return Internal_IsDestroyed(__UnmanagedAddress);
             }
         }

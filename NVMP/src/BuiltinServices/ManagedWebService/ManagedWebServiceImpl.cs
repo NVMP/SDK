@@ -237,9 +237,10 @@ namespace NVMP.BuiltinServices.ManagedWebService
         {
             Running = false;
 
+            Debugging.Write("Shutting down HTTPListener...");
             if (InternalServer != null)
             {
-                InternalServer.Abort();
+                InternalServer.Stop();
             }
 
             Debugging.Write("Synchronising web thread...");
@@ -247,15 +248,6 @@ namespace NVMP.BuiltinServices.ManagedWebService
             {
                 InternalThread.Abort();
                 InternalThread.Join();
-            }
-
-            if (InternalServer != null)
-            {
-                InternalServer.Close();
-            }
-
-            if (InternalThread != null)
-            {
                 InternalThread = null;
             }
         }
