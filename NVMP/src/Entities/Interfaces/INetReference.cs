@@ -67,6 +67,14 @@ namespace NVMP.Entities
         public event OnActivatedReference ActivatedOtherReference;
 
         /// <summary>
+        /// A delegate you can bind to track when this refrence is damaged by another actor. 
+        /// </summary>
+        /// <remarks>
+        /// This currently only works for INetActors, and will throw an exception for now if you try and use it for non-actors.
+        /// </remarks>
+        public event OnDamaged Damaged;
+
+        /// <summary>
         /// A delegate you can bind to track when this reference is activated by another reference. If you return false on the delegate, it will
         /// reject the activation on the activator's machine.
         /// </summary>

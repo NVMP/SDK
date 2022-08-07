@@ -76,4 +76,15 @@ namespace NVMP.Entities
             , [In] NetReferenceFormType formType
             , [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(ExtraDataListBitsetMarshalerToBitArray))] ReadOnlyExtraDataList extraDataList
         );
+
+    [return: MarshalAs(UnmanagedType.I1)]
+    public delegate void OnDamaged
+        (
+            [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetActorMarshaler))]
+                    INetActor attacker
+
+            , [In] float damage
+            , [In] uint weaponFormId
+            , [In] uint projectileFormId
+        );
 }

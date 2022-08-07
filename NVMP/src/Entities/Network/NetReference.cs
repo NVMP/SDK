@@ -163,6 +163,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnActivatedDelegate")]
         private static extern void Internal_SetOnActivatedDelegate(IntPtr self, OnActivatedReference del);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_SetOnDamagedDelegate")]
+        private static extern void Internal_SetOnDamagedDelegate(IntPtr self, OnDamaged del);
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetOnActivatedDelegate")]
         private static extern OnActivatedReference Internal_GetOnDelegate(IntPtr self);
         #endregion
@@ -214,7 +217,26 @@ namespace NVMP.Entities
             }
         }
 
+        internal class OnDamagedSubscription : SubscriptionDelegate<OnDamaged>
+        {
+            public OnDamaged Execute;
+
+            public OnDamagedSubscription()
+            {
+                Execute = InternalExecute;
+            }
+
+            internal void InternalExecute(INetActor attacker, float damage, uint weaponFormId, uint projectileFormId)
+            {
+                foreach (var sub in Subscriptions)
+                {
+                    sub.Invoke(attacker, damage, weaponFormId, projectileFormId);
+                }
+            }
+        }
+
         internal OnActivatedSubscription OnActivatedDelegate = new OnActivatedSubscription();
+        internal OnDamagedSubscription OnDamagedDelegate = new OnDamagedSubscription();
         internal OnActivatedSubscription OnActivatedOtherReferenceDelegate = new OnActivatedSubscription();
 
         public event OnActivatedReference ActivatedOtherReference
@@ -229,6 +251,12 @@ namespace NVMP.Entities
             remove { OnActivatedDelegate.Remove(value); }
         }
 
+        public event OnDamaged Damaged
+        {
+            add { if (!(this is INetActor)) throw new Exception("Temporary Constraint: This is not supported for non-actors!");  OnDamagedDelegate.Add(value); }
+            remove { OnDamagedDelegate.Remove(value); }
+        }
+
         public NetReference()
         {
             PVS = new PVSController(this);
@@ -237,12 +265,14 @@ namespace NVMP.Entities
         protected override void PreDispose()
         {
             Internal_SetOnActivatedDelegate(__UnmanagedAddress, null);
+            Internal_SetOnDamagedDelegate(__UnmanagedAddress, null);
             Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, null);
         }
 
         internal override void OnCreate()
         {
             Internal_SetOnActivatedDelegate(__UnmanagedAddress, OnActivatedDelegate.Execute);
+            Internal_SetOnDamagedDelegate(__UnmanagedAddress, OnDamagedDelegate.Execute);
             Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, OnActivatedOtherReferenceDelegate.Execute);
         }
 
