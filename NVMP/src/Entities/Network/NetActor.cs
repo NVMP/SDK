@@ -391,7 +391,8 @@ namespace NVMP.Entities
                     throw new Exception("Cannot unreward XP!");
                 }
 
-                Internal_SetActorValue(__UnmanagedAddress, NetActorValues.XP, (float)value);
+                // max value to prevent the engine going into the negatives
+                Internal_SetActorValue(__UnmanagedAddress, NetActorValues.XP, Math.Min((float)value, 20 * 1000.0f));
             }
             get
             {
