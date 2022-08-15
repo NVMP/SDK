@@ -6,6 +6,12 @@ namespace NVMP.Entities
 {
 	public class NetActorFactory : INetFactory
 	{
+		[DllImport("Native", EntryPoint = "GameNetActor_GetNumActors")]
+		internal static extern uint Internal_GetNumActors();
+
+		[DllImport("Native", EntryPoint = "GameNetActor_GetAllActors")]
+		internal static extern void Internal_GetAllActors(IntPtr[] actors, uint containerSize);
+
 		[DllImport("Native", EntryPoint = "GameNetActor_CreateActor")]
 		internal static extern IntPtr Internal_CreateActor(uint formID, uint refID);
 
@@ -71,7 +77,34 @@ namespace NVMP.Entities
 
 			return null;
 		}
-    }
+
+		/// <summary>
+		/// Returns an array of all actor's allocated
+		/// </summary>
+		/// <remarks>
+		/// INetCharacter's are not accounted for, this is only for actor types
+		/// </remarks>
+		public INetActor[] All
+		{
+			get
+			{
+				var numActors = Internal_GetNumActors();
+
+				var actors = new IntPtr[numActors];
+				Internal_GetAllActors(actors, numActors);
+
+				// Now "marshal" them to managed by just wrapping player objects and assigning the native address
+				var marshalledActors = new INetActor[numActors];
+				for (uint i = 0; i < numActors; ++i)
+				{
+					IntPtr unmanagedPlayerPointer = actors[i];
+					marshalledActors[i] = Marshals.NetActorMarshaler.Instance.MarshalNativeToManaged(unmanagedPlayerPointer) as INetActor;
+				}
+
+				return marshalledActors;
+			}
+		}
+	}
 
 	public static partial class Factory
     {

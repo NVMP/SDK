@@ -149,7 +149,6 @@ namespace NVMP.Entities
 
         public void Unbind()
         {
-            var address = __UnmanagedAddress;
             __UnmanagedAddress = IntPtr.Zero; // removes the handle
         }
 

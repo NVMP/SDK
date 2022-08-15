@@ -516,8 +516,6 @@ namespace NVMP.Entities
                 SetExterior(other.Worldspace.FormID, cellX, cellY);
             }
 
-            Debugging.Write($"Moving {Name} from {VirtualWorldID} to {other.VirtualWorldID}");
-
             Position = other.Position;
             VirtualWorldID = other.VirtualWorldID;
         }
