@@ -1,3 +1,4 @@
+using NVMP.Internal;
 using System;
 using System.Runtime.InteropServices;
 
@@ -102,8 +103,49 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "GameNetActor_SetActorValueBase")]
         private static extern void Internal_SetActorValueBase(IntPtr self, NetActorValues actorValue, float baseValue);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetOnDeathDelegate")]
+        private static extern void Internal_SetOnDeathDelegate(IntPtr self, OnDeath del);
         #endregion
-        
+
+        internal class OnDeathSubscription : SubscriptionDelegate<OnDeath>
+        {
+            public OnDeath Execute;
+
+            public OnDeathSubscription()
+            {
+                Execute = InternalExecute;
+            }
+
+            internal void InternalExecute(INetActor attacker)
+            {
+                foreach (var sub in Subscriptions)
+                {
+                    sub.Invoke(attacker);
+                }
+            }
+        }
+
+        internal OnDeathSubscription OnDeathDelegate = new OnDeathSubscription();
+
+        protected override void PreDispose()
+        {
+            base.PreDispose();
+            Internal_SetOnDeathDelegate(__UnmanagedAddress, null);
+        }
+
+        internal override void OnCreate()
+        {
+            base.OnCreate();
+            Internal_SetOnDeathDelegate(__UnmanagedAddress, OnDeathDelegate.Execute);
+        }
+
+        public event OnDeath Death
+        {
+            add { OnDeathDelegate.Add(value); }
+            remove { OnDeathDelegate.Remove(value); }
+        }
+
         /// <summary>
         /// Returns the number of inventory items on this actor
         /// </summary>

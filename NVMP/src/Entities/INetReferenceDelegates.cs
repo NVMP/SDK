@@ -77,7 +77,6 @@ namespace NVMP.Entities
             , [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(ExtraDataListBitsetMarshalerToBitArray))] ReadOnlyExtraDataList extraDataList
         );
 
-    [return: MarshalAs(UnmanagedType.I1)]
     public delegate void OnDamaged
         (
             [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetActorMarshaler))]

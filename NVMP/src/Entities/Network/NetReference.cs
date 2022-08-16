@@ -157,17 +157,11 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnActivatedOtherReferenceDelegate")]
         private static extern void Internal_SetOnActivatedOtherReferenceDelegate(IntPtr self, OnActivatedReference del);
 
-        [DllImport("Native", EntryPoint = "GameNetReference_GetOnActivatedOtherReferenceDelegate")]
-        private static extern OnActivatedReference Internal_GetOnActivatedOtherReferenceDelegate(IntPtr self);
-
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnActivatedDelegate")]
         private static extern void Internal_SetOnActivatedDelegate(IntPtr self, OnActivatedReference del);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnDamagedDelegate")]
         private static extern void Internal_SetOnDamagedDelegate(IntPtr self, OnDamaged del);
-
-        [DllImport("Native", EntryPoint = "GameNetReference_GetOnActivatedDelegate")]
-        private static extern OnActivatedReference Internal_GetOnDelegate(IntPtr self);
         #endregion
 
         public class PVSController : INetReferencePVSController

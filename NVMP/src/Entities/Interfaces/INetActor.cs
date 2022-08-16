@@ -196,5 +196,10 @@ namespace NVMP.Entities
 		/// Resets all actor values. Not guarenteed to be the base form values, but the network specified values (usually ZERO).
 		/// </summary>
 		public void ResetActorValues();
+
+		/// <summary>
+		/// A delegate you can bind to track when this actor dies.
+		/// </summary>
+		public event OnDeath Death;
 	}
 }
