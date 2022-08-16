@@ -105,6 +105,8 @@ namespace NVMP.BuiltinServices.ModDownloadService
 
                     if (req.HttpMethod == "GET")
                     {
+                        resp.ContentLength64 = fileInfo.Length;
+
                         // Payload the information detached
                         using (FileStream fs = File.OpenRead(serverMod.FilePath))
                         {
@@ -126,7 +128,6 @@ namespace NVMP.BuiltinServices.ModDownloadService
                     }
                     else
                     {
-                        resp.ContentLength64 = fileInfo.Length;
                         resp.Close();
                     }
 
