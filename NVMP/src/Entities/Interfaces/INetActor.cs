@@ -200,6 +200,6 @@ namespace NVMP.Entities
 		/// <summary>
 		/// A delegate you can bind to track when this actor dies.
 		/// </summary>
-		public event OnDeath Death;
+		public event OnDeath Died;
 	}
 }

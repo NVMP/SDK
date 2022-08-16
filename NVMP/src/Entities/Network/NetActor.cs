@@ -140,7 +140,7 @@ namespace NVMP.Entities
             Internal_SetOnDeathDelegate(__UnmanagedAddress, OnDeathDelegate.Execute);
         }
 
-        public event OnDeath Death
+        public event OnDeath Died
         {
             add { OnDeathDelegate.Add(value); }
             remove { OnDeathDelegate.Remove(value); }
