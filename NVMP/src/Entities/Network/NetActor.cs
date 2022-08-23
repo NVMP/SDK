@@ -36,6 +36,13 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_SetIsFemale")]
         private static extern void Internal_SetIsFemale(IntPtr self, bool female);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_GetRestrained")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetRestrained(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetRestrained")]
+        private static extern void Internal_SetRestrained(IntPtr self, bool restrained);
+
         [DllImport("Native", EntryPoint = "GameNetActor_GetIsFemale")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsFemale(IntPtr self);
@@ -51,10 +58,16 @@ namespace NVMP.Entities
         private static extern IntPtr Internal_AddItem(IntPtr self, IntPtr item, uint count, bool equipped);
 
         [DllImport("Native", EntryPoint = "GameNetActor_RemoveItem")]
-        private static extern IntPtr Internal_RemoveItem(IntPtr self, IntPtr item, uint count);
+        private static extern void Internal_RemoveItem(IntPtr self, IntPtr item, uint count);
 
         [DllImport("Native", EntryPoint = "GameNetActor_RemoveAllItems")]
-        private static extern IntPtr Internal_RemoveAllItems(IntPtr self);
+        private static extern void Internal_RemoveAllItems(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_Kill")]
+        private static extern void Internal_Kill(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_Resurrect")]
+        private static extern void Internal_Resurrect(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetActor_GetNumItems")]
         private static extern uint Internal_GetNumItems(IntPtr self);
@@ -299,6 +312,16 @@ namespace NVMP.Entities
             Internal_RemoveAllItems(__UnmanagedAddress);
         }
 
+        public void Kill()
+        {
+            Internal_Kill(__UnmanagedAddress);
+        }
+
+        public void Resurrect()
+        {
+            Internal_Resurrect(__UnmanagedAddress);
+        }
+
         /// <summary>
         /// The sex flag of this actor
         /// </summary>
@@ -479,14 +502,14 @@ namespace NVMP.Entities
         /// </summary>
         public float Scale
         {
-            set
-            {
-                Internal_SetScale(__UnmanagedAddress, value);
-            }
-            get
-            {
-                return Internal_GetScale(__UnmanagedAddress);
-            }
+            set => Internal_SetScale(__UnmanagedAddress, value);
+            get => Internal_GetScale(__UnmanagedAddress);
+        }
+
+        public bool IsRestrained
+        {
+            set => Internal_SetRestrained(__UnmanagedAddress, value);
+            get => Internal_GetRestrained(__UnmanagedAddress);
         }
     }
 }

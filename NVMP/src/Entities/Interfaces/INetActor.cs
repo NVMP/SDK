@@ -81,6 +81,24 @@ namespace NVMP.Entities
 		public float Scale { get; set; }
 
 		/// <summary>
+		/// Restrains or unrestrians the player, this prevents movement of players - and prevents AI from running on NPCs.
+		/// </summary>
+		/// <remarks>
+		/// This can't be used on dead actors.
+		/// </remarks>
+		public bool IsRestrained { get; set; }
+
+		/// <summary>
+		/// Kills the actor.
+		/// </summary>
+		public void Kill();
+
+		/// <summary>
+		/// Resurrects the actor.
+		/// </summary>
+		public void Resurrect();
+
+		/// <summary>
 		/// Returns the number of inventory items on this actor
 		/// </summary>
 		/// <returns></returns>
