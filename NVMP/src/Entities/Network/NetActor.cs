@@ -43,6 +43,13 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_SetRestrained")]
         private static extern void Internal_SetRestrained(IntPtr self, bool restrained);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_GetIsAiming")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetIsAiming(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetIsAiming")]
+        private static extern void Internal_SetIsAiming(IntPtr self, bool aiming);
+
         [DllImport("Native", EntryPoint = "GameNetActor_GetIsFemale")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsFemale(IntPtr self);
@@ -50,6 +57,22 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_GetGodmode")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetGodmode(IntPtr self);
+
+        //
+        // Movement Flags
+        //
+        [DllImport("Native", EntryPoint = "GameNetActor_GetMovementFlags")]
+        private static extern NetActorMovementFlags Internal_GetMovementFlags(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetMovementFlags")]
+        private static extern void Internal_SetMovementFlags(IntPtr self, NetActorMovementFlags flags);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_GetSpeedFlags")]
+        private static extern NetActorSpeedFlags Internal_GetSpeedFlags(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetSpeedFlags")]
+        private static extern void Internal_SetSpeedFlags(IntPtr self, NetActorSpeedFlags flags);
+
 
         // 
         //
@@ -510,6 +533,23 @@ namespace NVMP.Entities
         {
             set => Internal_SetRestrained(__UnmanagedAddress, value);
             get => Internal_GetRestrained(__UnmanagedAddress);
+        }
+        public bool IsAiming
+        {
+            set => Internal_SetIsAiming(__UnmanagedAddress, value);
+            get => Internal_GetIsAiming(__UnmanagedAddress);
+        }
+
+        public NetActorMovementFlags MovementFlags
+        {
+            set => Internal_SetMovementFlags(__UnmanagedAddress, value);
+            get => Internal_GetMovementFlags(__UnmanagedAddress);
+        }
+
+        public NetActorSpeedFlags MovementSpeedFlags
+        {
+            set => Internal_SetSpeedFlags(__UnmanagedAddress, value);
+            get => Internal_GetSpeedFlags(__UnmanagedAddress);
         }
     }
 }

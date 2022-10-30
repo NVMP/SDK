@@ -89,6 +89,22 @@ namespace NVMP.Entities
 		public bool IsRestrained { get; set; }
 
 		/// <summary>
+		/// Queries or sets if the actor is aiming their weapon (ironsights).
+		/// </summary>
+		public bool IsAiming { get; set; }
+
+		/// <summary>
+		/// Controls or queries the movement flags on the NPC. Combine flags to move the actor in the direction desired relevent
+		/// to their aim direction.
+		/// </summary>
+		public NetActorMovementFlags MovementFlags { get; set; }
+
+		/// <summary>
+		/// Controls or queries the movement speed flags on the NPC.
+		/// </summary>
+		public NetActorSpeedFlags MovementSpeedFlags { get; set; }
+
+		/// <summary>
 		/// Kills the actor.
 		/// </summary>
 		public void Kill();
