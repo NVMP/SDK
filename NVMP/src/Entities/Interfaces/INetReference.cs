@@ -120,7 +120,7 @@ namespace NVMP.Entities
         /// <summary>
         /// The player who currently owns this actor for synchronisation
         /// </summary>
-        public NetPlayer PlayerOwner { get; set; }
+        public INetPlayer PlayerOwner { get; set; }
 
         /// <summary>
         /// Currently only positions the yaw axis

@@ -1,33 +1,31 @@
+using NVMP.Entities.GUI;
+using NVMP.Internal;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
+using static NVMP.Entities.NetPlayerDelegates;
 
 namespace NVMP.Entities
 {
-    public class NetPlayer
+    internal class NetPlayer : NetUnmanaged, INetPlayer
     {
-        private Color KickChatColor = Color.FromArgb(255, 50, 50);
+        static private Color KickChatColor = Color.FromArgb(255, 50, 50);
 
-        //
-        // Static Helpers
-        //
-        #region Natives
         [DllImport("Native", EntryPoint = "NetPlayer_GetNumPlayers")]
-        private static extern uint Internal_GetNumPlayers();
+        internal static extern uint Internal_GetNumPlayers();
 
         [DllImport("Native", EntryPoint = "NetPlayer_GetMaxPlayers")]
-        private static extern uint Internal_GetMaxPlayers();
+        internal static extern uint Internal_GetMaxPlayers();
 
         [DllImport("Native", EntryPoint = "NetPlayer_GetAllPlayers")]
-        private static extern void Internal_GetAllPlayers(IntPtr[] players, uint containerSize);
-
-        [DllImport("Native", EntryPoint = "NetPlayer_GetPlayerByConnectionID")]
-        private static extern IntPtr Internal_GetPlayerByConnectionID(uint id);
+        internal static extern void Internal_GetAllPlayers(IntPtr[] players, uint containerSize);
 
         //
         // Member Accessors
         // 
-
+        #region Natives
         [DllImport("Native", EntryPoint = "NetPlayer_GetPlayerName", CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.LPWStr)]
         private static extern string Internal_GetPlayerName(IntPtr self);
@@ -105,9 +103,6 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_ShowMenu")]
         private static extern void Internal_ShowMenu(IntPtr self, int type);
 
-        [DllImport("Native", EntryPoint = "NetPlayer_BroadcastGenericChatMessage", CharSet = CharSet.Unicode)]
-        private static extern void Internal_BroadcastGenericChatMessage([MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255);
-
         //
         // Custom Data
         //
@@ -119,35 +114,17 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "NetPlayer_RemoveCustomData")]
         private static extern void Internal_RemoveCustomData(IntPtr self, string key);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_SetOnPresentedInteractionDelegate")]
+        private static extern void Internal_SetOnPresentedInteractionDelegate(IntPtr self, OnPresentedInteraction del);
         #endregion
 
-        // The address of the unmanaged data this interface marshals against
-        public IntPtr __UnmanagedAddress;
+        internal OnPresentedInteraction PresentationDelegate;
 
-        /// <summary>
-        /// Builds an array of every player in the current game session
-        /// </summary>
-        /// <returns>array of players</returns>
-        public static NetPlayer[] All
+        internal override void OnCreate()
         {
-            get
-            {
-                // First grab all the native pointers
-                uint numPlayers = Internal_GetNumPlayers();
-
-                IntPtr[] players = new IntPtr[numPlayers];
-                Internal_GetAllPlayers(players, numPlayers);
-
-                // Now "marshal" them to managed by just wrapping player objects and assigning the native address
-                NetPlayer[] marshalledPlayers = new NetPlayer[numPlayers];
-                for (uint i = 0; i < numPlayers; ++i)
-                {
-                    IntPtr unmanagedPlayerPointer = players[i];
-                    marshalledPlayers[i] = Marshals.NetPlayerMarshaler.GetInstance(null).MarshalNativeToManaged(unmanagedPlayerPointer) as NetPlayer;
-                }
-
-                return marshalledPlayers;
-            }
+            PresentationDelegate = OnPresentedInteraction;
+            Internal_SetOnPresentedInteractionDelegate(__UnmanagedAddress, PresentationDelegate);
         }
 
         public static uint NumPlayers
@@ -164,17 +141,6 @@ namespace NVMP.Entities
             {
                 return Internal_GetMaxPlayers();
             }
-        }
-
-        /// <summary>
-        /// Finds a NetPlayer object by connection ID, or null if the ID is not valid
-        /// </summary>
-        /// <param name="id">connection identifier</param>
-        /// <returns>player</returns>
-        public static NetPlayer GetPlayerByConnectionID(uint id)
-        {
-            IntPtr player = Internal_GetPlayerByConnectionID(id);
-            return Marshals.NetPlayerMarshaler.GetInstance(null).MarshalNativeToManaged(player) as NetPlayer;
         }
 
         /// <summary>
@@ -314,15 +280,7 @@ namespace NVMP.Entities
             Internal_SendValidSaves(__UnmanagedAddress, (uint)digests.Length, digests);
         }
 
-        public enum VaultBoyEmotion : uint
-        {
-            Happy = 0,
-            Sad = 1,
-            Neutral = 2,
-            Pain = 3
-        };
-
-        public void ShowVaultBoyMessage(string message, float time = 2.0f, VaultBoyEmotion emotion = VaultBoyEmotion.Happy)
+        public void ShowVaultBoyMessage(string message, float time = 2.0f, INetPlayer.VaultBoyEmotion emotion = INetPlayer.VaultBoyEmotion.Happy)
         {
             Internal_ShowVaultBoyMessage(__UnmanagedAddress, message, time, (uint)emotion);
         }
@@ -369,7 +327,7 @@ namespace NVMP.Entities
                         message += $", reason: {reason}";
                     }
 
-                    BroadcastGenericChatMessage(message, KickChatColor);
+                    INetPlayer.BroadcastGenericChatMessage(message, KickChatColor);
                 }
             }
         }
@@ -444,18 +402,87 @@ namespace NVMP.Entities
             Internal_ShowMenu(__UnmanagedAddress, (int)type);
         }
 
-        /// <summary>
-        /// Broadcasts a message to all player's chat boxes
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="color"></param>
-        public static void BroadcastGenericChatMessage(string message, Color? color = null)
+        internal enum MenuUpdateType
         {
-            if (!color.HasValue)
+            Invalid        = 0,
+
+		    // item events
+		    TextBoxInput   = 1,
+		    ButtonClick    = 2,
+
+		    // window only events
+		    WindowClosed   = 3,
+	    };
+
+
+        internal IList<IGUIWindowTemplate> PresentingTemplates = new List<IGUIWindowTemplate>();
+        internal readonly SubscriptionDelegate<Action<uint, ulong, MenuUpdateType>> CreationSubscriptions = new SubscriptionDelegate<Action<uint, ulong, MenuUpdateType>>();
+
+        internal void OnPresentedInteraction(uint uWindowId, ulong uElementId, MenuUpdateType menuUpdateType)
+        {
+            var targetWindowTemplate = PresentingTemplates.Where(template => template.ID == uWindowId).FirstOrDefault();
+            if (targetWindowTemplate == null)
             {
-                color = Color.White;
+                Debugging.Error($"{Name} could not interact with {uWindowId} as the window is invalid!");
+                return;
             }
-            Internal_BroadcastGenericChatMessage(message, color.Value.R, color.Value.G, color.Value.B);
+
+            if (menuUpdateType == MenuUpdateType.WindowClosed)
+            {
+                Debugging.Write($"{Name} has closed {uWindowId}...");
+                PresentingTemplates.Remove(targetWindowTemplate);
+                return;
+            }
+
+            // search recursively
+            IGUIBaseElement targetElement = targetWindowTemplate.FindElementByID(uElementId);
+            if (targetElement == null)
+            {
+                Debugging.Error($"{Name} could not interact with {uWindowId}:{uElementId} as the element is invalid!");
+                return;
+            }
+
+            Debugging.Error($"{menuUpdateType} {targetElement}");
+            switch (menuUpdateType)
+            {
+                case MenuUpdateType.Invalid:
+                    break;
+                case MenuUpdateType.TextBoxInput:
+                    break;
+                case MenuUpdateType.ButtonClick:
+                    if (targetElement is IGUIButtonElement)
+                    {
+                        Debugging.Write("Handling Interaction...");
+                        (targetElement as IGUIButtonElement).OnClicked(this);
+                    }
+                    break;
+                default: break;
+            }
         }
+
+        /// <summary>
+        /// Present's a template to a player. Presenting a template will keep a reference to the template
+        /// in the player, until the player closes the object - or the template diposes - or the player leaves.
+        /// </summary>
+        /// <param name="template"></param>
+        public void PresentMenu(IGUIWindowTemplate template)
+        {
+            // make a reference so the template is not cleaned up
+            int index = PresentingTemplates.IndexOf(template);
+            if (index != -1)
+            {
+                // update the index
+                PresentingTemplates[index] = template;
+            }
+            else
+            {
+                // add to the listening list
+                PresentingTemplates.Add(template);
+            }
+
+            // send the presentation
+            (template as GUIWindowTemplateBuilder.GUIWindowTemplate).PresentToPlayer(this);
+        }
+
     }
 }

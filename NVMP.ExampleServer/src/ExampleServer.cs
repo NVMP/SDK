@@ -193,7 +193,7 @@ namespace NVMP
             Debugging.Write("Initialized!");
         }
 
-        public new async Task PlayerMessaged(NetPlayer player, string message)
+        public new async Task PlayerMessaged(INetPlayer player, string message)
         {
             string name;
 
@@ -212,7 +212,7 @@ namespace NVMP
             await Task.CompletedTask;
         }
 
-        public new bool CanResendChatTo(NetPlayer player, NetPlayer target, string message, ref string username, ref System.Drawing.Color usercolor)
+        public new bool CanResendChatTo(INetPlayer player, INetPlayer target, string message, ref string username, ref System.Drawing.Color usercolor)
         {
             // Proximity chat!
             if (message.StartsWith("//"))
@@ -224,7 +224,7 @@ namespace NVMP
             return true;
         }
 
-        public new bool CanResendVoiceTo(NetPlayer player, NetPlayer target, ref float volume)
+        public new bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref float volume)
         {
             if (!IsVoiceEnabled)
             {
@@ -248,7 +248,7 @@ namespace NVMP
             return false;
         }
 
-        internal string GetPlayerCharacterSaveFileName(NetPlayer player)
+        internal string GetPlayerCharacterSaveFileName(INetPlayer player)
         {
             var discordID =  player["UniqueID"];
             if (discordID == null)
@@ -257,7 +257,7 @@ namespace NVMP
             return $"Saves/{discordID}.json";
         }
 
-        internal void DeletePlayerCharacter(NetPlayer player)
+        internal void DeletePlayerCharacter(INetPlayer player)
         {
             string filename = GetPlayerCharacterSaveFileName(player);
             if (File.Exists(filename))
@@ -266,7 +266,7 @@ namespace NVMP
             }
         }
 
-        internal void SavePlayerCharacter(NetPlayer player)
+        internal void SavePlayerCharacter(INetPlayer player)
         {
             if (player["Loaded"] == null)
             {
@@ -280,7 +280,7 @@ namespace NVMP
                 File.WriteAllText(filename, actor.EncodeToJSON());
             }
         }
-        internal bool LoadPlayerCharacter(NetPlayer player)
+        internal bool LoadPlayerCharacter(INetPlayer player)
         {
             var actor = player.Actor;
             if (actor != null)
@@ -312,8 +312,8 @@ namespace NVMP
 
         internal bool FindPlayerActor(string targetName, out INetActor actor)
         {
-            var players = NetPlayer.All;
-            NetPlayer targetPlayer = players.Where(player => player.Actor != null && player.Actor.Name.ToLower().Contains(targetName)).FirstOrDefault();
+            var players = Factory.Player.All;
+            var targetPlayer = players.Where(player => player.Actor != null && player.Actor.Name.ToLower().Contains(targetName)).FirstOrDefault();
             if (targetPlayer != null)
             {
                 actor = targetPlayer.Actor;
@@ -324,7 +324,7 @@ namespace NVMP
             return false;
         }
 
-        public new bool PlayerExecutedCommand(NetPlayer player, string commandName, uint numParams, string[] paramList)
+        public new bool PlayerExecutedCommand(INetPlayer player, string commandName, uint numParams, string[] paramList)
         {
             if (commandName == "goodsprings" || commandName == "gs")
             {
@@ -336,7 +336,7 @@ namespace NVMP
                     actor.Position = new Vector3 { X = -73203.07f, Y = 1273.1935f, Z = 8702.504f };
                     actor.Rotation = new Quaternion { X = 0.5902365f, Y = 0.06397164f, Z = 0.047003075f, W = 0.8033176f };
 
-                    NetPlayer.BroadcastGenericChatMessage($"{actor.Name} is teleporting to goodsprings...");
+                    INetPlayer.BroadcastGenericChatMessage($"{actor.Name} is teleporting to goodsprings...");
                 }
                 else
                 {
@@ -347,12 +347,12 @@ namespace NVMP
             }
             else if (commandName == "wow")
             {
-                player.ShowVaultBoyMessage("Wow! Great", 5.0f, NetPlayer.VaultBoyEmotion.Pain);
+                player.ShowVaultBoyMessage("Wow! Great", 5.0f, INetPlayer.VaultBoyEmotion.Pain);
                 return true;
             }
             else if (commandName == "mole123" && paramList != null)
             {
-                var players = NetPlayer.All;
+                var players = Factory.Player.All;
                 foreach (var otherPlayer in players)
                 {
                     otherPlayer.SendPlayerChatMessage("MOLE", SystemPromoColor, String.Join(" ", paramList));
@@ -434,7 +434,7 @@ namespace NVMP
             {
                 if (Authenticator.IsScopeValid(player, "user:kick"))
                 {
-                    var players = NetPlayer.All;
+                    var players = Factory.Player.All;
 
                     string searchPattern = paramList[0].ToLower();
                     string reason = numParams > 1 ? paramList[1] : null;
@@ -455,7 +455,7 @@ namespace NVMP
                         return true;
                     }
 
-                    NetPlayer targetPlayer = players.Where(player => player.Name.ToLower().Contains(searchPattern)).FirstOrDefault();
+                    var targetPlayer = players.Where(player => player.Name.ToLower().Contains(searchPattern)).FirstOrDefault();
                     if (targetPlayer != null)
                     {
                         targetPlayer.Kick(reason, player.Name);
@@ -490,7 +490,7 @@ namespace NVMP
                 if (Authenticator.IsScopeValid(player, "game:togglehardcore"))
                 {
                     IsHardcore = !IsHardcore;
-                    NetPlayer.BroadcastGenericChatMessage("Hardcore mode has been " + (IsHardcore ? "enabled" : "disabled") + " by " + player.Name, SystemPromoColor);
+                    INetPlayer.BroadcastGenericChatMessage("Hardcore mode has been " + (IsHardcore ? "enabled" : "disabled") + " by " + player.Name, SystemPromoColor);
                     return true;
                 }
             }
@@ -499,7 +499,7 @@ namespace NVMP
                 if (Authenticator.IsScopeValid(player, "game:togglevoice"))
                 {
                     IsVoiceEnabled = !IsVoiceEnabled;
-                    NetPlayer.BroadcastGenericChatMessage("Voice has been " + (IsVoiceEnabled ? "enabled" : "disabled") + " by " + player.Name, SystemPromoColor);
+                    INetPlayer.BroadcastGenericChatMessage("Voice has been " + (IsVoiceEnabled ? "enabled" : "disabled") + " by " + player.Name, SystemPromoColor);
                     return true;
                 }
             }
@@ -604,8 +604,8 @@ namespace NVMP
                     }
                     else
                     {
-                        var players = NetPlayer.All;
-                        NetPlayer targetPlayer = players.Where(player => player.Actor != null && player.Actor.Name.ToLower().Contains(targetName)).FirstOrDefault();
+                        var players = Factory.Player.All;
+                        var targetPlayer = players.Where(player => player.Actor != null && player.Actor.Name.ToLower().Contains(targetName)).FirstOrDefault();
                         if (targetPlayer != null)
                         {
                             actor = targetPlayer.Actor;
@@ -743,7 +743,7 @@ namespace NVMP
             }
             else if (commandName == "players")
             {
-                var players = NetPlayer.All;
+                var players = Factory.Player.All;
                 player.SendGenericChatMessage("Online players: " + String.Join(", ", players
                     .Select(player => new { player, player.Actor })
                     .Select(pair => $"{pair.Actor?.Name} ({pair.player.Name})")));
@@ -763,7 +763,7 @@ namespace NVMP
             return false;
         }
 
-        public new async Task PlayerJoined(NetPlayer player)
+        public new async Task PlayerJoined(INetPlayer player)
         {
             // Pro-tip:  You shouldn't start altering the actor's state here. There will be a valid actor object, but we don't know
             //           if it is safe to teleport the player to a desired location yet, or if the data will be overwrote.
@@ -777,11 +777,11 @@ namespace NVMP
         {
             get
             {
-                return NetPlayer.NumPlayers < 10;
+                return INetPlayer.NumPlayers < 10;
             }
         }
 
-        public new async Task PlayerLeft(NetPlayer player)
+        public new async Task PlayerLeft(INetPlayer player)
         {
             Debugging.Write($"{player.Name} left");
 
@@ -790,7 +790,7 @@ namespace NVMP
             {
                 if (ArePlayerChangesBroadcasted)
                 {
-                    NetPlayer.BroadcastGenericChatMessage($"Player {actor.Name} ({player.Name}) left!", SystemColor);
+                    INetPlayer.BroadcastGenericChatMessage($"Player {actor.Name} ({player.Name}) left!", SystemColor);
                 }
 
                 if (player["CharacterDeleted"] == null)
@@ -806,14 +806,14 @@ namespace NVMP
             }
             else
             {
-                NetPlayer.BroadcastGenericChatMessage($"Player {player.Name} left!", SystemColor);
+                INetPlayer.BroadcastGenericChatMessage($"Player {player.Name} left!", SystemColor);
             }
 
             Authenticator.PlayerLeft(player);
             await Task.CompletedTask;
         }
 
-        public new async Task PlayerAuthenticating(NetPlayer player, string authToken)
+        public new async Task PlayerAuthenticating(INetPlayer player, string authToken)
         {
             if (Authenticator != null)
             {
@@ -869,18 +869,18 @@ namespace NVMP
                 {
                     if (actor != null)
                     {
-                        NetPlayer.BroadcastGenericChatMessage($"Player {actor.Name} ({player.Name}) joined!", SystemColor);
+                        INetPlayer.BroadcastGenericChatMessage($"Player {actor.Name} ({player.Name}) joined!", SystemColor);
                     }
                     else
                     {
-                        NetPlayer.BroadcastGenericChatMessage($"Player {player.Name} joined!", SystemColor);
+                        INetPlayer.BroadcastGenericChatMessage($"Player {player.Name} joined!", SystemColor);
                     }
                 }
             }
             await Task.CompletedTask;
         }
 
-        public new async Task PlayerRequestsRespawn(NetPlayer player)
+        public new async Task PlayerRequestsRespawn(INetPlayer player)
         {
             var actor = player.Actor;
             if (actor != null)
@@ -956,7 +956,7 @@ namespace NVMP
                         }
                     }
 
-                    NetPlayer.BroadcastGenericChatMessage($"{actor.Name} died!", SystemDeathColor);
+                    INetPlayer.BroadcastGenericChatMessage($"{actor.Name} died!", SystemDeathColor);
                 }
             }
             await Task.CompletedTask;

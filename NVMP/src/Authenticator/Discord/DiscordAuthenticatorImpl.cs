@@ -163,7 +163,7 @@ namespace NVMP.Authenticator.Discord
                         if (!session.Equals(default(KeyValuePair<string, DiscordAuthorizationSession>)))
                         {
                             // Valid session found, find the player associated
-                            var players = NetPlayer.All;
+                            var players = Factory.Player.All;
                             var player = players.Where(netplayer => netplayer.AuthenticationToken == session.Key)
                                 .FirstOrDefault();
 
@@ -201,7 +201,7 @@ namespace NVMP.Authenticator.Discord
                         if (!session.Equals(default(KeyValuePair<string, DiscordAuthorizationSession>)))
                         {
                             // Valid session found, find the player associated
-                            var players = NetPlayer.All;
+                            var players = Factory.Player.All;
                             var player = players.Where(netplayer => netplayer.AuthenticationToken == session.Key)
                                 .FirstOrDefault();
 
@@ -331,7 +331,7 @@ namespace NVMP.Authenticator.Discord
             }
         }
 
-        override public void PlayerLeft(NetPlayer player)
+        override public void PlayerLeft(INetPlayer player)
         {
             if (AuthSessions.ContainsKey(player.AuthenticationToken))
             {
@@ -339,7 +339,7 @@ namespace NVMP.Authenticator.Discord
             }
         }
 
-        override public bool IsScopeValid(NetPlayer player, string scope)
+        override public bool IsScopeValid(INetPlayer player, string scope)
         {
             var roles = player["DiscordServerRoles"];
             if (roles != null && roles.Length > 0)
@@ -361,7 +361,7 @@ namespace NVMP.Authenticator.Discord
             return false;
         }
 
-        override public void SetupAuthentication(NetPlayer player)
+        override public void SetupAuthentication(INetPlayer player)
         {
             // If this player was authenticated locally, the socket should have this information cached to make this authentication process almost instant
             if (AuthSessions.ContainsKey(player.AuthenticationToken))
@@ -440,7 +440,7 @@ namespace NVMP.Authenticator.Discord
             Debugging.Error("Invalid authentication session");
         }
 
-        override public bool IsAuthenticationValid(NetPlayer player, string authenticationToken, ref string badauthReason)
+        override public bool IsAuthenticationValid(INetPlayer player, string authenticationToken, ref string badauthReason)
         {
             bool isIPBanned = !base.IsAuthenticationValid(player, authenticationToken, ref badauthReason);
 
@@ -492,7 +492,7 @@ namespace NVMP.Authenticator.Discord
 
                             if (session.ConnectionID != 0)
                             {
-                                NetPlayer existingPlayer = NetPlayer.GetPlayerByConnectionID(session.ConnectionID);
+                                var existingPlayer = INetPlayer.GetPlayerByConnectionID(session.ConnectionID);
                                 existingPlayer.Kick("This Discord account was logged out");
                             }
 
@@ -572,7 +572,7 @@ namespace NVMP.Authenticator.Discord
             }
         }
 
-        override public void Ban(NetPlayer player, string reason = null)
+        override public void Ban(INetPlayer player, string reason = null)
         {
             var userID = player["UniqueID"];
             if (userID == null)

@@ -17,22 +17,22 @@ namespace NVMP.Entities
     /// </summary>
     public class NetUnmanaged : IDisposable
     {
-        [DllImport("Native", EntryPoint = "GameNetReference_SetManagedHandle")]
+        [DllImport("Native", EntryPoint = "NetObject_SetManagedHandle")]
         private static extern void Internal_SetManagedHandle(IntPtr self, IntPtr handle);
 
-        [DllImport("Native", EntryPoint = "GameNetReference_GetManagedHandle")]
+        [DllImport("Native", EntryPoint = "NetObject_GetManagedHandle")]
         private static extern IntPtr Internal_GetManagedHandle(IntPtr self);
 
-        [DllImport("Native", EntryPoint = "GameNetReference_Track")]
+        [DllImport("Native", EntryPoint = "NetObject_Track")]
         private static extern uint Internal_Track(IntPtr self, string owner);
 
-        [DllImport("Native", EntryPoint = "GameNetReference_Untrack")]
+        [DllImport("Native", EntryPoint = "NetObject_Untrack")]
         private static extern void Internal_Untrack(IntPtr self, uint handle);
 
-        [DllImport("Native", EntryPoint = "GameNetReference_Destroy")]
+        [DllImport("Native", EntryPoint = "NetObject_Destroy")]
         private static extern void Internal_Destroy(IntPtr self, uint flags);
 
-        [DllImport("Native", EntryPoint = "GameNetReference_IsDestroyed")]
+        [DllImport("Native", EntryPoint = "NetObject_IsDestroyed")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_IsDestroyed(IntPtr self);
 
@@ -170,6 +170,7 @@ namespace NVMP.Entities
                     // TODO: dispose managed state (managed objects)
                 }
 
+                Debugging.Write($"{GetType()} disposed");
                 if (__UnmanagedAddress != IntPtr.Zero)
                 {
                     PreDispose();

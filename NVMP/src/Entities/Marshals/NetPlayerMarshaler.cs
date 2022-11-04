@@ -4,19 +4,12 @@ using System.Runtime.InteropServices;
 
 namespace NVMP.Marshals
 {
-    public class NetPlayerMarshaler : ICustomMarshaler
+    internal class NetPlayerMarshaler : ICustomMarshaler
     {
-        private static NetPlayerMarshaler PrivateInstance;
+        public static ICustomMarshaler Instance { get; } = new NetPlayerMarshaler();
 
-        public static ICustomMarshaler GetInstance(string cookie)
-        {
-            if (PrivateInstance == null)
-            {
-                PrivateInstance = new NetPlayerMarshaler();
-            }
-
-            return PrivateInstance;
-        }
+        public static ICustomMarshaler GetInstance(string pstrCookie)
+            => new NetPlayerMarshaler();
 
         public void CleanUpManagedData(object ManagedObj)
         {
@@ -34,7 +27,11 @@ namespace NVMP.Marshals
 
         public IntPtr MarshalManagedToNative(object ManagedObj)
         {
-            return ((NetPlayer)ManagedObj).__UnmanagedAddress;
+            var addr = (ManagedObj as NetPlayer).__UnmanagedAddress;
+            if (addr == IntPtr.Zero)
+                throw new Exception("Marshalling an object with a NULL unmanaged address!");
+
+            return addr;
         }
 
         public object MarshalNativeToManaged(IntPtr pNativeData)
@@ -44,10 +41,21 @@ namespace NVMP.Marshals
                 return null;
             }
 
-            return new NetPlayer
-            {
-                __UnmanagedAddress = pNativeData
-            };
+            // we want to find the object allocated to the native data. 
+            var managedHandle = NetReference.GetManagedHandleFromNativePointer(pNativeData);
+            if (managedHandle == IntPtr.Zero)
+                throw new Exception("No managed data was associated to native object. All native pointers used in managed environments should have a managed relationship.");
+
+            // resolve the gchandle
+            var gchandle = GCHandle.FromIntPtr(managedHandle);
+            if (gchandle == null)
+                throw new Exception("Marshal failure: managed handle was set, but is invalid!");
+
+            // cast it up
+            if (gchandle.Target == null)
+                throw new Exception("Marshal failure: target reference is invalid!");
+
+            return gchandle.Target as NetPlayer;
         }
     }
 }

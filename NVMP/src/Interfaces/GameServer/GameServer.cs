@@ -130,44 +130,44 @@ namespace NVMP
         {
         }
 
-        public Task PlayerJoined(NetPlayer target)
+        public Task PlayerJoined(INetPlayer target)
         {
             return Task.CompletedTask;
         }
 
-        public Task PlayerLeft(NetPlayer player)
+        public Task PlayerLeft(INetPlayer player)
         {
             return Task.CompletedTask;
         }
 
-        public Task PlayerCheated(NetPlayer target)
+        public Task PlayerCheated(INetPlayer target)
         {
             target.Kick("Cheater");
             return Task.CompletedTask;
         }
 
-        public Task PlayerAuthenticating(NetPlayer player, string authToken)
+        public Task PlayerAuthenticating(INetPlayer player, string authToken)
         {
             player.Authenticated = true;
             return Task.CompletedTask;
         }
 
-        public Task PlayerUpdatedSave(NetPlayer player, string name, string digest)
+        public Task PlayerUpdatedSave(INetPlayer player, string name, string digest)
         {
             return Task.CompletedTask;
         }
 
-        public Task PlayerNewSave(NetPlayer player)
+        public Task PlayerNewSave(INetPlayer player)
         {
             return Task.CompletedTask;
         }
 
-        public Task PlayerFinishLoad(NetPlayer player)
+        public Task PlayerFinishLoad(INetPlayer player)
         {
             return Task.CompletedTask;
         }
 
-        public Task PlayerRequestsRespawn(NetPlayer player)
+        public Task PlayerRequestsRespawn(INetPlayer player)
         {
             return Task.CompletedTask;
         }
@@ -177,7 +177,7 @@ namespace NVMP
             return Task.CompletedTask;
         }
 
-        public Task PlayerMessaged(NetPlayer player, string message)
+        public Task PlayerMessaged(INetPlayer player, string message)
         {
             return Task.CompletedTask;
         }
@@ -187,27 +187,27 @@ namespace NVMP
             return true;
         }
 
-        public bool CanResendChatTo(NetPlayer player, NetPlayer target, string message, ref string username, ref Color usercolor)
+        public bool CanResendChatTo(INetPlayer player, INetPlayer target, string message, ref string username, ref Color usercolor)
         {
             return true;
         }
 
-        public bool CanResendVoiceTo(NetPlayer player, NetPlayer target, ref float volume)
+        public bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref float volume)
         {
             return true;
         }
 
-        public bool PlayerExecutedCommand(NetPlayer player, string commandName, uint numParams, string[] paramList)
+        public bool PlayerExecutedCommand(INetPlayer player, string commandName, uint numParams, string[] paramList)
         {
             return false;
         }
 
-        public Task PlayerInputUpdate(NetPlayer player, InputType inputType, uint key)
+        public Task PlayerInputUpdate(INetPlayer player, InputType inputType, uint key)
         {
             return Task.CompletedTask;
         }
         
-        public Task PlayerMouseUpdate(NetPlayer player, int mouseX, int mouseY, int mousedeltaZ)
+        public Task PlayerMouseUpdate(INetPlayer player, int mouseX, int mouseY, int mousedeltaZ)
         {
             return Task.CompletedTask;
         }

@@ -13,7 +13,7 @@ namespace NVMP.Entities
 {
     internal class NetReference : NetUnmanaged, INetReference
     {
-        internal delegate NetReferencePVSTestTypes PVSCheckDelegate(NetPlayer player);
+        internal delegate NetReferencePVSTestTypes PVSCheckDelegate(INetPlayer player);
 
         #region Natives
         [DllImport("Native", EntryPoint = "GameNetReference_GetTitle", CharSet = CharSet.Unicode)]
@@ -168,7 +168,7 @@ namespace NVMP.Entities
         {
             public bool IsInGlobalPVS { get; set; }
 
-            public Func<NetPlayer, NetReferencePVSTestTypes> CheckDelegate
+            public Func<INetPlayer, NetReferencePVSTestTypes> CheckDelegate
             {
                 set
                 {
@@ -440,16 +440,16 @@ namespace NVMP.Entities
         /// <summary>
         /// The player who currently owns this actor for synchronisation
         /// </summary>
-        public NetPlayer PlayerOwner
+        public INetPlayer PlayerOwner
         {
             get
             {
-                IntPtr player = Internal_GetPlayerOwner(__UnmanagedAddress);
-                return Marshals.NetPlayerMarshaler.GetInstance(null).MarshalNativeToManaged(player) as NetPlayer;
+                var player = Internal_GetPlayerOwner(__UnmanagedAddress);
+                return Marshals.NetPlayerMarshaler.GetInstance(null).MarshalNativeToManaged(player) as INetPlayer;
             }
             set
             {
-                Internal_SetPlayerOwner(__UnmanagedAddress, value != null ? value.__UnmanagedAddress : IntPtr.Zero);
+                Internal_SetPlayerOwner(__UnmanagedAddress, value != null ? (value as NetPlayer).__UnmanagedAddress : IntPtr.Zero);
             }
         }
 

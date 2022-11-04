@@ -440,7 +440,7 @@ namespace NVMP
                 return canResend;
             };
 
-            rootDescription.CanResendChatTo = (NetPlayer player, NetPlayer target,
+            rootDescription.CanResendChatTo = (INetPlayer player, INetPlayer target,
                 string     message,
                 ref string username,
                 ref byte uca,
@@ -484,7 +484,7 @@ namespace NVMP
                 return canResend;
             };
 
-            rootDescription.CanResendVoiceTo = (NetPlayer player, NetPlayer target, ref float volume) =>
+            rootDescription.CanResendVoiceTo = (INetPlayer player, INetPlayer target, ref float volume) =>
             {
                 if (player.Actor == null)
                     return false;

@@ -22,7 +22,7 @@ namespace NVMP.Entities
         /// <summary>
         /// Sets a delegate to be called to override PVS results
         /// </summary>
-        public Func<NetPlayer, NetReferencePVSTestTypes> CheckDelegate { get; set; }
+        public Func<INetPlayer, NetReferencePVSTestTypes> CheckDelegate { get; set; }
     }
 
 }

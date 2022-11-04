@@ -58,23 +58,23 @@ namespace NVMP.Authenticator.Basic
         {
         }
 
-        virtual public void PlayerLeft(NetPlayer player)
+        virtual public void PlayerLeft(INetPlayer player)
         {
         }
 
-        virtual public void SetupAuthentication(NetPlayer player)
+        virtual public void SetupAuthentication(INetPlayer player)
         {
             player.Name = "Lonesome Courier";
             player.Authenticated = true;
             player["UniqueID"] = CalculateHash(player.AuthenticationToken).ToString();
         }
 
-        virtual public bool IsScopeValid(NetPlayer player, string scope)
+        virtual public bool IsScopeValid(INetPlayer player, string scope)
         {
             return true;
         }
 
-        virtual public bool IsAuthenticationValid(NetPlayer player, string authenticationToken, ref string badauthReason)
+        virtual public bool IsAuthenticationValid(INetPlayer player, string authenticationToken, ref string badauthReason)
         {
             if (BannedIPs.Contains(player.IP))
             {
@@ -121,7 +121,7 @@ namespace NVMP.Authenticator.Basic
             }
         }
 
-        virtual public void Ban(NetPlayer player, string reason = null)
+        virtual public void Ban(INetPlayer player, string reason = null)
         {
             if (!BannedIPs.Contains(player.IP))
             {

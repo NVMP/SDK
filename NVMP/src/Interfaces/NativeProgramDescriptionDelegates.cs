@@ -8,25 +8,25 @@ namespace NVMP.Delegates
     public delegate void PlayerJoinedDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
     );
 
     public delegate void PlayerCheatedDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
     );
 
     public delegate void PlayerLeftDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
     );
 
     public delegate void PlayerRequestsPreJoinDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
         ,
         [In, MarshalAs(UnmanagedType.LPStr)] string token
     );
@@ -34,13 +34,13 @@ namespace NVMP.Delegates
     public delegate void PlayerRequestsRespawnDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
     );
 
     public delegate bool PlayerCommandDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
         ,
 
         [In, MarshalAs(UnmanagedType.LPWStr)] string commandName,
@@ -51,7 +51,7 @@ namespace NVMP.Delegates
     public delegate void PlayerMessageDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
         ,
 
         [In, MarshalAs(UnmanagedType.LPWStr)] string message
@@ -61,11 +61,11 @@ namespace NVMP.Delegates
     (
         // 
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
         ,
 
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer target
+                INetPlayer target
         ,
 
         [In, Out, MarshalAs(UnmanagedType.LPWStr)] string message
@@ -91,11 +91,11 @@ namespace NVMP.Delegates
     (
         // 
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
         ,
 
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer target
+                INetPlayer target
         ,
         [In] ref float volume
     );
@@ -113,7 +113,7 @@ namespace NVMP.Delegates
     public delegate void PlayerUpdatedSaveDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
         ,
 
         [In, MarshalAs(UnmanagedType.LPStr)] string savename
@@ -125,13 +125,13 @@ namespace NVMP.Delegates
     public delegate void PlayerSaveEventDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player
+                INetPlayer player
     );
 
     public delegate void InputUpdateDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player,
+                INetPlayer player,
 
         [In] uint inputType,
         [In] uint key
@@ -140,7 +140,7 @@ namespace NVMP.Delegates
     public delegate void MouseUpdateDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
-                NetPlayer player,
+                INetPlayer player,
 
         [In] int mouseX,
         [In] int mouseY,

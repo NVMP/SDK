@@ -15,7 +15,7 @@ namespace NVMP.Authenticator
         /// <param name="authenticationToken"></param>
         /// <param name="badauthReason">The public visible reason the player cannot authenticate</param>
         /// <returns></returns>
-        bool IsAuthenticationValid(NetPlayer player, string authenticationToken, ref string badauthReason);
+        bool IsAuthenticationValid(INetPlayer player, string authenticationToken, ref string badauthReason);
 
         /// <summary>
         /// Implements any additional logging that needs to be fed to your server administrators
@@ -34,27 +34,27 @@ namespace NVMP.Authenticator
         /// Post-valid authentication, this will be called to set up any additional metadata on a player
         /// </summary>
         /// <param name="player"></param>
-        void SetupAuthentication(NetPlayer player);
+        void SetupAuthentication(INetPlayer player);
 
         /// <summary>
         /// Returns whether the scope supplied is valid on the player
         /// </summary>
         /// <param name="player"></param>
         /// <param name="scope"></param>
-        bool IsScopeValid(NetPlayer player, string scope);
+        bool IsScopeValid(INetPlayer player, string scope);
 
         /// <summary>
         /// Called when a player has left to clean up any required information
         /// </summary>
         /// <param name="player"></param>
-        void PlayerLeft(NetPlayer player);
+        void PlayerLeft(INetPlayer player);
 
         /// <summary>
         /// Bans a player from the authenticator
         /// </summary>
         /// <param name="player"></param>
         /// <param name="reason"></param>
-        void Ban(NetPlayer player, string reason = null);
+        void Ban(INetPlayer player, string reason = null);
 
         /// <summary>
         /// Updates the authenticator logic
