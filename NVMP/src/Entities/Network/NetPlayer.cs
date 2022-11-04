@@ -451,7 +451,8 @@ namespace NVMP.Entities
                 case MenuUpdateType.ButtonClick:
                     if (targetElement is IGUIButtonElement)
                     {
-                        (targetElement as IGUIButtonElement).OnClicked(this);
+                        var button = targetElement as IGUIButtonElement;
+                        button.OnClicked?.Invoke(this);
                     }
                     break;
                 default: break;

@@ -18,6 +18,8 @@ namespace NVMP.Entities.GUI
         internal static extern void Internal_GUI_BaseElement_SetBackgroundColor(IntPtr message, uint rgba);
         [DllImport("Native", EntryPoint = "GUI_BaseElement_SetIsSameLine")]
         internal static extern void Internal_GUI_BaseElement_SetIsSameLine(IntPtr message, bool isSameLine);
+        [DllImport("Native", EntryPoint = "GUI_BaseElement_SetItemWidth")]
+        internal static extern void Internal_GUI_BaseElement_SetItemWidth(IntPtr message, float itemWidth);
         [DllImport("Native", EntryPoint = "GUI_BaseElement_SetElementType")]
         internal static extern void Internal_GUI_BaseElement_SetElementType(IntPtr message, GUIItemType utype);
         [DllImport("Native", EntryPoint = "GUI_BaseElement_SetElementID")]
@@ -32,6 +34,8 @@ namespace NVMP.Entities.GUI
         public Color BackgroundColor { get; internal set; } = Color.White;
 
         public bool IsSameLine { get; internal set; } = false;
+
+        public float ItemWidth { get; internal set; } = 0.0f;
 
         public IGUIWindowTemplate ParentWindow { get; internal set; }
 
@@ -64,6 +68,17 @@ namespace NVMP.Entities.GUI
             return this;
         }
 
+        /// <summary>
+        /// Sets the item width relative to the window. Setting this to -1.0f will fill the width.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <returns></returns>
+        public GUIBaseElement WithItemWidth(float width)
+        {
+            ItemWidth = width;
+            return this;
+        }
+
         public GUIBaseElement WithBackground(Color col)
         {
             BackgroundColor = col;
@@ -78,6 +93,7 @@ namespace NVMP.Entities.GUI
             Internal_GUI_BaseElement_SetForegroundColor(native, (uint)ForegroundColor.ToArgb());
             Internal_GUI_BaseElement_SetBackgroundColor(native, (uint)BackgroundColor.ToArgb());
             Internal_GUI_BaseElement_SetIsSameLine(native, IsSameLine);
+            Internal_GUI_BaseElement_SetItemWidth(native, ItemWidth);
 
             // children
             foreach (var child in Children)

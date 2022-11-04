@@ -26,6 +26,11 @@ namespace NVMP.Entities.GUI
         /// </summary>
         public bool IsSameLine { get; }
 
+        /// <summary>
+        /// The width of the item. Defaulted at 0.0f. If set to -1.0f then will fill the parent container.
+        /// </summary>
+        public float ItemWidth { get; }
+
         public IGUIWindowTemplate ParentWindow { get; }
 
         /// <summary>
