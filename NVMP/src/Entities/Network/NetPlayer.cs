@@ -442,7 +442,6 @@ namespace NVMP.Entities
                 return;
             }
 
-            Debugging.Error($"{menuUpdateType} {targetElement}");
             switch (menuUpdateType)
             {
                 case MenuUpdateType.Invalid:
@@ -452,7 +451,6 @@ namespace NVMP.Entities
                 case MenuUpdateType.ButtonClick:
                     if (targetElement is IGUIButtonElement)
                     {
-                        Debugging.Write("Handling Interaction...");
                         (targetElement as IGUIButtonElement).OnClicked(this);
                     }
                     break;

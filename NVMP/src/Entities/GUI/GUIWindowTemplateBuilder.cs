@@ -61,9 +61,14 @@ namespace NVMP.Entities.GUI
 
             public Vector2 Dimensions { get; internal set; }
 
-            public IList<IGUIBaseElement> Elements { get; internal set; } = new List<IGUIBaseElement>();
+            public IList<IGUIBaseElement> Elements { get; internal set; }
 
             internal uint NumTotalElements { get; set; }
+
+            public GUIWindowTemplate()
+            {
+                Elements = new List<IGUIBaseElement>();
+            }
 
             internal void PresentToPlayer(INetPlayer player)
             {
@@ -79,7 +84,7 @@ namespace NVMP.Entities.GUI
                     Internal_GUI_Window_SetTitle(nativeMessage, Title);
                     Internal_GUI_Window_SetImGuiFlags(nativeMessage, (uint)ImGuiFlags);
                     Internal_GUI_Window_SetCanBeClosed(nativeMessage, CanBeClosed);
-                    Internal_GUI_Window_SetCanBeClosed(nativeMessage, CanBeClosed);
+                    Internal_GUI_Window_SetRequiresInputFocus(nativeMessage, RequiresInputFocus);
                     Internal_GUI_Window_SetPosition(nativeMessage, Position.X, Position.Y);
                     Internal_GUI_Window_SetDimensions(nativeMessage, Dimensions.X, Dimensions.Y);
 
@@ -109,13 +114,13 @@ namespace NVMP.Entities.GUI
                 foreach (var element in elements)
                 {
                     if (element.ID == id)
-                    {
                         return element;
-                    }
 
                     if (element.Children != null)
                     {
-                        return SearchElementListForID(element.Children, id);
+                        IGUIBaseElement subChildFound = SearchElementListForID(element.Children, id);
+                        if (subChildFound != null)
+                            return subChildFound;
                     }
                 }
 

@@ -20,6 +20,8 @@ namespace NVMP.Entities.GUI
         internal static extern void Internal_GUI_BaseElement_SetIsSameLine(IntPtr message, bool isSameLine);
         [DllImport("Native", EntryPoint = "GUI_BaseElement_SetElementType")]
         internal static extern void Internal_GUI_BaseElement_SetElementType(IntPtr message, GUIItemType utype);
+        [DllImport("Native", EntryPoint = "GUI_BaseElement_SetElementID")]
+        internal static extern void Internal_GUI_BaseElement_SetElementID(IntPtr message, ulong ID);
         //
         [DllImport("Native", EntryPoint = "GUI_Element_AddSubElement")]
         internal static extern IntPtr Internal_GUI_Element_AddSubElement(IntPtr element);
@@ -33,11 +35,16 @@ namespace NVMP.Entities.GUI
 
         public IGUIWindowTemplate ParentWindow { get; internal set; }
 
-        public IList<IGUIBaseElement> Children { get; internal set; } = new List<IGUIBaseElement>();
+        public IList<IGUIBaseElement> Children { get; internal set; }
 
         public abstract GUIItemType ItemType { get; }
 
         public ulong ID { get; internal set; }
+
+        public GUIBaseElement()
+        {
+            Children = new List<IGUIBaseElement>();
+        }
 
         public GUIBaseElement WithElements(Action<GUIWindowElementBuilder> builder)
         {
@@ -67,6 +74,7 @@ namespace NVMP.Entities.GUI
         {
             // basic stuff
             Internal_GUI_BaseElement_SetElementType(native, ItemType);
+            Internal_GUI_BaseElement_SetElementID(native, ID);
             Internal_GUI_BaseElement_SetForegroundColor(native, (uint)ForegroundColor.ToArgb());
             Internal_GUI_BaseElement_SetBackgroundColor(native, (uint)BackgroundColor.ToArgb());
             Internal_GUI_BaseElement_SetIsSameLine(native, IsSameLine);
