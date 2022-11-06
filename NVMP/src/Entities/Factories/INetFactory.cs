@@ -36,7 +36,6 @@ namespace NVMP.Entities
             if (AllocationTable.ContainsKey(ObjectType))
                 throw new Exception("This factory object type has already been registered!");
 
-            Debugging.Write($"New Allocation Table {ObjectType} Added");
             AllocationTable[ObjectType] = this.Allocate;
         }
     }
