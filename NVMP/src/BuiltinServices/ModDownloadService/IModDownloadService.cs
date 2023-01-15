@@ -2,9 +2,7 @@
 {
     public interface IModDownloadService
     {
-        public GameServerMod[] GetDownloadableMods();
-
-        public GameServerMod[] GetMods();
+        public ModFile[] GetDownloadableMods();
 
         public string GetDownloadURL();
 

@@ -224,27 +224,14 @@ namespace NVMP
             return true;
         }
 
-        public new bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref float volume)
+        public new bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref VoiceFrame voiceFrame)
         {
             if (!IsVoiceEnabled)
             {
                 return false;
             }
 
-            if (player.Actor != null)
-            {
-                if (target.Actor != null)
-                {
-                    float distance = Vector3.DistanceSquared(player.Actor.Position, target.Actor.Position);
-
-                    if (distance < ProximityChatDistance)
-                    {
-                        volume = 1.0f - (distance / ProximityChatDistance);
-                        return true;
-                    }
-                }
-            }
-
+            voiceFrame.Is3D = true;
             return false;
         }
 

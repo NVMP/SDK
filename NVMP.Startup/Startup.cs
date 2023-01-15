@@ -484,7 +484,7 @@ namespace NVMP
                 return canResend;
             };
 
-            rootDescription.CanResendVoiceTo = (INetPlayer player, INetPlayer target, ref float volume) =>
+            rootDescription.CanResendVoiceTo = (INetPlayer player, INetPlayer target, ref bool is3D, ref float volume, uint voiceFrameByteCount, IntPtr voiceFrameArrayStart) =>
             {
                 if (player.Actor == null)
                     return false;
@@ -493,13 +493,19 @@ namespace NVMP
                     return false;
 
                 bool canResend = true;
+
+                var voiceFrameArray = new byte[voiceFrameByteCount];
+                Marshal.Copy(voiceFrameArrayStart, voiceFrameArray, 0, (int)voiceFrameByteCount);
+
+                var voiceFrame = new VoiceFrame(voiceFrameArray);
+                
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
                         try
                         {
-                            canResend &= plugin.CanResendVoiceTo(player, target, ref volume);
+                            canResend &= plugin.CanResendVoiceTo(player, target, ref voiceFrame);
                             if (!canResend)
                             {
                                 break;
@@ -511,6 +517,9 @@ namespace NVMP
                         }
                     }
                 }
+
+                is3D = voiceFrame.Is3D;
+                volume = voiceFrame.Volume;
 
                 return canResend;
             };

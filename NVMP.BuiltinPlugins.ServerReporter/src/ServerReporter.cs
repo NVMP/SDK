@@ -139,7 +139,7 @@ namespace NVMP.BuiltinPlugins
             [DataMember(Name = "downloadable")]
             public bool Downloadable { get; set; }
 
-            public ServerModInfo(GameServerMod mod)
+            public ServerModInfo(ModFile mod)
             {
                 Digest = mod.Digest;
                 Name = mod.Name;
@@ -162,7 +162,7 @@ namespace NVMP.BuiltinPlugins
                 request.JsonSerializer = new NewtonsoftJsonSerializer();
 
                 // Declare content
-                var mods = ModService.GetMods();
+                var mods = ModManager.GetMods();
                 var downloadableMods = ModService.GetDownloadableMods();
 
                 // If we are not very strict, then don't bother reporting these to the server list to enforce it
@@ -224,7 +224,7 @@ namespace NVMP.BuiltinPlugins
                         }
                     default:
                         {
-                            Debugging.Error($"[reporter] Unknown server error trying to broadcast server! Error {response.StatusCode}, message {response.Content} {response.ErrorMessage}");
+                            Debugging.Error($"[reporter] Unknown server error trying to broadcast server to {BroadcastServer}! Error {response.StatusCode}, message {response.Content} {response.ErrorMessage}");
                             if (response.ErrorException != null)
                             {
                                 throw response.ErrorException;

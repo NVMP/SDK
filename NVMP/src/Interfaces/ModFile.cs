@@ -7,7 +7,7 @@ namespace NVMP
     /// <summary>
     /// A client-modification information
     /// </summary>
-    public class GameServerMod
+    public class ModFile
     {
         /// <summary>
         /// File path relative on disk

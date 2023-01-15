@@ -4,6 +4,32 @@ using System.Threading.Tasks;
 namespace NVMP
 {
     /// <summary>
+    /// Modulation params and information about the voice
+    /// </summary>
+    public class VoiceFrame
+    {
+        public VoiceFrame(byte[] frame)
+        {
+            Frame = frame;
+        }
+
+        /// <summary>
+        /// Modulated 3D space flag, setting this overrides the flag.
+        /// </summary>
+        public bool Is3D { get; set; } = false;
+
+        /// <summary>
+        /// Modulated volume, setting this overrides the volume applied so if modulation is intended - use the existing value.
+        /// </summary>
+        public float Volume { get; set; } = 1.0f;
+
+        /// <summary>
+        /// Opus voice frame transmitted by the player
+        /// </summary>
+        public byte[] Frame { get; set; }
+    }
+
+    /// <summary>
     /// Defines an NV:MP server plugin to be loaded at runtime. IPlugins are instanciated by default if they inherit.
     /// Be aware that a plugin is by default _not_ the main server plugins. Plugins run parellel to the main game server, and are designed to add new built-in logic. 
     /// If you are designing a plugin that acts as a server, then inherit IPlugin and GameServer. Else you miss out on vital implementations such as webservice and client-mod configs.
@@ -142,9 +168,9 @@ namespace NVMP
         /// </summary>
         /// <param name="player">sender</param>
         /// <param name="target">potential receiver</param>
-        /// <param name="volume">volume of voice</param>
+        /// <param name="voiceFrame">modulation params to edit the voice params</param>
         /// <returns>return FALSE to not send the packet</returns>
-        bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref float volume);
+        bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref VoiceFrame voiceFrame);
 
         /// <summary>
         /// Called for any Player that executes a desired command in chat using "/".

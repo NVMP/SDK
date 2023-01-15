@@ -170,7 +170,6 @@ namespace NVMP.Entities
                     // TODO: dispose managed state (managed objects)
                 }
 
-                Debugging.Write($"{GetType()} disposed");
                 if (__UnmanagedAddress != IntPtr.Zero)
                 {
                     PreDispose();

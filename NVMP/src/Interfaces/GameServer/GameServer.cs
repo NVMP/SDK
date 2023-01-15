@@ -31,71 +31,10 @@ namespace NVMP
         [DllImport("Native", EntryPoint = "GameServer_SetReferenceDeletionTimeout")]
         private static extern void Internal_SetReferenceDeletionTimeout(long ms);
 
-
-        //
-        // Mods
-        //
-        [DllImport("Native", EntryPoint = "GameServer_FindAvailableModByName")]
-        [return: MarshalAs(UnmanagedType.I1)]
-        private static extern bool Internal_FindAvailableModByName(string name, ref string filename, ref string digest, ref byte index);
-
-        [DllImport("Native", EntryPoint = "GameServer_NumAvailableMods")]
-        private static extern uint Internal_NumAvailableMods();
-
-        [DllImport("Native", EntryPoint = "GameServer_GetAvailableMod")]
-        [return: MarshalAs(UnmanagedType.I1)]
-        private static extern bool Internal_GetAvailableMod(uint index, ref string filename, ref string name, ref string digest);
         #endregion
 
         public IManagedWebService WebService;
         public ISyncBlockInterface SyncBlocks;
-
-        public GameServerMod FindModByName(string mod)
-        {
-            string digest = null;
-            string filePath = null;
-            byte modIndex = 0;
-            if (Internal_FindAvailableModByName(mod, ref filePath, ref digest, ref modIndex))
-            {
-                var sMod = new GameServerMod
-                {
-                    Digest = digest,
-                    FilePath = filePath,
-                    Name = mod,
-                    Index = ((uint)modIndex << 24)
-                };
-
-                return sMod;
-            }
-
-            return null;
-        }
-
-        public GameServerMod[] GetMods()
-        {
-            string digest = null;
-            string filePath = null;
-            string name = null;
-
-            uint numMods = Internal_NumAvailableMods();
-            
-            var result = new GameServerMod[numMods];
-            for (uint i = 0; i < numMods; ++i)
-            {
-                if (Internal_GetAvailableMod(i, ref filePath, ref name, ref digest))
-                {
-                    result[i] = new GameServerMod
-                    {
-                        Digest = digest,
-                        FilePath = filePath,
-                        Name = name,
-                        Index = (i << 24)
-                    };
-                }
-            }
-
-            return result;
-        }
 
         public virtual void Init()
         {
@@ -192,7 +131,7 @@ namespace NVMP
             return true;
         }
 
-        public bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref float volume)
+        public bool CanResendVoiceTo(INetPlayer player, INetPlayer target, ref VoiceFrame voiceFrame)
         {
             return true;
         }

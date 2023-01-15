@@ -30,6 +30,11 @@ namespace NVMP.Entities
         public uint FormID { get; }
 
         /// <summary>
+        /// The mod file name this reference FormID is part of.
+        /// </summary>
+        public string ModFile { get; }
+
+        /// <summary>
         /// The GECK form type this reference is. This is only reliable if it has had an existing owner
         /// beforehand. Server references that have never been synced by another player 
         /// may not have this set at all as the server cannot infer it alone.

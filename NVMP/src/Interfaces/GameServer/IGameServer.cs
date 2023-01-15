@@ -16,19 +16,6 @@ namespace NVMP
         internal static extern int Internal_GetUMT();
 
         /// <summary>
-        /// Queries a server mod by name
-        /// </summary>
-        /// <param name="mod"></param>
-        /// <returns></returns>
-        public GameServerMod FindModByName(string mod);
-
-        /// <summary>
-        /// Gets an array of all mods in use
-        /// </summary>
-        /// <returns></returns>
-        public GameServerMod[] GetMods();
-
-        /// <summary>
         /// Initializes all mods
         /// </summary>
         public void Init();

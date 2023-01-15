@@ -1,4 +1,5 @@
 ﻿using NVMP.Entities;
+using System;
 using System.Runtime.InteropServices;
 
 namespace NVMP.Delegates
@@ -97,7 +98,13 @@ namespace NVMP.Delegates
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
                 INetPlayer target
         ,
+        [In, Out, MarshalAs(UnmanagedType.U1)] ref bool is3D
+        ,
         [In] ref float volume
+        ,
+        [In] uint voiceFrameByteCount
+        ,
+        [In] IntPtr voiceFrameArrayStart
     );
 
     public delegate void ActorDiedDelegate

@@ -600,6 +600,26 @@ namespace NVMP.Entities
             set => Internal_SetVirtualWorldID(__UnmanagedAddress, value);
         }
 
+        public string ModFile
+        {
+            get
+            {
+                if (FormID == 0)
+                    throw new Exception("Tried accessing ModFile for a reference with an invalid FormID");
+
+                var mods = ModManager.GetMods();
+                foreach (var mod in mods)
+                {
+                    if (((mod.Index & 0xFF000000) >> 24) == mod.Index)
+                    {
+                        return mod.Name;
+                    }
+                }
+
+                return null;
+            }
+        }
+
         public bool IsInPVS(INetReference other) =>  Internal_IsInPVS(__UnmanagedAddress, (other as NetReference).__UnmanagedAddress);
 
         public bool IsInZone(INetZone zone) => Internal_IsInsideZone(__UnmanagedAddress, (zone as NetZone).__UnmanagedAddress);

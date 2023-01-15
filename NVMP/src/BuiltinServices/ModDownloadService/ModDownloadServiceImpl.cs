@@ -22,13 +22,13 @@ namespace NVMP.BuiltinServices.ModDownloadService
         protected IManagedWebService WebService;
         protected IGameServer Server;
         protected BannedList BannedMods;
-        protected List<GameServerMod> Mods;
+        protected List<ModFile> Mods;
 
         public ModDownloadServiceImpl(IGameServer server, IManagedWebService webService)
         {
             WebService = webService;
             Server = server;
-            Mods = new List<GameServerMod>();
+            Mods = new List<ModFile>();
             BannedMods = new BannedList
             {
                 Digests = new List<string>
@@ -159,12 +159,7 @@ namespace NVMP.BuiltinServices.ModDownloadService
             return $"{WebService.FullURL}/{WebScheme}";
         }
 
-        public GameServerMod[] GetMods()
-        {
-            return Server.GetMods();
-        }
-
-        public GameServerMod[] GetDownloadableMods()
+        public ModFile[] GetDownloadableMods()
         {
             return Mods.ToArray();
         }
@@ -176,7 +171,7 @@ namespace NVMP.BuiltinServices.ModDownloadService
         public bool AddCustomMod(string modName)
         {
             // 1. Find the mod in native and get the details
-            var mod = Server.FindModByName(modName);
+            var mod = ModManager.FindModByName(modName);
             if (mod != null)
             {
                 // 2. Check that the mod isn't banned (DLCs are not permitted! that is piracy!)
