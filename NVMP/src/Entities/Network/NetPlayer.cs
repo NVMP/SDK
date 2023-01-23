@@ -52,6 +52,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetIP")]
         private static extern string Internal_GetIP(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_GetPing")]
+        private static extern uint Internal_GetPing(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_GetAuthenticationToken")]
         private static extern string Internal_GetAuthenticationToken(IntPtr self);
 
@@ -272,6 +275,17 @@ namespace NVMP.Entities
             get
             {
                 return Internal_GetIP(__UnmanagedAddress);
+            }
+        }
+
+        /// <summary>
+        /// Player's round-trip time between a packet, and an acknowledgement response. 
+        /// </summary>
+        public uint Ping
+        {
+            get
+            {
+                return Internal_GetPing(__UnmanagedAddress);
             }
         }
 

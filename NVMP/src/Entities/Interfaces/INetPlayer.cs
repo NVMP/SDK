@@ -94,6 +94,11 @@ namespace NVMP.Entities
         /// </summary>
         public string IP { get; }
 
+        /// <summary>
+        /// Player's round-trip time between a packet, and an acknowledgement response. 
+        /// </summary>
+        public uint Ping { get; }
+
         public void SendValidSaves(string[] digests);
 
         public void ShowVaultBoyMessage(string message, float time = 2.0f, INetPlayer.VaultBoyEmotion emotion = INetPlayer.VaultBoyEmotion.Happy);
