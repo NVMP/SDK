@@ -87,6 +87,13 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetAuthenticated(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SetIsDev")]
+        private static extern void Internal_SetIsDev(IntPtr self, bool isDev);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetIsDev")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetIsDev(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255);
 
@@ -286,6 +293,18 @@ namespace NVMP.Entities
             get
             {
                 return Internal_GetPing(__UnmanagedAddress);
+            }
+        }
+
+        public bool IsDev
+        {
+            set
+            {
+                Internal_SetIsDev(__UnmanagedAddress, value);
+            }
+            get
+            {
+                return Internal_GetIsDev(__UnmanagedAddress);
             }
         }
 

@@ -99,6 +99,11 @@ namespace NVMP.Entities
         /// </summary>
         public uint Ping { get; }
 
+        /// <summary>
+        /// Player's development state. Allowing them to be a dev allows for additional network information, that could be sensitive to the gamemode.
+        /// </summary>
+        public bool IsDev { get; set; }
+
         public void SendValidSaves(string[] digests);
 
         public void ShowVaultBoyMessage(string message, float time = 2.0f, INetPlayer.VaultBoyEmotion emotion = INetPlayer.VaultBoyEmotion.Happy);
