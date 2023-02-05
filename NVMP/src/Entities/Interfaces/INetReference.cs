@@ -229,6 +229,19 @@ namespace NVMP.Entities
         public bool IsDestroyed { get; }
 
         /// <summary>
+        /// Sets or gets the reference this reference is attached on to. References cannot attach to eachother, the link is one direction to allow
+        /// for multiple attachments to one reference. Note that this instantly will update the position of the reference relative to the parent, 
+        /// with the local offset adjusted for.
+        /// </summary>
+        public INetReference ParentAttachment { get; set; }
+
+        /// <summary>
+        /// Sets the parent attachment offset. This is a position with its origin relative to the parent attachment's live position, and
+        /// is transformed as the parent reference changes rotation additionally - so this is a local space position.
+        /// </summary>
+        public Vector3 ParentAttachmentOffset { get; set; }
+
+        /// <summary>
         /// Destroys the reference. Using flags controls additional behaviour.
         /// </summary>
         /// <param name="flags"></param>

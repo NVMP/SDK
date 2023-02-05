@@ -5,23 +5,17 @@ using System.Text;
 
 namespace NVMP.Extensions
 {
+    public static class V3
+    {
+        public static Vector3 Forward = new Vector3(0.0f, 1.0f, 0.0f);
+
+        public static Vector3 Left = new Vector3(1.0f, 0.0f, 0.0f);
+
+        public static Vector3 Up = new Vector3(0.0f, 0.0f, 1.0f);
+    }
+
     public static class VectorExtensions
     {
-        public static Vector3 Forward(this Vector3 _)
-        {
-            return new Vector3(1.0f, 0.0f, 0.0f);
-        }
-
-        public static Vector3 Left(this Vector3 _)
-        {
-            return new Vector3(0.0f, 1.0f, 0.0f);
-        }
-
-        public static Vector3 Up(this Vector3 _)
-        {
-            return new Vector3(0.0f, 0.0f, 1.0f);
-        }
-
         public static Vector3 EulersToVector(this Vector3 vec)
         {
             float yaw = vec.Y - ((float)Math.PI / 2);

@@ -114,8 +114,7 @@ namespace NVMP.Authenticator.Discord
                             GatewayIntents.GuildMembers |
                             GatewayIntents.DirectMessages |
                             GatewayIntents.GuildMessages |
-                            GatewayIntents.Guilds |
-                            GatewayIntents.GuildPresences;
+                            GatewayIntents.Guilds;
 
                     var config = new DiscordSocketConfig
                     {

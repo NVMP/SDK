@@ -161,7 +161,24 @@ namespace NVMP.Entities
         private static extern void Internal_SetOnActivatedDelegate(IntPtr self, OnActivatedReference del);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnDamagedDelegate")]
+
         private static extern void Internal_SetOnDamagedDelegate(IntPtr self, OnDamaged del);
+        [DllImport("Native", EntryPoint = "GameNetReference_IsAttached")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_IsAttached(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetParentAttachment")]
+        private static extern IntPtr Internal_GetParentAttachment(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_AttachTo")]
+        private static extern void Internal_AttachTo(IntPtr self, IntPtr refB, float lx, float ly, float lz);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentLocalPosition")]
+        private static extern void Internal_GetAttachmentLocalPosition(IntPtr self, ref float lx, ref float ly, ref float lz);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentLocalPosition")]
+        private static extern void Internal_SetAttachmentLocalPosition(IntPtr self, float lx, float ly, float lz);
+
         #endregion
 
         public class PVSController : INetReferencePVSController
@@ -617,6 +634,50 @@ namespace NVMP.Entities
                 }
 
                 return null;
+            }
+        }
+
+        public INetReference ParentAttachment
+        {
+            get
+            {
+                return Marshals.NetReferenceMarshaler.GetInstance(null).MarshalNativeToManaged(Internal_GetParentAttachment(__UnmanagedAddress)) as INetReference;
+            }
+            set
+            {
+                if (value == this)
+                    throw new Exception("Attachments cannot be made to parent themselves");
+
+                if (value == null)
+                {
+                    Internal_AttachTo(__UnmanagedAddress, IntPtr.Zero, 0.0f, 0.0f, 0.0f);
+                }
+                else
+                {
+                    Internal_AttachTo(__UnmanagedAddress, (value as NetReference).__UnmanagedAddress, ParentAttachmentOffset.X, ParentAttachmentOffset.Y, ParentAttachmentOffset.Z);
+                }
+            }
+        }
+
+        public Vector3 ParentAttachmentOffset
+        {
+            get
+            {
+                float x = 0;
+                float y = 0;
+                float z = 0;
+
+                Internal_GetAttachmentLocalPosition(__UnmanagedAddress, ref x, ref y, ref z);
+                return new Vector3(x, y, z);
+            }
+            set
+            {
+                if (!Internal_IsAttached(__UnmanagedAddress))
+                {
+                    throw new Exception("Cannot query or set the attachment offset if the attachment is not valid. ");
+                }
+
+                Internal_SetAttachmentLocalPosition(__UnmanagedAddress, value.X, value.Y, value.Z);
             }
         }
 
