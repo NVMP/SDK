@@ -138,11 +138,20 @@ namespace NVMP.Entities
         public void BanIP(string reason, string whoby = null);
 
         /// <summary>
+        /// Runs a synchronous script on the player. Be aware that any long running scripts will lock the main thread
+        /// on the player, and may time them out or freeze their instance until the script completes execution.
+        /// Compilation is ran and verified on the player.
+        /// </summary>
+        /// <param name="script">The script contents, must be less than 2KB in size or else the script will not be transmitted</param>
+        public void RunScript(string script);
+
+        /// <summary>
         /// Sends a message to the player's chat box
         /// </summary>
         /// <param name="message"></param>
         /// <param name="color"></param>
-        public void SendGenericChatMessage(string message, Color? color = null);
+        /// <param name="fontSize"></param>
+        public void SendGenericChatMessage(string message, Color? color = null, float fontSize = 18.0f);
 
         /// <summary>
         /// Sends a message to the player's chat box
@@ -151,7 +160,8 @@ namespace NVMP.Entities
         /// <param name="sendercolor"></param>
         /// <param name="message"></param>
         /// <param name="messagecolor"></param>
-        public void SendPlayerChatMessage(string sender, Color sendercolor, string message, Color? messagecolor = null);
+        /// <param name="fontSize"></param>
+        public void SendPlayerChatMessage(string sender, Color sendercolor, string message, Color? messagecolor = null, float fontSize = 18.0f);
 
         /// <summary>
         /// Shows a menu on the target player's screen

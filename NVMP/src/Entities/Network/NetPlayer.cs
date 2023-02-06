@@ -40,6 +40,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_SendValidSaves")]
         private static extern void Internal_SendValidSaves(IntPtr self, uint numSaves, string[] saves);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_RunScript")]
+        private static extern void Internal_RunScript(IntPtr self, string script);
+
         [DllImport("Native", EntryPoint = "NetPlayer_ShowVaultBoyMessage")]
         private static extern void Internal_ShowVaultBoyMessage(IntPtr self, string message, float time, uint emotion);
 
@@ -95,7 +98,7 @@ namespace NVMP.Entities
         private static extern bool Internal_GetIsDev(IntPtr self);
 
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
-        private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255);
+        private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
 
         [DllImport("Native", EntryPoint = "NetPlayer_SendPlayerChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendPlayerChatMessage(IntPtr self
@@ -108,6 +111,7 @@ namespace NVMP.Entities
             , byte message_r
             , byte message_g
             , byte message_b
+            , float fontSize
         );
 
         [DllImport("Native", EntryPoint = "NetPlayer_ShowMenu")]
@@ -333,13 +337,6 @@ namespace NVMP.Entities
             Internal_SendValidSaves(__UnmanagedAddress, 0, null);
         }
         
-        /// <summary>
-        /// Kicks the player from the current session in the next network stack update. This requests a disconnect from 
-        /// the peer, so may not be an instant disconnection
-        /// </summary>
-        /// <param name="reason">reason of the kick</param>
-        /// <param name="whoby">what entity performed this</param>
-        /// <param name="silentFromChat">if set then this action isnt send to chat</param>
         public void Kick(string reason, string whoby = null, bool silentFromChat = false)
         {
             Internal_Kick(__UnmanagedAddress, reason, whoby);
@@ -365,48 +362,26 @@ namespace NVMP.Entities
             }
         }
 
-        /// <summary>
-        /// Bans the player from the current session. This is currently not implemented
-        /// </summary>
-        /// <param name="reason"></param>
-        /// <param name="whoby"></param>
         public void Ban(string reason, string whoby = null)
         {
             Internal_Ban(__UnmanagedAddress, reason, whoby);
         }
 
-        /// <summary>
-        /// Bans the player's IP address from the session
-        /// </summary>
-        /// <param name="reason"></param>
-        /// <param name="whoby"></param>
         public void BanIP(string reason, string whoby = null)
         {
             Internal_BanIP(__UnmanagedAddress, reason, whoby);
         }
 
-        /// <summary>
-        /// Sends a message to the player's chat box
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="color"></param>
-        public void SendGenericChatMessage(string message, Color? color = null)
+        public void SendGenericChatMessage(string message, Color? color, float fontSize)
         {
             if (!color.HasValue)
             {
                 color = Color.White;
             }
-            Internal_SendGenericChatMessage(__UnmanagedAddress, message, color.Value.R, color.Value.G, color.Value.B);
+            Internal_SendGenericChatMessage(__UnmanagedAddress, message, color.Value.R, color.Value.G, color.Value.B, fontSize);
         }
 
-        /// <summary>
-        /// Sends a message to the player's chat box
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="sendercolor"></param>
-        /// <param name="message"></param>
-        /// <param name="messagecolor"></param>
-        public void SendPlayerChatMessage(string sender, Color sendercolor, string message, Color? messagecolor = null)
+        public void SendPlayerChatMessage(string sender, Color sendercolor, string message, Color? messagecolor, float fontSize)
         {
             if (!messagecolor.HasValue)
             {
@@ -422,6 +397,7 @@ namespace NVMP.Entities
                 , messagecolor.Value.R
                 , messagecolor.Value.G
                 , messagecolor.Value.B
+                , fontSize
             );
         }
 
@@ -516,5 +492,9 @@ namespace NVMP.Entities
             (template as GUIWindowTemplateBuilder.GUIWindowTemplate).PresentToPlayer(this);
         }
 
+        public void RunScript(string script)
+        {
+            Internal_RunScript(__UnmanagedAddress, script);
+        }
     }
 }
