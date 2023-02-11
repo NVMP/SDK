@@ -28,7 +28,7 @@ namespace NVMP
 
         public void SetRefBlocked(uint refID, bool blocked);
         public bool IsRefBlocked(uint refID);
-        public void SetWorldspaceBlocked(Worldspace.WorldspaceType worldspaceID, Vector3 pos, float radius, BlockType type);
+        public void SetWorldspaceBlocked(WorldspaceType worldspaceID, Vector3 pos, float radius, BlockType type);
     }
 
     public class SyncBlockManager : ISyncBlockInterface
@@ -74,7 +74,7 @@ namespace NVMP
             Internal_SetRefBlocked(refID, blocked);
         }
 
-        public void SetWorldspaceBlocked(Worldspace.WorldspaceType worldspaceID, Vector3 pos, float radius, ISyncBlockInterface.BlockType type)
+        public void SetWorldspaceBlocked(WorldspaceType worldspaceID, Vector3 pos, float radius, ISyncBlockInterface.BlockType type)
         {
             Internal_SetWorldspaceBlocked((uint)worldspaceID, pos.X, pos.Y, pos.Z, radius, (uint)type);
         }

@@ -602,6 +602,10 @@ namespace NVMP.Authenticator.Discord
                     await SynchronisedGuild.AddBanAsync(user);
                     await OnDiscordUserRemotelyBanned?.Invoke(user, reason);
                 }
+                else
+                {
+                    await SynchronisedGuild.AddBanAsync(id);
+                }
             }).Start();
         }
 

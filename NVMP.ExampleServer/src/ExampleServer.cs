@@ -121,7 +121,7 @@ namespace NVMP
             var safeZone = Factory.Zone.Create(15000.0f);
             safeZone.Name = "Goodsprings";
             safeZone.NameColor = Color.MediumPurple;
-            safeZone.SetExterior(Worldspace.WorldspaceType.WastelandNV, -18, 0);
+            safeZone.SetExterior(WorldspaceType.WastelandNV, -18, 0);
             safeZone.Position = new Vector3 { X = -71819.055f, Y = 2014.8998f, Z = 8371.848f };
             safeZone.Title = "Safezone";
             safeZone.Description = "Continue out into the wilderness to enable PVP";
@@ -170,7 +170,7 @@ namespace NVMP
             greeter.IsFemale = false;
             greeter.SimType = NetReferenceSimulationType.HotSwap;
             greeter.Title = "Fixed Test NPC";
-            greeter.SetExterior(Worldspace.WorldspaceType.WastelandNV, -18, 0);
+            greeter.SetExterior(WorldspaceType.WastelandNV, -18, 0);
             greeter.Position = new Vector3 { X = -71055.62f, Y = 2734.6982f, Z = 8347.849f };
             greeter.Rotation = new Quaternion { X = 0.995541f, Y = 0.074327275f, Z = -0.052930247f, W = -0.023917452f };
 
@@ -180,7 +180,7 @@ namespace NVMP
             var bossActor = Factory.Actor.Create(0x000E59E7);
             bossActor.Scale = 4.0f;
             bossActor.Name = "Mad Bastard";
-            bossActor.SetExterior(Worldspace.WorldspaceType.WastelandNV, -8, -7);
+            bossActor.SetExterior(WorldspaceType.WastelandNV, -8, -7);
             bossActor.SimType = NetReferenceSimulationType.HotSwap;
             bossActor.Position = new Vector3 { X = -32357.904f, Y = -26299.209f, Z = 5913.434f };
             bossActor.SaveState();
@@ -319,7 +319,7 @@ namespace NVMP
                 if (actor != null)
                 {
                     // Just outside of Doc Mitchell's house
-                    actor.SetExterior(Worldspace.WorldspaceType.WastelandNV, -18, 0);
+                    actor.SetExterior(WorldspaceType.WastelandNV, -18, 0);
                     actor.Position = new Vector3 { X = -73203.07f, Y = 1273.1935f, Z = 8702.504f };
                     actor.Rotation = new Quaternion { X = 0.5902365f, Y = 0.06397164f, Z = 0.047003075f, W = 0.8033176f };
 
@@ -891,7 +891,7 @@ namespace NVMP
                     player["CharacterDeleted"] = null;
 
                     // Just outside of Doc Mitchell's house
-                    actor.SetExterior(Worldspace.WorldspaceType.WastelandNV, -18, 0);
+                    actor.SetExterior(WorldspaceType.WastelandNV, -18, 0);
                     actor.Position = new Vector3 { X = -73203.07f, Y = 1273.1935f, Z = 8702.504f };
                     actor.Rotation = new Quaternion { X = 0.5902365f, Y = 0.06397164f, Z = 0.047003075f, W = 0.8033176f };
 

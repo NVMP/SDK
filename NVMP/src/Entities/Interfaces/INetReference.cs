@@ -179,7 +179,7 @@ namespace NVMP.Entities
         /// <param name="worldspace">worldspace area to spawn into</param>
         /// <param name="x">grid x coord</param>
         /// <param name="y">grid y coord</param>
-        public void SetExterior(Worldspace.WorldspaceType worldspace, int x, int y);
+        public void SetExterior(WorldspaceType worldspace, int x, int y);
 
         /// <summary>
         /// Teleports the actor to an exterior cell. If position is set, the CELL X and Y component on teleport 
@@ -191,7 +191,7 @@ namespace NVMP.Entities
         /// </summary>
         /// <param name="worldspace"></param>
         /// <param name="position"></param>
-        public void SetExterior(Worldspace.WorldspaceType worldspace, Vector3 position);
+        public void SetExterior(WorldspaceType worldspace, Vector3 position);
 
         public ReferenceData Encode();
 

@@ -89,7 +89,7 @@ namespace NVMP.Entities
         private static extern void Internal_SetPlayerOwner(IntPtr self, IntPtr player);
 
         [DllImport("Native", EntryPoint = "GameNetReference_GetWorldspace")]
-        private static extern void Internal_GetWorldspace(IntPtr self, ref Worldspace.WorldspaceType worldspaceID, ref int X, ref int Y);
+        private static extern void Internal_GetWorldspace(IntPtr self, ref WorldspaceType worldspaceID, ref int X, ref int Y);
 
         [DllImport("Native", EntryPoint = "GameNetReference_GetInterior")]
         private static extern uint Internal_GetInterior(IntPtr self);
@@ -485,7 +485,7 @@ namespace NVMP.Entities
         {
             get
             {
-                var formID = NVMP.Worldspace.WorldspaceType.None;
+                var formID = NVMP.WorldspaceType.None;
                 int x = 0;
                 int y = 0;
                 Internal_GetWorldspace(__UnmanagedAddress, ref formID, ref x, ref y);
@@ -537,7 +537,7 @@ namespace NVMP.Entities
         /// <param name="worldspace">worldspace area to spawn into</param>
         /// <param name="x">grid x coord</param>
         /// <param name="y">grid y coord</param>
-        public void SetExterior(Worldspace.WorldspaceType worldspace, int x, int y)
+        public void SetExterior(WorldspaceType worldspace, int x, int y)
         {
             if (((uint)worldspace & 0xFF000000) == 0xFF000000)
                 throw new Exception("Invalid worldspace passed. You need to add the first byte of the DLC in your current load order. ie. WorldspaceType.NVDLC03BigMT.AsModIndex(1)");
@@ -554,7 +554,7 @@ namespace NVMP.Entities
         /// </summary>
         /// <param name="worldspace"></param>
         /// <param name="position"></param>
-        public void SetExterior(Worldspace.WorldspaceType worldspace, Vector3 position)
+        public void SetExterior(WorldspaceType worldspace, Vector3 position)
         {
             int cellX = (int)(position.X / 4096.0f);
             int cellY = (int)(position.Y / 4096.0f);
