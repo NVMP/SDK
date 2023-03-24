@@ -76,6 +76,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_GetVelocity")]
         private static extern void Internal_GetVelocity(IntPtr self, ref float x, ref float y, ref float z);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_SetScale")]
+        private static extern void Internal_SetScale(IntPtr self, float scale);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetScale")]
+        private static extern float Internal_GetScale(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetReference_SetRotation")]
         private static extern void Internal_SetRotation(IntPtr self, float x, float y, float z, float w);
 
@@ -605,6 +611,12 @@ namespace NVMP.Entities
                     Decode(data);
                 }
             }
+        }
+
+        public float Scale
+        {
+            set => Internal_SetScale(__UnmanagedAddress, value);
+            get => Internal_GetScale(__UnmanagedAddress);
         }
 
         public bool IsActor => Internal_IsActor(__UnmanagedAddress);

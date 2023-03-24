@@ -27,12 +27,6 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_GetLevel")]
         private static extern int Internal_GetLevel(IntPtr self);
 
-        [DllImport("Native", EntryPoint = "GameNetActor_SetScale")]
-        private static extern void Internal_SetScale(IntPtr self, float scale);
-
-        [DllImport("Native", EntryPoint = "GameNetActor_GetScale")]
-        private static extern float Internal_GetScale(IntPtr self);
-
         [DllImport("Native", EntryPoint = "GameNetActor_SetIsFemale")]
         private static extern void Internal_SetIsFemale(IntPtr self, bool female);
 
@@ -518,15 +512,6 @@ namespace NVMP.Entities
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Defines the 3D model scale of this actor. Fallout internally limits this between 0.001-10.000.
-        /// </summary>
-        public float Scale
-        {
-            set => Internal_SetScale(__UnmanagedAddress, value);
-            get => Internal_GetScale(__UnmanagedAddress);
         }
 
         public bool IsRestrained

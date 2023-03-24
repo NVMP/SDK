@@ -118,6 +118,11 @@ namespace NVMP.Entities
         public Vector3 Velocity { get; set; }
 
         /// <summary>
+        /// Defines the 3D model scale of the reference. Fallout internally limits this between 0.001-10.000.
+        /// </summary>
+        public float Scale { get; set; }
+
+        /// <summary>
         /// The 3D Quaternion rotation of the actor in the world
         /// </summary>
         public Quaternion Rotation { get; set; }

@@ -76,11 +76,6 @@ namespace NVMP.Entities
 		public uint Caps { get; set; }
 
 		/// <summary>
-		/// Defines the 3D model scale of this actor. Fallout internally limits this between 0.001-10.000.
-		/// </summary>
-		public float Scale { get; set; }
-
-		/// <summary>
 		/// Restrains or unrestrians the player, this prevents movement of players - and prevents AI from running on NPCs.
 		/// </summary>
 		/// <remarks>
