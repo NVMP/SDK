@@ -72,5 +72,16 @@ namespace NVMP
 
             return result;
         }
+
+        static public ModFile FindModUsedByReference(uint refId)
+        {
+            var mods = GetMods();
+            foreach (var mod in mods)
+            {
+                if (mod.Index == ((refId >> 24) & 0xFF))
+                    return mod;
+            }
+            return null;
+        }
     }
 }
