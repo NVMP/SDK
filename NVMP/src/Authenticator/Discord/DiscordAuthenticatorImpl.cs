@@ -53,7 +53,7 @@ namespace NVMP.Authenticator.Discord
         public Func<RestGuildUser, string, Task> OnDiscordUserRemotelyBanned { get; set; }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public DiscordAuthenticatorImpl(IManagedWebService webService) : base()
+        public DiscordAuthenticatorImpl(IManagedWebService webService, IDiscordAuthenticator.DiscordInitializationParams initializationParams) : base()
         {
             WebService = webService;
             OnDiscordUserRemotelyBanned = null;
@@ -110,11 +110,15 @@ namespace NVMP.Authenticator.Discord
             {
                 try
                 {
-                    var intents =
+                    var intents = GatewayIntents.None;
+                    if (initializationParams.HasFlag(IDiscordAuthenticator.DiscordInitializationParams.ConsumeBroadPresence))
+                    {
+                        intents =
                             GatewayIntents.GuildMembers |
                             GatewayIntents.DirectMessages |
                             GatewayIntents.GuildMessages |
                             GatewayIntents.Guilds;
+                    }
 
                     var config = new DiscordSocketConfig
                     {
@@ -153,71 +157,75 @@ namespace NVMP.Authenticator.Discord
                         return Task.CompletedTask;
                     });
 
-                    BotClientSocket.UserLeft += new Func<SocketGuild, SocketUser, Task>(delegate (SocketGuild guild, SocketUser user)
+                    if (initializationParams.HasFlag(IDiscordAuthenticator.DiscordInitializationParams.ConsumeBroadPresence))
                     {
-                        // Find if there's an authentication session associated with the changed user
-                        var session = AuthSessions.Where(authsession => authsession.Value.RestClient.CurrentUser.Id == user.Id)
-                            .FirstOrDefault();
-
-                        if (!session.Equals(default(KeyValuePair<string, DiscordAuthorizationSession>)))
+                        BotClientSocket.UserLeft += new Func<SocketGuild, SocketUser, Task>(delegate (SocketGuild guild, SocketUser user)
                         {
-                            // Valid session found, find the player associated
-                            var players = Factory.Player.All;
-                            var player = players.Where(netplayer => netplayer.AuthenticationToken == session.Key)
+                            // Find if there's an authentication session associated with the changed user
+                            var session = AuthSessions.Where(authsession => authsession.Value.RestClient.CurrentUser.Id == user.Id)
                                 .FirstOrDefault();
 
-                            if (player != null)
+                            if (!session.Equals(default(KeyValuePair<string, DiscordAuthorizationSession>)))
                             {
-                                Log($"<@{session.Value.RestClient.CurrentUser.Id}> ({session.Value.RestClient.CurrentUser.Username}#{session.Value.RestClient.CurrentUser.Discriminator}) lost their passport - they left the server!");
-                                player.Kick("Passport Revoked - you left the Discord server!", null, true);
-                            }
-                            else
-                            {
-                                Debugging.Error("Player changed their Discord information, and their session is in game, but NetPlayer could not be found!");
-                            }
-                        }
+                                // Valid session found, find the player associated
+                                var players = Factory.Player.All;
+                                var player = players.Where(netplayer => netplayer.AuthenticationToken == session.Key)
+                                    .FirstOrDefault();
 
-                        return Task.CompletedTask;
-                    });
-
-                    BotClientSocket.GuildMemberUpdated += new Func<Cacheable<SocketGuildUser, ulong>, SocketGuildUser, Task>(async delegate (Cacheable<SocketGuildUser, ulong> beforeCache, SocketGuildUser after)
-                    {
-                        // Find if there's an authentication session associated with the changed user
-                        var session = AuthSessions.Where(authsession => authsession.Value.RestClient.CurrentUser.Id == after.Id)
-                            .FirstOrDefault();
-
-                        var before = await beforeCache.GetOrDownloadAsync();
-                        if (before == null)
-                        {
-                            return;
-                        }
-
-                        if (before.Roles.SequenceEqual(after.Roles))
-                        {
-                            return;
-                        }
-
-                        if (!session.Equals(default(KeyValuePair<string, DiscordAuthorizationSession>)))
-                        {
-                            // Valid session found, find the player associated
-                            var players = Factory.Player.All;
-                            var player = players.Where(netplayer => netplayer.AuthenticationToken == session.Key)
-                                .FirstOrDefault();
-
-                            if (player != null)
-                            {
-                                if (PermittedRoles.Count() != 0 && !after.Roles.Where(role => PermittedRoles.Contains(role.Id)).Any())
+                                if (player != null)
                                 {
-                                    Log($"<@{session.Value.RestClient.CurrentUser.Id}> ({session.Value.RestClient.CurrentUser.Username}#{session.Value.RestClient.CurrentUser.Discriminator}) lost their passport!");
-                                    player.Kick("Passport Revoked!", null, true);
+                                    Log($"<@{session.Value.RestClient.CurrentUser.Id}> ({session.Value.RestClient.CurrentUser.Username}#{session.Value.RestClient.CurrentUser.Discriminator}) lost their passport - they left the server!");
+                                    player.Kick("Passport Revoked - you left the Discord server!", null, true);
+                                }
+                                else
+                                {
+                                    Debugging.Error("Player changed their Discord information, and their session is in game, but NetPlayer could not be found!");
                                 }
                             }
-                            else
+
+                            return Task.CompletedTask;
+                        });
+
+                        BotClientSocket.GuildMemberUpdated += new Func<Cacheable<SocketGuildUser, ulong>, SocketGuildUser, Task>(async delegate (Cacheable<SocketGuildUser, ulong> beforeCache, SocketGuildUser after)
+                        {
+                            // Find if there's an authentication session associated with the changed user
+                            var session = AuthSessions.Where(authsession => authsession.Value.RestClient.CurrentUser.Id == after.Id)
+                                .FirstOrDefault();
+
+                            var before = await beforeCache.GetOrDownloadAsync();
+                            if (before == null)
                             {
-                                Debugging.Error("Player changed their Discord information, and their session is in game, but NetPlayer could not be found!");
+                                return;
                             }
-                        }
-                    });
+
+                            if (before.Roles.SequenceEqual(after.Roles))
+                            {
+                                return;
+                            }
+
+                            if (!session.Equals(default(KeyValuePair<string, DiscordAuthorizationSession>)))
+                            {
+                                // Valid session found, find the player associated
+                                var players = Factory.Player.All;
+                                var player = players.Where(netplayer => netplayer.AuthenticationToken == session.Key)
+                                    .FirstOrDefault();
+
+                                if (player != null)
+                                {
+                                    if (PermittedRoles.Count() != 0 && !after.Roles.Where(role => PermittedRoles.Contains(role.Id)).Any())
+                                    {
+                                        Log($"<@{session.Value.RestClient.CurrentUser.Id}> ({session.Value.RestClient.CurrentUser.Username}#{session.Value.RestClient.CurrentUser.Discriminator}) lost their passport!");
+                                        player.Kick("Passport Revoked!", null, true);
+                                    }
+                                }
+                                else
+                                {
+                                    Debugging.Error("Player changed their Discord information, and their session is in game, but NetPlayer could not be found!");
+                                }
+                            }
+                        });
+                    }
+
                     BotClientSocket.LoggedOut += new Func<Task>(delegate ()
                     {
                         Debugging.Error("Discord bot has logged out");
@@ -793,6 +801,14 @@ namespace NVMP.Authenticator.Discord
             {
                 DiscordRoleScopes[role] = new List<string> { scope };
             }
+        }
+
+        public new void Dispose()
+        {
+            base.Dispose();
+
+            BotClientSocket?.Dispose();
+            BotClientSocket = null;
         }
     }
 }

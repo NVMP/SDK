@@ -15,9 +15,9 @@ namespace NVMP.BuiltinServices.ManagedWebService
         public int ListeningPort;
 
         internal HttpListener InternalServer;
-        internal Thread InternalThread;
+        internal Task ExecutionTask;
 
-        internal bool Running;
+        internal CancellationTokenSource CancelRunningToken;
 
         internal string ActiveURL;
         internal string InternalHostname;
@@ -25,14 +25,20 @@ namespace NVMP.BuiltinServices.ManagedWebService
 
         internal static int MaxConcurrentConnections = 16;
 
+        internal class ResponseTarget
+        {
+            public Func<HttpListenerRequest, HttpListenerResponse, Task> Target { get; set; }
+            public IManagedWebService.ExecutionType ExecutionType { get; set; }
+        }
+
         // Dictionaries of methods -> resolvers -> response handlers so that each request can filter down into the appropriate bucket
         internal Dictionary<IManagedWebService.Method, Dictionary<
-            string, Func<HttpListenerRequest, HttpListenerResponse, Task>
-            >> ResponseHandlers = new Dictionary<IManagedWebService.Method, Dictionary<string, Func<HttpListenerRequest, HttpListenerResponse, Task>>>();
+            string, ResponseTarget
+            >> ResponseHandlers = new Dictionary<IManagedWebService.Method, Dictionary<string, ResponseTarget>>();
 
         internal Dictionary<IManagedWebService.Method, Dictionary<
-            string, Func<HttpListenerRequest, HttpListenerResponse, Task>
-            >> RootHandlers = new Dictionary<IManagedWebService.Method, Dictionary<string, Func<HttpListenerRequest, HttpListenerResponse, Task>>>();
+            string, ResponseTarget
+            >> RootHandlers = new Dictionary<IManagedWebService.Method, Dictionary<string, ResponseTarget>>();
 
         internal string CORSUri = "*";
 
@@ -56,6 +62,7 @@ namespace NVMP.BuiltinServices.ManagedWebService
 
             InternalHostname = hostname;
             ActiveURL = $"{InternalHostname}:{InternalPortOverride}";
+            CancelRunningToken = new CancellationTokenSource();
         }
 
         public void SetAccessControlOrigin(string remoteServerUri)
@@ -82,14 +89,14 @@ namespace NVMP.BuiltinServices.ManagedWebService
             InternalServer.Start();
         }
 
-        public void AddPathResolver(string url, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, IManagedWebService.Method method)
+        public void AddPathResolver(string url, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, IManagedWebService.Method method, IManagedWebService.ExecutionType executionType)
         {
-            ResponseHandlers[method].Add(url, fn);
+            ResponseHandlers[method].Add(url, new ResponseTarget() { Target = fn, ExecutionType = executionType });
         }
 
-        public void AddRootResolver(string root, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, IManagedWebService.Method method)
+        public void AddRootResolver(string root, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, IManagedWebService.Method method, IManagedWebService.ExecutionType executionType)
         {
-            RootHandlers[method].Add(root, fn);
+            RootHandlers[method].Add(root, new ResponseTarget() { Target = fn, ExecutionType = executionType });
         }
 
         private async Task Receive()
@@ -100,7 +107,7 @@ namespace NVMP.BuiltinServices.ManagedWebService
                 requests.Add(InternalServer.GetContextAsync());
             }
 
-            while (Running)
+            while (!CancelRunningToken.IsCancellationRequested)
             {
                 var t = await Task.WhenAny(requests);
                 requests.Remove(t);
@@ -111,7 +118,6 @@ namespace NVMP.BuiltinServices.ManagedWebService
                     requests.Add(ProcessRequestAsync(context));
                     requests.Add(InternalServer.GetContextAsync());
                 }
-
             }
         }
 
@@ -158,11 +164,19 @@ namespace NVMP.BuiltinServices.ManagedWebService
 
                     if (req.Url.AbsolutePath.Length >= 1 && methodRootHandler.ContainsKey(rootName))
                     {
-                        await methodRootHandler[rootName](req, resp);
+                        var target = methodRootHandler[rootName].Target(req, resp);
+                        if (methodRootHandler[handlerName].ExecutionType == IManagedWebService.ExecutionType.Sync)
+                        {
+                            await target;
+                        }
                     }
                     else if (req.Url.AbsolutePath.Length >= 1 && methodResponseHandler.ContainsKey(handlerName))
                     {
-                        await methodResponseHandler[handlerName](req, resp);
+                        var target = methodResponseHandler[handlerName].Target(req, resp);
+                        if (methodResponseHandler[handlerName].ExecutionType == IManagedWebService.ExecutionType.Sync)
+                        {
+                            await target;
+                        }
                     }
                     else
                     {
@@ -170,7 +184,7 @@ namespace NVMP.BuiltinServices.ManagedWebService
                         byte[] data = Encoding.UTF8.GetBytes("<!doctype html><html><head><title>NV:MP</title></head><body><div><b>NV:MP Authentication</b></div>Something bad happened to this request.</body></html>");
                         resp.ContentType = "text/html";
                         resp.ContentEncoding = Encoding.UTF8;
-                        resp.ContentLength64 = data.LongLength;
+                        resp.ContentLength64 = data.Length;
 
                         // Write out to the response stream (asynchronously), then close it
                         resp.OutputStream.Write(data, 0, data.Length);
@@ -201,8 +215,8 @@ namespace NVMP.BuiltinServices.ManagedWebService
             // populate method buckets
             foreach (IManagedWebService.Method method in (IManagedWebService.Method[])Enum.GetValues(typeof(IManagedWebService.Method)))
             {
-                ResponseHandlers[method] = new Dictionary<string, Func<HttpListenerRequest, HttpListenerResponse, Task>>();
-                RootHandlers[method] = new Dictionary<string, Func<HttpListenerRequest, HttpListenerResponse, Task>>();
+                ResponseHandlers[method] = new Dictionary<string, ResponseTarget>();
+                RootHandlers[method] = new Dictionary<string, ResponseTarget>();
             }
 
             while (attempts > 0)
@@ -210,10 +224,7 @@ namespace NVMP.BuiltinServices.ManagedWebService
                 try
                 {
                     AttemptServerCreation();
-
-                    Running = true;
-                    InternalThread = new Thread(() => Receive().GetAwaiter().GetResult());
-                    InternalThread.Start();
+                    ExecutionTask = Task.Run(async () => await Receive());
 
                     ListeningPort = InternalPortOverride;
                     Debugging.Write("WebService initialized");
@@ -235,20 +246,16 @@ namespace NVMP.BuiltinServices.ManagedWebService
 
         public void Shutdown()
         {
-            Running = false;
+            Debugging.Write("Synchronising web thread...");
+            CancelRunningToken.Cancel();
+            CancelRunningToken.Dispose();
+            ExecutionTask?.GetAwaiter().GetResult(); // join the task
 
             Debugging.Write("Shutting down HTTPListener...");
+
             if (InternalServer != null)
             {
                 InternalServer.Stop();
-            }
-
-            Debugging.Write("Synchronising web thread...");
-            if (InternalThread != null)
-            {
-                InternalThread.Abort();
-                InternalThread.Join();
-                InternalThread = null;
             }
         }
 

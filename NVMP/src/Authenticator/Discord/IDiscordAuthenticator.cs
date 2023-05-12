@@ -12,6 +12,25 @@ namespace NVMP.Authenticator.Discord
     public interface IDiscordAuthenticator : IAuthenticator
     {
         /// <summary>
+        /// Initialization params for connecting to the Discord authenticator backend. 
+        /// This is mostly temporary work to allow for multiple instances of the authenticator that don't consume
+        /// so many resources. Eventually this factory will be removed in favour of a generic authentication platform TBA.
+        /// </summary>
+        [Flags]
+        public enum DiscordInitializationParams
+        {
+            None = 0,
+
+            /// <summary>
+            /// Consumes quite broad Discord intents that allows for presence tracking of members within Guilds.
+            /// This may be useful to disable if your authentication purposes are generally just for state querying.
+            /// </summary>
+            ConsumeBroadPresence = (1 << 0),
+
+            All = ConsumeBroadPresence
+        }
+
+        /// <summary>
         /// Remotely bans a specified Discord ID in the primary guild server with the specified reason
         /// </summary>
         /// <param name="id"></param>

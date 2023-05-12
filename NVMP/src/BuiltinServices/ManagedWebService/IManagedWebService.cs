@@ -27,13 +27,20 @@ namespace NVMP.BuiltinServices.ManagedWebService
             PATCH
         }
 
+        public enum ExecutionType
+        {
+            Sync,
+            Async
+        }
+
         /// <summary>
         /// Adds a new path resolver to the web service.
         /// </summary>
         /// <param name="url">the path after the hostname to bind to, eg. "server" will be http://localhost:!234/server/</param>
         /// <param name="fn">the lambda to call when the service is hit</param>
         /// <param name="method"></param>
-        public void AddPathResolver(string url, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, Method method = Method.GET);
+        /// <param name="executionType"></param>
+        public void AddPathResolver(string url, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, Method method = Method.GET, ExecutionType executionType = ExecutionType.Sync);
 
         /// <summary>
         /// Adds a new root path resolver to the web service.
@@ -41,7 +48,8 @@ namespace NVMP.BuiltinServices.ManagedWebService
         /// <param name="root">the root path after the hostname to bind to, eg. "server" will be http://localhost:!234/server/</param>
         /// <param name="fn">the lambda to call when the service is hit</param>
         /// <param name="method"></param>
-        public void AddRootResolver(string root, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, Method method = Method.GET);
+        /// <param name="executionType"></param>
+        public void AddRootResolver(string root, Func<HttpListenerRequest, HttpListenerResponse, Task> fn, Method method = Method.GET, ExecutionType executionType = ExecutionType.Sync);
 
         /// <summary>
         /// Sets the specified URI to the CORS origin.

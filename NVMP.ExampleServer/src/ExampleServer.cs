@@ -964,6 +964,8 @@ namespace NVMP
         {
             WebService.Shutdown();
             ModService.Shutdown();
+            Authenticator?.Dispose();
+            Authenticator = null;
 
             foreach (var actor in DebugTestActors)
             {

@@ -1,4 +1,5 @@
 using NVMP.Entities;
+using System;
 
 namespace NVMP.Authenticator
 {
@@ -6,7 +7,7 @@ namespace NVMP.Authenticator
     /// AuthenticatorInterfaces are ways to plug different built-in styles of authentication for a server. You don't need to use these
     /// when making a GameServer plugin, but they are predefined authentication logic blocks that are built around the needs of NV:MP.
     /// </summary>
-    public interface IAuthenticator
+    public interface IAuthenticator : IDisposable
     {
         /// <summary>
         /// Returns whether the current authentication parameters are valid

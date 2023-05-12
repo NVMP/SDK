@@ -129,6 +129,10 @@ namespace NVMP.Authenticator.Basic
                 WriteBannedIPsFile();
             }
         }
+
+        public void Dispose()
+        {
+        }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }
