@@ -165,7 +165,7 @@ namespace NVMP.BuiltinServices.ManagedWebService
                     if (req.Url.AbsolutePath.Length >= 1 && methodRootHandler.ContainsKey(rootName))
                     {
                         var target = methodRootHandler[rootName].Target(req, resp);
-                        if (methodRootHandler[handlerName].ExecutionType == IManagedWebService.ExecutionType.Sync)
+                        if (methodRootHandler[rootName].ExecutionType == IManagedWebService.ExecutionType.Sync)
                         {
                             await target;
                         }
