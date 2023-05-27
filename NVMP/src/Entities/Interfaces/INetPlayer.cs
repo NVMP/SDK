@@ -1,12 +1,12 @@
-﻿using NVMP.Entities.GUI;
-using System;
+﻿using System;
 using System.Drawing;
-using System.Numerics;
 using System.Runtime.InteropServices;
+using NVMP.Entities.GUI;
+using NVMP.Entities.Authentication;
 
 namespace NVMP.Entities
 {
-    public interface INetPlayer
+    public interface INetPlayer : IAuthenticatedEntity
     {
         //
         // Static Helpers
@@ -171,10 +171,25 @@ namespace NVMP.Entities
 
         /// <summary>
         /// Present's a template to a player. Presenting a template will keep a reference to the template
-        /// in the player, until the player closes the object - or the template diposes.
+        /// in the player, until the player closes the window, or you call CloseMenu. Once presented, it is
+        /// expected that if you wish to close it manually later on, to keep a reference to IGUIWindowTemplate
+        /// so that you can remove it from the player later on.
         /// </summary>
         /// <param name="template"></param>
         public void PresentMenu(IGUIWindowTemplate template);
+
+        /// <summary>
+        /// Queries whether the menu template is active on the player's screen.
+        /// </summary>
+        /// <param name="template"></param>
+        /// <returns></returns>
+        public bool IsMenuActive(IGUIWindowTemplate template);
+
+        /// <summary>
+        /// Closes an active menu on the player via the template object. 
+        /// </summary>
+        /// <param name="template"></param>
+        public void CloseMenu(IGUIWindowTemplate template);
 
         /// <summary>
         /// Broadcasts a message to all player's chat boxes

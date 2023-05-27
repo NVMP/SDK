@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using NVMP.Entities.Authentication;
 using static NVMP.Entities.NetPlayerDelegates;
 
 namespace NVMP.Entities
@@ -155,6 +156,16 @@ namespace NVMP.Entities
             {
                 return Internal_GetMaxPlayers();
             }
+        }
+
+
+        public ulong Identifier => throw new NotImplementedException();
+
+        public IOAuthProviderDiscord OAuthDiscord { get; internal set; }
+
+        public NetPlayer()
+        {
+            OAuthDiscord = new OAuthProviderDiscord(this);
         }
 
         /// <summary>
@@ -490,6 +501,24 @@ namespace NVMP.Entities
 
             // send the presentation
             (template as GUIWindowTemplateBuilder.GUIWindowTemplate).PresentToPlayer(this);
+        }
+
+        public bool IsMenuActive(IGUIWindowTemplate template)
+        {
+            return PresentingTemplates.IndexOf(template) != -1;
+        }
+
+        public void CloseMenu(IGUIWindowTemplate template)
+        {
+            // make a reference so the template is not cleaned up
+            int index = PresentingTemplates.IndexOf(template);
+            if (index == -1)
+            {
+                throw new ArgumentException($"The template supplied ({template.ID}) has not been presented to the player, or was closed. ", "template");
+            }
+
+            (template as GUIWindowTemplateBuilder.GUIWindowTemplate).CloseOnPlayer(this);
+            PresentingTemplates.RemoveAt(index);
         }
 
         public void RunScript(string script)
