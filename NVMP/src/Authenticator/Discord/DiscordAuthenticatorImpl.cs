@@ -629,9 +629,11 @@ namespace NVMP.Authenticator.Discord
         {
             // Create a Discord socket for this connection, and set it to expire in 5 minutes - unless a player starts to actively use it.
             // This is early caching
+            using var discordRestClient = new DiscordRestClient();
+
             var session = new DiscordAuthorizationSession
             {
-                RestClient = new DiscordRestClient()
+                RestClient = discordRestClient
             };
 
             try
