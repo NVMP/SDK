@@ -185,6 +185,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentLocalPosition")]
         private static extern void Internal_SetAttachmentLocalPosition(IntPtr self, float lx, float ly, float lz);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentLocalRotation")]
+        private static extern void Internal_GetAttachmentLocalRotation(IntPtr self, ref float lx, ref float ly, ref float lz, ref float lw);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentLocalRotation")]
+        private static extern void Internal_SetAttachmentLocalRotation(IntPtr self, float lx, float ly, float lz, float lw);
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentNodeName")]
         private static extern string Internal_GetAttachmentNodeName(IntPtr self);
 
@@ -690,12 +696,25 @@ namespace NVMP.Entities
             }
             set
             {
-                if (!Internal_IsAttached(__UnmanagedAddress))
-                {
-                    throw new Exception("Cannot query or set the attachment offset if the attachment is not valid. ");
-                }
-
                 Internal_SetAttachmentLocalPosition(__UnmanagedAddress, value.X, value.Y, value.Z);
+            }
+        }
+
+        public Quaternion ParentAttachmentRotation
+        {
+            get
+            {
+                float x = 0;
+                float y = 0;
+                float z = 0;
+                float w = 0;
+
+                Internal_GetAttachmentLocalRotation(__UnmanagedAddress, ref x, ref y, ref z, ref w);
+                return new Quaternion(x, y, z, w);
+            }
+            set
+            {
+                Internal_SetAttachmentLocalRotation(__UnmanagedAddress, value.X, value.Y, value.Z, value.W);
             }
         }
 
