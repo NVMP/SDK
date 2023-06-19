@@ -40,6 +40,9 @@ namespace NVMP.Entities.GUI
             [DllImport("Native", EntryPoint = "GUI_Window_PresentToPlayer")]
             internal static extern void Internal_GUI_Window_PresentToPlayer(IntPtr message, IntPtr playerPtr);
 
+            [DllImport("Native", EntryPoint = "GUI_Window_CloseOnPlayer")]
+            internal static extern void Internal_GUI_Window_CloseOnPlayer(uint id, IntPtr playerPtr);
+
             //
             // Element Modification
             //
@@ -68,6 +71,11 @@ namespace NVMP.Entities.GUI
             public GUIWindowTemplate()
             {
                 Elements = new List<IGUIBaseElement>();
+            }
+
+            internal void CloseOnPlayer(INetPlayer player)
+            {
+                Internal_GUI_Window_CloseOnPlayer(ID, (player as NetPlayer).__UnmanagedAddress);
             }
 
             internal void PresentToPlayer(INetPlayer player)

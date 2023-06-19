@@ -247,6 +247,16 @@ namespace NVMP.Entities
         public Vector3 ParentAttachmentOffset { get; set; }
 
         /// <summary>
+        /// Sets the parent attachment rotation. This is relative to the object in use.
+        /// </summary>
+        public Quaternion ParentAttachmentRotation { get; set; }
+
+        /// <summary>
+        /// Sets the node name the attachment will attach to. If this is null, or is invalid, the parent NiNode will be used by default.
+        /// </summary>
+        public string ParentAttachmentNodeName { get; set; }
+
+        /// <summary>
         /// Destroys the reference. Using flags controls additional behaviour.
         /// </summary>
         /// <param name="flags"></param>

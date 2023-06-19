@@ -69,11 +69,16 @@ namespace NVMP.BuiltinServices.ModDownloadService
                 }
             };
 
-            WebService.AddRootResolver(WebScheme, ProcessRequest);
+            // ExecutionType is set to async, as the response is purely I/O related and we don't need to serve this on the web dispatcher thread. What may happen is
+            // that if too many requests are made synchronously is that the dispatcher thread becomes locked until other downloads are complete. This could create a denial of
+            // service attack, or in less worse cases a timeout to a lot of players attempting to download a new file download.
+            WebService.AddRootResolver(WebScheme, ProcessRequest, executionType: IManagedWebService.ExecutionType.Async);
         }
 
         public async Task ProcessRequest(HttpListenerRequest req, HttpListenerResponse resp)
         {
+            // Note well that we are in an asynchronous context, nothing is blocked on this Task, so be aware of any threading operations
+            // done here may not be safe.
             Debugging.Write("Processing mod download...");
             try
             {
@@ -90,7 +95,7 @@ namespace NVMP.BuiltinServices.ModDownloadService
                         byte[] data = Encoding.UTF8.GetBytes("Server resource missing");
                         resp.StatusCode = 503;
                         resp.ContentEncoding = Encoding.UTF8;
-                        resp.ContentLength64 = data.LongLength;
+                        resp.ContentLength64 = data.Length;
                         resp.ContentType = "text/plain";
                         resp.OutputStream.Write(data, 0, data.Length);
                         return;
@@ -101,7 +106,7 @@ namespace NVMP.BuiltinServices.ModDownloadService
                     resp.StatusCode = 200;
                     resp.ContentType = "application/octet-stream";
                     resp.AddHeader("Content-Disposition", $"attachment; filename={serverMod.Name}");
-                    resp.SendChunked = true;
+                    resp.SendChunked = false;
 
                     if (req.HttpMethod == "GET")
                     {
@@ -128,6 +133,13 @@ namespace NVMP.BuiltinServices.ModDownloadService
                     }
                     else
                     {
+                        byte[] data = Encoding.UTF8.GetBytes("Not Found");
+                        resp.StatusCode = 404;
+                        resp.ContentEncoding = Encoding.UTF8;
+                        resp.ContentLength64 = data.Length;
+                        resp.ContentType = "text/plain";
+                        resp.OutputStream.Write(data, 0, data.Length);
+
                         resp.Close();
                     }
 
@@ -138,7 +150,7 @@ namespace NVMP.BuiltinServices.ModDownloadService
                     byte[] data = Encoding.UTF8.GetBytes("Not Found");
                     resp.StatusCode = 404;
                     resp.ContentEncoding = Encoding.UTF8;
-                    resp.ContentLength64 = data.LongLength;
+                    resp.ContentLength64 = data.Length;
                     resp.ContentType = "text/plain";
                     resp.OutputStream.Write(data, 0, data.Length);
                 }

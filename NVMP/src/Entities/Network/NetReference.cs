@@ -177,13 +177,25 @@ namespace NVMP.Entities
         private static extern IntPtr Internal_GetParentAttachment(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetReference_AttachTo")]
-        private static extern void Internal_AttachTo(IntPtr self, IntPtr refB, float lx, float ly, float lz);
+        private static extern void Internal_AttachTo(IntPtr self, IntPtr refB, float lx, float ly, float lz, string nodeName);
 
         [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentLocalPosition")]
         private static extern void Internal_GetAttachmentLocalPosition(IntPtr self, ref float lx, ref float ly, ref float lz);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentLocalPosition")]
         private static extern void Internal_SetAttachmentLocalPosition(IntPtr self, float lx, float ly, float lz);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentLocalRotation")]
+        private static extern void Internal_GetAttachmentLocalRotation(IntPtr self, ref float lx, ref float ly, ref float lz, ref float lw);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentLocalRotation")]
+        private static extern void Internal_SetAttachmentLocalRotation(IntPtr self, float lx, float ly, float lz, float lw);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentNodeName")]
+        private static extern string Internal_GetAttachmentNodeName(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentNodeName")]
+        private static extern void Internal_SetAttachmentNodeName(IntPtr self, string nodeName);
 
         #endregion
 
@@ -662,11 +674,11 @@ namespace NVMP.Entities
 
                 if (value == null)
                 {
-                    Internal_AttachTo(__UnmanagedAddress, IntPtr.Zero, 0.0f, 0.0f, 0.0f);
+                    Internal_AttachTo(__UnmanagedAddress, IntPtr.Zero, 0.0f, 0.0f, 0.0f, null);
                 }
                 else
                 {
-                    Internal_AttachTo(__UnmanagedAddress, (value as NetReference).__UnmanagedAddress, ParentAttachmentOffset.X, ParentAttachmentOffset.Y, ParentAttachmentOffset.Z);
+                    Internal_AttachTo(__UnmanagedAddress, (value as NetReference).__UnmanagedAddress, ParentAttachmentOffset.X, ParentAttachmentOffset.Y, ParentAttachmentOffset.Z, ParentAttachmentNodeName);
                 }
             }
         }
@@ -684,12 +696,46 @@ namespace NVMP.Entities
             }
             set
             {
+                Internal_SetAttachmentLocalPosition(__UnmanagedAddress, value.X, value.Y, value.Z);
+            }
+        }
+
+        public Quaternion ParentAttachmentRotation
+        {
+            get
+            {
+                float x = 0;
+                float y = 0;
+                float z = 0;
+                float w = 0;
+
+                Internal_GetAttachmentLocalRotation(__UnmanagedAddress, ref x, ref y, ref z, ref w);
+                return new Quaternion(x, y, z, w);
+            }
+            set
+            {
+                Internal_SetAttachmentLocalRotation(__UnmanagedAddress, value.X, value.Y, value.Z, value.W);
+            }
+        }
+
+        public string ParentAttachmentNodeName
+        {
+            get
+            {
+                string nodeName = Internal_GetAttachmentNodeName(__UnmanagedAddress);
+                if (!string.IsNullOrEmpty(nodeName))
+                    return nodeName;
+
+                return null;
+            }
+            set
+            {
                 if (!Internal_IsAttached(__UnmanagedAddress))
                 {
-                    throw new Exception("Cannot query or set the attachment offset if the attachment is not valid. ");
+                    throw new Exception("Cannot query or set the attachment node name if the attachment is not valid. ");
                 }
 
-                Internal_SetAttachmentLocalPosition(__UnmanagedAddress, value.X, value.Y, value.Z);
+                Internal_SetAttachmentNodeName(__UnmanagedAddress, value);
             }
         }
 
