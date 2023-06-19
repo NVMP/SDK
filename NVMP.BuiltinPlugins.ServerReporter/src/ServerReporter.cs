@@ -1,5 +1,6 @@
-﻿using NVMP.Authenticator;
+﻿using NVMP.BuiltinServices;
 using NVMP.BuiltinServices.ModDownloadService;
+using NVMP.Entities;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,6 @@ namespace NVMP.BuiltinPlugins
         private static readonly int   BroadcastInterval = 60 * 1000;
         private static readonly string BroadcastServer = "https://nv-mp.com/";
 #endif
-        private IAuthenticator Authenticator;
         private IModDownloadService ModService;
 
         private Timer BroadcastTimer;
@@ -33,6 +33,7 @@ namespace NVMP.BuiltinPlugins
 
         internal string NameInternal;
         internal string DescriptionInternal;
+        internal NetPlayerAccountType[] AccountTypesRequiredInternal;
 
         public string Name
         {
@@ -74,7 +75,7 @@ namespace NVMP.BuiltinPlugins
 
         public uint MaxSlots => (uint)NativeSettings.GetFloatValue("Network", "MaxPeers");
 
-        public ServerReporter(IAuthenticator authenticator, IModDownloadService modService)
+        public ServerReporter(IModDownloadService modService, IPlayerManager playerManager)
         {
             ModService = modService;
 
@@ -92,10 +93,17 @@ namespace NVMP.BuiltinPlugins
             CachedSecureToken = NativeSettings.GetStringValue("Reporting", "ServerSecureToken");
             CachedHostName = NativeSettings.GetStringValue("Server", "Hostname");
 
+            if (playerManager != null)
+            {
+                AccountTypesRequiredInternal = playerManager.AccountTypesUsed;
+            }
+            else
+            {
+                AccountTypesRequiredInternal = new NetPlayerAccountType[] { NetPlayerAccountType.EpicGames };
+            }
+
             if (CachedSecureToken == null || CachedSecureToken.Length == 0)
                 throw new Exception("Server reporter requires ServerSecureToken to be set to a unique identifier. Remove the current entry in server.cfg to generate a fresh token. ");
-
-            Authenticator = authenticator;
 
             if (strictMods && NativeSettings.GetBoolValue("Reporting", "BroadcastToPublic"))
             {
@@ -182,9 +190,7 @@ namespace NVMP.BuiltinPlugins
                     IP = CachedHostName,
                     Port = (ushort)NativeSettings.GetFloatValue("Network", "Port"),
 
-                    Authenticator = NativeSettings.GetStringValue("Server", "Authenticator"),
-                    AuthenticatorURL = Authenticator?.GetAuthenticationURL(),
-                    AuthenticatorClientID = Authenticator?.GetClientID(),
+                    RequiredAccountTypesCSV = String.Join(",", AccountTypesRequiredInternal),
 
                     ModsDownloadURL = ModService.GetDownloadURL(),
                     Mods = modsReport.ToArray(),

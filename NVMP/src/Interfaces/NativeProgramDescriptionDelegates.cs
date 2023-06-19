@@ -24,12 +24,11 @@ namespace NVMP.Delegates
                 INetPlayer player
     );
 
-    public delegate void PlayerRequestsPreJoinDelegate
+    public delegate bool PlayerRequestsPreJoinDelegate
     (
         [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
                 INetPlayer player
-        ,
-        [In, MarshalAs(UnmanagedType.LPStr)] string token
+        
     );
 
     public delegate void PlayerRequestsRespawnDelegate

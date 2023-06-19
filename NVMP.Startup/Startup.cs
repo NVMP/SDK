@@ -308,9 +308,9 @@ namespace NVMP
                 Task.WaitAll(tasks.ToArray());
             };
 
-            rootDescription.PlayerAuthenticating = (player, token) =>
+            rootDescription.PlayerAuthenticating = (player) =>
             {
-                token = HttpUtility.UrlDecode(token);
+                bool shouldPermit = true;
 
                 var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
@@ -321,7 +321,7 @@ namespace NVMP
                         {
                             try
                             {
-                                await plugin.PlayerAuthenticating(player, token);
+                                shouldPermit &= await plugin.PlayerAuthenticating(player);
                             }
                             catch (Exception e)
                             {
@@ -332,6 +332,20 @@ namespace NVMP
                 }
 
                 Task.WaitAll(tasks.ToArray());
+
+                if (shouldPermit)
+                {
+                    try
+                    {
+                        player.RaiseAuthenticatedEvent();
+                    } catch (Exception e)
+                    {
+                        player.Kick("Authentication Failed due to Raised Exception");
+                        Debugging.Error(e);
+                    }
+                }
+
+                return shouldPermit;
             };
 
             rootDescription.PlayerRequestsRespawn = player =>

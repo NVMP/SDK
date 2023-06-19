@@ -78,9 +78,8 @@ namespace NVMP
         /// You should always see about implementing this as a proxy to IAuthenticatorInterface and calling IAuthenticatorInterface.SetupAuthentication to process this. 
         /// </summary>
         /// <param name="player">player</param>
-        /// <param name="authToken">user supplied token</param>
         /// <returns></returns>
-        Task PlayerAuthenticating(INetPlayer player, string authToken);
+        Task<bool> PlayerAuthenticating(INetPlayer player);
 
         /// <summary>
         /// Called for any input a player supplies whilst in-game (out of UI focus).

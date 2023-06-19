@@ -1,6 +1,6 @@
-﻿using NVMP.Authenticator;
-using NVMP.BuiltinServices;
+﻿using NVMP.BuiltinServices;
 using NVMP.BuiltinServices.ModDownloadService;
+using NVMP.Entities;
 using System;
 
 namespace NVMP.BuiltinPlugins
@@ -55,9 +55,15 @@ namespace NVMP.BuiltinPlugins
 
     public static class ServerReporterFactory
     {
-        public static IServerReporter Create(IAuthenticator authenticator, IModDownloadService modService)
+        /// <summary>
+        /// Creates a new server reporter for reporting the server to the backend.
+        /// </summary>
+        /// <param name="modService"></param>
+        /// <param name="playerManager">Can be NULL to specify that only Epic Games login is required</param>
+        /// <returns></returns>
+        public static IServerReporter Create(IModDownloadService modService, IPlayerManager playerManager = null)
         {
-            return new ServerReporter(authenticator, modService);
+            return new ServerReporter(modService, playerManager);
         }
     }
 }

@@ -58,12 +58,6 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetPing")]
         private static extern uint Internal_GetPing(IntPtr self);
 
-        [DllImport("Native", EntryPoint = "NetPlayer_GetAuthenticationToken")]
-        private static extern string Internal_GetAuthenticationToken(IntPtr self);
-
-        [DllImport("Native", EntryPoint = "NetPlayer_SetAuthenticationToken")]
-        private static extern void Internal_SetAuthenticationToken(IntPtr self, string authenticationToken);
-
         [DllImport("Native", EntryPoint = "NetPlayer_Kick")]
         private static extern void Internal_Kick(IntPtr self, string reason, string whoby = null);
 
@@ -82,13 +76,6 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetCanUseSaves")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetCanUseSaves(IntPtr self);
-
-        [DllImport("Native", EntryPoint = "NetPlayer_SetAuthenticated")]
-        private static extern void Internal_SetAuthenticated(IntPtr self, bool authenticated);
-
-        [DllImport("Native", EntryPoint = "NetPlayer_GetAuthenticated")]
-        [return: MarshalAs(UnmanagedType.I1)]
-        private static extern bool Internal_GetAuthenticated(IntPtr self);
 
         [DllImport("Native", EntryPoint = "NetPlayer_SetIsDev")]
         private static extern void Internal_SetIsDev(IntPtr self, bool isDev);
@@ -173,19 +160,15 @@ namespace NVMP.Entities
             }
         }
 
-        /// <summary>
-        /// The custom token provided by the connection to authenticate on. This could be an OAuth bearer token,
-        /// a password, or auth key. Ensure this data is not exposed to the game state
-        /// </summary>
         public string AuthenticationToken
         {
             get
             {
-                return Internal_GetAuthenticationToken(__UnmanagedAddress);
+                throw new Exception("Deprecated");
             }
             set
             {
-                Internal_SetAuthenticationToken(__UnmanagedAddress, value);
+                throw new Exception("Deprecated");
             }
         }
 
@@ -193,17 +176,7 @@ namespace NVMP.Entities
         /// Set if the connection has been authenticated by a managed authenticator module. Players can't do much
         /// with the world state, and shouldn't have any input on the game state until authenticated has been set
         /// </summary>
-        public bool Authenticated
-        {
-            get
-            {
-                return Internal_GetAuthenticated(__UnmanagedAddress);
-            }
-            set
-            {
-                Internal_SetAuthenticated(__UnmanagedAddress, value);
-            }
-        }
+        public bool Authenticated => true;
 
         public bool CanUseSaves
         {
@@ -311,6 +284,9 @@ namespace NVMP.Entities
                 return Internal_GetIsDev(__UnmanagedAddress);
             }
         }
+
+        internal List<IPlayerRole> InternalRoles = new List<IPlayerRole>();
+        public IPlayerRole[] Roles => InternalRoles.ToArray();
 
         public void SendValidSaves(string[] digests)
         {
@@ -495,6 +471,109 @@ namespace NVMP.Entities
         public void RunScript(string script)
         {
             Internal_RunScript(__UnmanagedAddress, script);
+        }
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetNumAuthenticatedAccounts")]
+        private static extern uint Internal_GetNumAuthenticatedAccounts(IntPtr player);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetAuthenticatedAccount")]
+        private static extern void Internal_GetAuthenticatedAccount(IntPtr player, uint index
+            , out string displayName
+            , out string accountId
+            , out NetPlayerAccountType accountType);
+
+        public IPlayerAccount GetAuthenticatedAccount(NetPlayerAccountType accountType)
+        {
+            return GetAuthenticatedAccounts().Where(account => account.Type == accountType).FirstOrDefault();
+        }
+
+        public IPlayerAccount[] GetAuthenticatedAccounts()
+        {
+            var accounts = new List<IPlayerAccount>();
+
+            uint numAccounts = Internal_GetNumAuthenticatedAccounts(__UnmanagedAddress);
+            for (uint i = 0; i < numAccounts; ++i)
+            {
+                Internal_GetAuthenticatedAccount(__UnmanagedAddress, i, out string displayName, out string accountId, out NetPlayerAccountType accountType);
+
+                switch (accountType)
+                {
+                    case NetPlayerAccountType.EpicGames:
+                        accounts.Add(new PlayerAccountEpic { DisplayName = displayName, Id = accountId });
+                        break;
+                    case NetPlayerAccountType.Discord:
+                        accounts.Add(new PlayerAccountDiscord { DisplayName = displayName, Id = accountId });
+                        break;
+                    default: break; 
+                }
+            }
+
+            return accounts.ToArray();
+        }
+
+        public event Action<INetPlayer> OnAuthenticated
+        {
+            add { AuthenticatedSubscriptions.Add(value); }
+            remove { AuthenticatedSubscriptions.Remove(value); }
+        }
+
+        internal readonly SubscriptionDelegate<Action<INetPlayer>> AuthenticatedSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
+
+        public event Action<INetPlayer> OnRolesChanged
+        {
+            add { RolesChangedSubscriptions.Add(value); }
+            remove { RolesChangedSubscriptions.Remove(value); }
+        }
+
+        internal readonly SubscriptionDelegate<Action<INetPlayer>> RolesChangedSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
+
+        public void RaiseAuthenticatedEvent()
+        {
+            foreach (var sub in AuthenticatedSubscriptions.Subscriptions)
+            {
+                sub(this);
+            }
+        }
+
+        public bool TryAddToRole(IPlayerRole role)
+        {
+            if (InternalRoles.Any(role => role.Id == role.Id))
+                return false;
+
+            InternalRoles.Add(role);
+
+            foreach (var sub in RolesChangedSubscriptions.Subscriptions)
+            {
+                sub(this);
+            }
+
+            return true;
+        }
+
+        public void RemoveFromRole(IPlayerRole role)
+        {
+            InternalRoles.Remove(role);
+
+            foreach (var sub in RolesChangedSubscriptions.Subscriptions)
+            {
+                sub(this);
+            }
+        }
+
+        public bool HasRoleScope(IRoleScope scope)
+        {
+            foreach (var role in InternalRoles)
+            {
+                foreach (var gameScope in role.Scopes)
+                {
+                    if (gameScope == scope)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

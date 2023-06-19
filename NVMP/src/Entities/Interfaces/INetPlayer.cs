@@ -1,4 +1,5 @@
 ﻿using NVMP.Entities.GUI;
+using NVMP.Internal;
 using System;
 using System.Drawing;
 using System.Numerics;
@@ -59,14 +60,18 @@ namespace NVMP.Entities
         /// The custom token provided by the connection to authenticate on. This could be an OAuth bearer token,
         /// a password, or auth key. Ensure this data is not exposed to the game state
         /// </summary>
+        [Obsolete("Authentication is now handled via GetAuthenticatedAccount, it is not safe to call this anymore.", true)]
         public string AuthenticationToken { get; set; }
 
         /// <summary>
-        /// Set if the connection has been authenticated by a managed authenticator module. Players can't do much
-        /// with the world state, and shouldn't have any input on the game state until authenticated has been set
+        /// Returns if the account is authenticated. 
         /// </summary>
-        public bool Authenticated { get; set; }
+        [Obsolete("Authentication is now handled via GetAuthenticatedAccount, and unauthenticated players should never hit the CLR runtime.", false)]
+        public bool Authenticated { get;  }
 
+        /// <summary>
+        /// Set if the player cannot load or save their savegame.
+        /// </summary>
         public bool CanUseSaves { get; set; }
 
         /// <summary>
@@ -103,6 +108,53 @@ namespace NVMP.Entities
         /// Player's development state. Allowing them to be a dev allows for additional network information, that could be sensitive to the gamemode.
         /// </summary>
         public bool IsDev { get; set; }
+
+        /// <summary>
+        /// Returns an authenticated account with the player. If this returns null, then the account is not
+        /// authenticated with the account provider type. This does not account for bans you may have set up on those
+        /// platforms, such as Discord server bans - so you should do this after this returns the account you want to
+        /// verify. 
+        /// </summary>
+        /// <param name="accountType"></param>
+        /// <returns></returns>
+        public IPlayerAccount GetAuthenticatedAccount(NetPlayerAccountType accountType);
+
+        /// <summary>
+        /// Returns a full list of authenticated accounts supplied by the player. This should never be empty or null, as at 
+        /// minimum all NV:MP servers require an Epic account.
+        /// </summary>
+        /// <returns></returns>
+        public IPlayerAccount[] GetAuthenticatedAccounts();
+
+        /// <summary>
+        /// Returns a list of roles associated to the player.
+        /// </summary>
+        public IPlayerRole[] Roles { get; }
+
+        /// <summary>
+        /// Adds a role to the player.
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public bool TryAddToRole(IPlayerRole role);
+
+        /// <summary>
+        /// Removes a role from a player.
+        /// </summary>
+        /// <param name="role"></param>
+        public void RemoveFromRole(IPlayerRole role);
+
+        /// <summary>
+        /// Returns if the player has the associated scope on their roles.
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <returns></returns>
+        public bool HasRoleScope(IRoleScope scope);
+
+        /// <summary>
+        /// Called when the player's roles have changed, either new roles added or roles removed.
+        /// </summary>
+        public event Action<INetPlayer> OnRolesChanged;
 
         public void SendValidSaves(string[] digests);
 
@@ -189,5 +241,9 @@ namespace NVMP.Entities
             }
             Internal_BroadcastGenericChatMessage(message, color.Value.R, color.Value.G, color.Value.B);
         }
+
+        public event Action<INetPlayer> OnAuthenticated;
+
+        public void RaiseAuthenticatedEvent();
     }
 }

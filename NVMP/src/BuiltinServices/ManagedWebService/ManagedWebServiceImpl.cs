@@ -73,7 +73,7 @@ namespace NVMP.BuiltinServices.ManagedWebService
 
         private void AttemptServerCreation()
         {
-            Debugging.Warn("Attempting Discord listener server creation on port " + InternalPortOverride);
+            Debugging.Write("Attempting WebServer listener server creation on port " + InternalPortOverride);
 
             InternalServer = new HttpListener()
             {

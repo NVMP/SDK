@@ -85,10 +85,9 @@ namespace NVMP
             return Task.CompletedTask;
         }
 
-        public Task PlayerAuthenticating(INetPlayer player, string authToken)
+        public Task<bool> PlayerAuthenticating(INetPlayer player)
         {
-            player.Authenticated = true;
-            return Task.CompletedTask;
+            return Task.FromResult(true);
         }
 
         public Task PlayerUpdatedSave(INetPlayer player, string name, string digest)

@@ -6,20 +6,21 @@ using System.IO;
 using NVMP.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NVMP.Authenticator;
 using NVMP.Entities;
 using NVMP.BuiltinPlugins;
 using NVMP.BuiltinServices;
 using NVMP.BuiltinServices.ModDownloadService;
+using Discord.WebSocket;
 
 namespace NVMP
 {
     public class ExampleServer : GameServer, IPlugin
     {
-        protected IAuthenticator   Authenticator;
         protected INativeProgramDescription Description;
         protected IServerReporter           Reporter;
         protected IModDownloadService       ModService;
+        protected DiscordSocketClient       DiscordSocket;
+        protected IPlayerManager            PlayerManager;
 
         protected List<INetActor> DebugTestActors = new List<INetActor>();
         protected List<INetReference> References = new List<INetReference>();
@@ -33,69 +34,107 @@ namespace NVMP
 
         protected static class DiscordAuthSettings
         {
+            // The guild ID the example server will report to and auth members in
+            public static ulong GuildId = 0;
+
+            // Add your Discord bot token here
+            public static string Token = "";
+
+            // The moderator role
             public static ulong ModeratorRoleId = 0;
+
+            // The logging channel ID
+            public static ulong LogChannelId = 0;
+        }
+
+        protected static class PlayerScopes
+        {
+            public static IRoleScope Kick = new RoleScope();
+            public static IRoleScope Ban = new RoleScope();
+            public static IRoleScope Spawn = new RoleScope();
+            public static IRoleScope SetScale = new RoleScope();
+            public static IRoleScope God = new RoleScope();
+            public static IRoleScope NoLimits = new RoleScope();
+            public static IRoleScope WarpTo = new RoleScope();
+            public static IRoleScope Goto = new RoleScope();
+            public static IRoleScope Bring = new RoleScope();
+            public static IRoleScope GCCollect = new RoleScope();
+            public static IRoleScope ToggleHardcore = new RoleScope();
+            public static IRoleScope DebugTest = new RoleScope();
+            public static IRoleScope ToggleVoice = new RoleScope();
+        }
+
+        internal void LogToDiscord(string message)
+        {
+            if (DiscordAuthSettings.LogChannelId == 0)
+                return;
+
+            Task.Run(async () =>
+            {
+                var guild = DiscordSocket.GetGuild(DiscordAuthSettings.GuildId);
+                if (guild != null)
+                {
+                    var channel = guild.GetTextChannel(DiscordAuthSettings.LogChannelId);
+                    if (channel != null)
+                    {
+                        await channel.SendMessageAsync(message);
+                    }
+                }
+            });
         }
 
         public override void Init()
         {
             base.Init();
 
-            // Authenticator Module
-            string authenticatorType = NativeSettings.GetStringValue("Server", "Authenticator");
-            switch (authenticatorType.ToLower())
+            Debugging.Write("Starting up Discord Player Manager..");
+
+            // The DiscordPlayerManager requires a valid DiscordSocketClient passed in so that it
+            // can manage lifetime and data linkage
+            DiscordSocket = new DiscordSocketClient(new DiscordSocketConfig
             {
-                case "basic":
-                    {
-                        Authenticator = NVMP.Authenticator.Basic.BasicAuthenticatorFactory.Create();
-                        break;
-                    }
-                case "discord":
-                    {
-                        Debugging.Write("Starting up Discord Authenticator..");
-                        var discordAuthenticator = NVMP.Authenticator.Discord.DiscordAuthenticatorFactory.Create(WebService);
-                        discordAuthenticator.AddWebListener();
+                AlwaysDownloadUsers = false,
+                GatewayIntents =
+                            Discord.GatewayIntents.GuildMembers |
+                            Discord.GatewayIntents.DirectMessages |
+                            Discord.GatewayIntents.GuildMessages |
+                            Discord.GatewayIntents.Guilds
+            });
 
-                        // Security
-                        Debugging.Write("Configuring Discord Authenticator..");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "user:kick");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "user:ban");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:spawn");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:setscale");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:god");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:nolimits");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:warpto");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:goto");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:bring");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "server:gccollect");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:togglehardcore");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:debugtest");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:togglevoice");
+            var discordPlayerManager = new DiscordPlayerManager(DiscordSocket)
+            {
+                GuidId = DiscordAuthSettings.GuildId
+            };
 
-                        // Staff
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "user:kick");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "user:ban");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:spawn");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:setscale");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:god");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:nolimits");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:warpto");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:goto");
-                        discordAuthenticator.AddScopeToRole(DiscordAuthSettings.ModeratorRoleId, "game:bring");
+            PlayerManager = discordPlayerManager;
 
-                        Authenticator = discordAuthenticator;
-                        break;
-                    }
-                case "":
-                case null:
-                    {
-                        Authenticator = null;
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception($"Authenticator type from config ({authenticatorType}) is unsupported! ");
-                    }
-            }
+            // Once the DiscordSocket is ready, add some scopes to the moderator role id as it is now
+            // downloaded from the available guilds.
+            DiscordSocket.Ready += (() =>
+            {
+                Debugging.Write("Configuring Discord Player Manager..");
+                PlayerManager.AddScopesToRole(DiscordAuthSettings.ModeratorRoleId, new IRoleScope[]
+                {
+                    PlayerScopes.Kick,
+                    PlayerScopes.Ban,
+                    PlayerScopes.Spawn,
+                    PlayerScopes.SetScale,
+                    PlayerScopes.God,
+                    PlayerScopes.NoLimits,
+                    PlayerScopes.WarpTo,
+                    PlayerScopes.Goto,
+                    PlayerScopes.Bring,
+                    PlayerScopes.GCCollect,
+                    PlayerScopes.ToggleHardcore,
+                    PlayerScopes.DebugTest,
+                    PlayerScopes.ToggleVoice
+                });
+
+                return Task.CompletedTask;
+            });
+
+            // Log into the Discord socket
+            DiscordSocket.LoginAsync(Discord.TokenType.Bot, DiscordAuthSettings.Token);
 
             // Mod downloading
             Debugging.Write("Starting up mod service..");
@@ -106,7 +145,7 @@ namespace NVMP
 
             // Serverlist Reporter Module
             Debugging.Write("Starting server reporter..");
-            Reporter = ServerReporterFactory.Create(Authenticator, ModService);
+            Reporter = ServerReporterFactory.Create(ModService, PlayerManager);
 
             Reporter.Name = "An Example NVMPX Server";
             Reporter.Description = "Built uisng the SDK kit";
@@ -208,7 +247,6 @@ namespace NVMP
             }
 
             Debugging.Write($"[chat] {name}: {message}");
-            Authenticator.Log($"`{name}: {message}`");
             await Task.CompletedTask;
         }
 
@@ -363,7 +401,7 @@ namespace NVMP
             }
             else if (commandName == "gccollect")
             {
-                if (Authenticator.IsScopeValid(player, "server:gccollect"))
+                if (player.HasRoleScope(PlayerScopes.GCCollect))
                 {
                     GC.Collect();
                     return true;
@@ -419,7 +457,7 @@ namespace NVMP
             }
             else if (commandName == "kick" && numParams >= 1)
             {
-                if (Authenticator.IsScopeValid(player, "user:kick"))
+                if (player.HasRoleScope(PlayerScopes.Kick))
                 {
                     var players = Factory.Player.All;
 
@@ -435,7 +473,7 @@ namespace NVMP
                             {
                                 patternPlayer.Kick(reason, player.Name);
 
-                                Authenticator.Log($"{patternPlayer.Name} was kicked by {player.Name}, reason is {reason}");
+                                LogToDiscord($"{patternPlayer.Name} was kicked by {player.Name}, reason is {reason}");
                             }
                         }
 
@@ -447,7 +485,7 @@ namespace NVMP
                     {
                         targetPlayer.Kick(reason, player.Name);
 
-                        Authenticator.Log($"{targetPlayer.Name} was kicked by {player.Name}, reason is {reason}");
+                        LogToDiscord($"{targetPlayer.Name} was kicked by {player.Name}, reason is {reason}");
                     }
                     else
                     {
@@ -459,7 +497,7 @@ namespace NVMP
             }
             else if (commandName == "warptocell" && numParams >= 1)
             {
-                if (Authenticator.IsScopeValid(player, "game:warpto"))
+                if (player.HasRoleScope(PlayerScopes.WarpTo))
                 {
                     var actor = player.Actor;
                     if (actor != null)
@@ -474,7 +512,7 @@ namespace NVMP
             }
             else if (commandName == "togglehardcore")
             {
-                if (Authenticator.IsScopeValid(player, "game:togglehardcore"))
+                if (player.HasRoleScope(PlayerScopes.ToggleHardcore))
                 {
                     IsHardcore = !IsHardcore;
                     INetPlayer.BroadcastGenericChatMessage("Hardcore mode has been " + (IsHardcore ? "enabled" : "disabled") + " by " + player.Name, SystemPromoColor);
@@ -483,7 +521,7 @@ namespace NVMP
             }
             else if (commandName == "togglevoice")
             {
-                if (Authenticator.IsScopeValid(player, "game:togglevoice"))
+                if (player.HasRoleScope(PlayerScopes.ToggleVoice))
                 {
                     IsVoiceEnabled = !IsVoiceEnabled;
                     INetPlayer.BroadcastGenericChatMessage("Voice has been " + (IsVoiceEnabled ? "enabled" : "disabled") + " by " + player.Name, SystemPromoColor);
@@ -492,7 +530,7 @@ namespace NVMP
             }
             else if (commandName == "goto" && numParams >= 1)
             {
-                if (Authenticator.IsScopeValid(player, "game:goto"))
+                if (player.HasRoleScope(PlayerScopes.Goto))
                 {
                     var playerActor = player.Actor;
 
@@ -518,7 +556,7 @@ namespace NVMP
             }
             else if (commandName == "bring" && numParams >= 1)
             {
-                if (Authenticator.IsScopeValid(player, "game:bring"))
+                if (player.HasRoleScope(PlayerScopes.Bring))
                 {
                     var playerActor = player.Actor;
 
@@ -544,7 +582,7 @@ namespace NVMP
             }
             else if ((commandName == "spawn" || commandName == "give") && numParams >= 1)
             {
-                if (Authenticator.IsScopeValid(player, "game:spawn"))
+                if (player.HasRoleScope(PlayerScopes.Spawn))
                 {
                     string formHex = paramList[0];
                     if (formHex.StartsWith("0x", StringComparison.CurrentCultureIgnoreCase))
@@ -609,7 +647,7 @@ namespace NVMP
                         actor.AddItem(item, quantity);
 
                         player.SendGenericChatMessage($"Spawned {item.Name} x{quantity} on {actor.Name}", SystemPromoColor);
-                        Authenticator.Log($"{player.Name} spawned {item.Name} x{quantity}");
+                        LogToDiscord($"{player.Name} spawned {item.Name} x{quantity}");
                     }
                     else
                     {
@@ -621,7 +659,7 @@ namespace NVMP
             }
             else if (commandName == "god")
             {
-                if (Authenticator.IsScopeValid(player, "game:god"))
+                if (player.HasRoleScope(PlayerScopes.God))
                 {
                     var actor = player.Actor;
                     if (actor != null)
@@ -631,12 +669,12 @@ namespace NVMP
                         if (actor.HasGodmode)
                         {
                             player.SendGenericChatMessage("Enabled godmode", SystemPromoColor);
-                            Authenticator.Log($"{player.Name} enabled godmode");
+                            LogToDiscord($"{player.Name} enabled godmode");
                         }
                         else
                         {
                             player.SendGenericChatMessage("Disabled godmode", SystemPromoColor);
-                            Authenticator.Log($"{player.Name} disabled godmode");
+                            LogToDiscord($"{player.Name} disabled godmode");
                         }
 
                         return true;
@@ -645,7 +683,7 @@ namespace NVMP
             }
             else if (commandName == "createactor")
             {
-                if (Authenticator.IsScopeValid(player, "game:debugtest"))
+                if (player.HasRoleScope(PlayerScopes.DebugTest))
                 {
                     if (numParams >= 1)
                     {
@@ -676,7 +714,7 @@ namespace NVMP
             }
             else if (commandName == "reloadactors")
             {
-                if (Authenticator.IsScopeValid(player, "game:debugtest"))
+                if (player.HasRoleScope(PlayerScopes.DebugTest))
                 {
                     foreach (var actor in DebugTestActors)
                     {
@@ -688,7 +726,7 @@ namespace NVMP
             }
             else if (commandName == "deleteactors")
             {
-                if (Authenticator.IsScopeValid(player, "game:debugtest"))
+                if (player.HasRoleScope(PlayerScopes.DebugTest))
                 {
                     foreach (var actor in DebugTestActors)
                     {
@@ -701,7 +739,7 @@ namespace NVMP
             }
             else if (commandName == "setscale" && numParams >= 1)
             {
-                if (Authenticator.IsScopeValid(player, "game:setscale"))
+                if (player.HasRoleScope(PlayerScopes.SetScale))
                 {
                     var actor = player.Actor;
                     if (actor != null)
@@ -713,7 +751,7 @@ namespace NVMP
                             return true;
                         }
 
-                        if (!Authenticator.IsScopeValid(player, "game:nolimits"))
+                        if (!player.HasRoleScope(PlayerScopes.NoLimits))
                         {
                             if (scale > 3.0f)
                             {
@@ -796,75 +834,62 @@ namespace NVMP
                 INetPlayer.BroadcastGenericChatMessage($"Player {player.Name} left!", SystemColor);
             }
 
-            Authenticator.PlayerLeft(player);
             await Task.CompletedTask;
         }
 
-        public new async Task PlayerAuthenticating(INetPlayer player, string authToken)
+        public new Task<bool> PlayerAuthenticating(INetPlayer player)
         {
-            if (Authenticator != null)
+            player.SendGenericChatMessage($"Authenticated as {player.Name}, welcome!");
+            player.SendGenericChatMessage($"This is the test server for NV:MP-X, player saving is experimental at the moment! DC'ing may lose your stuff. Please post in #thestrip if any issues arise! Use /players to view online members, /creationmenu to set up your appearance.",
+                SystemPromoColor);
+
+            var actor = player.Actor;
+            if (actor != null)
             {
-                string badauthReason = null;
-                if (!Authenticator.IsAuthenticationValid(player, authToken, ref badauthReason))
+                //
+                // Actor Setup on Load
+                //
+                string serverNickName = player["DiscordServerNickname"];
+                string discordTopRole = player["DiscordServerTopRoleName"];
+                if (serverNickName != null)
                 {
-                    player.Kick(badauthReason ?? "authentication failure");
-                    return;
+                    actor.Name = serverNickName;
+                }
+                else
+                {
+                    actor.Name = player.Name;
                 }
 
-                // Sets up any game state that is inferred by valid player authentication
-                Authenticator.SetupAuthentication(player);
-
-                player.SendGenericChatMessage($"Authenticated as {player.Name}, welcome!");
-                player.SendGenericChatMessage($"This is the test server for NV:MP-X, player saving is experimental at the moment! DC'ing may lose your stuff. Please post in #thestrip if any issues arise! Use /players to view online members, /creationmenu to set up your appearance.",
-                    SystemPromoColor);
-
-                var actor = player.Actor;
-                if (actor != null)
+                if (discordTopRole != null)
                 {
-                    //
-                    // Actor Setup on Load
-                    //
-                    string serverNickName = player["DiscordServerNickname"];
-                    string discordTopRole = player["DiscordServerTopRoleName"];
-                    if (serverNickName != null)
-                    {
-                        actor.Name = serverNickName;
-                    }
-                    else
-                    {
-                        actor.Name = player.Name;
-                    }
+                    actor.Title = discordTopRole;
 
-                    if (discordTopRole != null)
+                    string discordTopRoleColor = player["DiscordServerTopRoleColor"];
+                    if (discordTopRoleColor != null)
                     {
-                        actor.Title = discordTopRole;
-
-                        string discordTopRoleColor = player["DiscordServerTopRoleColor"];
-                        if (discordTopRoleColor != null)
-                        {
-                            actor.TitleColor = ColorTranslator.FromHtml(discordTopRoleColor);
-                        }
-                    }
-                    else
-                    {
-                        actor.Title = "Player";
-                        actor.TitleColor = Color.LightGray;
+                        actor.TitleColor = ColorTranslator.FromHtml(discordTopRoleColor);
                     }
                 }
-
-                if (ArePlayerChangesBroadcasted)
+                else
                 {
-                    if (actor != null)
-                    {
-                        INetPlayer.BroadcastGenericChatMessage($"Player {actor.Name} ({player.Name}) joined!", SystemColor);
-                    }
-                    else
-                    {
-                        INetPlayer.BroadcastGenericChatMessage($"Player {player.Name} joined!", SystemColor);
-                    }
+                    actor.Title = "Player";
+                    actor.TitleColor = Color.LightGray;
                 }
             }
-            await Task.CompletedTask;
+
+            if (ArePlayerChangesBroadcasted)
+            {
+                if (actor != null)
+                {
+                    INetPlayer.BroadcastGenericChatMessage($"Player {actor.Name} ({player.Name}) joined!", SystemColor);
+                }
+                else
+                {
+                    INetPlayer.BroadcastGenericChatMessage($"Player {player.Name} joined!", SystemColor);
+                }
+            }
+
+            return Task.FromResult(true);
         }
 
         public new async Task PlayerRequestsRespawn(INetPlayer player)
@@ -954,10 +979,6 @@ namespace NVMP
 #if DEBUG
             GC.Collect();
 #endif
-            if (Authenticator != null)
-            {
-                Authenticator.Update();
-            }
         }
 
         public new void Shutdown()

@@ -24,14 +24,8 @@ namespace NVMP.BuiltinPlugins
         [DataMember(Name = "description")]
         public string Description { get; set; }
 
-        [DataMember(Name = "authenticator")]
-        public string Authenticator { get; set; } = "Basic";
-
-        [DataMember(Name = "authenticator_clientid")]
-        public string AuthenticatorClientID { get; set; }
-
-        [DataMember(Name = "authenticator_url")]
-        public string AuthenticatorURL { get; set; }
+        [DataMember(Name = "required_account_types")]
+        public string RequiredAccountTypesCSV { get; set; } = null;
 
         [DataMember(Name = "mods_download_url")]
         public string ModsDownloadURL { get; set; }
