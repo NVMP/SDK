@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using NVMP.Entities.Authentication;
 using static NVMP.Entities.NetPlayerDelegates;
 
 namespace NVMP.Entities
@@ -145,15 +144,6 @@ namespace NVMP.Entities
             }
         }
 
-
-        public ulong Identifier => throw new NotImplementedException();
-
-        public IOAuthProviderDiscord OAuthDiscord { get; internal set; }
-
-        public NetPlayer()
-        {
-            OAuthDiscord = new OAuthProviderDiscord(this);
-        }
 
         /// <summary>
         /// The player's name set by the game. This is not set by a player and cannot be wrote to other than via 
