@@ -312,6 +312,17 @@ namespace NVMP
             {
                 bool shouldPermit = true;
 
+                // Raise the authenticated event.
+                try
+                {
+                    player.RaiseAuthenticatedEvent();
+                }
+                catch (Exception e)
+                {
+                    player.Kick("Authentication Failed due to Raised Exception");
+                    Debugging.Error(e);
+                }
+
                 var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
@@ -332,18 +343,6 @@ namespace NVMP
                 }
 
                 Task.WaitAll(tasks.ToArray());
-
-                if (shouldPermit)
-                {
-                    try
-                    {
-                        player.RaiseAuthenticatedEvent();
-                    } catch (Exception e)
-                    {
-                        player.Kick("Authentication Failed due to Raised Exception");
-                        Debugging.Error(e);
-                    }
-                }
 
                 return shouldPermit;
             };

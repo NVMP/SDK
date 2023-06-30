@@ -64,7 +64,7 @@ namespace NVMP.Entities
         /// <summary>
         /// Returns if the account is authenticated. 
         /// </summary>
-        [Obsolete("Authentication is now handled via GetAuthenticatedAccount, and unauthenticated players should never hit the CLR runtime.", false)]
+        [Obsolete("Authentication is now handled via GetAuthenticatedAccount, and unauthenticated players should never hit the CLR runtime except on Authenticating callbacks. You may remove calls to this property. ", false)]
         public bool Authenticated { get;  }
 
         /// <summary>
@@ -130,6 +130,20 @@ namespace NVMP.Entities
         public IPlayerRole[] Roles { get; }
 
         /// <summary>
+        /// Queries if the specified role is assigned to the player.
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public bool HasRole(IPlayerRole role);
+
+        /// <summary>
+        /// Queries if the specified role is assigned to the player, using the ID.
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public bool HasRoleByID(ulong roleId);
+
+        /// <summary>
         /// Adds a role to the player.
         /// </summary>
         /// <param name="role"></param>
@@ -143,16 +157,16 @@ namespace NVMP.Entities
         public void RemoveFromRole(IPlayerRole role);
 
         /// <summary>
+        /// Removes all active roles on the player.
+        /// </summary>
+        public void RemoveAllRoles();
+
+        /// <summary>
         /// Returns if the player has the associated scope on their roles.
         /// </summary>
         /// <param name="scope"></param>
         /// <returns></returns>
         public bool HasRoleScope(IRoleScope scope);
-
-        /// <summary>
-        /// Called when the player's roles have changed, either new roles added or roles removed.
-        /// </summary>
-        public event Action<INetPlayer> OnRolesChanged;
 
         public void SendValidSaves(string[] digests);
 
@@ -174,18 +188,12 @@ namespace NVMP.Entities
         public void Kick(string reason, string whoby = null, bool silentFromChat = false);
 
         /// <summary>
-        /// Bans the player from the current session. This is currently not implemented
+        /// Bans the player from the current session. By default this acts as Kick(), but fires an OnBanned
+        /// events for player manager's to handle.
         /// </summary>
         /// <param name="reason"></param>
         /// <param name="whoby"></param>
         public void Ban(string reason, string whoby = null);
-
-        /// <summary>
-        /// Bans the player's IP address from the session
-        /// </summary>
-        /// <param name="reason"></param>
-        /// <param name="whoby"></param>
-        public void BanIP(string reason, string whoby = null);
 
         /// <summary>
         /// Runs a synchronous script on the player. Be aware that any long running scripts will lock the main thread
@@ -255,7 +263,20 @@ namespace NVMP.Entities
             Internal_BroadcastGenericChatMessage(message, color.Value.R, color.Value.G, color.Value.B);
         }
 
+        /// <summary>
+        /// Called when the player's roles have changed, either new roles added or roles removed.
+        /// </summary>
+        public event Action<INetPlayer> OnRolesChanged;
+
+        /// <summary>
+        /// Called when the player authenticates with the backend services.
+        /// </summary>
         public event Action<INetPlayer> OnAuthenticated;
+
+        /// <summary>
+        /// Called when the player is banned via INetPlayer.Ban.
+        /// </summary>
+        public event Action<INetPlayer, string> OnBanned;
 
         public void RaiseAuthenticatedEvent();
     }

@@ -103,7 +103,7 @@ namespace NVMP
 
             var discordPlayerManager = new DiscordPlayerManager(DiscordSocket)
             {
-                GuidId = DiscordAuthSettings.GuildId
+                GuildId = DiscordAuthSettings.GuildId
             };
 
             PlayerManager = discordPlayerManager;
@@ -145,7 +145,7 @@ namespace NVMP
 
             // Serverlist Reporter Module
             Debugging.Write("Starting server reporter..");
-            Reporter = ServerReporterFactory.Create(ModService, PlayerManager);
+            Reporter = ServerReporterFactory.Create(ModService);
 
             Reporter.Name = "An Example NVMPX Server";
             Reporter.Description = "Built uisng the SDK kit";

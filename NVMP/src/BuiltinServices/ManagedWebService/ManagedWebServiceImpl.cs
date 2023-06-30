@@ -195,12 +195,12 @@ namespace NVMP.BuiltinServices.ManagedWebService
                 }
                 catch (Exception ex)
                 {
-                    Debugging.Error(ex.Message);
+                    Debugging.Error(ex);
                     resp.Close();
                 }
             } catch (Exception ex)
             {
-                Debugging.Error(ex.Message);
+                Debugging.Error(ex);
             }
         }
 

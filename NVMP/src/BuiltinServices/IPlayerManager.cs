@@ -9,15 +9,8 @@ namespace NVMP.BuiltinServices
     /// A player manager is meant to handle incoming player connections, evict them if they are no longer valid,
     /// and handle authentication requests from external code if desired.
     /// </summary>
-    public interface IPlayerManager
+    public interface IPlayerManager : IDisposable
     {
-        /// <summary>
-        /// Registers the player manager's middleware
-        /// </summary>
-        public void RegisterMiddleware();
-
-        public void UnregisterMiddleware();
-
         /// <summary>
         /// A list of roles this player manager provides to players.
         /// </summary>

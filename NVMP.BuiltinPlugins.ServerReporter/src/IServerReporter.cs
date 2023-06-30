@@ -59,11 +59,10 @@ namespace NVMP.BuiltinPlugins
         /// Creates a new server reporter for reporting the server to the backend.
         /// </summary>
         /// <param name="modService"></param>
-        /// <param name="playerManager">Can be NULL to specify that only Epic Games login is required</param>
         /// <returns></returns>
-        public static IServerReporter Create(IModDownloadService modService, IPlayerManager playerManager = null)
+        public static IServerReporter Create(IModDownloadService modService)
         {
-            return new ServerReporter(modService, playerManager);
+            return new ServerReporter(modService);
         }
     }
 }

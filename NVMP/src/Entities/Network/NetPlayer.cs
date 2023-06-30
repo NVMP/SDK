@@ -61,12 +61,6 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_Kick")]
         private static extern void Internal_Kick(IntPtr self, string reason, string whoby = null);
 
-        [DllImport("Native", EntryPoint = "NetPlayer_Ban")]
-        private static extern void Internal_Ban(IntPtr self, string reason, string whoby = null);
-
-        [DllImport("Native", EntryPoint = "NetPlayer_BanIP")]
-        private static extern void Internal_BanIP(IntPtr self, string reason, string whoby = null);
-
         [DllImport("Native", EntryPoint = "NetPlayer_GetConnectionID")]
         private static extern uint Internal_GetConnectionID(IntPtr self);
 
@@ -213,6 +207,8 @@ namespace NVMP.Entities
         {
             get
             {
+                if (key == "UniqueID")
+                    throw new Exception("UniqueID must be queried through GetAuthenticatedAccounts");
                 return Internal_GetCustomData(__UnmanagedAddress, key);
             }
             set
@@ -339,14 +335,22 @@ namespace NVMP.Entities
             }
         }
 
-        public void Ban(string reason, string whoby = null)
+        public event Action<INetPlayer, string> OnBanned
         {
-            Internal_Ban(__UnmanagedAddress, reason, whoby);
+            add { BannedSubscriptions.Add(value); }
+            remove { BannedSubscriptions.Remove(value); }
         }
 
-        public void BanIP(string reason, string whoby = null)
+        internal readonly SubscriptionDelegate<Action<INetPlayer, string>> BannedSubscriptions = new SubscriptionDelegate<Action<INetPlayer, string>>();
+
+        public void Ban(string reason, string whoby = null)
         {
-            Internal_BanIP(__UnmanagedAddress, reason, whoby);
+            Kick($"BANNED: {reason}", whoby);
+
+            foreach (var sub in BannedSubscriptions.InternalSubscriptions)
+            {
+                sub(this, reason);
+            }
         }
 
         public void SendGenericChatMessage(string message, Color? color, float fontSize)
@@ -556,7 +560,7 @@ namespace NVMP.Entities
 
         public bool TryAddToRole(IPlayerRole role)
         {
-            if (InternalRoles.Any(role => role.Id == role.Id))
+            if (InternalRoles.Any(_role => _role.Id == role.Id))
                 return false;
 
             InternalRoles.Add(role);
@@ -579,6 +583,16 @@ namespace NVMP.Entities
             }
         }
 
+        public void RemoveAllRoles()
+        {
+            InternalRoles.Clear();
+
+            foreach (var sub in RolesChangedSubscriptions.Subscriptions)
+            {
+                sub(this);
+            }
+        }
+
         public bool HasRoleScope(IRoleScope scope)
         {
             foreach (var role in InternalRoles)
@@ -593,6 +607,16 @@ namespace NVMP.Entities
             }
 
             return false;
+        }
+
+        public bool HasRole(IPlayerRole role)
+        {
+            return InternalRoles.Any(_role => _role == role);
+        }
+
+        public bool HasRoleByID(ulong roleId)
+        {
+            return InternalRoles.Any(_role => _role.Id == roleId);
         }
     }
 }

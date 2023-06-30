@@ -33,7 +33,6 @@ namespace NVMP.BuiltinPlugins
 
         internal string NameInternal;
         internal string DescriptionInternal;
-        internal NetPlayerAccountType[] AccountTypesRequiredInternal;
 
         public string Name
         {
@@ -75,7 +74,7 @@ namespace NVMP.BuiltinPlugins
 
         public uint MaxSlots => (uint)NativeSettings.GetFloatValue("Network", "MaxPeers");
 
-        public ServerReporter(IModDownloadService modService, IPlayerManager playerManager)
+        public ServerReporter(IModDownloadService modService)
         {
             ModService = modService;
 
@@ -92,15 +91,6 @@ namespace NVMP.BuiltinPlugins
             IsBroadcasting = false;
             CachedSecureToken = NativeSettings.GetStringValue("Reporting", "ServerSecureToken");
             CachedHostName = NativeSettings.GetStringValue("Server", "Hostname");
-
-            if (playerManager != null)
-            {
-                AccountTypesRequiredInternal = playerManager.AccountTypesUsed;
-            }
-            else
-            {
-                AccountTypesRequiredInternal = new NetPlayerAccountType[] { NetPlayerAccountType.EpicGames };
-            }
 
             if (CachedSecureToken == null || CachedSecureToken.Length == 0)
                 throw new Exception("Server reporter requires ServerSecureToken to be set to a unique identifier. Remove the current entry in server.cfg to generate a fresh token. ");
@@ -189,8 +179,6 @@ namespace NVMP.BuiltinPlugins
                     Name = NameInternal ?? "NVMPX Default Server",
                     IP = CachedHostName,
                     Port = (ushort)NativeSettings.GetFloatValue("Network", "Port"),
-
-                    RequiredAccountTypesCSV = String.Join(",", AccountTypesRequiredInternal),
 
                     ModsDownloadURL = ModService.GetDownloadURL(),
                     Mods = modsReport.ToArray(),
