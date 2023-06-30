@@ -12,6 +12,12 @@ namespace NVMP.Entities
 		Invalid,
 
 		/// <summary>
+		/// A dummy external account. This may be provided if the server is set to have no online account services, and should not be considered
+		/// as a valid account at all. Dummy accounts are not safely queryable.
+		/// </summary>
+		Dummy,
+
+		/// <summary>
 		/// Epic Games external account. This is not really external, but an account available anyway.
 		/// </summary>
 		EpicGames,
