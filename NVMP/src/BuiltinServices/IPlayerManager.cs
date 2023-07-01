@@ -19,7 +19,7 @@ namespace NVMP.BuiltinServices
         /// <summary>
         /// A list of account types this player manager requires players to have.
         /// </summary>
-        public NetPlayerAccountType[] AccountTypesUsed { get; }
+        public NetPlayerAccountType[] AccountTypesUsed { set; }
 
         /// <summary>
         /// Adds a scope to the specified roles.

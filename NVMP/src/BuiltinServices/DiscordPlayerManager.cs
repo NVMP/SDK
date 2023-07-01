@@ -3,6 +3,7 @@ using NVMP.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,7 +67,18 @@ namespace NVMP.BuiltinServices
         internal List<IPlayerRole> InternalRoles = new List<IPlayerRole>();
         public IPlayerRole[] Roles => InternalRoles.ToArray();
 
-        public NetPlayerAccountType[] AccountTypesUsed { get; internal set; }
+        [DllImport("Native", EntryPoint = "GameServer_SetServerAccountTypesUsed")]
+        internal static extern void Internal_SetServerAccountTypesUsed
+        (
+            [MarshalAs(UnmanagedType.LPArray)]
+            NetPlayerAccountType[] types,
+            int numTypes
+        );
+
+        public NetPlayerAccountType[] AccountTypesUsed
+        {
+            set => Internal_SetServerAccountTypesUsed(value, value.Length);
+        }
 
         internal class DiscordPlayerRole : IPlayerRole
         {

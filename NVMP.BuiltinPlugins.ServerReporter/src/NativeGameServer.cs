@@ -24,9 +24,6 @@ namespace NVMP.BuiltinPlugins
         [DataMember(Name = "description")]
         public string Description { get; set; }
 
-        [DataMember(Name = "required_account_types")]
-        public string RequiredAccountTypesCSV { get; set; } = null;
-
         [DataMember(Name = "mods_download_url")]
         public string ModsDownloadURL { get; set; }
 
