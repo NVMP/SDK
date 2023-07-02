@@ -167,7 +167,7 @@ namespace NVMP.BuiltinPlugins
                         Downloadable = downloadableMods.Any(m => m.Name == mods[i].Name)
                     };
 
-                    if (IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedChecksums |
+                    if (IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedChecksums ||
                         IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedAll)
                     {
                         unregisteredContent.Digest = "*";
