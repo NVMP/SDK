@@ -78,12 +78,7 @@ namespace NVMP.BuiltinPlugins
         {
             ModService = modService;
 
-            var strictMods = IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.None;
             Debugging.Write($"IGameServer.UnrestrictedMode = {IGameServer.UnrestrictedMode}");
-            if (!strictMods)
-            {
-                Debugging.Warn("Not broadcasting due to non-restricted mods enabled on command line");
-            }
 
             NativeSettings.SetupDefaultBool("Reporting", "BroadcastToPublic", false);
             NativeSettings.SetupDefaultString("Reporting", "ServerSecureToken", GenerateRandomToken());
@@ -95,7 +90,7 @@ namespace NVMP.BuiltinPlugins
             if (CachedSecureToken == null || CachedSecureToken.Length == 0)
                 throw new Exception("Server reporter requires ServerSecureToken to be set to a unique identifier. Remove the current entry in server.cfg to generate a fresh token. ");
 
-            if (strictMods && NativeSettings.GetBoolValue("Reporting", "BroadcastToPublic"))
+            if (NativeSettings.GetBoolValue("Reporting", "BroadcastToPublic"))
             {
                 BroadcastTimer = new Timer();
                 BroadcastTimer.Elapsed += new ElapsedEventHandler(Broadcast);
@@ -171,6 +166,13 @@ namespace NVMP.BuiltinPlugins
                     {
                         Downloadable = downloadableMods.Any(m => m.Name == mods[i].Name)
                     };
+
+                    if (IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedChecksums |
+                        IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedAll)
+                    {
+                        unregisteredContent.Digest = "*";
+                    }
+
                     modsReport.Add(unregisteredContent);
                 }
 
