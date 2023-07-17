@@ -534,6 +534,9 @@ namespace NVMP.Entities
 
         public void TeleportToMarker(string markerID)
         {
+            if (PlayerOwner == null)
+                throw new Exception("Warping a reference to a map marker requires a player to simulate the reference teleporation. ");
+
             Internal_TeleportToMarker(__UnmanagedAddress, markerID);
         }
 
