@@ -484,6 +484,11 @@ namespace NVMP.Entities
             }
             set
             {
+                if (this is INetCharacter)
+                {
+                    throw new Exception("Cannot change ownership of INetCharacter");
+                }
+
                 Internal_SetPlayerOwner(__UnmanagedAddress, value != null ? (value as NetPlayer).__UnmanagedAddress : IntPtr.Zero);
             }
         }
@@ -675,10 +680,22 @@ namespace NVMP.Entities
                 if (value == null)
                 {
                     Internal_AttachTo(__UnmanagedAddress, IntPtr.Zero, 0.0f, 0.0f, 0.0f, null);
+
+                    if (!(this is INetCharacter))
+                    {
+                        PlayerOwner = null;
+                    }
                 }
                 else
                 {
                     Internal_AttachTo(__UnmanagedAddress, (value as NetReference).__UnmanagedAddress, ParentAttachmentOffset.X, ParentAttachmentOffset.Y, ParentAttachmentOffset.Z, ParentAttachmentNodeName);
+
+                    // Change ownership to the new owner if this is not a character reference, so that the owner can synchronise it
+                    // alongside the parent
+                    if (!(this is INetCharacter))
+                    {
+                        PlayerOwner = value.PlayerOwner;
+                    }
                 }
             }
         }
