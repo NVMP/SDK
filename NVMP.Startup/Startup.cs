@@ -119,6 +119,18 @@ namespace NVMP
                     }
                 }
 
+                try
+                {
+                    foreach (var sub in (player as NetPlayer).InputSubscriptions.Subscriptions)
+                    {
+                        sub(player, (UserInterface.InputType)inputType, key);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debugging.Error(e);
+                }
+
                 Task.WaitAll(tasks.ToArray());
             };
 
@@ -144,6 +156,18 @@ namespace NVMP
                             }
                         }));
                     }
+                }
+
+                try
+                {
+                    foreach (var sub in (player as NetPlayer).MouseUpdateSubscriptions.Subscriptions)
+                    {
+                        sub(player, mouseX, mouseY, mousewheelZ);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debugging.Error(e);
                 }
 
                 Task.WaitAll(tasks.ToArray());
@@ -305,6 +329,11 @@ namespace NVMP
                     }
                 }
 
+                foreach (var sub in Factory.Player.DisconnectionSubscriptions.Subscriptions)
+                {
+                    sub(player);
+                }
+
                 Task.WaitAll(tasks.ToArray());
             };
 
@@ -315,7 +344,10 @@ namespace NVMP
                 // Raise the authenticated event.
                 try
                 {
-                    player.RaiseAuthenticatedEvent();
+                    foreach (var sub in (player as NetPlayer).AuthenticatedSubscriptions.Subscriptions)
+                    {
+                        sub(player);
+                    }
                 }
                 catch (Exception e)
                 {

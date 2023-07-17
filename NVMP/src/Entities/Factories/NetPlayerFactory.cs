@@ -1,6 +1,9 @@
 ﻿using NVMP.Internal;
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
+[assembly: InternalsVisibleTo("NVMP.Startup")]
 
 namespace NVMP.Entities
 {
@@ -20,14 +23,36 @@ namespace NVMP.Entities
         public override uint ObjectType { get; } = Hashing.Compute("NetPlayer");
 
         /// <summary>
-        /// Subscribes new middleware for when a new label is created, called directly after the managed object is initialized.
+        /// Subscribes new middleware for when a new player is created, called directly after the managed object is initialized.
         /// </summary>
+        [Obsolete("Use OnConnect instead")]
         public event Action<INetPlayer> OnCreateMiddleware
         {
-            add { CreationSubscriptions.Add(value); }
-            remove { CreationSubscriptions.Remove(value); }
+            add { ConnectionSubscriptions.Add(value); }
+            remove { ConnectionSubscriptions.Remove(value); }
         }
-        internal readonly SubscriptionDelegate<Action<INetPlayer>> CreationSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
+
+        /// <summary>
+        /// Registers a delegate for when a player joins the server
+        /// </summary>
+        public event Action<INetPlayer> OnConnect
+        {
+            add { ConnectionSubscriptions.Add(value); }
+            remove { ConnectionSubscriptions.Remove(value); }
+        }
+
+        internal readonly SubscriptionDelegate<Action<INetPlayer>> ConnectionSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
+
+        /// <summary>
+        /// Registers a delegate for when a player disconnects the server
+        /// </summary>
+        public event Action<INetPlayer> OnDisconnect
+        {
+            add { DisconnectionSubscriptions.Add(value); }
+            remove { DisconnectionSubscriptions.Remove(value); }
+        }
+
+        internal readonly SubscriptionDelegate<Action<INetPlayer>> DisconnectionSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
 
         public override NetUnmanaged Allocate(IntPtr unmanagedAddress)
         {
@@ -42,8 +67,17 @@ namespace NVMP.Entities
             {
                 reference.Pin();
 
-                foreach (var midf in CreationSubscriptions.Subscriptions)
-                    midf(reference);
+                foreach (var midf in ConnectionSubscriptions.Subscriptions)
+                {
+                    try
+                    {
+                        midf(reference);
+                    }
+                    catch (Exception e)
+                    {
+                        Debugging.Error(e);
+                    }
+                }
 
                 reference.OnCreate();
             }

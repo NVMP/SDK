@@ -550,13 +550,21 @@ namespace NVMP.Entities
 
         internal readonly SubscriptionDelegate<Action<INetPlayer>> RolesChangedSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
 
-        public void RaiseAuthenticatedEvent()
+        public event Action<INetPlayer, UserInterface.InputType, uint> OnInput
         {
-            foreach (var sub in AuthenticatedSubscriptions.Subscriptions)
-            {
-                sub(this);
-            }
+            add { InputSubscriptions.Add(value); }
+            remove { InputSubscriptions.Remove(value); }
         }
+
+        internal readonly SubscriptionDelegate<Action<INetPlayer, UserInterface.InputType, uint>> InputSubscriptions = new SubscriptionDelegate<Action<INetPlayer, UserInterface.InputType, uint>>();
+
+        public event Action<INetPlayer, int, int, int> OnMouseUpdate
+        {
+            add { MouseUpdateSubscriptions.Add(value); }
+            remove { MouseUpdateSubscriptions.Remove(value); }
+        }
+
+        internal readonly SubscriptionDelegate<Action<INetPlayer, int, int, int>> MouseUpdateSubscriptions = new SubscriptionDelegate<Action<INetPlayer, int, int, int>>();
 
         public bool TryAddToRole(IPlayerRole role)
         {

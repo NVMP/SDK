@@ -278,6 +278,14 @@ namespace NVMP.Entities
         /// </summary>
         public event Action<INetPlayer, string> OnBanned;
 
-        public void RaiseAuthenticatedEvent();
+        /// <summary>
+        /// Called on input received from the player
+        /// </summary>
+        public event Action<INetPlayer, UserInterface.InputType, uint> OnInput;
+
+        /// <summary>
+        /// Called on mouse input from the player
+        /// </summary>
+        public event Action<INetPlayer, int, int, int> OnMouseUpdate;
     }
 }

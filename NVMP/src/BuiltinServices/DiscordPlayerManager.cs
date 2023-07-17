@@ -100,7 +100,7 @@ namespace NVMP.BuiltinServices
 
             // Register middleware that on a new authentication from a player, monitors the player's Discord authentication state
             // for if they do behaviour within the server which should remove or amend their state.
-            Factory.Player.OnCreateMiddleware += Player_OnCreateMiddleware;
+            Factory.Player.OnConnect += Player_OnCreateMiddleware;
 
             AccountTypesUsed = new NetPlayerAccountType[] { NetPlayerAccountType.EpicGames, NetPlayerAccountType.Discord };
         }
@@ -114,7 +114,7 @@ namespace NVMP.BuiltinServices
                 Discord.UserLeft -= Discord_UserLeft;
             }
 
-            Factory.Player.OnCreateMiddleware -= Player_OnCreateMiddleware;
+            Factory.Player.OnConnect -= Player_OnCreateMiddleware;
         }
 
         private void Player_OnCreateMiddleware(INetPlayer player)
