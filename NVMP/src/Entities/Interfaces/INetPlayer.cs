@@ -5,11 +5,13 @@ using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
 {
+    /// <summary>
+    /// Wraps around player instance data, allowing custom event registration and player control. Players cannot be created in the managed environment, 
+    /// and are instead created at runtime on a socket connection. Players own an INetCharacter instance as their primary replicated pawn in the game,
+    /// and may control and simulate various objects running in the server.
+    /// </summary>
     public interface INetPlayer 
     {
-        //
-        // Static Helpers
-        //
         #region Natives
 
         [DllImport("Native", EntryPoint = "NetPlayer_GetPlayerByConnectionID")]
@@ -168,15 +170,39 @@ namespace NVMP.Entities
         /// <returns></returns>
         public bool HasRoleScope(IRoleScope scope);
 
+        /// <summary>
+        /// Sends a list of MD5 checksums that are associated to valid save game files. Players will only be able to load or browse
+        /// saves that match this list provided.
+        /// </summary>
+        /// <param name="digests"></param>
         public void SendValidSaves(string[] digests);
 
+        /// <summary>
+        /// Removes all valid saves provided.
+        /// </summary>
+        public void ClearValidSaves();
+
+        /// <summary>
+        /// Displays a vault-boy user interface message for the specified amount of time if the player is in-game.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="time"></param>
+        /// <param name="emotion"></param>
         public void ShowVaultBoyMessage(string message, float time = 2.0f, INetPlayer.VaultBoyEmotion emotion = INetPlayer.VaultBoyEmotion.Happy);
 
+        /// <summary>
+        /// Displays a custom VATs user interface message for the specified amount of time, and with the specified DDS path to use as the icon.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="ddsPath"></param>
+        /// <param name="time"></param>
+        /// <param name="soundPath"></param>
         public void ShowCustomMessage(string message, string ddsPath, float time = 2.0f, string soundPath = null);
 
+        /// <summary>
+        /// Sends a request to the player to auto-save. This may not be completed depending on the player's state.
+        /// </summary>
         public void RequestAutoSave();
-
-        public void ClearValidSaves();
 
         /// <summary>
         /// Kicks the player from the current session in the next network stack update. This requests a disconnect from 

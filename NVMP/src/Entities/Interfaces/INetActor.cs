@@ -150,7 +150,6 @@ namespace NVMP.Entities
 		/// <param name="equipped"></param>
 		public void AddItems(NetActorInventoryItem[] items, bool equipped = false);
 
-
 		/// <summary>
 		/// Removes an item from this actor's inventory with the specified item form
 		/// </summary>
@@ -190,7 +189,6 @@ namespace NVMP.Entities
 		/// </summary>
 		/// <param name="target"></param>
 		public void AddTarget(INetActor target);
-
 
 		/// <summary>
 		/// Sets the specified actor value on the actor, setting the live value. If this is a skill based actor value, 

@@ -4,7 +4,7 @@ using System.Numerics;
 namespace NVMP.Entities
 {
     /// <summary>
-    /// Characters are a specialized Actor, that only players will ever use. These objects cannot be created via the SDK, and every player
+    /// Characters are a specialized Actor that only players will ever use. These objects cannot be created via the SDK, and every player
     /// that joins the server will always be allocated a character. They allow you to control additional PlayerCharacter specific behaviours, 
     /// whilst also acting with the same interface as an Actor and Reference.
     /// </summary>

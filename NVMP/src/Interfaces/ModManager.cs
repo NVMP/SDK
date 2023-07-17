@@ -26,6 +26,11 @@ namespace NVMP
         internal static extern bool Internal_GetAvailableMod(uint index, ref string filename, ref string name, ref string digest);
         #endregion
 
+        /// <summary>
+        /// Locates a mod definition registered to the server by it's filename.
+        /// </summary>
+        /// <param name="mod"></param>
+        /// <returns></returns>
         static public ModFile FindModByName(string mod)
         {
             string digest = null;
@@ -47,6 +52,10 @@ namespace NVMP
             return null;
         }
 
+        /// <summary>
+        /// Returns all available mod files in use by the server.
+        /// </summary>
+        /// <returns></returns>
         static public ModFile[] GetMods()
         {
             string digest = null;
@@ -73,6 +82,12 @@ namespace NVMP
             return result;
         }
 
+        /// <summary>
+        /// Locates a mod definition registered to the server by a reference ID that may be associated. This takes the first
+        /// byte of the reference ID and locates the mod file by it's index.
+        /// </summary>
+        /// <param name="refId"></param>
+        /// <returns></returns>
         static public ModFile FindModUsedByReference(uint refId)
         {
             var mods = GetMods();

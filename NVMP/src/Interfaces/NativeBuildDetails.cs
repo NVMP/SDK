@@ -5,6 +5,9 @@ using System.Text;
 
 namespace NVMP
 {
+    /// <summary>
+    /// A utility class for querying the connection header and build version of the NV:MP server build.
+    /// </summary>
     public static class NativeBuildDetails
     {
         [DllImport("Native", EntryPoint = "GetBuildNetworkVersion")]

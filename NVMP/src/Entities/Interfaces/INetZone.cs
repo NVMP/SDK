@@ -9,8 +9,14 @@ namespace NVMP.Entities
     /// </summary>
     public interface INetZone : INetReference
     {
+        /// <summary>
+        /// A delegate that can be assigned to for when a reference enters the zone's bounds.
+        /// </summary>
         public Action<INetReference> ReferenceEntered { set; }
 
+        /// <summary>
+        /// A delegate that can be assigned to for when a reference that has previously entered the zone leaves the zone's bounds.
+        /// </summary>
         public Action<INetReference> ReferenceExited { set; }
 
         /// <summary>

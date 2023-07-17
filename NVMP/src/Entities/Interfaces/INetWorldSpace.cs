@@ -45,10 +45,6 @@ namespace NVMP.Entities
         /// </summary>
         public DateTime Time { get; set; }
 
-        //
-        // Methods
-        //
-
         /// <summary>
         /// Transitions the worldspace to use the target weather ID. A transition may either be instant, or over time depending on
         /// client's current summary of their world space.

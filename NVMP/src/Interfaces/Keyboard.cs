@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace NVMP
 {
+    /// <summary>
+    /// A utility helper for GECK keyboard operations and scan codes.
+    /// </summary>
     public static class Keyboard
     {
+        /// <summary>
+        /// Scancodes defined by DirectX / GECK.
+        /// </summary>
         public static class ScanCodes
         {
             public const uint Key_1 = 2;

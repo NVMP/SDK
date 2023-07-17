@@ -174,8 +174,18 @@ namespace NVMP.Entities
         /// <param name="formid"></param>
         public void SetCell(uint formid);
 
+        /// <summary>
+        /// A utility function for warping a reference to the specified marker ID.
+        /// Note: This function may not work if the object is not currently replicated on a player's machine, and will throw
+        /// an exception if so.
+        /// </summary>
+        /// <param name="markerID"></param>
         public void TeleportToMarker(string markerID);
 
+        /// <summary>
+        /// A utility function for warping a reference directly to another reference in the game.
+        /// </summary>
+        /// <param name="other"></param>
         public void TeleportTo(INetReference other);
 
         /// <summary>
@@ -198,29 +208,72 @@ namespace NVMP.Entities
         /// <param name="position"></param>
         public void SetExterior(WorldspaceType worldspace, Vector3 position);
 
+        /// <summary>
+        /// Serializes the object to an encodable structure that can be decoded back into the object.
+        /// </summary>
+        /// <returns></returns>
         public ReferenceData Encode();
 
+        /// <summary>
+        /// Deserializes previously encoded data for this object type and restores all object state.
+        /// </summary>
+        /// <param name="entry"></param>
         public void Decode(ReferenceData entry);
 
+        /// <summary>
+        /// Serializes the object to an encodable structure, and then converts it to JSON format.
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Serializing to JSON is not safe, nor performant. If the native data structure changes, this serialization will break big time. ")]
         public string EncodeToJSON();
 
-
-        public void SaveState();
-
-        public void ReloadState();
-
+        /// <summary>
+        /// Deserializes the object from JSON, and restores its state.
+        /// </summary>
+        /// <param name="json"></param>
+        [Obsolete("Serializing to JSON is not safe, nor performant. If the native data structure changes, this serialization will break big time. ")]
         public void DecodeFromJSON(string json);
 
+        /// <summary>
+        /// Serializes the entire objects state to a byte buffer internally stored, that can be rstored with ReloadState. This is much faster
+        /// than calling Encode/Decode due to the fact the object state is written to an underlying sync buffer, which never needs marshalling.
+        /// </summary>
+        public void SaveState();
+
+        /// <summary>
+        /// Deserializes a previously saved state, restoring the object back entirely.
+        /// </summary>
+        public void ReloadState();
+
+        /// <summary>
+        /// A utility function for querying whether a reference is of an actor type.
+        /// </summary>
+        [Obsolete("Use `(is INetActor)` instead as object relationships are safe to test against. ")]
         public bool IsActor { get; }
 
+        /// <summary>
+        /// Returns whether the object is in a dormant time state. This happens if the owner of the object replicating it (defined by PlayerOwner) has
+        /// tabbed out of the game, entered a game menu that freezes the game, or has lost connection.
+        /// </summary>
         public bool IsIdle { get; }
 
+        /// <summary>
+        /// A utility helper that tests if another reference is in the potentially-visible-set of this object.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool IsInPVS(INetReference other);
 
+        /// <summary>
+        /// A utility helper that tests if the current reference is inside of an INetZone. This function is designed to be significantly
+        /// performant, as AABB bounds tests are pre-calculated on objects moving within PVS sets preemptively.
+        /// </summary>
+        /// <param name="zone"></param>
+        /// <returns></returns>
         public bool IsInZone(INetZone zone);
 
         /// <summary>
-        /// The implemented PVS controller
+        /// The implemented PVS controller.
         /// </summary>
         public INetReferencePVSController PVS { get; }
 

@@ -16,6 +16,9 @@ namespace NVMP.Entities
         public string Description { get; }
     }
 
+    /// <summary>
+    /// Simple implementation of a role scope that takes a description for debugging and tracking purposes.
+    /// </summary>
     public class RoleScope : IRoleScope
     {
         public RoleScope(string description = null)
