@@ -194,6 +194,15 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentNodeName")]
         private static extern string Internal_GetAttachmentNodeName(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetPlayingSound")]
+        private static extern string Internal_GetPlayingSound(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_PlaySound")]
+        private static extern string Internal_PlaySound(IntPtr self, string fileName, bool is3D, bool isLooping, bool hasRandomFrequencyShift);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_StopSound")]
+        private static extern string Internal_StopSound(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentNodeName")]
         private static extern void Internal_SetAttachmentNodeName(IntPtr self, string nodeName);
 
@@ -759,6 +768,8 @@ namespace NVMP.Entities
             }
         }
 
+        public string CurrentSound => Internal_GetPlayingSound(__UnmanagedAddress);
+
         public bool IsInPVS(INetReference other) =>  Internal_IsInPVS(__UnmanagedAddress, (other as NetReference).__UnmanagedAddress);
 
         public bool IsInZone(INetZone zone) => Internal_IsInsideZone(__UnmanagedAddress, (zone as NetZone).__UnmanagedAddress);
@@ -771,6 +782,20 @@ namespace NVMP.Entities
         public bool Equals(INetReference other)
         {
             return (other as NetReference).__UnmanagedAddress == __UnmanagedAddress;
+        }
+
+        public void PlaySound(NetSoundRequest request)
+        {
+            if (string.IsNullOrEmpty( request.FileName ))
+                throw new ArgumentException("Request does not specify a valid filename", "request.FileName");
+
+            StopSound();
+            Internal_PlaySound(__UnmanagedAddress, request.FileName, request.Is3D, request.IsLooping, request.HasRandomFrequencyShift);
+        }
+
+        public void StopSound()
+        {
+            Internal_StopSound(__UnmanagedAddress);
         }
     }
 }

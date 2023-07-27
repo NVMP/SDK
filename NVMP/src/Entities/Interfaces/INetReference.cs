@@ -310,6 +310,24 @@ namespace NVMP.Entities
         public string ParentAttachmentNodeName { get; set; }
 
         /// <summary>
+        /// Returns the current sound file being played. To play a sound on a reference, use the methods as this property is readonly.
+        /// </summary>
+        public string CurrentSound { get; }
+
+
+        /// <summary>
+        /// Plays a sound on the reference. If any other sounds have been played, they are immediately stopped and replaced
+        /// with the new request. You can also call StopSound directly to remove all playback.
+        /// </summary>
+        /// <param name="request">request</param>
+        public void PlaySound(NetSoundRequest request);
+
+        /// <summary>
+        /// Removes any sounds being played on the reference.
+        /// </summary>
+        public void StopSound();
+
+        /// <summary>
         /// Destroys the reference. Using flags controls additional behaviour.
         /// </summary>
         /// <param name="flags"></param>
