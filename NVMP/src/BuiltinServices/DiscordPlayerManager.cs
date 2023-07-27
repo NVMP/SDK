@@ -218,8 +218,26 @@ namespace NVMP.BuiltinServices
                     Name = role.Name,
                     IsPrivate = !role.IsHoisted
                 };
+                
+                if (!InternalRoles.Where(_role => _role.Id == gameRole.Id).Any())
+                {
+                    InternalRoles.Add(gameRole);
+                }
+            }
 
-                InternalRoles.Add(gameRole);
+            // remove any old permissions
+            var rolesToRemove = new List<IPlayerRole>();
+            foreach (var role in InternalRoles)
+            {
+                if (!guild.Roles.Where(_role => _role.Id == role.Id).Any())
+                {
+                    rolesToRemove.Add(role);
+                }
+            }
+
+            foreach (var role in rolesToRemove)
+            {
+                InternalRoles.Remove(role);
             }
 
             await Task.CompletedTask;
