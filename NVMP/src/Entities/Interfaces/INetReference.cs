@@ -273,6 +273,18 @@ namespace NVMP.Entities
         public bool IsInZone(INetZone zone);
 
         /// <summary>
+        /// Returns a list of zones this reference is inside of. It's better to use IsInZone for directly checking, as it avoids a lot of
+        /// scanning and searching as it will just use internal pool index matching. Use NumZonesInside for just checking sizes, it avoids the
+        /// same overhead. 
+        /// </summary>
+        public INetZone[] ZonesInside { get; }
+
+        /// <summary>
+        /// Returns the number of zones this reference is inside of. 
+        /// </summary>
+        public uint NumZonesInside { get; }
+
+        /// <summary>
         /// The implemented PVS controller.
         /// </summary>
         public INetReferencePVSController PVS { get; }

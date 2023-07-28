@@ -797,5 +797,39 @@ namespace NVMP.Entities
         {
             Internal_StopSound(__UnmanagedAddress);
         }
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetNumZonesInside")]
+        private static extern uint Internal_GetNumZonesInside(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetZonesInside")]
+        private static extern uint Internal_GetZonesInside(IntPtr self, IntPtr[] zonesArray);
+
+        public INetZone[] ZonesInside
+        {
+            get
+            {
+                // Queries the cached list of zones the reference is inside of.
+                uint numZonesAllocated = Internal_GetNumZonesInside(__UnmanagedAddress);
+                if (numZonesAllocated == 0)
+                    return new INetZone[] { };
+
+                var zonePointers = new IntPtr[numZonesAllocated];
+
+                // The number of zones allocated may not match up with what's returned. It <should> do, but if there is a disparity somewhere
+                // in the native environment, then it may return less to what's available as this call resolves all cached pool indexes to their
+                // object pointer for the zone manifest.
+
+                uint numZonesAvailable = Internal_GetZonesInside(__UnmanagedAddress, zonePointers);
+                var marshalledZones = new INetZone[numZonesAvailable];
+                for (uint i = 0; i < numZonesAllocated; ++i)
+                {
+                    marshalledZones[i] = Marshals.NetZoneMarshaler.Instance.MarshalNativeToManaged(zonePointers[i]) as INetZone;
+                }
+
+                return marshalledZones;
+            }
+        }
+
+        public uint NumZonesInside => Internal_GetNumZonesInside(__UnmanagedAddress);
     }
 }
