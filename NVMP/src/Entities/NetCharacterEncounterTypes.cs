@@ -10,6 +10,11 @@
         /// <summary>
         /// The player will synchronise references they encounter if this is set to true.
         /// </summary>
-        EncounterReference
+        EncounterReference,
+
+        /// <summary>
+        /// The player will synchronise doors they encounter if this is set to true.
+        /// </summary>
+        EncounterDoor
     }
 }
