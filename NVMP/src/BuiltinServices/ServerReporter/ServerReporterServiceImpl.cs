@@ -119,9 +119,6 @@ namespace NVMP.BuiltinServices
             [DataMember(Name = "name")]
             public string Name { get; set; }
 
-            [DataMember(Name = "file_path")]
-            public string FilePath { get; set; }
-
             [DataMember(Name = "digest")]
             public string Digest { get; set; }
 
