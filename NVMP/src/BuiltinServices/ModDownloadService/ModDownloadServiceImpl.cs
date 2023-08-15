@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,9 @@ namespace NVMP.BuiltinServices
         protected IManagedWebService WebService;
         protected IGameServer Server;
         protected BannedList BannedMods;
-        protected List<ModFile> Mods;
+        protected List<DownloadableMod> Mods;
+
+        public bool IsServingModDownloads { get; set; } = true;
 
         // The full reference to the download URL provided by the mod download service.
         public string DownloadURL => $"{WebService.FullURL}/{WebScheme}";
@@ -30,7 +33,7 @@ namespace NVMP.BuiltinServices
         {
             WebService = webService;
             Server = server;
-            Mods = new List<ModFile>();
+            Mods = new List<DownloadableMod>();
 
             BannedMods = new BannedList
             {
@@ -59,16 +62,16 @@ namespace NVMP.BuiltinServices
                 },
                 Names = new List<string>
                 {
-                    "CaravanPack.esm",
-                    "ClassicPack.esm",
-                    "DeadMoney.esm",
-                    "FalloutNV.esm",
-                    "GunRunnersArsenal.esm",
-                    "HonestHearts.esm",
-                    "LonesomeRoad.esm",
-                    "MercenaryPack.esm",
-                    "OldWorldBlues.esm",
-                    "TribalPack.esm",
+                    "CaravanPack",
+                    "ClassicPack",
+                    "DeadMoney",
+                    "FalloutNV",
+                    "GunRunnersArsenal",
+                    "HonestHearts",
+                    "LonesomeRoad",
+                    "MercenaryPack",
+                    "OldWorldBlues",
+                    "TribalPack",
                 }
             };
 
@@ -80,6 +83,17 @@ namespace NVMP.BuiltinServices
 
         public async Task ProcessRequest(HttpListenerRequest req, HttpListenerResponse resp)
         {
+            if (!IsServingModDownloads)
+            {
+                byte[] data = Encoding.UTF8.GetBytes("Server is not serving mod files");
+                resp.StatusCode = 404;
+                resp.ContentEncoding = Encoding.UTF8;
+                resp.ContentLength64 = data.Length;
+                resp.ContentType = "text/plain";
+                resp.OutputStream.Write(data, 0, data.Length);
+                return;
+            }
+
             // Note well that we are in an asynchronous context, nothing is blocked on this Task, so be aware of any threading operations
             // done here may not be safe.
             Debugging.Write("Processing mod download...");
@@ -174,7 +188,7 @@ namespace NVMP.BuiltinServices
             return $"{WebService.FullURL}/{WebScheme}";
         }
 
-        public IEnumerable<ModFile> DownloadableMods => Mods;
+        public IEnumerable<DownloadableMod> DownloadableMods => Mods;
 
         /// <summary>
         /// Registers a custom mod to the download service. This mod must be available in the Data folder of the server.
@@ -192,14 +206,51 @@ namespace NVMP.BuiltinServices
                     return false;
                 }
 
-                if (BannedMods.Names.Contains(mod.Name))
+                if (BannedMods.Names.Where(_mod => mod.Name.StartsWith(_mod)).Any())
                 {
                     return false;
                 }
 
-                // 2. Add it to the list of available files
-                Mods.Add(mod);
-                Debugging.Write($"{modName} registered to mod service");
+                // 3. Add it to the list of available files
+                var dmod = new DownloadableMod { Digest = mod.Digest, FilePath = mod.FilePath, Name = mod.Name };
+                Mods.Add(dmod);
+                Debugging.Write($"{dmod.Name} registered to mod service");
+
+                // 4. Find any BSAs associated on disk. We do this here instead of the native server since the server does not give a shit about
+                // the status of MD5's.
+                string parentDirectory = Path.GetDirectoryName( mod.FilePath );
+                string modNameWithExt = Path.GetFileNameWithoutExtension( mod.FilePath );
+
+                if (parentDirectory != null && modNameWithExt != null)
+                {
+                    var directoryInfo = new DirectoryInfo(parentDirectory);
+                    var bsaFiles = directoryInfo.GetFiles($"{modNameWithExt} - *.bsa");
+                    
+                    foreach (var bsaFilePathString in bsaFiles)
+                    {
+                        using (var file = File.OpenRead(bsaFilePathString.FullName))
+                        {
+                            using (var digester = MD5.Create())
+                            {
+                                byte[] hashBytes = digester.ComputeHash(file);
+                                StringBuilder sb = new StringBuilder();
+
+                                for (int i = 0; i < hashBytes.Length; i++)
+                                {
+                                    sb.Append(hashBytes[i].ToString("x2"));
+                                }
+
+                                // with the digest, now register it so we can offer downloads
+                                var digest = sb.ToString();
+
+                                dmod = new DownloadableMod { Digest = digest, FilePath = bsaFilePathString.FullName, Name = bsaFilePathString.Name };
+                                Mods.Add(dmod);
+                                Debugging.Write($"{dmod.Name} registered to mod service");
+                            }
+                        }
+                    }
+                }
+
                 return true;
             }
 
