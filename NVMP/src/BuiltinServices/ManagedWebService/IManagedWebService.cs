@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NVMP.BuiltinServices.ManagedWebService
+namespace NVMP.BuiltinServices
 {
     /// <summary>
     /// Provides a built in web service that can have multiple path resolvers under the same port.

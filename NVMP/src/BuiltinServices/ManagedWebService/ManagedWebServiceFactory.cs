@@ -1,4 +1,4 @@
-﻿namespace NVMP.BuiltinServices.ManagedWebService
+﻿namespace NVMP.BuiltinServices
 {
     public static class ManagedWebServiceFactory
     {

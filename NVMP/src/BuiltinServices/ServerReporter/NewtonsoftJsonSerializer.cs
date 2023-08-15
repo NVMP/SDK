@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace NVMP.BuiltinPlugins
+namespace NVMP.BuiltinServices
 {
     internal class NewtonsoftJsonSerializer : ISerializer
     {

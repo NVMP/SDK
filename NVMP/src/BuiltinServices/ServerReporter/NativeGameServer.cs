@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace NVMP.BuiltinPlugins
+namespace NVMP.BuiltinServices
 {
     [DataContract]
     internal class NativeGameServer
@@ -47,7 +47,7 @@ namespace NVMP.BuiltinPlugins
         public uint ReservedSlots { get; set; }
 
         [DataMember(Name = "mods")]
-        public ServerReporter.ServerModInfo[] Mods { get; set; }
+        public ServerReporterServiceImpl.ServerModInfo[] Mods { get; set; }
     }
 
 }

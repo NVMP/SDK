@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NVMP.BuiltinServices.ManagedWebService
+namespace NVMP.BuiltinServices
 {
     internal class ManagedWebServiceImpl : IManagedWebService
     {

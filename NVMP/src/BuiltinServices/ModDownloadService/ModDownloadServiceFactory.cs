@@ -1,6 +1,6 @@
-﻿using NVMP.BuiltinServices.ManagedWebService;
+﻿using NVMP.BuiltinServices;
 
-namespace NVMP.BuiltinServices.ModDownloadService
+namespace NVMP.BuiltinServices
 {
     public static class ModDownloadServiceFactory
     {

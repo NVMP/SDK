@@ -1,18 +1,13 @@
-﻿using NVMP.BuiltinServices;
-using NVMP.BuiltinServices.ModDownloadService;
-using NVMP.Entities;
-using RestSharp;
+﻿using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Timers;
 
-namespace NVMP.BuiltinPlugins
+namespace NVMP.BuiltinServices
 {
-
-
-    internal class ServerReporter : IServerReporter
+    internal class ServerReporterServiceImpl : IServerReporterService
     {
 #if DEBUG
         private static readonly int BroadcastInterval = 2000;
@@ -30,6 +25,7 @@ namespace NVMP.BuiltinPlugins
         private string CachedHostName;
 
         public uint ReservedSlots { get; set; } = 0;
+        public string FastDownloadURL { get; set; }
 
         internal string NameInternal;
         internal string DescriptionInternal;
@@ -41,7 +37,7 @@ namespace NVMP.BuiltinPlugins
             {
                 if (value != null)
                 {
-                    if (value.Length >= IServerReporter.MaxServerNameSize)
+                    if (value.Length >= IServerReporterService.MaxServerNameSize)
                         throw new ArgumentOutOfRangeException("value", $"Name of length {value.Length} is too large to be broadcasted!");
 
                     NameInternal = value;
@@ -60,7 +56,7 @@ namespace NVMP.BuiltinPlugins
             {
                 if (value != null)
                 {
-                    if (value.Length >= IServerReporter.MaxServerDescriptionSize)
+                    if (value.Length >= IServerReporterService.MaxServerDescriptionSize)
                         throw new ArgumentOutOfRangeException("value", $"Description of length {value.Length} is too large to be broadcasted!");
 
                     DescriptionInternal = value;
@@ -74,7 +70,7 @@ namespace NVMP.BuiltinPlugins
 
         public uint MaxSlots => (uint)NativeSettings.GetFloatValue("Network", "MaxPeers");
 
-        public ServerReporter(IModDownloadService modService)
+        public ServerReporterServiceImpl(IModDownloadService modService)
         {
             ModService = modService;
 
@@ -156,7 +152,7 @@ namespace NVMP.BuiltinPlugins
 
                 // Declare content
                 var mods = ModManager.GetMods();
-                var downloadableMods = ModService.GetDownloadableMods();
+                var downloadableMods = ModService.DownloadableMods;
 
                 // If we are not very strict, then don't bother reporting these to the server list to enforce it
                 var modsReport = new List<ServerModInfo>();
@@ -182,7 +178,7 @@ namespace NVMP.BuiltinPlugins
                     IP = CachedHostName,
                     Port = (ushort)NativeSettings.GetFloatValue("Network", "Port"),
 
-                    ModsDownloadURL = ModService.GetDownloadURL(),
+                    ModsDownloadURL = FastDownloadURL ?? ModService.DownloadURL,
                     Mods = modsReport.ToArray(),
 
                     ReservedSlots = ReservedSlots,

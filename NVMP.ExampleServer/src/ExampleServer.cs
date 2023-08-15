@@ -7,9 +7,7 @@ using NVMP.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NVMP.Entities;
-using NVMP.BuiltinPlugins;
 using NVMP.BuiltinServices;
-using NVMP.BuiltinServices.ModDownloadService;
 using Discord.WebSocket;
 
 namespace NVMP
@@ -17,7 +15,7 @@ namespace NVMP
     public class ExampleServer : GameServer, IPlugin
     {
         protected INativeProgramDescription Description;
-        protected IServerReporter           Reporter;
+        protected IServerReporterService    ReporterService;
         protected IModDownloadService       ModService;
         protected DiscordSocketClient       DiscordSocket;
         protected IPlayerManager            PlayerManager;
@@ -145,10 +143,10 @@ namespace NVMP
 
             // Serverlist Reporter Module
             Debugging.Write("Starting server reporter..");
-            Reporter = ServerReporterFactory.Create(ModService);
+            ReporterService = ServerReporterServiceFactory.Create(ModService);
 
-            Reporter.Name = "An Example NVMPX Server";
-            Reporter.Description = "Built uisng the SDK kit";
+            ReporterService.Name = "An Example NVMPX Server";
+            ReporterService.Description = "Built uisng the SDK kit";
 
             // Basic Save Init
             if (!Directory.Exists("Saves"))

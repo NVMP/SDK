@@ -31,7 +31,6 @@
     
     <ItemGroup>
     <ProjectReference Include="..\NVMP\NVMP.csproj" />
-    <ProjectReference Include="..\NVMP.BuiltinPlugins.ServerReporter\NVMP.BuiltinPlugins.ServerReporter.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using NVMP.BuiltinServices.ManagedWebService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NVMP.BuiltinServices.ModDownloadService
+namespace NVMP.BuiltinServices
 {
     internal class ModDownloadServiceImpl : IModDownloadService
     {
@@ -24,11 +23,15 @@ namespace NVMP.BuiltinServices.ModDownloadService
         protected BannedList BannedMods;
         protected List<ModFile> Mods;
 
+        // The full reference to the download URL provided by the mod download service.
+        public string DownloadURL => $"{WebService.FullURL}/{WebScheme}";
+
         public ModDownloadServiceImpl(IGameServer server, IManagedWebService webService)
         {
             WebService = webService;
             Server = server;
             Mods = new List<ModFile>();
+
             BannedMods = new BannedList
             {
                 Digests = new List<string>
@@ -171,10 +174,7 @@ namespace NVMP.BuiltinServices.ModDownloadService
             return $"{WebService.FullURL}/{WebScheme}";
         }
 
-        public ModFile[] GetDownloadableMods()
-        {
-            return Mods.ToArray();
-        }
+        public IEnumerable<ModFile> DownloadableMods => Mods;
 
         /// <summary>
         /// Registers a custom mod to the download service. This mod must be available in the Data folder of the server.

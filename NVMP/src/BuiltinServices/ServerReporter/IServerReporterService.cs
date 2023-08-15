@@ -1,16 +1,13 @@
-﻿using NVMP.BuiltinServices;
-using NVMP.BuiltinServices.ModDownloadService;
-using NVMP.Entities;
-using System;
+﻿using System;
 
-namespace NVMP.BuiltinPlugins
+namespace NVMP.BuiltinServices
 {
     /// <summary>
-    /// A built in plugin that allows you to report your server to the public server list. Please read the documentation carefully
+    /// A built in service that allows you to report your server to the public server list. Please read the documentation carefully
     /// when using various properties, as the server list server can reject your broadcast for unspecified reasons - or temporarily
     /// time you out from broadcasting. So be gentle.
     /// </summary>
-    public interface IServerReporter : IDisposable
+    public interface IServerReporterService : IDisposable
     {
         #region Constants
         /// <summary>
@@ -48,21 +45,14 @@ namespace NVMP.BuiltinPlugins
         public uint ReservedSlots { get; set; }
 
         /// <summary>
+        /// Defines a fast download URL to replace the mod service provider URL. This allows you to offload all mod downloads to a central
+        /// CDN or cached server, provided that the remote server has identical mod revisions to the local server.
+        /// </summary>
+        public string FastDownloadURL { get; set; }
+
+        /// <summary>
         /// The maximum slots/game sockets on the server. This is set via the server configuration, but is available here to query quickly.
         /// </summary>
         public uint MaxSlots { get; }
-    }
-
-    public static class ServerReporterFactory
-    {
-        /// <summary>
-        /// Creates a new server reporter for reporting the server to the backend.
-        /// </summary>
-        /// <param name="modService"></param>
-        /// <returns></returns>
-        public static IServerReporter Create(IModDownloadService modService)
-        {
-            return new ServerReporter(modService);
-        }
     }
 }
