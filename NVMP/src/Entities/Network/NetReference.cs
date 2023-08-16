@@ -396,7 +396,7 @@ namespace NVMP.Entities
                 byte a = 0;
                 Internal_GetTitleColor(__UnmanagedAddress, ref r, ref g, ref b, ref a);
 
-                return Color.FromArgb(r, g, b, a);
+                return Color.FromArgb(a, r, g, b);
             }
         }
 
