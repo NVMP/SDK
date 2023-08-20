@@ -138,13 +138,10 @@ namespace NVMP.BuiltinServices
                     resp.AddHeader("Access-Control-Max-Age", "1728000");
                 }
 
-                if (req.HttpMethod == "OPTIONS" || req.HttpMethod == "GET")
+                if (CORSUri != null)
                 {
-                    if (CORSUri != null)
-                    {
-                        resp.AppendHeader("Access-Control-Allow-Origin", CORSUri);
-                        resp.AppendHeader("Access-Control-Allow-Credentials", "true");
-                    }
+                    resp.AppendHeader("Access-Control-Allow-Origin", CORSUri);
+                    resp.AppendHeader("Access-Control-Allow-Credentials", "true");
                 }
 
                 try
