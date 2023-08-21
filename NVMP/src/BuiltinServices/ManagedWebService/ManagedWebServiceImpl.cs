@@ -141,7 +141,11 @@ namespace NVMP.BuiltinServices
                 if (CORSUri != null)
                 {
                     resp.AppendHeader("Access-Control-Allow-Origin", CORSUri);
-                    resp.AppendHeader("Access-Control-Allow-Credentials", "true");
+
+                    if (resp.Headers.Get("Access-Control-Allow-Credentials") == null)
+                    {
+                        resp.AppendHeader("Access-Control-Allow-Credentials", "true");
+                    }
                 }
 
                 try
