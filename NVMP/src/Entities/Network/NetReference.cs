@@ -668,7 +668,7 @@ namespace NVMP.Entities
                 var mods = ModManager.GetMods();
                 foreach (var mod in mods)
                 {
-                    if (((mod.Index & 0xFF000000) >> 24) == mod.Index)
+                    if ((FormID & 0xFF000000) == mod.Index)
                     {
                         return mod.Name;
                     }
