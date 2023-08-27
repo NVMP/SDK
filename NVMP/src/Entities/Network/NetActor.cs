@@ -1,5 +1,6 @@
 using NVMP.Internal;
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
@@ -136,6 +137,9 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "GameNetActor_SetOnDeathDelegate")]
         private static extern void Internal_SetOnDeathDelegate(IntPtr self, OnDeath del);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_FireProjectile")]
+        private static extern void Internal_FireProjectile(IntPtr self, uint weaponFormId, uint projectileOverrideId, float x, float y, float z, float pitch, float yaw, float roll);
         #endregion
 
         internal class OnDeathSubscription : SubscriptionDelegate<OnDeath>
@@ -337,6 +341,11 @@ namespace NVMP.Entities
         public void Resurrect()
         {
             Internal_Resurrect(__UnmanagedAddress);
+        }
+
+        public void FireWeapon(uint weaponFormID, Vector3 originPoint, Vector3 eulerAngles, uint projectileFormIDOverride)
+        {
+            Internal_FireProjectile(__UnmanagedAddress, weaponFormID, projectileFormIDOverride, originPoint.X, originPoint.Y, originPoint.Z, eulerAngles.X, eulerAngles.Y, eulerAngles.Z);
         }
 
         /// <summary>

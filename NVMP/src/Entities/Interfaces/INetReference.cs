@@ -123,9 +123,16 @@ namespace NVMP.Entities
         public float Scale { get; set; }
 
         /// <summary>
-        /// The 3D Quaternion rotation of the actor in the world
+        /// The 3D Quaternion rotation of the reference in the world. If the object is attached, this rotation will
+        /// not apply to the target reference, and you should use LocalRotation instead.
         /// </summary>
         public Quaternion Rotation { get; set; }
+
+        /// <summary>
+        /// The 3D Quaternion local rotation of the reference in the world. Applying this is relative to the object, 
+        /// and will affect the outcome of the transformed rotation by the local axis of the reference.
+        /// </summary>
+        public Quaternion LocalRotation { get; set; }
 
         /// <summary>
         /// The player who currently owns this actor for synchronisation

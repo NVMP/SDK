@@ -88,6 +88,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_GetRotation")]
         private static extern void Internal_GetRotation(IntPtr self, ref float x, ref float y, ref float z, ref float w);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_SetLocalRotation")]
+        private static extern void Internal_SetLocalRotation(IntPtr self, float x, float y, float z, float w);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetLocalRotation")]
+        private static extern void Internal_GetLocalRotation(IntPtr self, ref float x, ref float y, ref float z, ref float w);
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetPlayerOwner")]
         private static extern IntPtr Internal_GetPlayerOwner(IntPtr self);
 
@@ -451,6 +457,20 @@ namespace NVMP.Entities
             }
         }
 
+        public Quaternion LocalRotation
+        {
+            get
+            {
+                Quaternion value = Quaternion.Identity;
+                Internal_GetLocalRotation(__UnmanagedAddress, ref value.X, ref value.Y, ref value.Z, ref value.W);
+                return value;
+            }
+            set
+            {
+                Internal_SetLocalRotation(__UnmanagedAddress, value.X, value.Y, value.Z, value.W);
+            }
+        }
+
         private Quaternion ConjugatedRotation()
         {
             Quaternion c = Rotation;
@@ -479,6 +499,7 @@ namespace NVMP.Entities
             float deltaY = target.Y - Position.Y;
             float yaw = (float)Math.Atan2(deltaX, deltaY);
             Rotation = Quaternion.CreateFromYawPitchRoll(0.0f, yaw, 0.0f);
+
         }
 
         /// <summary>

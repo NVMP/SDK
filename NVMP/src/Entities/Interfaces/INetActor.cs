@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace NVMP.Entities
@@ -223,6 +224,15 @@ namespace NVMP.Entities
 		/// Resets all actor values. Not guarenteed to be the base form values, but the network specified values (usually ZERO).
 		/// </summary>
 		public void ResetActorValues();
+
+		/// <summary>
+		/// Fires a weapon from the actor's perspective.
+		/// </summary>
+		/// <param name="weaponFormID">Must be provided in order to link the correct projectile and damage stats</param>
+		/// <param name="originPoint"></param>
+		/// <param name="eulerAngles"></param>
+		/// <param name="projectileFormIDOverride">If set, the specified projectile is uses instead of the weapons default projectile.</param>
+		public void FireWeapon(uint weaponFormID, Vector3 originPoint, Vector3 eulerAngles, uint projectileFormIDOverride = uint.MinValue);
 
 		/// <summary>
 		/// A delegate you can bind to track when this actor dies.
