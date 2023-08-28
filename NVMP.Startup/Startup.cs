@@ -77,6 +77,14 @@ namespace NVMP
             var pluginInstances = new Dictionary<string, List<IPlugin>>();
             var rootDescription = INativeProgramDescription.Create("NVMP.Startup");
 
+            // Cache root - I cache this here because every VOIP packet is coming in as raw managed bytes, and we need to marshal it
+            // to a target destination. These number of allocations can be in the thousands per second, so we use a single cache here considering
+            // that every call into here is single-threaded, so this is safe fow now.
+            //
+            // This will grow to the largest packet size if needed, but for now just allocate 1024 bytes here considering we don't at the lower-level
+            // allow exceeding the MTU.
+            byte[] voiceFrameCache = new byte[1024];
+
             rootDescription.UpdateDelegate = delta =>
             {
                 foreach (var instance in pluginInstances.Values)
@@ -539,11 +547,22 @@ namespace NVMP
 
                 bool canResend = true;
 
-                var voiceFrameArray = new byte[voiceFrameByteCount];
-                Marshal.Copy(voiceFrameArrayStart, voiceFrameArray, 0, (int)voiceFrameByteCount);
+                var voiceFrame = new VoiceFrame();
+                voiceFrame.Frame = null;
+                voiceFrame.Is3D = false;
+                voiceFrame.Volume = 1.0f;
 
-                var voiceFrame = new VoiceFrame(voiceFrameArray);
-                
+                if (voiceFrameCache.Length < voiceFrameByteCount)
+                {
+                    // The cache is too small to contain, so the VOIP data wont be accessible to the CLR.
+                    Debugging.Error("An in-coming VOIP packet exceeds the MTU, and its frame data won't be available!");
+                }
+                else
+                {
+                    Marshal.Copy(voiceFrameArrayStart, voiceFrameCache, 0, (int)voiceFrameByteCount);
+                    voiceFrame.Frame = voiceFrameCache;
+                }
+
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)

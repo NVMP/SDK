@@ -6,22 +6,17 @@ namespace NVMP
     /// <summary>
     /// Modulation params and information about the voice
     /// </summary>
-    public class VoiceFrame
+    public struct VoiceFrame
     {
-        public VoiceFrame(byte[] frame)
-        {
-            Frame = frame;
-        }
-
         /// <summary>
         /// Modulated 3D space flag, setting this overrides the flag.
         /// </summary>
-        public bool Is3D { get; set; } = false;
+        public bool Is3D { get; set; }
 
         /// <summary>
         /// Modulated volume, setting this overrides the volume applied so if modulation is intended - use the existing value.
         /// </summary>
-        public float Volume { get; set; } = 1.0f;
+        public float Volume { get; set; }
 
         /// <summary>
         /// Opus voice frame transmitted by the player
