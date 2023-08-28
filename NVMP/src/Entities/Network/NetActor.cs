@@ -344,13 +344,14 @@ namespace NVMP.Entities
             Internal_Resurrect(__UnmanagedAddress);
         }
 
-        public void FireWeapon(uint weaponFormID, Vector3 originPoint, Vector3 eulerAngles, uint projectileFormIDOverride)
+        public void FireWeapon(uint weaponFormID, Vector3 originPoint, Quaternion rotation, uint projectileFormIDOverride)
         {
+            var angles = Quaternion.Inverse(rotation).ToEulers();
             Internal_FireProjectile(__UnmanagedAddress
                 , weaponFormID
                 , projectileFormIDOverride
                 , originPoint.X, originPoint.Y, originPoint.Z
-                , eulerAngles.Y, eulerAngles.X
+                , angles.Y, angles.X
                 );
         }
 

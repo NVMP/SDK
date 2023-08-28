@@ -212,6 +212,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentNodeName")]
         private static extern void Internal_SetAttachmentNodeName(IntPtr self, string nodeName);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetAttachmentFlags")]
+        private static extern uint Internal_GetAttachmentFlags(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetAttachmentFlags")]
+        private static extern void Internal_SetAttachmentFlags(IntPtr self, uint flags);
+
         #endregion
 
         public class PVSController : INetReferencePVSController
@@ -787,6 +793,12 @@ namespace NVMP.Entities
 
                 Internal_SetAttachmentNodeName(__UnmanagedAddress, value);
             }
+        }
+
+        public AttachmentFlags ParentAttachmentFlags
+        {
+            get => (AttachmentFlags)Internal_GetAttachmentFlags(__UnmanagedAddress);
+            set => Internal_SetAttachmentFlags(__UnmanagedAddress, (uint)value);
         }
 
         public string CurrentSound => Internal_GetPlayingSound(__UnmanagedAddress);

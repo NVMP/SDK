@@ -152,8 +152,8 @@ namespace NVMP.Entities
         public void LookAt(Vector3 target);
 
         /// <summary>
-        /// Sets the network PVS invisibility flag. This makes the entity not visible and becomes unsynced to all players. Changes made
-        /// to this object won't be applied to player's machines until it becomes visible again.
+        /// Sets the renderable invisibility flag. Setting this flag will still sync the network contents and create a rendered NiNode, but the
+        /// object will not be visible until this flag is removed.
         /// </summary>
         public bool IsInvisible { get; set; }
 
@@ -311,6 +311,11 @@ namespace NVMP.Entities
         /// with the local offset adjusted for.
         /// </summary>
         public INetReference ParentAttachment { get; set; }
+
+        /// <summary>
+        /// Sets or gets flags specific to attachment behaviour.
+        /// </summary>
+        public AttachmentFlags ParentAttachmentFlags { get; set; }
 
         /// <summary>
         /// Sets the parent attachment offset. This is a position with its origin relative to the parent attachment's live position, and

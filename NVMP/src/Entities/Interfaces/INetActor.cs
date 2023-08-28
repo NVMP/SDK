@@ -230,9 +230,9 @@ namespace NVMP.Entities
 		/// </summary>
 		/// <param name="weaponFormID">Must be provided in order to link the correct projectile and damage stats</param>
 		/// <param name="originPoint"></param>
-		/// <param name="eulerAngles"></param>
+		/// <param name="rotation">this gets adjusted to the actors angle in most cases</param>
 		/// <param name="projectileFormIDOverride">If set, the specified projectile is uses instead of the weapons default projectile.</param>
-		public void FireWeapon(uint weaponFormID, Vector3 originPoint, Vector3 eulerAngles, uint projectileFormIDOverride = uint.MinValue);
+		public void FireWeapon(uint weaponFormID, Vector3 originPoint, Quaternion rotation, uint projectileFormIDOverride = uint.MinValue);
 
 		/// <summary>
 		/// A delegate you can bind to track when this actor dies.
