@@ -121,7 +121,7 @@ namespace NVMP
 
                 try
                 {
-                    foreach (var sub in (player as NetPlayer).InputSubscriptions.Subscriptions)
+                    foreach (var sub in (player as NetPlayer).InputSubscriptions.Subscriptions.ToArray())
                     {
                         sub(player, (UserInterface.InputType)inputType, key);
                     }
@@ -160,7 +160,7 @@ namespace NVMP
 
                 try
                 {
-                    foreach (var sub in (player as NetPlayer).MouseUpdateSubscriptions.Subscriptions)
+                    foreach (var sub in (player as NetPlayer).MouseUpdateSubscriptions.Subscriptions.ToArray())
                     {
                         sub(player, mouseX, mouseY, mousewheelZ);
                     }
@@ -329,7 +329,7 @@ namespace NVMP
                     }
                 }
 
-                foreach (var sub in Factory.Player.DisconnectionSubscriptions.Subscriptions)
+                foreach (var sub in Factory.Player.DisconnectionSubscriptions.Subscriptions.ToArray())
                 {
                     sub(player);
                 }
@@ -344,7 +344,7 @@ namespace NVMP
                 // Raise the authenticated event.
                 try
                 {
-                    foreach (var sub in (player as NetPlayer).AuthenticatedSubscriptions.Subscriptions)
+                    foreach (var sub in (player as NetPlayer).AuthenticatedSubscriptions.Subscriptions.ToArray())
                     {
                         sub(player);
                     }
