@@ -21,7 +21,7 @@ namespace NVMP.Entities
         public INetCharacterEncounterConfig EnabledEncounters { get; }
 
         /// <summary>
-        /// Current position of the spectate mode.
+        /// Current position of the spectate mode. If the spectate mode is FocusEntity, then this becomes a local offset that can be applied.
         /// </summary>
         public Vector3 SpectatePosition { get; set; }
 
