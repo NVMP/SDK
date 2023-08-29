@@ -307,7 +307,7 @@ namespace NVMP.Entities
         /// <summary>
         /// Called on input received from the player
         /// </summary>
-        public event Action<INetPlayer, UserInterface.InputType, uint> OnInput;
+        public event Action<INetPlayer, UserInterface.InputType, Keyboard.ScanCodes> OnInput;
 
         /// <summary>
         /// Called on mouse input from the player

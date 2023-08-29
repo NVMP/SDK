@@ -139,7 +139,7 @@ namespace NVMP
             return false;
         }
 
-        public Task PlayerInputUpdate(INetPlayer player, InputType inputType, uint key)
+        public Task PlayerInputUpdate(INetPlayer player, InputType inputType, Keyboard.ScanCodes key)
         {
             return Task.CompletedTask;
         }

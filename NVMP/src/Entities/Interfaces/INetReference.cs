@@ -135,6 +135,16 @@ namespace NVMP.Entities
         public Quaternion LocalRotation { get; set; }
 
         /// <summary>
+        /// Destructable health of the object. This will assert if you use it on an actor, as actors should only 
+        /// use their Health class.
+        /// </summary>
+        /// <remarks>
+        /// This is percentage based, between 0-100. This is relative to the base form of the reference's destructable object data if it exists,
+        /// so this may not work as expected if the object is not configured to be destructable.
+        /// </remarks>
+        public int DestructableHealth { get; set; }
+
+        /// <summary>
         /// The player who currently owns this actor for synchronisation
         /// </summary>
         public INetPlayer PlayerOwner { get; set; }

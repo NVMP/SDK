@@ -60,5 +60,19 @@ namespace NVMP.Entities
         /// Modifies if the player can use TCL (essentially no clip).
         /// </summary>
         public bool HasTCL { get; set; }
+
+        /// <summary>
+        /// Sets if a control code is disabled on the character.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="isDisabled"></param>
+        public void SetControlCodeDisabled(Keyboard.ControlCodes code, bool isDisabled);
+
+        /// <summary>
+        /// Queries if a control code is disabled on the character.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public bool GetControlCodeDisabled(Keyboard.ControlCodes code);
     }
 }

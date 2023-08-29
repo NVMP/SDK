@@ -83,7 +83,7 @@ namespace NVMP
         /// <param name="inputType"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task PlayerInputUpdate(INetPlayer player, UserInterface.InputType inputType, uint key);
+        Task PlayerInputUpdate(INetPlayer player, UserInterface.InputType inputType, Keyboard.ScanCodes key);
 
         /// <summary>
         /// Called for any mouse change from a player whilst in-game (out of UI focus)

@@ -94,6 +94,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_GetLocalRotation")]
         private static extern void Internal_GetLocalRotation(IntPtr self, ref float x, ref float y, ref float z, ref float w);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_SetDestructableHealth")]
+        private static extern void Internal_SetDestructableHealth(IntPtr self, int health);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetDestructableHealth")]
+        private static extern int Internal_GetDestructableHealth(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetPlayerOwner")]
         private static extern IntPtr Internal_GetPlayerOwner(IntPtr self);
 
@@ -474,6 +480,27 @@ namespace NVMP.Entities
             set
             {
                 Internal_SetLocalRotation(__UnmanagedAddress, value.X, value.Y, value.Z, value.W);
+            }
+        }
+
+        public int DestructableHealth
+        {
+            get
+            {
+                if (this is INetActor)
+                    throw new Exception("DestructableHealth cannot be accessed or set on Actors!");
+
+                return Internal_GetDestructableHealth(__UnmanagedAddress);
+            }
+            set
+            {
+                if (this is INetActor)
+                    throw new Exception("DestructableHealth cannot be accessed or set on Actors!");
+
+                if (value < 0.0f || value > 100.0f)
+                    throw new Exception("DestructableHealth is ranged between 0 and 100, and an invalid value was passed!");
+
+                Internal_SetDestructableHealth(__UnmanagedAddress, value);
             }
         }
 

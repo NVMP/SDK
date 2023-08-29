@@ -71,6 +71,13 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "GameNetCharacter_SetTCL")]
         private static extern void Internal_SetTCL(IntPtr self, bool value);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetKeyboardDisabledState")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetKeyboardDisabledState(IntPtr self, uint key);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetKeyboardDisabledState")]
+        private static extern void Internal_SetKeyboardDisabledState(IntPtr self, uint key, bool value);
         #endregion
 
         public class EncounterConfig : INetCharacterEncounterConfig
@@ -213,6 +220,16 @@ namespace NVMP.Entities
         {
             get => Internal_GetTCL(__UnmanagedAddress);
             set => Internal_SetTCL(__UnmanagedAddress, value);
+        }
+
+        public void SetControlCodeDisabled(Keyboard.ControlCodes code, bool isDisabled)
+        {
+            Internal_SetKeyboardDisabledState(__UnmanagedAddress, (uint)code, isDisabled);
+        }
+
+        public bool GetControlCodeDisabled(Keyboard.ControlCodes code)
+        {
+            return Internal_GetKeyboardDisabledState(__UnmanagedAddress, (uint)code);
         }
     }
 }

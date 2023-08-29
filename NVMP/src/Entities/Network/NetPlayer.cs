@@ -550,13 +550,13 @@ namespace NVMP.Entities
 
         internal readonly SubscriptionDelegate<Action<INetPlayer>> RolesChangedSubscriptions = new SubscriptionDelegate<Action<INetPlayer>>();
 
-        public event Action<INetPlayer, UserInterface.InputType, uint> OnInput
+        public event Action<INetPlayer, UserInterface.InputType, Keyboard.ScanCodes> OnInput
         {
             add { InputSubscriptions.Add(value); }
             remove { InputSubscriptions.Remove(value); }
         }
 
-        internal readonly SubscriptionDelegate<Action<INetPlayer, UserInterface.InputType, uint>> InputSubscriptions = new SubscriptionDelegate<Action<INetPlayer, UserInterface.InputType, uint>>();
+        internal readonly SubscriptionDelegate<Action<INetPlayer, UserInterface.InputType, Keyboard.ScanCodes>> InputSubscriptions = new SubscriptionDelegate<Action<INetPlayer, UserInterface.InputType, Keyboard.ScanCodes>>();
 
         public event Action<INetPlayer, int, int, int> OnMouseUpdate
         {

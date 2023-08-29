@@ -140,7 +140,7 @@ namespace NVMP.Delegates
                 INetPlayer player,
 
         [In] uint inputType,
-        [In] uint key
+        [In] Keyboard.ScanCodes key
     );
 
     public delegate void MouseUpdateDelegate
