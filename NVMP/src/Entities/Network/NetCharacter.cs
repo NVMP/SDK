@@ -72,6 +72,25 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetCharacter_SetTCL")]
         private static extern void Internal_SetTCL(IntPtr self, bool value);
 
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetOverShoulderPosX")]
+        private static extern int Internal_GetOverShoulderPosX(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetOverShoulderPosX")]
+        private static extern void Internal_SetOverShoulderPosX(IntPtr self, int value);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetOverShoulderPosZ")]
+        private static extern int Internal_GetOverShoulderPosZ(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetOverShoulderPosZ")]
+        private static extern void Internal_SetOverShoulderPosZ(IntPtr self, int value);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetChaseCameraMax")]
+        private static extern int Internal_GetChaseCameraMax(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetChaseCameraMax")]
+        private static extern void Internal_SetChaseCameraMax(IntPtr self, int value);
+
+
         [DllImport("Native", EntryPoint = "GameNetCharacter_GetKeyboardDisabledState")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetKeyboardDisabledState(IntPtr self, uint key);
@@ -220,6 +239,24 @@ namespace NVMP.Entities
         {
             get => Internal_GetTCL(__UnmanagedAddress);
             set => Internal_SetTCL(__UnmanagedAddress, value);
+        }
+
+        public int ChaseCameraMax
+        {
+            get => Internal_GetChaseCameraMax(__UnmanagedAddress);
+            set => Internal_SetChaseCameraMax(__UnmanagedAddress, value);
+        }
+
+        public int OverShoulderPosX
+        {
+            get => Internal_GetOverShoulderPosX(__UnmanagedAddress);
+            set => Internal_SetOverShoulderPosX(__UnmanagedAddress, value);
+        }
+
+        public int OverShoulderPosZ
+        {
+            get => Internal_GetOverShoulderPosZ(__UnmanagedAddress);
+            set => Internal_SetOverShoulderPosZ(__UnmanagedAddress, value);
         }
 
         public void SetControlCodeDisabled(Keyboard.ControlCodes code, bool isDisabled)

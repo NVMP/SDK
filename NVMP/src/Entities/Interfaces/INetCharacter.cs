@@ -62,6 +62,21 @@ namespace NVMP.Entities
         public bool HasTCL { get; set; }
 
         /// <summary>
+        /// The distance the camera can chase the player.
+        /// </summary>
+        public int ChaseCameraMax { get; set; }
+
+        /// <summary>
+        /// X offset of the camera's shoulder view.
+        /// </summary>
+        public int OverShoulderPosX { get; set; }
+
+        /// <summary>
+        /// Z offset of the camera's shoulder view.
+        /// </summary>
+        public int OverShoulderPosZ { get; set; }
+
+        /// <summary>
         /// Sets if a control code is disabled on the character.
         /// </summary>
         /// <param name="code"></param>
