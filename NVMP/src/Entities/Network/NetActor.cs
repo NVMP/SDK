@@ -352,7 +352,7 @@ namespace NVMP.Entities
                 , weaponFormID
                 , projectileFormIDOverride
                 , originPoint.X, originPoint.Y, originPoint.Z
-                , angles.Z, angles.X
+                , VectorExtensions.ConstrainAngle((-angles.Y) + MathF.PI), -angles.X
                 );
         }
 
