@@ -77,6 +77,11 @@ namespace NVMP.Entities
         public int OverShoulderPosZ { get; set; }
 
         /// <summary>
+        /// Disables various player controls on the player's character.
+        /// </summary>
+        public NetCharacterPlayerControls DisabledPlayerControls { get; set; }
+
+        /// <summary>
         /// Sets if a control code is disabled on the character.
         /// </summary>
         /// <param name="code"></param>

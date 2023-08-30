@@ -84,6 +84,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetCharacter_SetOverShoulderPosZ")]
         private static extern void Internal_SetOverShoulderPosZ(IntPtr self, int value);
 
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetDisabledControlFlags")]
+        private static extern uint Internal_GetDisabledControlFlags(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetDisabledControlFlags")]
+        private static extern void Internal_SetDisabledControlFlags(IntPtr self, uint value);
+
         [DllImport("Native", EntryPoint = "GameNetCharacter_SetChaseCameraMax")]
         private static extern int Internal_GetChaseCameraMax(IntPtr self);
 
@@ -257,6 +263,11 @@ namespace NVMP.Entities
         {
             get => Internal_GetOverShoulderPosZ(__UnmanagedAddress);
             set => Internal_SetOverShoulderPosZ(__UnmanagedAddress, value);
+        }
+        public NetCharacterPlayerControls DisabledPlayerControls
+        {
+            get => (NetCharacterPlayerControls)Internal_GetDisabledControlFlags(__UnmanagedAddress);
+            set => Internal_SetDisabledControlFlags(__UnmanagedAddress, (uint)value);
         }
 
         public void SetControlCodeDisabled(Keyboard.ControlCodes code, bool isDisabled)
