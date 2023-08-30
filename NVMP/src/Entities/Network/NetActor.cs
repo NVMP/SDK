@@ -347,7 +347,6 @@ namespace NVMP.Entities
         public void FireWeapon(uint weaponFormID, Vector3 originPoint, Quaternion rotation, uint projectileFormIDOverride)
         {
             var angles = rotation.ToEulers();
-            Debugging.Write($"Firing at {angles}");
             Internal_FireProjectile(__UnmanagedAddress
                 , weaponFormID
                 , projectileFormIDOverride
