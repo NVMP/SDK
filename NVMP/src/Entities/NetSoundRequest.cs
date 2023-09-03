@@ -20,6 +20,15 @@ namespace NVMP.Entities
         public bool Is3D { get; set; }
 
         /// <summary>
+        /// Sets if the sound is a one-shot, meaning it is meant to play once and then expire. Players who enter scope of the reference
+        /// after the sound is played will never hear this sound, so if the sound is important for fidelity - one-shots are not recommended.
+        ///
+        /// Another benefit of one shots is that they can stack, whereas when not using a one-shot sound, it will replace the last playing sound on the 
+        /// reference.
+        /// </summary>
+        public bool IsOneShot { get; set; }
+
+        /// <summary>
         /// Applies a random frequency shift to the audio on playback, to give uniqueness if desired.
         /// </summary>
         public bool HasRandomFrequencyShift { get; set; }

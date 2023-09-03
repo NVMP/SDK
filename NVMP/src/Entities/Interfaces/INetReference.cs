@@ -74,9 +74,6 @@ namespace NVMP.Entities
         /// <summary>
         /// A delegate you can bind to track when this refrence is damaged by another actor. 
         /// </summary>
-        /// <remarks>
-        /// This currently only works for INetActors, and will throw an exception for now if you try and use it for non-actors.
-        /// </remarks>
         public event OnDamaged Damaged;
 
         /// <summary>

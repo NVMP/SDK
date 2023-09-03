@@ -199,8 +199,8 @@ namespace NVMP.Entities
         private static extern void Internal_SetOnActivatedDelegate(IntPtr self, OnActivatedReference del);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnDamagedDelegate")]
-
         private static extern void Internal_SetOnDamagedDelegate(IntPtr self, OnDamaged del);
+
         [DllImport("Native", EntryPoint = "GameNetReference_IsAttached")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_IsAttached(IntPtr self);
@@ -230,7 +230,7 @@ namespace NVMP.Entities
         private static extern string Internal_GetPlayingSound(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetReference_PlaySound")]
-        private static extern string Internal_PlaySound(IntPtr self, string fileName, bool is3D, bool isLooping, bool hasRandomFrequencyShift);
+        private static extern string Internal_PlaySound(IntPtr self, string fileName, bool is3D, bool isLooping, bool hasRandomFrequencyShift, bool isOneShot);
 
         [DllImport("Native", EntryPoint = "GameNetReference_StopSound")]
         private static extern string Internal_StopSound(IntPtr self);
@@ -329,7 +329,7 @@ namespace NVMP.Entities
 
         public event OnDamaged Damaged
         {
-            add { if (!(this is INetActor)) throw new Exception("Temporary Constraint: This is not supported for non-actors!");  OnDamagedDelegate.Add(value); }
+            add { OnDamagedDelegate.Add(value); }
             remove { OnDamagedDelegate.Remove(value); }
         }
 
@@ -881,8 +881,11 @@ namespace NVMP.Entities
             if (string.IsNullOrEmpty( request.FileName ))
                 throw new ArgumentException("Request does not specify a valid filename", "request.FileName");
 
-            StopSound();
-            Internal_PlaySound(__UnmanagedAddress, request.FileName, request.Is3D, request.IsLooping, request.HasRandomFrequencyShift);
+            if (!request.IsOneShot)
+            {
+                StopSound();
+            }
+            Internal_PlaySound(__UnmanagedAddress, request.FileName, request.Is3D, request.IsLooping, request.HasRandomFrequencyShift, request.IsOneShot);
         }
 
         public void StopSound()
