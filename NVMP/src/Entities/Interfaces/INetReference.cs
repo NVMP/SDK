@@ -168,6 +168,18 @@ namespace NVMP.Entities
         public bool IsInvisible { get; set; }
 
         /// <summary>
+        /// If set to true, nametags will not require line-of-sight to render (if the object has a physical reference object).
+        /// This may give players an advantage as they will be able to see this reference behind a wall.
+        /// </summary>
+        public bool NametagLOSDisabled { get; set; }
+
+        /// <summary>
+        /// If set to true, nametags will not scale or use opacity blending depending on distance to the local player. This gives immediate
+        /// visibility to any object names or labels that should be rendered, but were previously invisible due to distance.
+        /// </summary>
+        public bool NametagScalingDisabled { get; set; }
+
+        /// <summary>
         /// An exterior cell information object. Should check for !IsInInterior before accesisng this
         /// to be sure this data is in use. 
         /// </summary>

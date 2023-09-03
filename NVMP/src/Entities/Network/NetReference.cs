@@ -16,6 +16,12 @@ namespace NVMP.Entities
         internal delegate NetReferencePVSTestTypes PVSCheckDelegate(INetPlayer player);
 
         #region Natives
+        [DllImport("Native", EntryPoint = "GameNetReference_GetNumZonesInside")]
+        private static extern uint Internal_GetNumZonesInside(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetZonesInside")]
+        private static extern uint Internal_GetZonesInside(IntPtr self, IntPtr[] zonesArray);
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetTitle", CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.LPWStr)]
         private static extern string Internal_GetTitle(IntPtr self);
@@ -162,6 +168,20 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetIsInvisible")]
         private static extern void Internal_SetIsInvisible(IntPtr self, bool invisible);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetNametagScalingDisabled")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetNametagScalingDisabled(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetNametagScalingDisabled")]
+        private static extern void Internal_SetNametagScalingDisabled(IntPtr self, bool val);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetNametagLOSDisabled")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetNametagLOSDisabled(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetNametagLOSDisabled")]
+        private static extern void Internal_SetNametagLOSDisabled(IntPtr self, bool val);
 
         [DllImport("Native", EntryPoint = "GameNetReference_GetFormType")]
         private static extern NetReferenceFormType Internal_GetFormType(IntPtr self);
@@ -562,6 +582,18 @@ namespace NVMP.Entities
             set => Internal_SetIsInvisible(__UnmanagedAddress, value);
         }
 
+        public bool NametagLOSDisabled
+        {
+            get => Internal_GetNametagLOSDisabled(__UnmanagedAddress);
+            set => Internal_SetNametagLOSDisabled(__UnmanagedAddress, value);
+        }
+
+        public bool NametagScalingDisabled
+        {
+            get => Internal_GetNametagScalingDisabled(__UnmanagedAddress);
+            set => Internal_SetNametagScalingDisabled(__UnmanagedAddress, value);
+        }
+
         public NetReferenceFormType FormType
         {
             get => Internal_GetFormType(__UnmanagedAddress);
@@ -857,12 +889,6 @@ namespace NVMP.Entities
         {
             Internal_StopSound(__UnmanagedAddress);
         }
-
-        [DllImport("Native", EntryPoint = "GameNetReference_GetNumZonesInside")]
-        private static extern uint Internal_GetNumZonesInside(IntPtr self);
-
-        [DllImport("Native", EntryPoint = "GameNetReference_GetZonesInside")]
-        private static extern uint Internal_GetZonesInside(IntPtr self, IntPtr[] zonesArray);
 
         public INetZone[] ZonesInside
         {
