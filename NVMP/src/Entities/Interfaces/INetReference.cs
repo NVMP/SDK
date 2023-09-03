@@ -115,6 +115,13 @@ namespace NVMP.Entities
         public Vector3 Velocity { get; set; }
 
         /// <summary>
+        /// Queries the ground possition last known of the object on the ground depth map. This may not be reliable if the reference is owned by the server, and should
+        /// be taken lightly. Ensure that critical calculations have a valid PlayerOwner, or if your code is OK with either 0.0 (for if nothing synced this), or
+        /// if the ground position is out of sync.
+        /// </summary>
+        public float GroundPosZ { get; }
+
+        /// <summary>
         /// Defines the 3D model scale of the reference. Fallout internally limits this between 0.001-10.000.
         /// </summary>
         public float Scale { get; set; }

@@ -41,6 +41,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_Decode")]
         private static extern void Internal_Decode(IntPtr self, IntPtr encodedDataEntry);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetGroundPosZ")]
+        private static extern float Internal_GetGroundPosZ(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetName")]
         [return: MarshalAs(UnmanagedType.LPWStr)]
         private static extern string Internal_GetName(IntPtr self);
@@ -920,5 +923,7 @@ namespace NVMP.Entities
         }
 
         public uint NumZonesInside => Internal_GetNumZonesInside(__UnmanagedAddress);
+
+        public float GroundPosZ => Internal_GetGroundPosZ(__UnmanagedAddress);
     }
 }
