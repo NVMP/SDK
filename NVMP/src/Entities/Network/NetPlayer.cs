@@ -312,8 +312,6 @@ namespace NVMP.Entities
         
         public void Kick(string reason, string whoby = null, bool silentFromChat = false)
         {
-            Internal_Kick(__UnmanagedAddress, reason, whoby);
-
             if (Authenticated)
             {
                 if (!silentFromChat)
@@ -333,6 +331,8 @@ namespace NVMP.Entities
                     INetPlayer.BroadcastGenericChatMessage(message, KickChatColor);
                 }
             }
+
+            Internal_Kick(__UnmanagedAddress, reason, whoby);
         }
 
         public event Action<INetPlayer, string> OnBanned
