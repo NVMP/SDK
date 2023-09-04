@@ -17,11 +17,6 @@ namespace NVMP
     /// </summary>
     public static class Optick
     {
-        #region Natives
-        [DllImport("Native", EntryPoint = "Optick_RegisterThread")]
-        private static extern uint Internal_RegisterThread();
-        #endregion
-
         /// <summary>
         /// Encapsulates OPTICK_EVENT as a scoped object, for use eg: `using var _ = new Optick.Event("My function");`
         /// </summary>
@@ -48,14 +43,6 @@ namespace NVMP
             {
                 Internal_EventPop();
             }
-        }
-
-        /// <summary>
-        /// Registers the current thread to Optick profiler. There 
-        /// </summary>
-        public static void RegisterThread()
-        {
-            Internal_RegisterThread();
         }
     }
 }
