@@ -93,6 +93,7 @@ namespace NVMP
                     {
                         try
                         {
+                            using var _ = new Optick.Event($"{plugin.GetName()}.Update");
                             plugin.Update(delta);
                         }
                         catch (Exception e)
@@ -117,6 +118,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerInputUpdate");
                                 await plugin.PlayerInputUpdate(player, (UserInterface.InputType)inputType, key);
                             }
                             catch (Exception e)
@@ -131,6 +133,7 @@ namespace NVMP
                 {
                     foreach (var sub in (player as NetPlayer).InputSubscriptions.Subscriptions.ToArray())
                     {
+                        using var _ = new Optick.Event($"{player.Name}.InputSubscriptions.Fire");
                         sub(player, (UserInterface.InputType)inputType, key);
                     }
                 }
@@ -156,6 +159,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerMouseUpdate");
                                 await plugin.PlayerMouseUpdate(player, mouseX, mouseY, mousewheelZ);
                             }
                             catch (Exception e)
@@ -170,6 +174,7 @@ namespace NVMP
                 {
                     foreach (var sub in (player as NetPlayer).MouseUpdateSubscriptions.Subscriptions.ToArray())
                     {
+                        using var _ = new Optick.Event($"{player.Name}.MouseUpdateSubscriptions.Fire");
                         sub(player, mouseX, mouseY, mousewheelZ);
                     }
                 }
@@ -195,6 +200,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerFinishLoad");
                                 await plugin.PlayerFinishLoad(player);
                             }
                             catch (Exception e)
@@ -222,6 +228,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerNewSave");
                                 await plugin.PlayerNewSave(player);
                             }
                             catch (Exception e)
@@ -249,6 +256,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerUpdatedSave");
                                 await plugin.PlayerUpdatedSave(player, name, digest);
                             }
                             catch (Exception e)
@@ -273,6 +281,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerCheated");
                                 await plugin.PlayerCheated(player);
                             }
                             catch (Exception e)
@@ -300,6 +309,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerJoined");
                                 await plugin.PlayerJoined(player);
                             }
                             catch (Exception e)
@@ -327,6 +337,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerLeft");
                                 await plugin.PlayerLeft(player);
                             }
                             catch (Exception e)
@@ -354,6 +365,7 @@ namespace NVMP
                 {
                     foreach (var sub in (player as NetPlayer).AuthenticatedSubscriptions.Subscriptions.ToArray())
                     {
+                        using var _ = new Optick.Event($"{player.Name}.AuthenticatedSubscriptions.Fire");
                         sub(player);
                     }
                 }
@@ -452,6 +464,7 @@ namespace NVMP
                         {
                             try
                             {
+                                using var _ = new Optick.Event($"{plugin.GetName()}.PlayerMessaged");
                                 await plugin.PlayerMessaged(player, message);
                             }
                             catch (Exception e)
@@ -516,6 +529,7 @@ namespace NVMP
                     {
                         try
                         {
+                            using var _ = new Optick.Event($"{plugin.GetName()}.CanResendChatTo");
                             canResend &= plugin.CanResendChatTo(player, target, message, ref username, ref usercolor);
                             if (!canResend)
                             {
@@ -569,6 +583,7 @@ namespace NVMP
                     {
                         try
                         {
+                            using var _ = new Optick.Event($"{plugin.GetName()}.CanResendVoiceTo");
                             canResend &= plugin.CanResendVoiceTo(player, target, ref voiceFrame);
                             if (!canResend)
                             {
@@ -600,6 +615,7 @@ namespace NVMP
                     {
                         try
                         {
+                            using var _ = new Optick.Event($"{plugin.GetName()}.PlayerExecutedCommand");
                             consumeCommand |= plugin.PlayerExecutedCommand(player, commandName, numParams, paramList);
                         }
                         catch (Exception e)
