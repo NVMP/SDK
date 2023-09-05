@@ -109,12 +109,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -125,7 +124,7 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
 
@@ -141,8 +140,6 @@ namespace NVMP
                 {
                     Debugging.Error(e);
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerMouseUpdate = (player, mouseX, mouseY, mousewheelZ) =>
@@ -150,12 +147,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -166,7 +162,7 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
 
@@ -182,8 +178,6 @@ namespace NVMP
                 {
                     Debugging.Error(e);
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerFinishLoad = player =>
@@ -191,12 +185,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -207,11 +200,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerNewSave = player =>
@@ -219,12 +210,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -235,11 +225,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerUpdatedSave = (player, name, digest) =>
@@ -247,12 +235,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -263,21 +250,18 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerCheated = player =>
             {
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -288,11 +272,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerJoined = player =>
@@ -300,12 +282,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -316,11 +297,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerLeft = player =>
@@ -328,12 +307,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -344,7 +322,7 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
 
@@ -352,8 +330,6 @@ namespace NVMP
                 {
                     sub(player);
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerAuthenticating = (player) =>
@@ -375,12 +351,11 @@ namespace NVMP
                     Debugging.Error(e);
                 }
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -390,11 +365,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
 
                 return shouldPermit;
             };
@@ -404,12 +377,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -419,21 +391,18 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.ActorDied = (actor, killer) =>
             {
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -443,11 +412,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.PlayerMessaged = (player, message) =>
@@ -455,12 +422,11 @@ namespace NVMP
                 if (player.Actor == null)
                     return;
 
-                var tasks = new List<Task>();
                 foreach (var instance in pluginInstances.Values)
                 {
                     foreach (var plugin in instance)
                     {
-                        tasks.Add(Task.Run(async () =>
+                        Task.Run(async () =>
                         {
                             try
                             {
@@ -471,11 +437,9 @@ namespace NVMP
                             {
                                 Debugging.Error($"{plugin.GetName()}: {e}");
                             }
-                        }));
+                        }).GetAwaiter().GetResult();
                     }
                 }
-
-                Task.WaitAll(tasks.ToArray());
             };
 
             rootDescription.CanCharacterChangeName = character =>
