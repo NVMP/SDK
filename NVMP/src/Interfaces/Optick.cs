@@ -22,13 +22,13 @@ namespace NVMP
         /// </summary>
         public class Event : IDisposable
         {
-            #region Natives
+#region Natives
             [DllImport("Native", EntryPoint = "Optick_EventPush")]
-            private static extern uint Internal_EventPush(string eventName);
+            private static extern void Internal_EventPush(string eventName);
 
             [DllImport("Native", EntryPoint = "Optick_EventPop")]
-            private static extern uint Internal_EventPop();
-            #endregion
+            private static extern void Internal_EventPop();
+#endregion
 
             /// <summary>
             /// Registers an Optick event with the specified name.
@@ -36,12 +36,12 @@ namespace NVMP
             /// <param name="name"></param>
             public Event(string name)
             {
-                Internal_EventPush(name);
+                // Internal_EventPush(name);
             }
 
             public void Dispose()
             {
-                Internal_EventPop();
+                // Internal_EventPop();
             }
         }
     }
