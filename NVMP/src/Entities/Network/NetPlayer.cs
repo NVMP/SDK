@@ -449,6 +449,8 @@ namespace NVMP.Entities
             }
         }
 
+        public IGUIWindowTemplate[] ActiveMenus => PresentingTemplates.ToArray();
+
         /// <summary>
         /// Present's a template to a player. Presenting a template will keep a reference to the template
         /// in the player, until the player closes the object - or the template diposes - or the player leaves.
@@ -489,6 +491,16 @@ namespace NVMP.Entities
 
             (template as GUIWindowTemplateBuilder.GUIWindowTemplate).CloseOnPlayer(this);
             PresentingTemplates.RemoveAt(index);
+        }
+
+        public void CloseAllMenus()
+        {
+            foreach (var template in PresentingTemplates)
+            {
+                (template as GUIWindowTemplateBuilder.GUIWindowTemplate).CloseOnPlayer(this);
+            }
+
+            PresentingTemplates.Clear();
         }
 
         public void RunScript(string script)

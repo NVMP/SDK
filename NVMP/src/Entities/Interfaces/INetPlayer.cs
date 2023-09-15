@@ -127,6 +127,11 @@ namespace NVMP.Entities
         public IPlayerAccount[] GetAuthenticatedAccounts();
 
         /// <summary>
+        /// Returns an array of all active menus being presented on the player's screen.
+        /// </summary>
+        public IGUIWindowTemplate[] ActiveMenus { get; }
+
+        /// <summary>
         /// Returns a list of roles associated to the player.
         /// </summary>
         public IPlayerRole[] Roles { get; }
@@ -274,6 +279,11 @@ namespace NVMP.Entities
         /// </summary>
         /// <param name="template"></param>
         public void CloseMenu(IGUIWindowTemplate template);
+
+        /// <summary>
+        /// Closes all active menus.
+        /// </summary>
+        public void CloseAllMenus();
 
         /// <summary>
         /// Broadcasts a message to all player's chat boxes
