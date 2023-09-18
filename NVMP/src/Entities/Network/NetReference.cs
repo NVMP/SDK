@@ -44,6 +44,19 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_GetGroundPosZ")]
         private static extern float Internal_GetGroundPosZ(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_GetMaxBlendingError")]
+        private static extern float Internal_GetMaxBlendingError(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetMaxBlendingError")]
+        private static extern void Internal_SetMaxBlendingError(IntPtr self, float error);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetInterpMode")]
+        private static extern NetReferenceInterpolationMode Internal_GetInterpMode(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetInterpMode")]
+        private static extern void Internal_SetInterpMode(IntPtr self, NetReferenceInterpolationMode mode);
+
+
         [DllImport("Native", EntryPoint = "GameNetReference_GetName")]
         [return: MarshalAs(UnmanagedType.LPWStr)]
         private static extern string Internal_GetName(IntPtr self);
@@ -925,5 +938,17 @@ namespace NVMP.Entities
         public uint NumZonesInside => Internal_GetNumZonesInside(__UnmanagedAddress);
 
         public float GroundPosZ => Internal_GetGroundPosZ(__UnmanagedAddress);
+
+        public NetReferenceInterpolationMode InterpMode
+        {
+            get => Internal_GetInterpMode(__UnmanagedAddress);
+            set => Internal_SetInterpMode(__UnmanagedAddress, value);
+        }
+
+        public float MaxBlendingError
+        {
+            get => Internal_GetMaxBlendingError(__UnmanagedAddress);
+            set => Internal_SetMaxBlendingError(__UnmanagedAddress, value);
+        }
     }
 }

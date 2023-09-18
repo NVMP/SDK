@@ -344,6 +344,17 @@ namespace NVMP.Entities
         public AttachmentFlags ParentAttachmentFlags { get; set; }
 
         /// <summary>
+        /// Sets or gets the interpolation mode the reference is actively using.
+        /// </summary>
+        public NetReferenceInterpolationMode InterpMode { get; set; }
+
+        /// <summary>
+        /// If the reference is using blending interpolation, this is the maximum amount of error the object can endure before teleporting
+        /// back into the correct position.
+        /// </summary>
+        public float MaxBlendingError { get; set; }
+
+        /// <summary>
         /// Sets the parent attachment offset. This is a position with its origin relative to the parent attachment's live position, and
         /// is transformed as the parent reference changes rotation additionally - so this is a local space position.
         /// </summary>
