@@ -242,6 +242,13 @@ namespace NVMP.Entities
         public void SetExterior(WorldspaceType worldspace, Vector3 position);
 
         /// <summary>
+        /// Morphs the reference to a new formID. Morphing changes the base form of the reference to a new reference,
+        /// and re-applies all previously set state on client's machines. 
+        /// </summary>
+        /// <param name="formID"></param>
+        public void Morph(uint formID);
+
+        /// <summary>
         /// Serializes the object to an encodable structure that can be decoded back into the object.
         /// </summary>
         /// <returns></returns>

@@ -86,6 +86,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetExterior")]
         private static extern void Internal_SetExterior(IntPtr self, uint worldspaceID, int x, int y);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_Morph")]
+        private static extern void Internal_Morph(IntPtr self, uint formID);
+
         [DllImport("Native", EntryPoint = "GameNetReference_SetPosition")]
         private static extern void Internal_SetPosition(IntPtr self, float x, float y, float z);
 
@@ -679,6 +682,16 @@ namespace NVMP.Entities
             if (((uint)worldspace & 0xFF000000) == 0xFF000000)
                 throw new Exception("Invalid worldspace passed. You need to add the first byte of the DLC in your current load order. ie. WorldspaceType.NVDLC03BigMT.AsModIndex(1)");
             Internal_SetExterior(__UnmanagedAddress, (uint)worldspace, x, y);
+        }
+
+        /// <summary>
+        /// Morphs the reference to a new formID. Morphing changes the base form of the reference to a new reference,
+        /// and re-applies all previously set state on client's machines. 
+        /// </summary>
+        /// <param name="formID"></param>
+        public void Morph(uint formID)
+        {
+            Internal_Morph(__UnmanagedAddress, formID);
         }
 
         /// <summary>
