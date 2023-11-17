@@ -1,6 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Timers;
@@ -130,6 +131,10 @@ namespace NVMP.BuiltinServices
                 Digest = mod.Digest;
                 Name = mod.Name;
             }
+
+            public ServerModInfo()
+            {
+            }
         }
 
         private async void Broadcast(object sender, EventArgs args)
@@ -167,6 +172,28 @@ namespace NVMP.BuiltinServices
                     }
 
                     modsReport.Add(unregisteredContent);
+                }
+
+                // Add in any custom content from the mod file service not registered as a native server mod
+                foreach (var downloadableContent in ModService.DownloadableMods)
+                {
+                    if (modsReport.Any(_mod => _mod.Name == downloadableContent.Name))
+                        continue;
+
+                    var unregisteredCustomContent = new ServerModInfo()
+                    {
+                        Downloadable = true,
+                        Digest = downloadableContent.Digest,
+                        Name = downloadableContent.Name,
+                    };
+
+                    if (IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedChecksums ||
+                        IGameServer.UnrestrictedMode == GameServerUnrestrictedModeType.UnrestrictedAll)
+                    {
+                        unregisteredCustomContent.Digest = "*";
+                    }
+
+                    modsReport.Add(unregisteredCustomContent);
                 }
 
                 var obj = new NativeGameServer

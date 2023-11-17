@@ -224,7 +224,7 @@ namespace NVMP.BuiltinServices
                 if (parentDirectory != null && modNameWithExt != null)
                 {
                     var directoryInfo = new DirectoryInfo(parentDirectory);
-                    var bsaFiles = directoryInfo.GetFiles($"{modNameWithExt} - *.bsa");
+                    var bsaFiles = directoryInfo.GetFiles($"{modNameWithExt}*.bsa");
                     
                     foreach (var bsaFilePathString in bsaFiles)
                     {
