@@ -78,6 +78,9 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsDev(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_GetSteamID")]
+        private static extern ulong Internal_GetSteamID(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
 
@@ -281,6 +284,8 @@ namespace NVMP.Entities
                 return Internal_GetIsDev(__UnmanagedAddress);
             }
         }
+
+        public ulong RichPresenceSteamID => Internal_GetSteamID(__UnmanagedAddress);
 
         internal List<IPlayerRole> InternalRoles = new List<IPlayerRole>();
         public IPlayerRole[] Roles => InternalRoles.ToArray();

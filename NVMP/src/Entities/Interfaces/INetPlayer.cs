@@ -110,6 +110,11 @@ namespace NVMP.Entities
         public bool IsDev { get; set; }
 
         /// <summary>
+        /// UNSAFE - not to be trusted for authentication. Mainly for rich presence.
+        /// </summary>
+        public ulong RichPresenceSteamID { get; }
+
+        /// <summary>
         /// Returns an authenticated account with the player. If this returns null, then the account is not
         /// authenticated with the account provider type. This does not account for bans you may have set up on those
         /// platforms, such as Discord server bans - so you should do this after this returns the account you want to
