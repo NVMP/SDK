@@ -78,6 +78,12 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsDev(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SetPartyID")]
+        private static extern void Internal_SetPartyID(IntPtr self, uint partyID);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetPartyID")]
+        private static extern uint Internal_GetPartyID(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_GetSteamID")]
         private static extern ulong Internal_GetSteamID(IntPtr self);
 
@@ -283,6 +289,12 @@ namespace NVMP.Entities
             {
                 return Internal_GetIsDev(__UnmanagedAddress);
             }
+        }
+
+        public uint PartyID
+        {
+            get => Internal_GetPartyID(__UnmanagedAddress);
+            set => Internal_SetPartyID(__UnmanagedAddress, value);
         }
 
         public ulong RichPresenceSteamID => Internal_GetSteamID(__UnmanagedAddress);

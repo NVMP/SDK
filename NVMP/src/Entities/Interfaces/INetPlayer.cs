@@ -110,6 +110,11 @@ namespace NVMP.Entities
         public bool IsDev { get; set; }
 
         /// <summary>
+        /// Player's party ID. Players in a party with other players will be able to see a blip where their friend is, and always maintains PVS status.
+        /// </summary>
+        public uint PartyID { get; set; }
+
+        /// <summary>
         /// UNSAFE - not to be trusted for authentication. Mainly for rich presence.
         /// </summary>
         public ulong RichPresenceSteamID { get; }
