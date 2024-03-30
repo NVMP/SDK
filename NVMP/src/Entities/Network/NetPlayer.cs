@@ -58,6 +58,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetPing")]
         private static extern uint Internal_GetPing(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_GetMsSinceLastPing")]
+        private static extern uint Internal_GetMsSinceLastPing(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_Kick")]
         private static extern void Internal_Kick(IntPtr self, string reason, string whoby = null);
 
@@ -276,6 +279,18 @@ namespace NVMP.Entities
             get
             {
                 return Internal_GetPing(__UnmanagedAddress);
+            }
+        }
+
+        /// <summary>
+        /// Gets the amount of seconds since the player last pinged the server with either a ping response, or sent us data.
+        /// </summary>
+        public float SecondsSinceLastPing
+        {
+            get
+            {
+                uint msSinceLastPing = Internal_GetMsSinceLastPing(__UnmanagedAddress);
+                return (float)msSinceLastPing / 1000.0f;
             }
         }
 

@@ -1,6 +1,8 @@
 using NVMP.Extensions;
 using NVMP.Internal;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
 
@@ -215,7 +217,21 @@ namespace NVMP.Entities
                 marshalledItems[i] = activeItemInformation;
             }
 
-            return marshalledItems;
+            // Flatten the item list, because we might have stacks of other things
+            var newPlacedItems = new Dictionary<uint, NetActorInventoryReference>();
+            foreach (var item in marshalledItems)
+            {
+                if (newPlacedItems.TryGetValue(item.Item.ID, out NetActorInventoryReference value))
+                {
+                    value.Count += item.Count;
+                }
+                else
+                {
+                    newPlacedItems[item.Item.ID] = item;
+                }
+            }
+
+            return newPlacedItems.Select(_items => _items.Value).ToArray();
         }
 
         public NetActorInventoryReference GetItemByForm(uint form)

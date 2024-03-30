@@ -105,6 +105,11 @@ namespace NVMP.Entities
         public uint Ping { get; }
 
         /// <summary>
+        /// Gets the amount of seconds since the player last pinged the server with either a ping response, or sent us data.
+        /// </summary>
+        public float SecondsSinceLastPing { get; }
+
+        /// <summary>
         /// Player's development state. Allowing them to be a dev allows for additional network information, that could be sensitive to the gamemode.
         /// </summary>
         public bool IsDev { get; set; }
