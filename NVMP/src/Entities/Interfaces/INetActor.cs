@@ -57,9 +57,14 @@ namespace NVMP.Entities
 		public int Level { get; set; }
 
 		/// <summary>
-		/// Current health on the actor
+		/// The actor's overriden level.
 		/// </summary>
-		public float Health { get; set; }
+		public string LevelOverride { get; set; }
+
+        /// <summary>
+        /// Current health on the actor
+        /// </summary>
+        public float Health { get; set; }
 
 		/// <summary>
 		/// Maximum health the character can reach

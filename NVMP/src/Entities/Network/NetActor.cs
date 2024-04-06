@@ -28,6 +28,12 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_SetLevel")]
         private static extern void Internal_SetLevel(IntPtr self, int level);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_SetLevelOverride")]
+        private static extern void Internal_SetLevelOverride(IntPtr self, string overrideString);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_GetLevelOverride")]
+        private static extern string Internal_GetLevelOverride(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetActor_GetLevel")]
         private static extern int Internal_GetLevel(IntPtr self);
 
@@ -461,6 +467,21 @@ namespace NVMP.Entities
             get
             {
                 return Internal_GetLevel(__UnmanagedAddress);
+            }
+        }
+
+        /// <summary>
+        /// An overriden text over the game level.
+        /// </summary>
+        public string LevelOverride
+        {
+            set
+            {
+                Internal_SetLevelOverride(__UnmanagedAddress, value);
+            }
+            get
+            {
+                return Internal_GetLevelOverride(__UnmanagedAddress);
             }
         }
 
