@@ -54,5 +54,10 @@ namespace NVMP.BuiltinServices
         /// The maximum slots/game sockets on the server. This is set via the server configuration, but is available here to query quickly.
         /// </summary>
         public uint MaxSlots { get; }
+
+        /// <summary>
+        /// A list of packages supported by the launcher to be automatically downloaded on connection.
+        /// </summary>
+        public string[] RequiredPackages { get; set; }
     }
 }

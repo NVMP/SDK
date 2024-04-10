@@ -27,6 +27,7 @@ namespace NVMP.BuiltinServices
 
         public uint ReservedSlots { get; set; } = 0;
         public string FastDownloadURL { get; set; }
+        public string[] RequiredPackages { get; set; }
 
         internal string NameInternal;
         internal string DescriptionInternal;
@@ -204,6 +205,7 @@ namespace NVMP.BuiltinServices
 
                     ModsDownloadURL = FastDownloadURL ?? ModService.DownloadURL,
                     Mods = modsReport.ToArray(),
+                    Packages = RequiredPackages,
 
                     ReservedSlots = ReservedSlots,
                     Description = DescriptionInternal ?? "A New Vegas Multiplayer server",
@@ -213,7 +215,7 @@ namespace NVMP.BuiltinServices
 
                 request.AddJsonBody(obj);
 
-                IRestResponse response = await client.ExecuteAsync(request);
+                var response = await client.ExecuteAsync(request);
                 switch (response.StatusCode)
                 {
                     case System.Net.HttpStatusCode.OK:

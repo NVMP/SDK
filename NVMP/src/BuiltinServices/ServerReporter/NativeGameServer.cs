@@ -48,6 +48,9 @@ namespace NVMP.BuiltinServices
 
         [DataMember(Name = "mods")]
         public ServerReporterServiceImpl.ServerModInfo[] Mods { get; set; }
+
+        [DataMember(Name = "packages")]
+        public string[] Packages { get; set; }
     }
 
 }
