@@ -230,6 +230,7 @@ namespace NVMP.Entities
                 if (newPlacedItems.TryGetValue(item.Item.ID, out NetActorInventoryReference value))
                 {
                     value.Count += item.Count;
+                    value.Equipped |= item.Equipped;
                 }
                 else
                 {
@@ -240,7 +241,7 @@ namespace NVMP.Entities
             return newPlacedItems.Select(_items => _items.Value).ToArray();
         }
 
-        public NetActorInventoryReference GetItemByForm(uint form)
+        public NetActorInventoryReference? GetItemByForm(uint form)
         {
             var item = NetActorInventoryItem.GetByReference(form);
             if (item == null)
@@ -251,7 +252,7 @@ namespace NVMP.Entities
             return GetItemByForm(item);
         }
 
-        public NetActorInventoryReference GetItemByForm(NetActorInventoryItem item)
+        public NetActorInventoryReference? GetItemByForm(NetActorInventoryItem item)
         {
             IntPtr addr = Internal_GetActiveItem(__UnmanagedAddress, item.__UnmanagedAddress);
             if (addr == IntPtr.Zero)
@@ -542,7 +543,7 @@ namespace NVMP.Entities
                 var items = GetItemByForm(INetActor.GameCurrency);
                 if (items != null)
                 {
-                    return items.Count;
+                    return items.Value.Count;
                 }
                 return 0;
             }
@@ -555,13 +556,13 @@ namespace NVMP.Entities
                 }
                 else
                 {
-                    if (value < items.Count)
+                    if (value < items.Value.Count)
                     {
-                        RemoveItem(INetActor.GameCurrency, items.Count - value);
+                        RemoveItem(INetActor.GameCurrency, items.Value.Count - value);
                     }
                     else
                     {
-                        AddItem(INetActor.GameCurrency, value - items.Count);
+                        AddItem(INetActor.GameCurrency, value - items.Value.Count);
                     }
                 }
             }

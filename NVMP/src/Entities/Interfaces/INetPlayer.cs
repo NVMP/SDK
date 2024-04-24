@@ -70,6 +70,11 @@ namespace NVMP.Entities
         public bool Authenticated { get;  }
 
         /// <summary>
+        /// Returns if the player was kicked and is waiting for connections to wrap up.
+        /// </summary>
+        public bool IsKicked { get; }
+
+        /// <summary>
         /// Set if the player cannot load or save their savegame.
         /// </summary>
         public bool CanUseSaves { get; set; }
@@ -108,6 +113,16 @@ namespace NVMP.Entities
         /// Gets the amount of seconds since the player last pinged the server with either a ping response, or sent us data.
         /// </summary>
         public float SecondsSinceLastPing { get; }
+
+        /// <summary>
+        /// VOIP volume multiplier, between 0.1 - 10.0
+        /// </summary>
+        public float VoiceVolume { get; set; }
+
+        /// <summary>
+        /// VOIP pitch, between 0.2 - 2.0
+        /// </summary>
+        public float VoicePitch { get; set; }
 
         /// <summary>
         /// Player's development state. Allowing them to be a dev allows for additional network information, that could be sensitive to the gamemode.

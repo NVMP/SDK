@@ -58,6 +58,18 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetPing")]
         private static extern uint Internal_GetPing(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SetVOIPPitch")]
+        private static extern void Internal_SetVoicePitch(IntPtr self, float pitch);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetVOIPPitch")]
+        private static extern float Internal_GetVoicePitch(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_SetVOIPVolume")]
+        private static extern void Internal_SetVoiceVolume(IntPtr self, float volume);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetVOIPVolume")]
+        private static extern float Internal_GetVoiceVolume(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_GetMsSinceLastPing")]
         private static extern uint Internal_GetMsSinceLastPing(IntPtr self);
 
@@ -69,6 +81,9 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "NetPlayer_SetCanUseSaves")]
         private static extern void Internal_SetCanUseSaves(IntPtr self, bool authenticated);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_IsKicked")]
+        private static extern bool Internal_WasKicked(IntPtr self);
 
         [DllImport("Native", EntryPoint = "NetPlayer_GetCanUseSaves")]
         [return: MarshalAs(UnmanagedType.I1)]
@@ -180,6 +195,37 @@ namespace NVMP.Entities
         }
 
         /// <summary>
+        /// VOIP volume multiplier, between 0.1 - 10.0
+        /// </summary>
+        public float VoiceVolume
+        {
+            get => Internal_GetVoiceVolume(__UnmanagedAddress);
+            set => Internal_SetVoiceVolume(__UnmanagedAddress, value);
+        }
+
+        /// <summary>
+        /// VOIP pitch, between 0.2 - 2.0
+        /// </summary>
+        public float VoicePitch
+        {
+            get => Internal_GetVoicePitch(__UnmanagedAddress);
+            set
+            {
+                if (value > 2.0f)
+                {
+                    throw new Exception("Pitch is too high!");
+                }
+                else if (value < 0.2f)
+                {
+                    throw new Exception("Pitch is too low!");
+                }
+
+                Internal_SetVoicePitch(__UnmanagedAddress, value);
+            }
+
+        }
+
+        /// <summary>
         /// Set if the connection has been authenticated by a managed authenticator module. Players can't do much
         /// with the world state, and shouldn't have any input on the game state until authenticated has been set
         /// </summary>
@@ -196,6 +242,11 @@ namespace NVMP.Entities
                 Internal_SetCanUseSaves(__UnmanagedAddress, value);
             }
         }
+
+        /// <summary>
+        /// Returns if the player was kicked and is waiting for connections to wrap up.
+        /// </summary>
+        public bool IsKicked => Internal_WasKicked(__UnmanagedAddress);
 
         /// <summary>
         /// An unsigned integer representing the connection ID of this player. This ID is generated genetically per 

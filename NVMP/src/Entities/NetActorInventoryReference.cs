@@ -7,7 +7,7 @@ namespace NVMP.Entities
 	/// An inventory reference, that is paired to a FormID and count.
 	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
-	public class NetActorInventoryReference
+	public struct NetActorInventoryReference
 	{
 		public NetActorInventoryItem Item
 		{
@@ -21,6 +21,9 @@ namespace NVMP.Entities
 
 		[MarshalAs(UnmanagedType.U4)]
 		public uint Count;
-	}
+
+        [MarshalAs(UnmanagedType.I1)]
+        public bool Equipped;
+    }
 
 }

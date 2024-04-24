@@ -349,6 +349,12 @@ namespace NVMP
                 {
                     player.Kick("Authentication Failed due to Raised Exception");
                     Debugging.Error(e);
+                    return false;
+                }
+
+                if (player.IsKicked)
+                {
+                    return false;
                 }
 
                 foreach (var instance in pluginInstances.Values)

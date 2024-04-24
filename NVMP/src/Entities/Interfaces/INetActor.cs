@@ -132,14 +132,14 @@ namespace NVMP.Entities
 		/// </summary>
 		/// <param name="form"></param>
 		/// <returns></returns>
-		public NetActorInventoryReference GetItemByForm(uint form);
+		public NetActorInventoryReference? GetItemByForm(uint form);
 
 		/// <summary>
 		/// Finds a form in the container with the specified form ID
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public NetActorInventoryReference GetItemByForm(NetActorInventoryItem item);
+		public NetActorInventoryReference? GetItemByForm(NetActorInventoryItem item);
 
 		/// <summary>
 		/// Adds a new inventory item to this actor's inventory

@@ -27,6 +27,11 @@ namespace NVMP.Entities
 		/// <summary>
 		/// Directly sets to the target location, no interpolation. Every position update will jump the network object. 
 		/// </summary>
-		NoInterp
-	}
+		NoInterp,
+
+        /// <summary>
+        /// Reference will do approach blending, slowing down as it arrives at the target.
+        /// </summary>
+        ApproachInterp
+    }
 }
