@@ -86,4 +86,14 @@ namespace NVMP.Entities
             , [In] uint weaponFormId
             , [In] uint projectileFormId
         );
+
+    public delegate void OnAttack
+        (
+            [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetActorMarshaler))]
+                INetActor attacker
+
+            , [In] NetAttackType attackType
+            , [In] uint weaponFormId
+            , [In] uint projectileFormId
+        );
 }

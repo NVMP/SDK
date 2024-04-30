@@ -211,6 +211,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_GetPVSCheckDelegate")]
         private static extern PVSCheckDelegate Internal_GetPVSCheckDelegate(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "GameNetReference_BindDelegate")]
+        protected static extern void Internal_BindDelegate(IntPtr self, string name, Delegate del);
+
         [DllImport("Native", EntryPoint = "GameNetReference_SetOnActivatedOtherReferenceDelegate")]
         private static extern void Internal_SetOnActivatedOtherReferenceDelegate(IntPtr self, OnActivatedReference del);
 

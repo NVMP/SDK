@@ -100,10 +100,6 @@ namespace NVMP.Delegates
         [In, Out, MarshalAs(UnmanagedType.U1)] ref bool is3D
         ,
         [In] ref float volume
-        ,
-        [In] uint voiceFrameByteCount
-        ,
-        [In] IntPtr voiceFrameArrayStart
     );
 
     public delegate void ActorDiedDelegate

@@ -17,11 +17,6 @@ namespace NVMP
         /// Modulated volume, setting this overrides the volume applied so if modulation is intended - use the existing value.
         /// </summary>
         public float Volume { get; set; }
-
-        /// <summary>
-        /// Opus voice frame transmitted by the player
-        /// </summary>
-        public byte[] Frame { get; set; }
     }
 
     /// <summary>

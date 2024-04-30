@@ -521,7 +521,7 @@ namespace NVMP
                 return canResend;
             };
 
-            rootDescription.CanResendVoiceTo = (INetPlayer player, INetPlayer target, ref bool is3D, ref float volume, uint voiceFrameByteCount, IntPtr voiceFrameArrayStart) =>
+            rootDescription.CanResendVoiceTo = (INetPlayer player, INetPlayer target, ref bool is3D, ref float volume) =>
             {
                 if (player.Actor == null)
                     return false;
@@ -532,20 +532,8 @@ namespace NVMP
                 bool canResend = true;
 
                 var voiceFrame = new VoiceFrame();
-                voiceFrame.Frame = null;
                 voiceFrame.Is3D = false;
                 voiceFrame.Volume = 1.0f;
-
-                if (voiceFrameCache.Length < voiceFrameByteCount)
-                {
-                    // The cache is too small to contain, so the VOIP data wont be accessible to the CLR.
-                    Debugging.Error("An in-coming VOIP packet exceeds the MTU, and its frame data won't be available!");
-                }
-                else
-                {
-                    Marshal.Copy(voiceFrameArrayStart, voiceFrameCache, 0, (int)voiceFrameByteCount);
-                    voiceFrame.Frame = voiceFrameCache;
-                }
 
                 foreach (var instance in pluginInstances.Values)
                 {

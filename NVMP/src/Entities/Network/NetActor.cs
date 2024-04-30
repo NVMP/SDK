@@ -169,24 +169,51 @@ namespace NVMP.Entities
             }
         }
 
+        internal class OnAttackSubscription : SubscriptionDelegate<OnAttack>
+        {
+            public OnAttack Execute;
+
+            public OnAttackSubscription()
+            {
+                Execute = InternalExecute;
+            }
+
+            internal void InternalExecute(INetActor attacker, NetAttackType attackType, uint weaponFormId, uint projectileFormId)
+            {
+                foreach (var sub in Subscriptions)
+                {
+                    sub.Invoke(attacker, attackType, weaponFormId, projectileFormId);
+                }
+            }
+        }
+
         internal OnDeathSubscription OnDeathDelegate = new OnDeathSubscription();
+        internal OnAttackSubscription OnAttackDelegate = new OnAttackSubscription();
 
         protected override void PreDispose()
         {
             base.PreDispose();
             Internal_SetOnDeathDelegate(__UnmanagedAddress, null);
+            Internal_BindDelegate(__UnmanagedAddress, "OnAttack", null);
         }
 
         internal override void OnCreate()
         {
             base.OnCreate();
             Internal_SetOnDeathDelegate(__UnmanagedAddress, OnDeathDelegate.Execute);
+            Internal_BindDelegate(__UnmanagedAddress, "OnAttack", OnAttackDelegate.Execute);
         }
 
         public event OnDeath Died
         {
             add { OnDeathDelegate.Add(value); }
             remove { OnDeathDelegate.Remove(value); }
+        }
+
+        public event OnAttack Attack
+        {
+            add { OnAttackDelegate.Add(value); }
+            remove { OnAttackDelegate.Remove(value); }
         }
 
         /// <summary>
