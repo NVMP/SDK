@@ -213,6 +213,13 @@ namespace NVMP.Entities
         public void SendValidSaves(string[] digests);
 
         /// <summary>
+        /// Plays a one-shot sound on the player.
+        /// </summary>
+        /// <param name="hasRandomFrequencyShift"></param>
+        /// <param name="soundPath"></param>
+        public void PlayOneShotSound(string soundPath, bool hasRandomFrequencyShift);
+
+        /// <summary>
         /// Removes all valid saves provided.
         /// </summary>
         public void ClearValidSaves();

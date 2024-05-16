@@ -105,6 +105,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetSteamID")]
         private static extern ulong Internal_GetSteamID(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_PlayOneShotSoun")]
+        private static extern void Internal_PlayOneShotSound(IntPtr self, string soundPath, bool hasRandomFrequencyShift);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
 
@@ -720,6 +723,11 @@ namespace NVMP.Entities
         public bool HasRoleByID(ulong roleId)
         {
             return InternalRoles.Any(_role => _role.Id == roleId);
+        }
+
+        public void PlayOneShotSound(string soundPath, bool hasRandomFrequencyShift)
+        {
+            Internal_PlayOneShotSound(__UnmanagedAddress, soundPath, hasRandomFrequencyShift);
         }
     }
 }
