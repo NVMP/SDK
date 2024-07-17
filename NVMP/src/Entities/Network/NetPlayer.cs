@@ -105,7 +105,7 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_GetSteamID")]
         private static extern ulong Internal_GetSteamID(IntPtr self);
 
-        [DllImport("Native", EntryPoint = "NetPlayer_PlayOneShotSoun")]
+        [DllImport("Native", EntryPoint = "NetPlayer_PlayOneShotSound")]
         private static extern void Internal_PlayOneShotSound(IntPtr self, string soundPath, bool hasRandomFrequencyShift);
 
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
