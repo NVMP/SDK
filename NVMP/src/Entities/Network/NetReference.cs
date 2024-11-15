@@ -942,7 +942,7 @@ namespace NVMP.Entities
 
                 uint numZonesAvailable = Internal_GetZonesInside(__UnmanagedAddress, zonePointers);
                 var marshalledZones = new INetZone[numZonesAvailable];
-                for (uint i = 0; i < numZonesAllocated; ++i)
+                for (uint i = 0; i < numZonesAvailable; ++i)
                 {
                     marshalledZones[i] = Marshals.NetZoneMarshaler.Instance.MarshalNativeToManaged(zonePointers[i]) as INetZone;
                 }

@@ -208,7 +208,10 @@ namespace NVMP.BuiltinServices
             if (guild == null)
                 throw new Exception("No valid guild registered locally");
 
-            InternalRoles.Clear();
+            if (InternalRoles.Count != 0)
+            {
+                return;
+            }
 
             foreach (var role in guild.Roles)
             {
