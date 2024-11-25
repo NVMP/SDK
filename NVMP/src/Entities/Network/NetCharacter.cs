@@ -223,6 +223,55 @@ namespace NVMP.Entities
             }
         }
 
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetCurrentRadioRefID")]
+        private static extern uint Internal_GetCurrentRadioRefID(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetCurrentInternetRadioURL")]
+        private static extern string Internal_GetInternetRadioURL(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetCurrentInternetRadioURL")]
+        private static extern void Internal_SetInternetRadioURL(IntPtr self, string url);
+
+        /// <summary>
+        /// The current radio reference the character is listening to.
+        /// </summary>
+        public uint CurrentRadioRefID
+        {
+            get => Internal_GetCurrentRadioRefID(__UnmanagedAddress);
+        }
+
+        /// <summary>
+        /// Sets a radio URL the player will listen to on their client. This works for any Shoutcast radio URL.
+        /// </summary> 
+        public string InternetRadioURL
+        {
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    Internal_SetInternetRadioURL(__UnmanagedAddress, null);
+                }
+                else
+                {
+                    if (!value.StartsWith("http://"))
+                    {
+                        throw new Exception("Radio URLs must be plaintext HTTP.");
+                    }
+
+                    Internal_SetInternetRadioURL(__UnmanagedAddress, value);
+                }
+            }
+            get
+            {
+                string url = Internal_GetInternetRadioURL(__UnmanagedAddress);
+                if (string.IsNullOrEmpty(url))
+                {
+                    return null;
+                }
+
+                return url;
+            }
+        }
         public float SpectateDistance
         {
             get => Internal_GetSpectateDistance(__UnmanagedAddress);

@@ -42,6 +42,19 @@ namespace NVMP.Entities
         public NetAbstractReference CrosshairReference { get; }
 
         /// <summary>
+        /// The current radio reference the character is listening to.
+        /// </summary>
+        public uint CurrentRadioRefID { get; }
+
+        /// <summary>
+        /// Sets a radio URL the player will listen to on their client. This works for any Shoutcast radio URL.
+        /// </summary> 
+        /// <remarks>
+        /// There is a current bug with radio URLs where the URL cannot support HTTPS. A HTTP URL is required.
+        /// </remarks>
+        public string InternetRadioURL { get; set; }
+
+        /// <summary>
         /// How far away from an entity the spectate mode will be. This is disregarded if the player is not spectating an entity.
         /// </summary>
         public float SpectateDistance { get; set; }
