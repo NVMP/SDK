@@ -42,6 +42,11 @@ namespace NVMP.Entities
         public NetAbstractReference CrosshairReference { get; }
 
         /// <summary>
+        /// The position the character is currently aiming at.
+        /// </summary>
+        public Vector3 AimPos { get; }
+
+        /// <summary>
         /// The current radio reference the character is listening to.
         /// </summary>
         public uint CurrentRadioRefID { get; }

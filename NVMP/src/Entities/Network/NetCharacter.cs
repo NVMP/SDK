@@ -8,6 +8,18 @@ namespace NVMP.Entities
     internal class NetCharacter : NetActor, INetCharacter
     {
         #region Natives
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetCurrentRadioRefID")]
+        private static extern uint Internal_GetCurrentRadioRefID(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetCurrentInternetRadioURL")]
+        private static extern string Internal_GetInternetRadioURL(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_SetCurrentInternetRadioURL")]
+        private static extern void Internal_SetInternetRadioURL(IntPtr self, string url);
+
+        [DllImport("Native", EntryPoint = "GameNetCharacter_GetAimPos")]
+        private static extern void Internal_GetAimPos(IntPtr self, ref float x, ref float y, ref float z);
+
         [DllImport("Native", EntryPoint = "GameNetCharacter_SetCanFastTravel")]
         private static extern void Internal_SetCanFastTravel(IntPtr self, bool authenticated);
 
@@ -222,15 +234,15 @@ namespace NVMP.Entities
                 return result;
             }
         }
-
-        [DllImport("Native", EntryPoint = "GameNetCharacter_GetCurrentRadioRefID")]
-        private static extern uint Internal_GetCurrentRadioRefID(IntPtr self);
-
-        [DllImport("Native", EntryPoint = "GameNetCharacter_GetCurrentInternetRadioURL")]
-        private static extern string Internal_GetInternetRadioURL(IntPtr self);
-
-        [DllImport("Native", EntryPoint = "GameNetCharacter_SetCurrentInternetRadioURL")]
-        private static extern void Internal_SetInternetRadioURL(IntPtr self, string url);
+        public Vector3 AimPos
+        {
+            get
+            {
+                Vector3 value = Vector3.Zero;
+                Internal_GetSpectatePosition(__UnmanagedAddress, ref value.X, ref value.Y, ref value.Z);
+                return value;
+            }
+        }
 
         /// <summary>
         /// The current radio reference the character is listening to.
