@@ -1,0 +1,461 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DiscordPlayerManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DiscordPlayerManager
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NVMP.BuiltinServices.DiscordPlayerManager">
+  
+  
+  <h1 id="NVMP_BuiltinServices_DiscordPlayerManager" data-uid="NVMP.BuiltinServices.DiscordPlayerManager" class="text-break">Class DiscordPlayerManager
+  </h1>
+  <div class="markdown level0 summary"><p>The Discord player manager allows you to link your in-game players to their Discord account credentials, and configure how they
+represent in-game additionally. This manager by default enforces all players joining to have Discord linked on their Epic account,
+and if not - then they are kicked. See DiscordPlayerManagerFlags for additional configurations you can enable.</p>
+<p>This manager also adds IPlayerRole instances to players associated to their Discord role, and this automatically is kept in sync
+with remote role changes.</p>
+<p>Important tid-bits:</p>
+<ul>
+<li>GuildId must be set to a Guild your Discord Client socket has moderation permissions on.</li>
+<li>This manager also subscribes INetPlayer.Ban to ban via the Discord guild.</li>
+<li>RoleWhiteList is optional, but if set requires players to have all the roles set in it's array to connect and play.</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DiscordPlayerManager</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="NVMP.BuiltinServices.IPlayerManager.html">IPlayerManager</a></div>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NVMP.BuiltinServices.html">NVMP.BuiltinServices</a></h6>
+  <h6><strong>Assembly</strong>: NVMP.dll</h6>
+  <h5 id="NVMP_BuiltinServices_DiscordPlayerManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DiscordPlayerManager : IPlayerManager, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager__ctor_Discord_WebSocket_DiscordSocketClient_.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.%23ctor(Discord.WebSocket.DiscordSocketClient)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L94">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager__ctor_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.#ctor*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager__ctor_Discord_WebSocket_DiscordSocketClient_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.#ctor(Discord.WebSocket.DiscordSocketClient)">DiscordPlayerManager(DiscordSocketClient)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DiscordPlayerManager(DiscordSocketClient discordSocketClient)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Discord.WebSocket.DiscordSocketClient</span></td>
+        <td><span class="parametername">discordSocketClient</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_RoleWhiteList.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.RoleWhiteList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L65">View Source</a>
+  </span>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_RoleWhiteList" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.RoleWhiteList">RoleWhiteList</h4>
+  <div class="markdown level1 summary"><p>Sets a role white-list that only permits users that have this role on their Discord account from joining and playing.
+If this is set to NULL, then any role is permitted.
+PlayerLifetimeLinked must be set to use this property, as it depends on Guild information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong[] RoleWhiteList</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_AccountTypesUsed.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.AccountTypesUsed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L78">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_AccountTypesUsed_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.AccountTypesUsed*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_AccountTypesUsed" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.AccountTypesUsed">AccountTypesUsed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetPlayerAccountType[] AccountTypesUsed { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.NetPlayerAccountType.html">NetPlayerAccountType</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_Flags.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.Flags%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L53">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_Flags_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.Flags*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_Flags" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.Flags">Flags</h4>
+  <div class="markdown level1 summary"><p>Behaviour flags of the player manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DiscordPlayerManagerFlags Flags { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.BuiltinServices.DiscordPlayerManagerFlags.html">DiscordPlayerManagerFlags</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_GuildId.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.GuildId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L58">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_GuildId_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.GuildId*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_GuildId" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.GuildId">GuildId</h4>
+  <div class="markdown level1 summary"><p>The Discord Guild ID this player manager is bound to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong GuildId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_Roles.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.Roles%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L68">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_Roles_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.Roles*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_Roles" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.Roles">Roles</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IPlayerRole[] Roles { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerRole.html">IPlayerRole</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_AddScopesToRole_System_UInt64_NVMP_Entities_IRoleScope___.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.AddScopesToRole(System.UInt64%2CNVMP.Entities.IRoleScope%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L345">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_AddScopesToRole_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.AddScopesToRole*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_AddScopesToRole_System_UInt64_NVMP_Entities_IRoleScope___" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.AddScopesToRole(System.UInt64,NVMP.Entities.IRoleScope[])">AddScopesToRole(UInt64, IRoleScope[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddScopesToRole(ulong roleId, IRoleScope[] scopes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">roleId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IRoleScope.html">IRoleScope</a>[]</td>
+        <td><span class="parametername">scopes</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_AddScopeToRoles_System_UInt64___NVMP_Entities_IRoleScope_.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.AddScopeToRoles(System.UInt64%5B%5D%2CNVMP.Entities.IRoleScope)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L336">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_AddScopeToRoles_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.AddScopeToRoles*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_AddScopeToRoles_System_UInt64___NVMP_Entities_IRoleScope_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.AddScopeToRoles(System.UInt64[],NVMP.Entities.IRoleScope)">AddScopeToRoles(UInt64[], IRoleScope)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddScopeToRoles(ulong[] roleIds, IRoleScope scope)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span>[]</td>
+        <td><span class="parametername">roleIds</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IRoleScope.html">IRoleScope</a></td>
+        <td><span class="parametername">scope</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager_Dispose.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L108">View Source</a>
+  </span>
+  <a id="NVMP_BuiltinServices_DiscordPlayerManager_Dispose_" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.Dispose*"></a>
+  <h4 id="NVMP_BuiltinServices_DiscordPlayerManager_Dispose" data-uid="NVMP.BuiltinServices.DiscordPlayerManager.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="NVMP.BuiltinServices.IPlayerManager.html">IPlayerManager</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_BuiltinServices_DiscordPlayerManager.md&amp;value=---%0Auid%3A%20NVMP.BuiltinServices.DiscordPlayerManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/BuiltinServices/DiscordPlayerManager.cs/#L46" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
