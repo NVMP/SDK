@@ -13,8 +13,6 @@ namespace NVMP.Entities
 {
     internal class NetReference : NetUnmanaged, INetReference
     {
-        internal delegate NetReferencePVSTestTypes PVSCheckDelegate(INetPlayer player);
-
         #region Natives
         [DllImport("Native", EntryPoint = "GameNetReference_GetNumZonesInside")]
         private static extern uint Internal_GetNumZonesInside(IntPtr self);
@@ -206,10 +204,10 @@ namespace NVMP.Entities
         private static extern NetReferenceFormType Internal_GetFormType(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetPVSCheckDelegate")]
-        private static extern void Internal_SetPVSCheckDelegate(IntPtr self, PVSCheckDelegate del);
+        private static extern void Internal_SetPVSCheckDelegate(IntPtr self, OnPVSCheck del);
 
         [DllImport("Native", EntryPoint = "GameNetReference_GetPVSCheckDelegate")]
-        private static extern PVSCheckDelegate Internal_GetPVSCheckDelegate(IntPtr self);
+        private static extern OnPVSCheck Internal_GetPVSCheckDelegate(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetReference_BindDelegate")]
         protected static extern void Internal_BindDelegate(IntPtr self, string name, Delegate del);
@@ -268,31 +266,6 @@ namespace NVMP.Entities
 
         #endregion
 
-        public class PVSController : INetReferencePVSController
-        {
-            public bool IsInGlobalPVS { get; set; }
-
-            public Func<INetPlayer, NetReferencePVSTestTypes> CheckDelegate
-            {
-                set
-                {
-                    Delegate = player => value(player);
-                    Internal_SetPVSCheckDelegate(Parent.__UnmanagedAddress, Delegate);
-                }
-                get => Delegate.Invoke;
-            }
-
-            internal NetReference Parent;
-            internal PVSCheckDelegate Delegate;
-
-            public PVSController(NetReference netRef)
-            {
-                Parent = netRef;
-            }
-        }
-
-        public INetReferencePVSController PVS { get; }
-
         internal class OnActivatedSubscription : SubscriptionDelegate<OnActivatedReference>
         {
             public OnActivatedReference Execute;
@@ -333,6 +306,21 @@ namespace NVMP.Entities
             }
         }
 
+        private OnPVSCheck InternalPVSCheck;
+
+        public OnPVSCheck PVSCheck
+        {
+            set
+            {
+                InternalPVSCheck = value;
+                Internal_SetPVSCheckDelegate(__UnmanagedAddress, InternalPVSCheck);
+            }
+            get
+            {
+                return InternalPVSCheck;
+            }
+        }
+
         internal OnActivatedSubscription OnActivatedDelegate = new OnActivatedSubscription();
         internal OnDamagedSubscription OnDamagedDelegate = new OnDamagedSubscription();
         internal OnActivatedSubscription OnActivatedOtherReferenceDelegate = new OnActivatedSubscription();
@@ -355,16 +343,12 @@ namespace NVMP.Entities
             remove { OnDamagedDelegate.Remove(value); }
         }
 
-        public NetReference()
-        {
-            PVS = new PVSController(this);
-        }
-
         protected override void PreDispose()
         {
             Internal_SetOnActivatedDelegate(__UnmanagedAddress, null);
             Internal_SetOnDamagedDelegate(__UnmanagedAddress, null);
             Internal_SetOnActivatedOtherReferenceDelegate(__UnmanagedAddress, null);
+            Internal_SetPVSCheckDelegate(__UnmanagedAddress, null);
         }
 
         internal override void OnCreate()

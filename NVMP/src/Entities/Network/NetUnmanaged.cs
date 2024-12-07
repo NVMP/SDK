@@ -74,9 +74,9 @@ namespace NVMP.Entities
                     }
 
                     // free any existing gc handles on the old reference if we are pairing a new object
-                    if (__UnmanagedAddress != IntPtr.Zero)
+                    if (__InternalUnmanagedAddress != IntPtr.Zero)
                     {
-                        var existingPtr = GCHandle.FromIntPtr(Internal_GetManagedHandle(__UnmanagedAddress));
+                        var existingPtr = GCHandle.FromIntPtr(Internal_GetManagedHandle(__InternalUnmanagedAddress));
                         if (existingPtr != null)
                         {
                             existingPtr.Free();
@@ -88,6 +88,11 @@ namespace NVMP.Entities
             }
             get
             {
+                if (__InternalUnmanagedAddress == IntPtr.Zero)
+                {
+                    throw new Exception("Attempted to use a NULL managed object.");
+                }
+
                 return __InternalUnmanagedAddress;
             }
         }
@@ -170,7 +175,7 @@ namespace NVMP.Entities
                     // TODO: dispose managed state (managed objects)
                 }
 
-                if (__UnmanagedAddress != IntPtr.Zero)
+                if (__InternalUnmanagedAddress != IntPtr.Zero)
                 {
                     PreDispose();
 

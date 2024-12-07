@@ -66,6 +66,12 @@ namespace NVMP.Entities
         }
     }
 
+    public delegate NetReferencePVSTestTypes OnPVSCheck
+        (
+            [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetPlayerMarshaler))]
+                    INetPlayer player
+        );
+
     [return: MarshalAs(UnmanagedType.I1)]
     public delegate bool OnActivatedReference
         (

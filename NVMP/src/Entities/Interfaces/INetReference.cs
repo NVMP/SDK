@@ -83,6 +83,12 @@ namespace NVMP.Entities
         public event OnActivatedReference Activated;
 
         /// <summary>
+        /// A delegate you can bind when you wish to override the PVS checks on this reference. This can be
+        /// very expensive depending on players near this reference. 
+        /// </summary>
+        public OnPVSCheck PVSCheck { get; set; }
+
+        /// <summary>
         /// If an name has been set, this changes the colour of it in RGBA (0-255) format
         /// </summary>
         public Color NameColor { get; set; }
@@ -323,11 +329,6 @@ namespace NVMP.Entities
         /// Returns the number of zones this reference is inside of. 
         /// </summary>
         public uint NumZonesInside { get; }
-
-        /// <summary>
-        /// The implemented PVS controller.
-        /// </summary>
-        public INetReferencePVSController PVS { get; }
 
         /// <summary>
         /// Returns whether an object is destroyed in unmanaged code. This doesn't mean that the object is free'd from memory,
