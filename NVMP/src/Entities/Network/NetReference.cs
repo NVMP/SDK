@@ -54,13 +54,30 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetReference_SetInterpMode")]
         private static extern void Internal_SetInterpMode(IntPtr self, NetReferenceInterpolationMode mode);
 
-
         [DllImport("Native", EntryPoint = "GameNetReference_GetName")]
         [return: MarshalAs(UnmanagedType.LPWStr)]
         private static extern string Internal_GetName(IntPtr self);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetName", CharSet = CharSet.Unicode)]
         private static extern void Internal_SetName(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string name);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetNametagSize")]
+        private static extern void Internal_SetNametagSize(IntPtr self, float size);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetNametagSize")]
+        private static extern float Internal_GetNametagSize(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetDetailsSize")]
+        private static extern void Internal_SetDetailsSize(IntPtr self, float size);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetDetailsSize")]
+        private static extern float Internal_GetDetailsSize(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_GetScript")]
+        private static extern string Internal_GetScript(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetReference_SetScript")]
+        private static extern void Internal_SetScript(IntPtr self, string name);
 
         [DllImport("Native", EntryPoint = "GameNetReference_SetNameColor")]
         private static extern void Internal_SetNameColor(IntPtr self, byte r, byte g, byte b, byte a);
@@ -374,6 +391,16 @@ namespace NVMP.Entities
         }
 
         /// <summary>
+        /// Sets the script on the specified reference. This script is ran everytime when the object is created and valid,
+        /// and the this-reference is set to the reference additionally. This has a limit of 4KB.
+        /// </summary>
+        public string Script
+        {
+            set => Internal_SetScript(__UnmanagedAddress, value);
+            get => Internal_GetScript(__UnmanagedAddress);
+        }
+
+        /// <summary>
         /// Sets whether the reference be interacted with the E key. For actors this may be either dialogue, or looting.
         /// For containers, this is looting. And for other stuff, just check the GECK.
         /// </summary>
@@ -411,6 +438,30 @@ namespace NVMP.Entities
 
                 return Color.FromArgb(r, g, b, a);
             }
+        }
+
+        /// <summary>
+        /// Sets the nametag size of the reference.
+        /// </summary>
+        /// <remarks>
+        /// The default value for this is 19.0
+        /// </remarks>
+        public float NameSize
+        {
+            set => Internal_SetNametagSize(__UnmanagedAddress, value);
+            get => Internal_GetNametagSize(__UnmanagedAddress);
+        }
+
+        /// <summary>
+        /// Sets the nametag size of the reference.
+        /// </summary>
+        /// <remarks>
+        /// The default value for this is 19.0
+        /// </remarks>
+        public float DetailsSize
+        {
+            set => Internal_SetDetailsSize(__UnmanagedAddress, value);
+            get => Internal_GetDetailsSize(__UnmanagedAddress);
         }
 
         /// <summary>

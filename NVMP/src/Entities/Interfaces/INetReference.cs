@@ -94,6 +94,22 @@ namespace NVMP.Entities
         public Color NameColor { get; set; }
 
         /// <summary>
+        /// Sets the nametag size of the reference.
+        /// </summary>
+        /// <remarks>
+        /// The default value for this is 19.0
+        /// </remarks>
+        public float NameSize { get; set; }
+
+        /// <summary>
+        /// Sets the size of the title and any other details (text that isn't a nametag).
+        /// </summary>
+        /// <remarks>
+        /// The default value for this is 15.0
+        /// </remarks>
+        public float DetailsSize { get; set; }
+
+        /// <summary>
         /// The overhead title of the actor. 
         /// Clients may not change the title of actors.
         /// </summary>
@@ -103,6 +119,12 @@ namespace NVMP.Entities
         /// If an overhead title has been set, this changes the colour of it in RGBA (0-255) format
         /// </summary>
         public Color TitleColor { get; set; }
+
+        /// <summary>
+        /// Sets the script on the specified reference. This script is ran everytime when the object is created and valid,
+        /// and the this-reference is set to the reference additionally. This has a limit of 4KB.
+        /// </summary>
+        public string Script { get; set; }
 
         /// <summary>
         /// Objects that are inside the same virtual world are synchronised together, but if they are not then they have no understanding 

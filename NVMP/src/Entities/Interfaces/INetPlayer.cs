@@ -130,6 +130,13 @@ namespace NVMP.Entities
         public bool IsDev { get; set; }
 
         /// <summary>
+        /// Sets if a player is using clientside hit detection for PVP combat. Defaulted to false by default, and is opt-in.
+        /// Non-clientside hit-detect depends on damage from players being accurate enough to hit on the victims screen, which may
+        /// create a dependency to synchronisation prediction.
+        /// </summary>
+        public bool IsUsingClientsideHitDetection { get; set; }
+
+        /// <summary>
         /// Player's party ID. Players in a party with other players will be able to see a blip where their friend is, and always maintains PVS status.
         /// </summary>
         public uint PartyID { get; set; }

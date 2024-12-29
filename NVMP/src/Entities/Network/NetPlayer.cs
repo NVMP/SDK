@@ -96,6 +96,13 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsDev(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SetIsUsingClientsideHitDetection")]
+        private static extern void Internal_SetIsUsingClientsideHitDetection(IntPtr self, bool isUsingCHD);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetIsUsingClientsideHitDetection")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetIsUsingClientsideHitDetection(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SetPartyID")]
         private static extern void Internal_SetPartyID(IntPtr self, uint partyID);
 
@@ -350,14 +357,14 @@ namespace NVMP.Entities
 
         public bool IsDev
         {
-            set
-            {
-                Internal_SetIsDev(__UnmanagedAddress, value);
-            }
-            get
-            {
-                return Internal_GetIsDev(__UnmanagedAddress);
-            }
+            set => Internal_SetIsDev(__UnmanagedAddress, value);
+            get => Internal_GetIsDev(__UnmanagedAddress);
+        }
+
+        public bool IsUsingClientsideHitDetection
+        {
+            set => Internal_SetIsUsingClientsideHitDetection(__UnmanagedAddress, value);
+            get => Internal_GetIsUsingClientsideHitDetection(__UnmanagedAddress);
         }
 
         public uint PartyID

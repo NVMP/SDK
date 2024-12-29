@@ -19,8 +19,9 @@ namespace NVMP.Entities
         internal static extern IntPtr Internal_CreateOrGet(uint worldSpaceFormID);
 
         public override Type Implementation { get; } = typeof(NetWorldSpace);
-
         public override uint ObjectType { get; } = Hashing.Compute("GameNetWorldSpace");
+
+        private object FactoryLock = new object();
 
         /// <summary>
         /// Subscribes new middleware for when a new label is created, called directly after the managed object is initialized.
@@ -60,20 +61,29 @@ namespace NVMP.Entities
         /// <returns></returns>
         public INetWorldSpace CreateOrGet(WorldspaceType formID)
         {
-            var unmanaged = Internal_CreateOrGet((uint)formID);
-            if (unmanaged != IntPtr.Zero)
+            // Must lock here because CreateOrGet could be called from multiple threads. Internal_CreateOrGet
+            // is thread-safe, however the Allocation of a managed instance could be ran concurrently. So exclusive
+            // lock this entire operation to create a critical section over the object, and the factory allocation.
+            // NOTE: It could be better to lock something associated to the unmanaged ptr, but since we don't have an
+            // object to that yet, this seems difficult. I'm happy to just lock the entire factory for these calls.
+            lock (FactoryLock)
             {
-                // we want to find the object allocated to the native data. 
-                var managedHandle = NetReference.GetManagedHandleFromNativePointer(unmanaged);
-                if (managedHandle == IntPtr.Zero)
+                var unmanaged = Internal_CreateOrGet((uint)formID);
+                if (unmanaged != IntPtr.Zero)
                 {
-                    var inst = Allocate(IntPtr.Zero) as NetWorldSpace;
-                    inst.__UnmanagedAddress = unmanaged;
-                    inst.MarkWeak();
+                    // we want to find the object allocated to the native data. 
+                    var managedHandle = NetReference.GetManagedHandleFromNativePointer(unmanaged);
+                    if (managedHandle == IntPtr.Zero)
+                    {
+                        var inst = Allocate(IntPtr.Zero) as NetWorldSpace;
+                        inst.__UnmanagedAddress = unmanaged;
+                        inst.MarkWeak();
+                    }
+
+                    return Marshals.NetWorldSpaceMarshaler.Instance.MarshalNativeToManaged(unmanaged) as INetWorldSpace;
                 }
-                
-                return Marshals.NetWorldSpaceMarshaler.Instance.MarshalNativeToManaged(unmanaged) as INetWorldSpace;
             }
+
             return null;
         }
 

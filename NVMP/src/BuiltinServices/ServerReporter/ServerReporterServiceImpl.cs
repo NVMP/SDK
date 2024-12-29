@@ -14,7 +14,7 @@ namespace NVMP.BuiltinServices
         private static readonly int BroadcastInterval = 2000;
         private static readonly string BroadcastServer = "http://localhost:8030/";
 #else
-        private static readonly int   BroadcastInterval = 60 * 1000;
+        private static readonly int   BroadcastInterval = 5 * 1000;
         private static readonly string BroadcastServer = "https://nv-mp.com/";
 #endif
         private IModDownloadService ModService;
@@ -97,7 +97,6 @@ namespace NVMP.BuiltinServices
                 BroadcastTimer.Start();
 
                 Debugging.Write("[reporter] Ready");
-                Broadcast(null, null);
             }
         }
 

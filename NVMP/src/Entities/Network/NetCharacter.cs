@@ -239,7 +239,7 @@ namespace NVMP.Entities
             get
             {
                 Vector3 value = Vector3.Zero;
-                Internal_GetSpectatePosition(__UnmanagedAddress, ref value.X, ref value.Y, ref value.Z);
+                Internal_GetAimPos(__UnmanagedAddress, ref value.X, ref value.Y, ref value.Z);
                 return value;
             }
         }
