@@ -1,0 +1,1953 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface INetPlayer
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface INetPlayer
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NVMP.Entities.INetPlayer">
+  
+  
+  <h1 id="NVMP_Entities_INetPlayer" data-uid="NVMP.Entities.INetPlayer" class="text-break">Interface INetPlayer
+  </h1>
+  <div class="markdown level0 summary"><p>Wraps around player instance data, allowing custom event registration and player control. Players cannot be created in the managed environment,
+and are instead created at runtime on a socket connection. Players own an INetCharacter instance as their primary replicated pawn in the game,
+and may control and simulate various objects running in the server.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="NVMP.Entities.html">NVMP.Entities</a></h6>
+  <h6><strong>Assembly</strong>: NVMP.dll</h6>
+  <h5 id="NVMP_Entities_INetPlayer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface INetPlayer</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_ActiveMenus.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.ActiveMenus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L169">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_ActiveMenus_" data-uid="NVMP.Entities.INetPlayer.ActiveMenus*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_ActiveMenus" data-uid="NVMP.Entities.INetPlayer.ActiveMenus">ActiveMenus</h4>
+  <div class="markdown level1 summary"><p>Returns an array of all active menus being presented on the player's screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IGUIWindowTemplate[] ActiveMenus { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.GUI.IGUIWindowTemplate.html">IGUIWindowTemplate</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Actor.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Actor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L100">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Actor_" data-uid="NVMP.Entities.INetPlayer.Actor*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Actor" data-uid="NVMP.Entities.INetPlayer.Actor">Actor</h4>
+  <div class="markdown level1 summary"><p>Returns the actor in use by this player's character, this is the actor that is allocated for the user to use
+in gameplay synchronisation. In some cases the actor can be null if the connection is in a connection transition</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">INetCharacter Actor { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetCharacter.html">INetCharacter</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Authenticated.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Authenticated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L69">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Authenticated_" data-uid="NVMP.Entities.INetPlayer.Authenticated*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Authenticated" data-uid="NVMP.Entities.INetPlayer.Authenticated">Authenticated</h4>
+  <div class="markdown level1 summary"><p>Returns if the account is authenticated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Authentication is now handled via GetAuthenticatedAccount, and unauthenticated players should never hit the CLR runtime except on Authenticating callbacks. You may remove calls to this property. &quot;, false)]
+bool Authenticated { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_AuthenticationToken.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.AuthenticationToken%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L63">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_AuthenticationToken_" data-uid="NVMP.Entities.INetPlayer.AuthenticationToken*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_AuthenticationToken" data-uid="NVMP.Entities.INetPlayer.AuthenticationToken">AuthenticationToken</h4>
+  <div class="markdown level1 summary"><p>The custom token provided by the connection to authenticate on. This could be an OAuth bearer token,
+a password, or auth key. Ensure this data is not exposed to the game state</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Authentication is now handled via GetAuthenticatedAccount, it is not safe to call this anymore.&quot;, true)]
+string AuthenticationToken { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_CanUseSaves.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.CanUseSaves%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L80">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_CanUseSaves_" data-uid="NVMP.Entities.INetPlayer.CanUseSaves*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_CanUseSaves" data-uid="NVMP.Entities.INetPlayer.CanUseSaves">CanUseSaves</h4>
+  <div class="markdown level1 summary"><p>Set if the player cannot load or save their savegame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanUseSaves { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_ConnectionID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.ConnectionID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L86">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_ConnectionID_" data-uid="NVMP.Entities.INetPlayer.ConnectionID*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_ConnectionID" data-uid="NVMP.Entities.INetPlayer.ConnectionID">ConnectionID</h4>
+  <div class="markdown level1 summary"><p>An unsigned integer representing the connection ID of this player. This ID is generated genetically per
+session and is unique per player/connection in the game</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint ConnectionID { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_IP.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.IP%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L105">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_IP_" data-uid="NVMP.Entities.INetPlayer.IP*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_IP" data-uid="NVMP.Entities.INetPlayer.IP">IP</h4>
+  <div class="markdown level1 summary"><p>Player's IP address in IPv4 format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string IP { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_IsDev.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.IsDev%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L130">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_IsDev_" data-uid="NVMP.Entities.INetPlayer.IsDev*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_IsDev" data-uid="NVMP.Entities.INetPlayer.IsDev">IsDev</h4>
+  <div class="markdown level1 summary"><p>Player's development state. Allowing them to be a dev allows for additional network information, that could be sensitive to the gamemode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsDev { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_IsKicked.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.IsKicked%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L75">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_IsKicked_" data-uid="NVMP.Entities.INetPlayer.IsKicked*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_IsKicked" data-uid="NVMP.Entities.INetPlayer.IsKicked">IsKicked</h4>
+  <div class="markdown level1 summary"><p>Returns if the player was kicked and is waiting for connections to wrap up.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsKicked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_IsUsingClientsideHitDetection.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.IsUsingClientsideHitDetection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L137">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_IsUsingClientsideHitDetection_" data-uid="NVMP.Entities.INetPlayer.IsUsingClientsideHitDetection*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_IsUsingClientsideHitDetection" data-uid="NVMP.Entities.INetPlayer.IsUsingClientsideHitDetection">IsUsingClientsideHitDetection</h4>
+  <div class="markdown level1 summary"><p>Sets if a player is using clientside hit detection for PVP combat. Defaulted to false by default, and is opt-in.
+Non-clientside hit-detect depends on damage from players being accurate enough to hit on the victims screen, which may
+create a dependency to synchronisation prediction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsUsingClientsideHitDetection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Item_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Item(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L94">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Item_" data-uid="NVMP.Entities.INetPlayer.Item*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Item_System_String_" data-uid="NVMP.Entities.INetPlayer.Item(System.String)">Item[String]</h4>
+  <div class="markdown level1 summary"><p>Sets custom data on the unmanaged pointer type. Custom data is not synchronised but persists on a player until it is
+either removed through the same interface, or the player disconnects. Only strings are supported</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string this[string key] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_MaxPlayers.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.MaxPlayers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L40">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_MaxPlayers_" data-uid="NVMP.Entities.INetPlayer.MaxPlayers*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_MaxPlayers" data-uid="NVMP.Entities.INetPlayer.MaxPlayers">MaxPlayers</h4>
+  <div class="markdown level1 summary"><p>Returns max players</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static uint MaxPlayers { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Name.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L57">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Name_" data-uid="NVMP.Entities.INetPlayer.Name*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Name" data-uid="NVMP.Entities.INetPlayer.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The player's name set by the game. This is not set by a player and cannot be wrote to other than via
+the server and any managed native</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_NumPlayers.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.NumPlayers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L35">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_NumPlayers_" data-uid="NVMP.Entities.INetPlayer.NumPlayers*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_NumPlayers" data-uid="NVMP.Entities.INetPlayer.NumPlayers">NumPlayers</h4>
+  <div class="markdown level1 summary"><p>Returns a number of all players</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static uint NumPlayers { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_PartyID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.PartyID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L142">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_PartyID_" data-uid="NVMP.Entities.INetPlayer.PartyID*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_PartyID" data-uid="NVMP.Entities.INetPlayer.PartyID">PartyID</h4>
+  <div class="markdown level1 summary"><p>Player's party ID. Players in a party with other players will be able to see a blip where their friend is, and always maintains PVS status.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint PartyID { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Ping.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Ping%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L110">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Ping_" data-uid="NVMP.Entities.INetPlayer.Ping*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Ping" data-uid="NVMP.Entities.INetPlayer.Ping">Ping</h4>
+  <div class="markdown level1 summary"><p>Player's round-trip time between a packet, and an acknowledgement response.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">uint Ping { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_RichPresenceSteamID.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.RichPresenceSteamID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L147">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_RichPresenceSteamID_" data-uid="NVMP.Entities.INetPlayer.RichPresenceSteamID*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_RichPresenceSteamID" data-uid="NVMP.Entities.INetPlayer.RichPresenceSteamID">RichPresenceSteamID</h4>
+  <div class="markdown level1 summary"><p>UNSAFE - not to be trusted for authentication. Mainly for rich presence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ulong RichPresenceSteamID { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Roles.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Roles%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L174">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Roles_" data-uid="NVMP.Entities.INetPlayer.Roles*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Roles" data-uid="NVMP.Entities.INetPlayer.Roles">Roles</h4>
+  <div class="markdown level1 summary"><p>Returns a list of roles associated to the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IPlayerRole[] Roles { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerRole.html">IPlayerRole</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_SecondsSinceLastPing.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.SecondsSinceLastPing%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L115">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_SecondsSinceLastPing_" data-uid="NVMP.Entities.INetPlayer.SecondsSinceLastPing*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_SecondsSinceLastPing" data-uid="NVMP.Entities.INetPlayer.SecondsSinceLastPing">SecondsSinceLastPing</h4>
+  <div class="markdown level1 summary"><p>Gets the amount of seconds since the player last pinged the server with either a ping response, or sent us data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float SecondsSinceLastPing { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_VoicePitch.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.VoicePitch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L125">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_VoicePitch_" data-uid="NVMP.Entities.INetPlayer.VoicePitch*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_VoicePitch" data-uid="NVMP.Entities.INetPlayer.VoicePitch">VoicePitch</h4>
+  <div class="markdown level1 summary"><p>VOIP pitch, between 0.2 - 2.0</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float VoicePitch { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_VoiceVolume.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.VoiceVolume%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L120">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_VoiceVolume_" data-uid="NVMP.Entities.INetPlayer.VoiceVolume*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_VoiceVolume" data-uid="NVMP.Entities.INetPlayer.VoiceVolume">VoiceVolume</h4>
+  <div class="markdown level1 summary"><p>VOIP volume multiplier, between 0.1 - 10.0</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float VoiceVolume { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Ban_System_String_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Ban(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L271">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Ban_" data-uid="NVMP.Entities.INetPlayer.Ban*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Ban_System_String_System_String_" data-uid="NVMP.Entities.INetPlayer.Ban(System.String,System.String)">Ban(String, String)</h4>
+  <div class="markdown level1 summary"><p>Bans the player from the current session. By default this acts as Kick(), but fires an OnBanned
+events for player manager's to handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Ban(string reason, string whoby = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">whoby</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_BroadcastGenericChatMessage_System_String_System_Nullable_System_Drawing_Color__.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.BroadcastGenericChatMessage(System.String%2CSystem.Nullable%7BSystem.Drawing.Color%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L337">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_BroadcastGenericChatMessage_" data-uid="NVMP.Entities.INetPlayer.BroadcastGenericChatMessage*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_BroadcastGenericChatMessage_System_String_System_Nullable_System_Drawing_Color__" data-uid="NVMP.Entities.INetPlayer.BroadcastGenericChatMessage(System.String,System.Nullable{System.Drawing.Color})">BroadcastGenericChatMessage(String, Nullable&lt;Color&gt;)</h4>
+  <div class="markdown level1 summary"><p>Broadcasts a message to all player's chat boxes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static void BroadcastGenericChatMessage(string message, Color? color = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Drawing.Color</span>&gt;</td>
+        <td><span class="parametername">color</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_ClearValidSaves.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.ClearValidSaves%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L232">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_ClearValidSaves_" data-uid="NVMP.Entities.INetPlayer.ClearValidSaves*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_ClearValidSaves" data-uid="NVMP.Entities.INetPlayer.ClearValidSaves">ClearValidSaves()</h4>
+  <div class="markdown level1 summary"><p>Removes all valid saves provided.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ClearValidSaves()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_CloseAllMenus.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.CloseAllMenus%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L330">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_CloseAllMenus_" data-uid="NVMP.Entities.INetPlayer.CloseAllMenus*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_CloseAllMenus" data-uid="NVMP.Entities.INetPlayer.CloseAllMenus">CloseAllMenus()</h4>
+  <div class="markdown level1 summary"><p>Closes all active menus.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CloseAllMenus()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_CloseMenu_NVMP_Entities_GUI_IGUIWindowTemplate_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.CloseMenu(NVMP.Entities.GUI.IGUIWindowTemplate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L325">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_CloseMenu_" data-uid="NVMP.Entities.INetPlayer.CloseMenu*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_CloseMenu_NVMP_Entities_GUI_IGUIWindowTemplate_" data-uid="NVMP.Entities.INetPlayer.CloseMenu(NVMP.Entities.GUI.IGUIWindowTemplate)">CloseMenu(IGUIWindowTemplate)</h4>
+  <div class="markdown level1 summary"><p>Closes an active menu on the player via the template object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void CloseMenu(IGUIWindowTemplate template)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.GUI.IGUIWindowTemplate.html">IGUIWindowTemplate</a></td>
+        <td><span class="parametername">template</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_GetAuthenticatedAccount_NVMP_Entities_NetPlayerAccountType_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.GetAuthenticatedAccount(NVMP.Entities.NetPlayerAccountType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L157">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_GetAuthenticatedAccount_" data-uid="NVMP.Entities.INetPlayer.GetAuthenticatedAccount*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_GetAuthenticatedAccount_NVMP_Entities_NetPlayerAccountType_" data-uid="NVMP.Entities.INetPlayer.GetAuthenticatedAccount(NVMP.Entities.NetPlayerAccountType)">GetAuthenticatedAccount(NetPlayerAccountType)</h4>
+  <div class="markdown level1 summary"><p>Returns an authenticated account with the player. If this returns null, then the account is not
+authenticated with the account provider type. This does not account for bans you may have set up on those
+platforms, such as Discord server bans - so you should do this after this returns the account you want to
+verify.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IPlayerAccount GetAuthenticatedAccount(NetPlayerAccountType accountType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.NetPlayerAccountType.html">NetPlayerAccountType</a></td>
+        <td><span class="parametername">accountType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerAccount.html">IPlayerAccount</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_GetAuthenticatedAccounts.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.GetAuthenticatedAccounts%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L164">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_GetAuthenticatedAccounts_" data-uid="NVMP.Entities.INetPlayer.GetAuthenticatedAccounts*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_GetAuthenticatedAccounts" data-uid="NVMP.Entities.INetPlayer.GetAuthenticatedAccounts">GetAuthenticatedAccounts()</h4>
+  <div class="markdown level1 summary"><p>Returns a full list of authenticated accounts supplied by the player. This should never be empty or null, as at
+minimum all NV:MP servers require an Epic account.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IPlayerAccount[] GetAuthenticatedAccounts()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerAccount.html">IPlayerAccount</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_GetPlayerByConnectionID_System_UInt32_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.GetPlayerByConnectionID(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L47">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_GetPlayerByConnectionID_" data-uid="NVMP.Entities.INetPlayer.GetPlayerByConnectionID*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_GetPlayerByConnectionID_System_UInt32_" data-uid="NVMP.Entities.INetPlayer.GetPlayerByConnectionID(System.UInt32)">GetPlayerByConnectionID(UInt32)</h4>
+  <div class="markdown level1 summary"><p>Finds a NetPlayer object by connection ID, or null if the ID is not valid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">static INetPlayer GetPlayerByConnectionID(uint id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>connection identifier</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a></td>
+        <td><p>player</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_HasRole_NVMP_Entities_IPlayerRole_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.HasRole(NVMP.Entities.IPlayerRole)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L181">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_HasRole_" data-uid="NVMP.Entities.INetPlayer.HasRole*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_HasRole_NVMP_Entities_IPlayerRole_" data-uid="NVMP.Entities.INetPlayer.HasRole(NVMP.Entities.IPlayerRole)">HasRole(IPlayerRole)</h4>
+  <div class="markdown level1 summary"><p>Queries if the specified role is assigned to the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool HasRole(IPlayerRole role)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerRole.html">IPlayerRole</a></td>
+        <td><span class="parametername">role</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_HasRoleByID_System_UInt64_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.HasRoleByID(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L188">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_HasRoleByID_" data-uid="NVMP.Entities.INetPlayer.HasRoleByID*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_HasRoleByID_System_UInt64_" data-uid="NVMP.Entities.INetPlayer.HasRoleByID(System.UInt64)">HasRoleByID(UInt64)</h4>
+  <div class="markdown level1 summary"><p>Queries if the specified role is assigned to the player, using the ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool HasRoleByID(ulong roleId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt64</span></td>
+        <td><span class="parametername">roleId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_HasRoleScope_NVMP_Entities_IRoleScope_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.HasRoleScope(NVMP.Entities.IRoleScope)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L213">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_HasRoleScope_" data-uid="NVMP.Entities.INetPlayer.HasRoleScope*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_HasRoleScope_NVMP_Entities_IRoleScope_" data-uid="NVMP.Entities.INetPlayer.HasRoleScope(NVMP.Entities.IRoleScope)">HasRoleScope(IRoleScope)</h4>
+  <div class="markdown level1 summary"><p>Returns if the player has the associated scope on their roles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool HasRoleScope(IRoleScope scope)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IRoleScope.html">IRoleScope</a></td>
+        <td><span class="parametername">scope</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_IsMenuActive_NVMP_Entities_GUI_IGUIWindowTemplate_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.IsMenuActive(NVMP.Entities.GUI.IGUIWindowTemplate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L319">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_IsMenuActive_" data-uid="NVMP.Entities.INetPlayer.IsMenuActive*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_IsMenuActive_NVMP_Entities_GUI_IGUIWindowTemplate_" data-uid="NVMP.Entities.INetPlayer.IsMenuActive(NVMP.Entities.GUI.IGUIWindowTemplate)">IsMenuActive(IGUIWindowTemplate)</h4>
+  <div class="markdown level1 summary"><p>Queries whether the menu template is active on the player's screen.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsMenuActive(IGUIWindowTemplate template)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.GUI.IGUIWindowTemplate.html">IGUIWindowTemplate</a></td>
+        <td><span class="parametername">template</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_Kick_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.Kick(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L263">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_Kick_" data-uid="NVMP.Entities.INetPlayer.Kick*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_Kick_System_String_System_String_System_Boolean_" data-uid="NVMP.Entities.INetPlayer.Kick(System.String,System.String,System.Boolean)">Kick(String, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Kicks the player from the current session in the next network stack update. This requests a disconnect from
+the peer, so may not be an instant disconnection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Kick(string reason, string whoby = null, bool silentFromChat = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td><p>reason of the kick</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">whoby</span></td>
+        <td><p>what entity performed this</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">silentFromChat</span></td>
+        <td><p>if set then this action isnt send to chat</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_PlayOneShotSound_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.PlayOneShotSound(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L227">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_PlayOneShotSound_" data-uid="NVMP.Entities.INetPlayer.PlayOneShotSound*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_PlayOneShotSound_System_String_System_Boolean_" data-uid="NVMP.Entities.INetPlayer.PlayOneShotSound(System.String,System.Boolean)">PlayOneShotSound(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Plays a one-shot sound on the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlayOneShotSound(string soundPath, bool hasRandomFrequencyShift)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">soundPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">hasRandomFrequencyShift</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_PresentMenu_NVMP_Entities_GUI_IGUIWindowTemplate_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.PresentMenu(NVMP.Entities.GUI.IGUIWindowTemplate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L312">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_PresentMenu_" data-uid="NVMP.Entities.INetPlayer.PresentMenu*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_PresentMenu_NVMP_Entities_GUI_IGUIWindowTemplate_" data-uid="NVMP.Entities.INetPlayer.PresentMenu(NVMP.Entities.GUI.IGUIWindowTemplate)">PresentMenu(IGUIWindowTemplate)</h4>
+  <div class="markdown level1 summary"><p>Present's a template to a player. Presenting a template will keep a reference to the template
+in the player, until the player closes the window, or you call CloseMenu. Once presented, it is
+expected that if you wish to close it manually later on, to keep a reference to IGUIWindowTemplate
+so that you can remove it from the player later on.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PresentMenu(IGUIWindowTemplate template)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.GUI.IGUIWindowTemplate.html">IGUIWindowTemplate</a></td>
+        <td><span class="parametername">template</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_RemoveAllRoles.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.RemoveAllRoles%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L206">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_RemoveAllRoles_" data-uid="NVMP.Entities.INetPlayer.RemoveAllRoles*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_RemoveAllRoles" data-uid="NVMP.Entities.INetPlayer.RemoveAllRoles">RemoveAllRoles()</h4>
+  <div class="markdown level1 summary"><p>Removes all active roles on the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RemoveAllRoles()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_RemoveFromRole_NVMP_Entities_IPlayerRole_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.RemoveFromRole(NVMP.Entities.IPlayerRole)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L201">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_RemoveFromRole_" data-uid="NVMP.Entities.INetPlayer.RemoveFromRole*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_RemoveFromRole_NVMP_Entities_IPlayerRole_" data-uid="NVMP.Entities.INetPlayer.RemoveFromRole(NVMP.Entities.IPlayerRole)">RemoveFromRole(IPlayerRole)</h4>
+  <div class="markdown level1 summary"><p>Removes a role from a player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RemoveFromRole(IPlayerRole role)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerRole.html">IPlayerRole</a></td>
+        <td><span class="parametername">role</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_RequestAutoSave.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.RequestAutoSave%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L254">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_RequestAutoSave_" data-uid="NVMP.Entities.INetPlayer.RequestAutoSave*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_RequestAutoSave" data-uid="NVMP.Entities.INetPlayer.RequestAutoSave">RequestAutoSave()</h4>
+  <div class="markdown level1 summary"><p>Sends a request to the player to auto-save. This may not be completed depending on the player's state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RequestAutoSave()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_RunScript_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.RunScript(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L279">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_RunScript_" data-uid="NVMP.Entities.INetPlayer.RunScript*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_RunScript_System_String_" data-uid="NVMP.Entities.INetPlayer.RunScript(System.String)">RunScript(String)</h4>
+  <div class="markdown level1 summary"><p>Runs a synchronous script on the player. Be aware that any long running scripts will lock the main thread
+on the player, and may time them out or freeze their instance until the script completes execution.
+Compilation is ran and verified on the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RunScript(string script)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">script</span></td>
+        <td><p>The script contents, must be less than 2KB in size or else the script will not be transmitted</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_SendGenericChatMessage_System_String_System_Nullable_System_Drawing_Color__System_Single_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.SendGenericChatMessage(System.String%2CSystem.Nullable%7BSystem.Drawing.Color%7D%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L287">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_SendGenericChatMessage_" data-uid="NVMP.Entities.INetPlayer.SendGenericChatMessage*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_SendGenericChatMessage_System_String_System_Nullable_System_Drawing_Color__System_Single_" data-uid="NVMP.Entities.INetPlayer.SendGenericChatMessage(System.String,System.Nullable{System.Drawing.Color},System.Single)">SendGenericChatMessage(String, Nullable&lt;Color&gt;, Single)</h4>
+  <div class="markdown level1 summary"><p>Sends a message to the player's chat box</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendGenericChatMessage(string message, Color? color = null, float fontSize = 18F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Drawing.Color</span>&gt;</td>
+        <td><span class="parametername">color</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">fontSize</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_SendPlayerChatMessage_System_String_System_Drawing_Color_System_String_System_Nullable_System_Drawing_Color__System_Single_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.SendPlayerChatMessage(System.String%2CSystem.Drawing.Color%2CSystem.String%2CSystem.Nullable%7BSystem.Drawing.Color%7D%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L297">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_SendPlayerChatMessage_" data-uid="NVMP.Entities.INetPlayer.SendPlayerChatMessage*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_SendPlayerChatMessage_System_String_System_Drawing_Color_System_String_System_Nullable_System_Drawing_Color__System_Single_" data-uid="NVMP.Entities.INetPlayer.SendPlayerChatMessage(System.String,System.Drawing.Color,System.String,System.Nullable{System.Drawing.Color},System.Single)">SendPlayerChatMessage(String, Color, String, Nullable&lt;Color&gt;, Single)</h4>
+  <div class="markdown level1 summary"><p>Sends a message to the player's chat box</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendPlayerChatMessage(string sender, Color sendercolor, string message, Color? messagecolor = null, float fontSize = 18F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Drawing.Color</span></td>
+        <td><span class="parametername">sendercolor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Drawing.Color</span>&gt;</td>
+        <td><span class="parametername">messagecolor</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">fontSize</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_SendValidSaves_System_String___.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.SendValidSaves(System.String%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L220">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_SendValidSaves_" data-uid="NVMP.Entities.INetPlayer.SendValidSaves*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_SendValidSaves_System_String___" data-uid="NVMP.Entities.INetPlayer.SendValidSaves(System.String[])">SendValidSaves(String[])</h4>
+  <div class="markdown level1 summary"><p>Sends a list of MD5 checksums that are associated to valid save game files. Players will only be able to load or browse
+saves that match this list provided.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SendValidSaves(string[] digests)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">digests</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_ShowCustomMessage_System_String_System_String_System_Single_System_String_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.ShowCustomMessage(System.String%2CSystem.String%2CSystem.Single%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L249">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_ShowCustomMessage_" data-uid="NVMP.Entities.INetPlayer.ShowCustomMessage*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_ShowCustomMessage_System_String_System_String_System_Single_System_String_" data-uid="NVMP.Entities.INetPlayer.ShowCustomMessage(System.String,System.String,System.Single,System.String)">ShowCustomMessage(String, String, Single, String)</h4>
+  <div class="markdown level1 summary"><p>Displays a custom VATs user interface message for the specified amount of time, and with the specified DDS path to use as the icon.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ShowCustomMessage(string message, string ddsPath, float time = 2F, string soundPath = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">ddsPath</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">time</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">soundPath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_ShowMenu_NVMP_UserInterface_MenuType_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.ShowMenu(NVMP.UserInterface.MenuType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L303">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_ShowMenu_" data-uid="NVMP.Entities.INetPlayer.ShowMenu*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_ShowMenu_NVMP_UserInterface_MenuType_" data-uid="NVMP.Entities.INetPlayer.ShowMenu(NVMP.UserInterface.MenuType)">ShowMenu(MenuType)</h4>
+  <div class="markdown level1 summary"><p>Shows a menu on the target player's screen</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ShowMenu(MenuType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.UserInterface.MenuType.html">MenuType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_ShowVaultBoyMessage_System_String_System_Single_NVMP_Entities_INetPlayer_VaultBoyEmotion_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.ShowVaultBoyMessage(System.String%2CSystem.Single%2CNVMP.Entities.INetPlayer.VaultBoyEmotion)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L240">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_ShowVaultBoyMessage_" data-uid="NVMP.Entities.INetPlayer.ShowVaultBoyMessage*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_ShowVaultBoyMessage_System_String_System_Single_NVMP_Entities_INetPlayer_VaultBoyEmotion_" data-uid="NVMP.Entities.INetPlayer.ShowVaultBoyMessage(System.String,System.Single,NVMP.Entities.INetPlayer.VaultBoyEmotion)">ShowVaultBoyMessage(String, Single, INetPlayer.VaultBoyEmotion)</h4>
+  <div class="markdown level1 summary"><p>Displays a vault-boy user interface message for the specified amount of time if the player is in-game.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ShowVaultBoyMessage(string message, float time = 2F, INetPlayer.VaultBoyEmotion emotion = INetPlayer.VaultBoyEmotion.Happy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">time</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.INetPlayer.VaultBoyEmotion.html">INetPlayer.VaultBoyEmotion</a></td>
+        <td><span class="parametername">emotion</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_TryAddToRole_NVMP_Entities_IPlayerRole_.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.TryAddToRole(NVMP.Entities.IPlayerRole)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L195">View Source</a>
+  </span>
+  <a id="NVMP_Entities_INetPlayer_TryAddToRole_" data-uid="NVMP.Entities.INetPlayer.TryAddToRole*"></a>
+  <h4 id="NVMP_Entities_INetPlayer_TryAddToRole_NVMP_Entities_IPlayerRole_" data-uid="NVMP.Entities.INetPlayer.TryAddToRole(NVMP.Entities.IPlayerRole)">TryAddToRole(IPlayerRole)</h4>
+  <div class="markdown level1 summary"><p>Adds a role to the player.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool TryAddToRole(IPlayerRole role)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="NVMP.Entities.IPlayerRole.html">IPlayerRole</a></td>
+        <td><span class="parametername">role</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_OnAuthenticated.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.OnAuthenticated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L354">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetPlayer_OnAuthenticated" data-uid="NVMP.Entities.INetPlayer.OnAuthenticated">OnAuthenticated</h4>
+  <div class="markdown level1 summary"><p>Called when the player authenticates with the backend services.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;INetPlayer&gt; OnAuthenticated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_OnBanned.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.OnBanned%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L359">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetPlayer_OnBanned" data-uid="NVMP.Entities.INetPlayer.OnBanned">OnBanned</h4>
+  <div class="markdown level1 summary"><p>Called when the player is banned via INetPlayer.Ban.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;INetPlayer, string&gt; OnBanned</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a>, <span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_OnInput.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.OnInput%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L364">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetPlayer_OnInput" data-uid="NVMP.Entities.INetPlayer.OnInput">OnInput</h4>
+  <div class="markdown level1 summary"><p>Called on input received from the player</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;INetPlayer, InputType, Keyboard.ScanCodes&gt; OnInput</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a>, <a class="xref" href="NVMP.UserInterface.InputType.html">InputType</a>, <a class="xref" href="NVMP.Keyboard.ScanCodes.html">Keyboard.ScanCodes</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_OnMouseUpdate.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.OnMouseUpdate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L369">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetPlayer_OnMouseUpdate" data-uid="NVMP.Entities.INetPlayer.OnMouseUpdate">OnMouseUpdate</h4>
+  <div class="markdown level1 summary"><p>Called on mouse input from the player</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;INetPlayer, int, int, int&gt; OnMouseUpdate</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer_OnRolesChanged.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer.OnRolesChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L349">View Source</a>
+  </span>
+  <h4 id="NVMP_Entities_INetPlayer_OnRolesChanged" data-uid="NVMP.Entities.INetPlayer.OnRolesChanged">OnRolesChanged</h4>
+  <div class="markdown level1 summary"><p>Called when the player's roles have changed, either new roles added or roles removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;INetPlayer&gt; OnRolesChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;<a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/new/main/apiSpec/new?filename=NVMP_Entities_INetPlayer.md&amp;value=---%0Auid%3A%20NVMP.Entities.INetPlayer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/NVMP/SDK/blob/main/NVMP/src/Entities/Interfaces/INetPlayer.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
