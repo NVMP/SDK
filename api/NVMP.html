@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace NVMP
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace NVMP
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NVMP">
+  
+  <h1 id="NVMP" data-uid="NVMP" class="text-break">Namespace NVMP
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="NVMP.Debugging.html">Debugging</a></h4>
+      <section><p>Debug helpers that write directly to the NV:MP console window, and log file, with automatic severity display.</p>
+</section>
+      <h4><a class="xref" href="NVMP.GameServer.html">GameServer</a></h4>
+      <section><p>Primary implementation of the game server</p>
+</section>
+      <h4><a class="xref" href="NVMP.Hashing.html">Hashing</a></h4>
+      <section><p>Utility functions for converting strings to 4 byte hashes. This is kept in sync with the native hashing implementation, so you
+can use this for native communication - or just general purpose hashing.</p>
+<p>It is loosely based on djb2 hashing.</p>
+</section>
+      <h4><a class="xref" href="NVMP.INativeProgramDescription.html">INativeProgramDescription</a></h4>
+      <section><p>Describes operations within an assemblies program. When this is passed, if you populate this structure
+the implementing program needs to maintain the managed data.
+If the managed object is lost, your program description functions will no longer be called.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Keyboard.html">Keyboard</a></h4>
+      <section><p>A utility helper for GECK keyboard operations and scan codes.
+Kept in sync with gamefalloutnv.h.</p>
+</section>
+      <h4><a class="xref" href="NVMP.ModFile.html">ModFile</a></h4>
+      <section><p>A client-modification information</p>
+</section>
+      <h4><a class="xref" href="NVMP.ModManager.html">ModManager</a></h4>
+      <section><p>Mod management. Allows you to query information about registered mods on the server.</p>
+</section>
+      <h4><a class="xref" href="NVMP.NativeBuildDetails.html">NativeBuildDetails</a></h4>
+      <section><p>A utility class for querying the connection header and build version of the NV:MP server build.</p>
+</section>
+      <h4><a class="xref" href="NVMP.NativeServer.html">NativeServer</a></h4>
+      <section><p>Contains static NativeServer properties and methods for querying internal clocks, internal state operations, and
+update graph related operations.</p>
+</section>
+      <h4><a class="xref" href="NVMP.NativeSettings.html">NativeSettings</a></h4>
+      <section><p>Reads and writes to the server.cfg file for persistent setting storage</p>
+</section>
+      <h4><a class="xref" href="NVMP.NetActorInventoryItem.html">NetActorInventoryItem</a></h4>
+      <section><p>An interface for querying and returning inventory items.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Optick.html">Optick</a></h4>
+      <section><p>Provides interfaces to add events to any current Optick profiler. By default the SDK server establishes an Optick profiler
+session that can be sampled during gameplay. When code enters the managed environment, it can be seen as just a generic large
+&quot;GameILContextHostFXR&quot; function block, which may offer no information about the underlying C# code being executed.</p>
+<p>To start adding details to the Optick profiler session, use the provided classes below to mark parts of your managed environment
+you may believe are taking large amounts of CPU.</p>
+<ul>
+<li>Read: <a href="https://github.com/bombomby/optick">https://github.com/bombomby/optick</a></li>
+</ul>
+</section>
+      <h4><a class="xref" href="NVMP.Optick.Event.html">Optick.Event</a></h4>
+      <section><p>Encapsulates OPTICK_EVENT as a scoped object, for use eg: <code>using var _ = new Optick.Event(&amp;quot;My function&amp;quot;);</code></p>
+</section>
+      <h4><a class="xref" href="NVMP.SyncBlockManager.html">SyncBlockManager</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.WorldspaceBounds.html">WorldspaceBounds</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.WorldspaceCoordinate.html">WorldspaceCoordinate</a></h4>
+      <section><p>A cell coordinate in Fallout</p>
+</section>
+      <h4><a class="xref" href="NVMP.WorldspaceUtility.html">WorldspaceUtility</a></h4>
+      <section></section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="NVMP.VoiceFrame.html">VoiceFrame</a></h4>
+      <section><p>Modulation params and information about the voice</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="NVMP.IGameServer.html">IGameServer</a></h4>
+      <section><p>The primary interface for game server logic. This can manage and maintain the server's configuraiton and mod definitions.
+It is undefined to have multiple instances of IGameServer in code, so only use one and use it wisely.</p>
+</section>
+      <h4><a class="xref" href="NVMP.IPlugin.html">IPlugin</a></h4>
+      <section><p>Defines an NV:MP server plugin to be loaded at runtime. IPlugins are instanciated by default if they inherit.
+Be aware that a plugin is by default <em>not</em> the main server plugins. Plugins run parellel to the main game server, and are designed to add new built-in logic.
+If you are designing a plugin that acts as a server, then inherit IPlugin and GameServer. Else you miss out on vital implementations such as webservice and client-mod configs.</p>
+</section>
+      <h4><a class="xref" href="NVMP.ISyncBlockInterface.html">ISyncBlockInterface</a></h4>
+      <section></section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="NVMP.GameServerDifficulty.html">GameServerDifficulty</a></h4>
+      <section><p>Game difficulty settings</p>
+</section>
+      <h4><a class="xref" href="NVMP.GameServerUnrestrictedModeType.html">GameServerUnrestrictedModeType</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.ISyncBlockInterface.BlockType.html">ISyncBlockInterface.BlockType</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Keyboard.ControlCodes.html">Keyboard.ControlCodes</a></h4>
+      <section><p>Control codes defined by GECK.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Keyboard.ScanCodes.html">Keyboard.ScanCodes</a></h4>
+      <section><p>Scancodes defined by DirectX / GECK.</p>
+</section>
+      <h4><a class="xref" href="NVMP.WorldspaceType.html">WorldspaceType</a></h4>
+      <section></section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

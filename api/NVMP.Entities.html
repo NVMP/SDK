@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace NVMP.Entities
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace NVMP.Entities
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="NVMP.Entities">
+  
+  <h1 id="NVMP_Entities" data-uid="NVMP.Entities" class="text-break">Namespace NVMP.Entities
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="NVMP.Entities.Factory.html">Factory</a></h4>
+      <section><p>All factory instances are defined inside here. The factory constructs and glues unmanaged objects with managed objects.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.FormTypeHelpers.html">FormTypeHelpers</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.INetFactory.html">INetFactory</a></h4>
+      <section><p>The base implementation of an entity factory. This allows the native side of NV:MP to construct managed objects
+and allows you to override the implementation used.
+This is only ever accessed native side, and should not be used to build new instances.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorCombatPackage.html">NetActorCombatPackage</a></h4>
+      <section><p>A package that will make the AI repeatedly start combat on the targets provided.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorFactory.html">NetActorFactory</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetCharacterFactory.html">NetCharacterFactory</a></h4>
+      <section><p>INetCharacter construction and management factory. The SDK cannot create characters, only the unmanaged native side
+can call into this to allocate new objects.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetLabelFactory.html">NetLabelFactory</a></h4>
+      <section><p>INetLabel construction and management factory. Allows you to build new label.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetPlayerFactory.html">NetPlayerFactory</a></h4>
+      <section><p>INetPlayer construction and management factory. Allows you to build new label.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferenceFactory.html">NetReferenceFactory</a></h4>
+      <section><p>INetReference construction and management factory. Allows you to build new references.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetUnmanaged.html">NetUnmanaged</a></h4>
+      <section><p>A container class for objects that share unmanaged lifecycles. These objects will only be completely disposed when
+the managed environment has no more active handles, and the unmanaged object destroys (the latter can only be done when all unmanaged handles
+are destroyed, and the server will warn if an object is held on for too long).</p>
+<p>You should only keep copies of these objects when the SDK itself has created the object, and is not simulated as a temporary reference. This guarentees
+the object will only be cleaned up on the unmanaged side when the managed code cleans it up.</p>
+<p>For other references, you are safe to read these in when passed in through native/unmanaged calls, but ensure that if you keep a copy of
+a NetUnmanaged object in memory, you check for IsDestroyed and remove your handle so the unmanaged code can continue with deletion.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetWorldSpaceFactory.html">NetWorldSpaceFactory</a></h4>
+      <section><p>INetWorldSpace construction and management factory. Allows you to build new label.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetZoneFactory.html">NetZoneFactory</a></h4>
+      <section><p>INetLabel construction and management factory. Allows you to build new zones.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.ReadOnlyExtraDataList.html">ReadOnlyExtraDataList</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.RoleScope.html">RoleScope</a></h4>
+      <section><p>Simple implementation of a role scope that takes a description for debugging and tracking purposes.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="NVMP.Entities.NetAbstractReference.html">NetAbstractReference</a></h4>
+      <section><p>In some parts of NV:MP, the server can receive events the player is interacting with that may be unsynced. An example may be when a player
+activated a TESObjectDOOR that is not synced, or was killed by a reference that is not synced on the network, but exists and has a unique ref ID tag.</p>
+<p>This up to you to do what you desire at implementation level. Most of the time it makes sense only to handle references that are synchronised, as it means
+you can edit the state of the other reference, or query more information. Whereas on the other hand, you may just want to track what reference ID was involved
+in a specific interaction that doesn't need more context.</p>
+<p>For RADD, I implemented this because I want to track what doors player's interact with - without having to sync every door that ever existed around the player.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorInventoryReference.html">NetActorInventoryReference</a></h4>
+      <section><p>An inventory reference, that is paired to a FormID and count.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetSoundRequest.html">NetSoundRequest</a></h4>
+      <section><p>Defines a sound request passed to a player, or assigned to a reference.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="NVMP.Entities.INetActor.html">INetActor</a></h4>
+      <section><p>Actors are world NPCs that can interact with other players, and are built from pre-defined form IDs within the ESMs loaded by the players.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetActorPackage.html">INetActorPackage</a></h4>
+      <section><p>Actor package interface. Allows for custom GECK driven behaviour applied to objects, to then be simulated by
+the host of the object who is simulating it.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetCharacter.html">INetCharacter</a></h4>
+      <section><p>Characters are a specialized Actor that only players will ever use. These objects cannot be created via the SDK, and every player
+that joins the server will always be allocated a character. They allow you to control additional PlayerCharacter specific behaviours,
+whilst also acting with the same interface as an Actor and Reference.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetCharacterEncounterConfig.html">INetCharacterEncounterConfig</a></h4>
+      <section><p>Players will sync to the server specific gameplay objects they encounter. The server is never fully aware of the state around a player
+unless they send encounter messages to the server, to start synchronising entities on the network. The encounter config can be specified
+per player to prevent, or allow, specific entity types from being synchronised. This is helpful if you want to instance players into
+gameplay where they shouldn't sync local entity states to other players.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetLabel.html">INetLabel</a></h4>
+      <section><p>NetLabels are a reference that supports normal network reference functionality (minus an actual TESObjectREFR), but allows you to
+draw more interesting text in it's 3D location. Title and Name is still supported, but labels draw underneath.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetLabelLine.html">INetLabelLine</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.INetLabelLineStack.html">INetLabelLineStack</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.INetPlayer.html">INetPlayer</a></h4>
+      <section><p>Wraps around player instance data, allowing custom event registration and player control. Players cannot be created in the managed environment,
+and are instead created at runtime on a socket connection. Players own an INetCharacter instance as their primary replicated pawn in the game,
+and may control and simulate various objects running in the server.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetReference.html">INetReference</a></h4>
+      <section><p>References are networked TESObjectREFR's. They support basic synchronisation functionality, along with specific networking
+configurations where needed. This interface is inherited by other classes that depend on additional functionality.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetReferencePVSController.html">INetReferencePVSController</a></h4>
+      <section><p>The PVS controller controls the potentially-visible-set for this network object. By default we use
+scoping rules compared on the server to only sync data to entities that are close enough to eachother.
+With overriding this controller, you can control the PVS set.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetWorldSpace.html">INetWorldSpace</a></h4>
+      <section><p>WorldSpace objects contain an entire Fallout worldspace state. They are either transient, or non transient. Transient worldspaces
+are passed around to players to synchronise, and other players must receive data about that worldspace. Non-transient run various
+primary sync states on the server, such as current time - and weather overrides. Transient worldspaces will destroy if no one is
+in the worldspace any longer, and non-transient persist forever.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetZone.html">INetZone</a></h4>
+      <section><p>NetZones are a reference that supports normal network reference functionality (minus an actual TESObjectREFR), but allows you
+to track if other references enter inside it's boundaries.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.IPlayerAccount.html">IPlayerAccount</a></h4>
+      <section><p>This is an account associated with a player.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.IPlayerRole.html">IPlayerRole</a></h4>
+      <section><p>Roles associated to a player. These are descriptive tags you may add for describing
+a player's authentication or player statuses.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.IRoleScope.html">IRoleScope</a></h4>
+      <section><p>Role scopes define permisions. Multiple roles may use various scopes to control access to specific
+functionalities you may want to lock behind authorization.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="NVMP.Entities.AttachmentFlags.html">AttachmentFlags</a></h4>
+      <section><p>Specifies custom attachment flag behaviour for controlling how attachments are presented.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.INetPlayer.VaultBoyEmotion.html">INetPlayer.VaultBoyEmotion</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorKnockedState.html">NetActorKnockedState</a></h4>
+      <section><p>HAVOK ragdoll knocked states.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorMovementFlags.html">NetActorMovementFlags</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorSpeedFlags.html">NetActorSpeedFlags</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetActorValues.html">NetActorValues</a></h4>
+      <section><p>Actor value types defined by the GECK.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetAttackType.html">NetAttackType</a></h4>
+      <section><p>Describes an attack type an actor gives off.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetCharacterEncounterTypes.html">NetCharacterEncounterTypes</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetCharacterPlayerControls.html">NetCharacterPlayerControls</a></h4>
+      <section><p>Defines flags for player controls a player may observe or have disabled.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetCharacterSpectateMode.html">NetCharacterSpectateMode</a></h4>
+      <section><p>The current mode of spectating the player is using. If this is set to Disabled, then the player is not spectating anything.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetPlayerAccountType.html">NetPlayerAccountType</a></h4>
+      <section><p>Defines types of account authentication provided by the player.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferenceDeletionFlags.html">NetReferenceDeletionFlags</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferenceExtraDataType.html">NetReferenceExtraDataType</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferenceFormType.html">NetReferenceFormType</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferenceInterpolationMode.html">NetReferenceInterpolationMode</a></h4>
+      <section><p>Specifies an interpolation mode for an object. This controls how the object is rendered on player's screens, and gives
+more freedom to how a reference may move freely. It is good practise that if you are using objects that use more rapid or
+flowy motion, to consider using Blending - as it allows for more error without fighting on the object's interpolation.</p>
+</section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferencePVSTestTypes.html">NetReferencePVSTestTypes</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.NetReferenceSimulationType.html">NetReferenceSimulationType</a></h4>
+      <section><p>Simulation types control how the object is networked and persisted depending on how the owner's connection to the server remains,
+or if they lose vision to the object.</p>
+</section>
+    <h3 id="delegates">Delegates
+  </h3>
+      <h4><a class="xref" href="NVMP.Entities.OnActivatedReference.html">OnActivatedReference</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.OnAttack.html">OnAttack</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.OnDamaged.html">OnDamaged</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.OnDeath.html">OnDeath</a></h4>
+      <section></section>
+      <h4><a class="xref" href="NVMP.Entities.OnPVSCheck.html">OnPVSCheck</a></h4>
+      <section></section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
