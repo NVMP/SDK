@@ -292,11 +292,16 @@ namespace NVMP.Entities
                 Execute = InternalExecute;
             }
 
-            internal bool InternalExecute(INetReference reference, uint refId, NetReferenceFormType formType, ReadOnlyExtraDataList extraDataList)
+            internal bool InternalExecute(INetReference activator
+                , INetReference reference
+                , uint refId
+                , uint baseId
+                , NetReferenceFormType formType
+                , ReadOnlyExtraDataList extraDataList)
             {
                 foreach (var sub in Subscriptions)
                 {
-                    if (!sub.Invoke(reference, refId, formType, extraDataList))
+                    if (!sub.Invoke(activator, reference, refId, baseId, formType, extraDataList))
                     {
                         return false;
                     }
@@ -314,11 +319,11 @@ namespace NVMP.Entities
                 Execute = InternalExecute;
             }
 
-            internal void InternalExecute(INetActor attacker, float damage, uint weaponFormId, uint projectileFormId)
+            internal void InternalExecute(INetReference victim, INetActor attacker, float damage, uint weaponFormId, uint projectileFormId)
             {
                 foreach (var sub in Subscriptions)
                 {
-                    sub.Invoke(attacker, damage, weaponFormId, projectileFormId);
+                    sub.Invoke(victim, attacker, damage, weaponFormId, projectileFormId);
                 }
             }
         }

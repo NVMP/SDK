@@ -76,16 +76,23 @@ namespace NVMP.Entities
     public delegate bool OnActivatedReference
         (
             [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetReferenceMarshaler))]
-                    INetReference reference
+                    INetReference activator
+
+            , [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetReferenceMarshaler))]
+                    INetReference target
 
             , [In] uint refId
+            , [In] uint baseId
             , [In] NetReferenceFormType formType
             , [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(ExtraDataListBitsetMarshalerToBitArray))] ReadOnlyExtraDataList extraDataList
         );
 
     public delegate void OnDamaged
         (
-            [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetActorMarshaler))]
+            [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetReferenceMarshaler))]
+                    INetReference victim
+        
+            , [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetActorMarshaler))]
                     INetActor attacker
 
             , [In] float damage

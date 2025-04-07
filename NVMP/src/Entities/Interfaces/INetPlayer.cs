@@ -137,6 +137,12 @@ namespace NVMP.Entities
         public bool IsUsingClientsideHitDetection { get; set; }
 
         /// <summary>
+        /// Sets the damage mult of the player relative to 1 (100%). This only works in practice if clientside hit detection is set 
+        /// to true. Else, this will just only apply on damage events.
+        /// </summary>
+        public float DamageMult { get; set; }
+
+        /// <summary>
         /// Player's party ID. Players in a party with other players will be able to see a blip where their friend is, and always maintains PVS status.
         /// </summary>
         public uint PartyID { get; set; }
@@ -277,6 +283,24 @@ namespace NVMP.Entities
         /// </summary>
         /// <param name="script">The script contents, must be less than 2KB in size or else the script will not be transmitted</param>
         public void RunScript(string script);
+
+        /// <summary>
+        /// Sends a feed message in the top right of the users screen. Takes an ID which overwrites any existing feed
+        /// with the specified parameters if called again.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="id"></param>
+        /// <param name="color"></param>
+        /// <param name="fontSize"></param>
+        public void SendFeedMessageWithID(string id, string message, Color? color = null, float fontSize = 18.0f);
+
+        /// <summary>
+        /// Sends a feed message in the top right of the users screen.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="color"></param>
+        /// <param name="fontSize"></param>
+        public void SendFeedMessage(string message, Color? color = null, float fontSize = 18.0f);
 
         /// <summary>
         /// Sends a message to the player's chat box

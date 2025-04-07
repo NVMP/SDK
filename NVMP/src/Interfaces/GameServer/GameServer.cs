@@ -35,22 +35,27 @@ namespace NVMP
         public IManagedWebService WebService;
         public ISyncBlockInterface SyncBlocks;
 
+        public bool HasWebServices { get; set; } = true;
+
         public virtual void Init()
         {
-            NativeSettings.SetupDefaultString("Server", "WebHostname", "http://localhost");
-            NativeSettings.SetupDefaultString("Server", "WebPort", "8080");
+            if (HasWebServices)
+            {
+                NativeSettings.SetupDefaultString("Server", "WebHostname", "http://localhost");
+                NativeSettings.SetupDefaultString("Server", "WebPort", "8080");
 
-            var hostname = NativeSettings.GetStringValue("Server", "WebHostname");
-            if (hostname == null ||
-                hostname.Length == 0)
-                throw new Exception("WebHostname is not set! This should be your public WAN IP or a valid hostname to connect to the gameserver. Format is [https/http]://[hostname], do not specify port!");
+                var hostname = NativeSettings.GetStringValue("Server", "WebHostname");
+                if (hostname == null ||
+                    hostname.Length == 0)
+                    throw new Exception("WebHostname is not set! This should be your public WAN IP or a valid hostname to connect to the gameserver. Format is [https/http]://[hostname], do not specify port!");
 
-            int port = (int)NativeSettings.GetFloatValue("Server", "WebPort");
-            if (port == 0)
-                throw new Exception("WebPort is not set! Specify a port that is guarenteed to be open!");
+                int port = (int)NativeSettings.GetFloatValue("Server", "WebPort");
+                if (port == 0)
+                    throw new Exception("WebPort is not set! Specify a port that is guarenteed to be open!");
 
-            WebService = ManagedWebServiceFactory.Create(hostname, port);
-            WebService.Initialize();
+                WebService = ManagedWebServiceFactory.Create(hostname, port);
+                WebService.Initialize();
+            }
 
             SyncBlocks = new SyncBlockManager();
         }

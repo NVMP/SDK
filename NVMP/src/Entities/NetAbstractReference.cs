@@ -23,9 +23,14 @@ namespace NVMP.Entities
         public INetReference NetReference { get; internal set; }
 
         /// <summary>
-        /// The reference ID based in this interaction. This will always be set
+        /// The reference ID based in this interaction. This will always be set.
         /// </summary>
         public uint RefID { get; internal set; }
+
+        /// <summary>
+        /// The reference base ID based in this interaction. This will always be set.
+        /// </summary>
+        public uint BaseID { get; internal set; }
 
         /// <summary>
         /// The reference form type based in this interaction.

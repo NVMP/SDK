@@ -103,6 +103,12 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsUsingClientsideHitDetection(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SetDamageMult")]
+        private static extern void Internal_SetDamageMult(IntPtr self, float mult);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetDamageMult")]
+        private static extern float Internal_GetDamageMult(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SetPartyID")]
         private static extern void Internal_SetPartyID(IntPtr self, uint partyID);
 
@@ -117,6 +123,9 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_SendFeedMessage", CharSet = CharSet.Unicode)]
+        private static extern void Internal_SendFeedMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string id, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
 
         [DllImport("Native", EntryPoint = "NetPlayer_SendPlayerChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendPlayerChatMessage(IntPtr self
@@ -367,6 +376,12 @@ namespace NVMP.Entities
             get => Internal_GetIsUsingClientsideHitDetection(__UnmanagedAddress);
         }
 
+        public float DamageMult
+        {
+            set => Internal_SetDamageMult(__UnmanagedAddress, value);
+            get => Internal_GetDamageMult(__UnmanagedAddress);
+        }
+
         public uint PartyID
         {
             get => Internal_GetPartyID(__UnmanagedAddress);
@@ -453,6 +468,24 @@ namespace NVMP.Entities
                 color = Color.White;
             }
             Internal_SendGenericChatMessage(__UnmanagedAddress, message, color.Value.R, color.Value.G, color.Value.B, fontSize);
+        }
+
+        public void SendFeedMessageWithID(string id, string message, Color? color, float fontSize)
+        {
+            if (!color.HasValue)
+            {
+                color = Color.White;
+            }
+            Internal_SendFeedMessage(__UnmanagedAddress, id, message, color.Value.R, color.Value.G, color.Value.B, fontSize);
+        }
+
+        public void SendFeedMessage(string message, Color? color, float fontSize)
+        {
+            if (!color.HasValue)
+            {
+                color = Color.White;
+            }
+            Internal_SendFeedMessage(__UnmanagedAddress, "", message, color.Value.R, color.Value.G, color.Value.B, fontSize);
         }
 
         public void SendPlayerChatMessage(string sender, Color sendercolor, string message, Color? messagecolor, float fontSize)

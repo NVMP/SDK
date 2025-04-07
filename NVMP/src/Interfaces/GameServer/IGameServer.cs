@@ -21,6 +21,11 @@ namespace NVMP
         public void Init();
 
         /// <summary>
+        /// Does the gameserver need a built in webservice to function
+        /// </summary>
+        public bool HasWebServices { get; set; }
+
+        /// <summary>
         /// Is the server running in hardcore mode
         /// </summary>
         public bool IsHardcore { get; set; }

@@ -27,7 +27,7 @@ namespace NVMP.BuiltinServices
         public bool IsServingModDownloads { get; set; } = true;
 
         // The full reference to the download URL provided by the mod download service.
-        public string DownloadURL => $"{WebService.FullURL}/{WebScheme}";
+        public string DownloadURL => $"{WebService?.FullURL}/{WebScheme}";
 
         public ModDownloadServiceImpl(IGameServer server, IManagedWebService webService)
         {
@@ -75,10 +75,13 @@ namespace NVMP.BuiltinServices
                 }
             };
 
-            // ExecutionType is set to async, as the response is purely I/O related and we don't need to serve this on the web dispatcher thread. What may happen is
-            // that if too many requests are made synchronously is that the dispatcher thread becomes locked until other downloads are complete. This could create a denial of
-            // service attack, or in less worse cases a timeout to a lot of players attempting to download a new file download.
-            WebService.AddRootResolver(WebScheme, ProcessRequest, executionType: IManagedWebService.ExecutionType.Async);
+            if (WebService != null)
+            {
+                // ExecutionType is set to async, as the response is purely I/O related and we don't need to serve this on the web dispatcher thread. What may happen is
+                // that if too many requests are made synchronously is that the dispatcher thread becomes locked until other downloads are complete. This could create a denial of
+                // service attack, or in less worse cases a timeout to a lot of players attempting to download a new file download.
+                WebService.AddRootResolver(WebScheme, ProcessRequest, executionType: IManagedWebService.ExecutionType.Async);
+            }
         }
 
         public async Task ProcessRequest(HttpListenerRequest req, HttpListenerResponse resp)
@@ -185,6 +188,9 @@ namespace NVMP.BuiltinServices
 
         public string GetDownloadURL()
         {
+            if (WebService == null)
+                return null;
+
             return $"{WebService.FullURL}/{WebScheme}";
         }
 

@@ -66,6 +66,7 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetCharacter_GetCrosshairReference")]
         private static extern void Internal_GetCrosshairReference(IntPtr self, out IntPtr netObject
             , out uint refId
+            , out uint baseId
             , out NetReferenceFormType formType
             , [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(ExtraDataListBitsetMarshalerToBitArray))] out ReadOnlyExtraDataList extraDataList
             );
@@ -219,6 +220,7 @@ namespace NVMP.Entities
                 Internal_GetCrosshairReference(__UnmanagedAddress
                     , out IntPtr netRef
                     , out uint refId
+                    , out uint baseId
                     , out NetReferenceFormType formType
                     , out ReadOnlyExtraDataList extraDataList);
 
@@ -231,6 +233,7 @@ namespace NVMP.Entities
                 result.RefExtraDataList = extraDataList;
                 result.RefFormType = formType;
                 result.RefID = refId;
+                result.BaseID = baseId;
                 return result;
             }
         }

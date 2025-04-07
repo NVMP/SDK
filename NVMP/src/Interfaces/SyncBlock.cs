@@ -28,7 +28,22 @@ namespace NVMP
 
         public void SetRefBlocked(uint refID, bool blocked);
         public bool IsRefBlocked(uint refID);
-        public void SetWorldspaceBlocked(WorldspaceType worldspaceID, Vector3 pos, float radius, BlockType type);
+
+        /// <summary>
+        /// Sets a worldspace block. Returns a unique handle.
+        /// </summary>
+        /// <param name="worldspaceID"></param>
+        /// <param name="pos"></param>
+        /// <param name="radius"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public uint SetWorldspaceBlocked(WorldspaceType worldspaceID, Vector3 pos, float radius, BlockType type);
+
+        /// <summary>
+        /// Removes a worldspace block by its handle.
+        /// </summary>
+        /// <param name="handle"></param>
+        public void RemoveWorldspaceBlock(uint handle);
     }
 
     public class SyncBlockManager : ISyncBlockInterface
@@ -50,7 +65,10 @@ namespace NVMP
         private static extern bool Internal_GetRefBlocked(uint interiorID);
 
         [DllImport("Native", EntryPoint = "SyncBlock_SetWorldspaceBlocked")]
-        private static extern void Internal_SetWorldspaceBlocked(uint worldspaceID, float x, float y, float z, float radius, uint type);
+        private static extern uint Internal_SetWorldspaceBlocked(uint worldspaceID, float x, float y, float z, float radius, uint type);
+
+        [DllImport("Native", EntryPoint = "SyncBlock_RemoveWorldspaceBlock")]
+        private static extern void Internal_RemoveWorldspaceBlock(uint id);
 
         #endregion
 
@@ -74,9 +92,14 @@ namespace NVMP
             Internal_SetRefBlocked(refID, blocked);
         }
 
-        public void SetWorldspaceBlocked(WorldspaceType worldspaceID, Vector3 pos, float radius, ISyncBlockInterface.BlockType type)
+        public uint SetWorldspaceBlocked(WorldspaceType worldspaceID, Vector3 pos, float radius, ISyncBlockInterface.BlockType type)
         {
-            Internal_SetWorldspaceBlocked((uint)worldspaceID, pos.X, pos.Y, pos.Z, radius, (uint)type);
+            return Internal_SetWorldspaceBlocked((uint)worldspaceID, pos.X, pos.Y, pos.Z, radius, (uint)type);
+        }
+
+        public void RemoveWorldspaceBlock(uint handle)
+        {
+            Internal_RemoveWorldspaceBlock(handle);
         }
     }
 
