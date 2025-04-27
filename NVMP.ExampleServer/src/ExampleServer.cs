@@ -146,7 +146,7 @@ namespace NVMP
             ReporterService = ServerReporterServiceFactory.Create(ModService);
 
             ReporterService.Name = "An Example NVMPX Server";
-            ReporterService.Description = "Built uisng the SDK kit";
+            ReporterService.Description = "Built using the SDK kit";
 
             // Basic Save Init
             if (!Directory.Exists("Saves"))
