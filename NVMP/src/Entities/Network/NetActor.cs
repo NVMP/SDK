@@ -54,6 +54,18 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_SetIsAiming")]
         private static extern void Internal_SetIsAiming(IntPtr self, bool aiming);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_SetActiveArmor")]
+        private static extern void Internal_SetActiveArmor(IntPtr self, float armor);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetMaxArmor")]
+        private static extern void Internal_SetMaxArmor(IntPtr self, float armor);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_GetActiveArmor")]
+        private static extern float Internal_GetActiveArmor(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_GetMaxArmor")]
+        private static extern float Internal_GetMaxArmor(IntPtr self);
+
         [DllImport("Native", EntryPoint = "GameNetActor_GetIsFemale")]
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsFemale(IntPtr self);
@@ -77,6 +89,23 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_SetSpeedFlags")]
         private static extern void Internal_SetSpeedFlags(IntPtr self, NetActorSpeedFlags flags);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_GetArmourIgnoredProjectilesCount")]
+        private static extern int Internal_GetArmorIgnoredProjectilesCount(IntPtr self);
+        [DllImport("Native", EntryPoint = "GameNetActor_GetArmourIgnoredProjectiles")]
+        private static extern void Internal_GetArmorIgnoredProjectiles(IntPtr self, uint[] result);
+        [DllImport("Native", EntryPoint = "GameNetActor_AddArmourIgnoredProjectile")]
+        private static extern void Internal_AddArmorIgnoredProjectile(IntPtr self, uint formID);
+        [DllImport("Native", EntryPoint = "GameNetActor_ClearArmourIgnoredProjectiles")]
+        private static extern void Internal_ClearArmorIgnoredProjectiles(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_GetArmourIgnoredWeaponsCount")]
+        private static extern int Internal_GetArmorIgnoredWeaponsCount(IntPtr self);
+        [DllImport("Native", EntryPoint = "GameNetActor_GetArmourIgnoredWeapons")]
+        private static extern void Internal_GetArmorIgnoredWeapons(IntPtr self, uint[] result);
+        [DllImport("Native", EntryPoint = "GameNetActor_AddArmourIgnoredWeapon")]
+        private static extern void Internal_AddArmorIgnoredWeapon(IntPtr self, uint formID);
+        [DllImport("Native", EntryPoint = "GameNetActor_ClearArmourIgnoredWeapons")]
+        private static extern void Internal_ClearArmorIgnoredWeapons(IntPtr self);
 
         // 
         //
@@ -256,6 +285,7 @@ namespace NVMP.Entities
             {
                 if (newPlacedItems.TryGetValue(item.Item.ID, out NetActorInventoryReference value))
                 {
+                    value.BipedFlags |= item.BipedFlags;
                     value.Count += item.Count;
                     value.Equipped |= item.Equipped;
                 }
@@ -277,6 +307,14 @@ namespace NVMP.Entities
             }
 
             return GetItemByForm(item);
+        }
+
+        public NetActorInventoryReference[] GetItemsByBiped(BipedFlag flag)
+        {
+            var items = GetItems();
+            return items
+                .Where(_item => _item.IsBipedFlagSet(flag))
+                .ToArray();
         }
 
         public NetActorInventoryReference? GetItemByForm(NetActorInventoryItem item)
@@ -434,13 +472,7 @@ namespace NVMP.Entities
         /// <summary>
         /// Is this actor a player character
         /// </summary>
-        public bool IsCharacter
-        {
-            get
-            {
-                return Internal_IsCharacter(__UnmanagedAddress);
-            }
-        }
+        public bool IsCharacter => Internal_IsCharacter(__UnmanagedAddress);
 
         /// <summary>
         /// The gravity multiplier this actor is set with
@@ -462,40 +494,22 @@ namespace NVMP.Entities
         /// </summary>
         public bool HasGodmode
         {
-            set
-            {
-                Internal_SetGodmode(__UnmanagedAddress, value);
-            }
-            get
-            {
-                return Internal_GetGodmode(__UnmanagedAddress);
-            }
+            set => Internal_SetGodmode(__UnmanagedAddress, value);
+            get => Internal_GetGodmode(__UnmanagedAddress);
         }
 
         /// <summary>
         /// A readonly value of the actor's lifestate
         /// </summary>
-        public bool IsDead
-        {
-            get
-            {
-                return Internal_IsDead(__UnmanagedAddress);
-            }
-        }
+        public bool IsDead => Internal_IsDead(__UnmanagedAddress);
 
         /// <summary>
         /// The actor's game level
         /// </summary>
         public int Level
         {
-            set
-            {
-                Internal_SetLevel(__UnmanagedAddress, value);
-            }
-            get
-            {
-                return Internal_GetLevel(__UnmanagedAddress);
-            }
+            set => Internal_SetLevel(__UnmanagedAddress, value);
+            get => Internal_GetLevel(__UnmanagedAddress);
         }
 
         /// <summary>
@@ -503,37 +517,71 @@ namespace NVMP.Entities
         /// </summary>
         public string LevelOverride
         {
-            set
-            {
-                Internal_SetLevelOverride(__UnmanagedAddress, value);
-            }
-            get
-            {
-                return Internal_GetLevelOverride(__UnmanagedAddress);
-            }
+            set => Internal_SetLevelOverride(__UnmanagedAddress, value);
+            get => Internal_GetLevelOverride(__UnmanagedAddress);
         }
 
         public float Health
         {
-            set
-            {
-                Internal_SetActorValue(__UnmanagedAddress, NetActorValues.Health, value);
-            }
-            get
-            {
-                return Internal_GetActorValue(__UnmanagedAddress, NetActorValues.Health);
-            }
+            set => Internal_SetActorValue(__UnmanagedAddress, NetActorValues.Health, value);
+            get => Internal_GetActorValue(__UnmanagedAddress, NetActorValues.Health);
         }
 
         public float MaxHealth
         {
+            set => Internal_SetActorValueBase(__UnmanagedAddress, NetActorValues.Health, value);
+            get => Internal_GetActorValueBase(__UnmanagedAddress, NetActorValues.Health);
+        }
+
+        public float Armor
+        {
+            set => Internal_SetActiveArmor(__UnmanagedAddress, value);
+            get => Internal_GetActiveArmor(__UnmanagedAddress);
+        }
+
+        public float MaxArmor
+        {
+            set => Internal_SetMaxArmor(__UnmanagedAddress, value);
+            get => Internal_GetMaxArmor(__UnmanagedAddress);
+        }
+
+        public uint[] ArmorIgnoredProjectiles
+        {
             set
             {
-                Internal_SetActorValueBase(__UnmanagedAddress, NetActorValues.Health, value);
+                Internal_ClearArmorIgnoredProjectiles(__UnmanagedAddress);
+
+                for (int i = 0; i < value.Length; i++)
+                {
+                    Internal_AddArmorIgnoredProjectile(__UnmanagedAddress, value[i]);
+                }
             }
+
             get
             {
-                return Internal_GetActorValueBase(__UnmanagedAddress, NetActorValues.Health);
+                uint[] result = new uint[Internal_GetArmorIgnoredProjectilesCount(__UnmanagedAddress)];
+                Internal_GetArmorIgnoredProjectiles(__UnmanagedAddress, result);
+                return result;
+            }
+        }
+
+        public uint[] ArmorIgnoredWeapons
+        {
+            set
+            {
+                Internal_ClearArmorIgnoredWeapons(__UnmanagedAddress);
+
+                for (int i = 0; i < value.Length; i++)
+                {
+                    Internal_AddArmorIgnoredWeapon(__UnmanagedAddress, value[i]);
+                }
+            }
+
+            get
+            {
+                uint[] result = new uint[Internal_GetArmorIgnoredWeaponsCount(__UnmanagedAddress)];
+                Internal_GetArmorIgnoredWeapons(__UnmanagedAddress, result);
+                return result;
             }
         }
 

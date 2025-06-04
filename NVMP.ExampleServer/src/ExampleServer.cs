@@ -165,7 +165,7 @@ namespace NVMP
 
             safeZone.ReferenceEntered = delegate (INetReference refe)
             {
-                if (refe.IsActor)
+                if (refe is INetActor)
                 {
                     var actor = refe as INetActor;
                     if (actor.IsCharacter)
@@ -182,7 +182,7 @@ namespace NVMP
 
             safeZone.ReferenceExited = delegate (INetReference refe)
             {
-                if (refe.IsActor)
+                if (refe is INetActor)
                 {
                     var actor = refe as INetActor;
                     if (actor.IsCharacter)
@@ -381,21 +381,6 @@ namespace NVMP
                     otherPlayer.SendPlayerChatMessage("MOLE", SystemPromoColor, String.Join(" ", paramList));
                 }
                 return true;
-            }
-            else if (commandName == "sex")
-            {
-                var rng = new Random();
-                if (rng.Next(16) == 0)
-                {
-                    if (player.Actor != null)
-                    {
-                        player.Actor.AddItem(NetActorInventoryItem.GetByReference(0x00120853), 1, true);
-                    }
-
-                    player.ShowCustomMessage("...", "interface\\icons\\pipboyimages\\apparel\\apparel_whiteglove_mask.dds", 5.0f);
-                    player.ShowCustomMessage("The White Glove Society rejected your sex request, but have sent a gift of goodwill", "interface\\icons\\pipboyimages\\apparel\\apparel_whiteglove_mask.dds", 5.0f);
-                    return true;
-                }
             }
             else if (commandName == "gccollect")
             {

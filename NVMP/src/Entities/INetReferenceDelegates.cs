@@ -95,7 +95,8 @@ namespace NVMP.Entities
             , [In, MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Marshals.NetActorMarshaler))]
                     INetActor attacker
 
-            , [In] float damage
+            , [In] float healthDamage
+            , [In] float armorDamage
             , [In] uint weaponFormId
             , [In] uint projectileFormId
         );

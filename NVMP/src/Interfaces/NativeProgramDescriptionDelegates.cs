@@ -136,7 +136,8 @@ namespace NVMP.Delegates
                 INetPlayer player,
 
         [In] uint inputType,
-        [In] Keyboard.ScanCodes key
+        [In] Keyboard.ScanCodes key,
+        [In] ulong timeStamp
     );
 
     public delegate void MouseUpdateDelegate

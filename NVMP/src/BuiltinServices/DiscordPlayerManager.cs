@@ -325,7 +325,19 @@ namespace NVMP.BuiltinServices
                     return;
                 }
 
-                player.Name = discordAuth.DisplayName;
+                string displayName = discordAuth.DisplayName;
+                string[] discordTokens = displayName.Split("#");
+                if (discordTokens.Length == 2)
+                {
+                    if (discordTokens[1] == "0")
+                    {
+                        // just format as the username. discord abandoned these identifiers so that unique usernames were 
+                        // now required. lets be friendly to it.
+                        displayName = discordTokens[0];
+                    }
+                }
+
+                player.Name = displayName;
                 if (player.Actor != null)
                 {
                     player.Actor.Name = player.Name;

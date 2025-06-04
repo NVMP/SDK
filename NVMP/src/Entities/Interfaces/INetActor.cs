@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.InteropServices;
 
@@ -71,6 +72,16 @@ namespace NVMP.Entities
 		/// </summary>
 		public float MaxHealth { get; set; }
 
+        /// <summary>
+        /// The active armor on the actor. This must be set within the maximum armor.
+        /// </summary>
+        public float Armor { get; set; }
+
+        /// <summary>
+        /// Maximum armor seen on the actor. Setting this then requires you to update the armor value.
+        /// </summary>
+        public float MaxArmor { get; set; }
+
 		/// <summary>
 		/// XP currently awarded to this actor. This is only supported on characters!
 		/// </summary>
@@ -115,11 +126,21 @@ namespace NVMP.Entities
 		/// </summary>
 		public void Resurrect();
 
-		/// <summary>
-		/// Returns the number of inventory items on this actor
-		/// </summary>
-		/// <returns></returns>
-		public uint GetNumItems();
+        /// <summary>
+        /// A collection of projectiles that will ignore all server armor when applied to this actor via damage.
+        /// </summary>
+        public uint[] ArmorIgnoredProjectiles { get; set; }
+
+        /// <summary>
+        /// A collection of weapons that will ignore all server armor when applied to this actor via damage.
+        /// </summary>
+        public uint[] ArmorIgnoredWeapons { get; set; }
+
+        /// <summary>
+        /// Returns the number of inventory items on this actor
+        /// </summary>
+        /// <returns></returns>
+        public uint GetNumItems();
 
 		/// <summary>
 		/// Returns all inventory items on this actor
@@ -134,12 +155,19 @@ namespace NVMP.Entities
 		/// <returns></returns>
 		public NetActorInventoryReference? GetItemByForm(uint form);
 
-		/// <summary>
-		/// Finds a form in the container with the specified form ID
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		public NetActorInventoryReference? GetItemByForm(NetActorInventoryItem item);
+        /// <summary>
+		/// Finds items that have the specified biped flag.
+        /// </summary>
+        /// <param name="flag"></param>
+        /// <returns></returns>
+        public NetActorInventoryReference[] GetItemsByBiped(BipedFlag flag);
+
+        /// <summary>
+        /// Finds a form in the container with the specified form ID
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public NetActorInventoryReference? GetItemByForm(NetActorInventoryItem item);
 
 		/// <summary>
 		/// Adds a new inventory item to this actor's inventory

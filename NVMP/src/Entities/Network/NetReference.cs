@@ -319,11 +319,11 @@ namespace NVMP.Entities
                 Execute = InternalExecute;
             }
 
-            internal void InternalExecute(INetReference victim, INetActor attacker, float damage, uint weaponFormId, uint projectileFormId)
+            internal void InternalExecute(INetReference victim, INetActor attacker, float healthDamage, float armorDamage, uint weaponFormId, uint projectileFormId)
             {
                 foreach (var sub in Subscriptions)
                 {
-                    sub.Invoke(victim, attacker, damage, weaponFormId, projectileFormId);
+                    sub.Invoke(victim, attacker, healthDamage, armorDamage, weaponFormId, projectileFormId);
                 }
             }
         }
