@@ -23,9 +23,6 @@ namespace NVMP
             try
             {
                 var handle = GCHandle.FromIntPtr(ptrhandle);
-                if (handle == null)
-                    return false;
-
                 return handle.IsAllocated && handle.Target != null;
             }
             catch (Exception)
@@ -602,8 +599,9 @@ namespace NVMP
                 {
                     var loader = PluginLoader.CreateFromAssemblyFile(
                         assemblyFile: $"{path}/{plugin}",
+                        isUnloadable: false,
                         sharedTypes: new[] { typeof(IPlugin) },
-                        config => config.EnableHotReload = true);
+                        config => config.EnableHotReload = false);
 
                     loader.Reloaded += new PluginReloadedEventHandler((object sender, PluginReloadedEventArgs eventArgs) =>
                     {

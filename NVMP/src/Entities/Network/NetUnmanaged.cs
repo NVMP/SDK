@@ -77,7 +77,7 @@ namespace NVMP.Entities
                     if (__InternalUnmanagedAddress != IntPtr.Zero)
                     {
                         var existingPtr = GCHandle.FromIntPtr(Internal_GetManagedHandle(__InternalUnmanagedAddress));
-                        if (existingPtr != null)
+                        if (existingPtr.Target != null)
                         {
                             existingPtr.Free();
                         }

@@ -48,8 +48,6 @@ namespace NVMP.Marshals
 
             // resolve the gchandle
             var gchandle = GCHandle.FromIntPtr(managedHandle);
-            if (gchandle == null)
-                throw new Exception("Marshal failure: managed handle was set, but is invalid!");
 
             // cast it up
             if (gchandle.Target == null)
