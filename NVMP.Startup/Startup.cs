@@ -80,8 +80,6 @@ namespace NVMP
             //
             // This will grow to the largest packet size if needed, but for now just allocate 1024 bytes here considering we don't at the lower-level
             // allow exceeding the MTU.
-            byte[] voiceFrameCache = new byte[1024];
-
             rootDescription.UpdateDelegate = delta =>
             {
                 foreach (var instance in pluginInstances.Values)
