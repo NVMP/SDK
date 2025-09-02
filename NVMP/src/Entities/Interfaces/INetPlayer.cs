@@ -130,6 +130,11 @@ namespace NVMP.Entities
         public bool IsDev { get; set; }
 
         /// <summary>
+        /// Player's development state. Allowing them to be a dev allows for additional network information, that could be sensitive to the gamemode.
+        /// </summary>
+        public bool IsMovieMakerPermitted { get; set; }
+
+        /// <summary>
         /// Sets if a player is using clientside hit detection for PVP combat. Defaulted to false by default, and is opt-in.
         /// Non-clientside hit-detect depends on damage from players being accurate enough to hit on the victims screen, which may
         /// create a dependency to synchronisation prediction.

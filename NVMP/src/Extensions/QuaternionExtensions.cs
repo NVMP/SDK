@@ -13,6 +13,11 @@ namespace NVMP.Extensions
 
         public const float QEpsilon = 0.0001f;
 
+        /// <summary>
+        /// X-yaw, Y-pitch, Z-roll
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public static Vector3 ToEulers(this Quaternion q)
         {
             var result = new Vector3();

@@ -96,6 +96,13 @@ namespace NVMP.Entities
         [return: MarshalAs(UnmanagedType.I1)]
         private static extern bool Internal_GetIsDev(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SetIsMovieMakerPermitted")]
+        private static extern void Internal_SetIsMovieMakerPermitted(IntPtr self, bool permitted);
+
+        [DllImport("Native", EntryPoint = "NetPlayer_GetIsMovieMakerPermitted")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetIsMovieMakerPermitted(IntPtr self);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SetIsUsingClientsideHitDetection")]
         private static extern void Internal_SetIsUsingClientsideHitDetection(IntPtr self, bool isUsingCHD);
 
@@ -368,6 +375,12 @@ namespace NVMP.Entities
         {
             set => Internal_SetIsDev(__UnmanagedAddress, value);
             get => Internal_GetIsDev(__UnmanagedAddress);
+        }
+
+        public bool IsMovieMakerPermitted
+        {
+            set => Internal_SetIsMovieMakerPermitted(__UnmanagedAddress, value);
+            get => Internal_GetIsMovieMakerPermitted(__UnmanagedAddress);
         }
 
         public bool IsUsingClientsideHitDetection
