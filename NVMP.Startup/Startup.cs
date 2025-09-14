@@ -99,7 +99,7 @@ namespace NVMP
                 }
             };
             
-            rootDescription.PlayerInputUpdate = (player, inputType, key, timestamp) =>
+            rootDescription.PlayerInputUpdate = (player, inputType, key, control, timestamp) =>
             {
                 if (player.Actor == null)
                     return;
@@ -113,7 +113,7 @@ namespace NVMP
                             try
                             {
                                 using var _ = new Optick.Event($"{plugin.GetName()}.PlayerInputUpdate");
-                                await plugin.PlayerInputUpdate(player, (UserInterface.InputType)inputType, key, timestamp);
+                                await plugin.PlayerInputUpdate(player, (UserInterface.InputType)inputType, key, control, timestamp);
                             }
                             catch (Exception e)
                             {
@@ -128,7 +128,7 @@ namespace NVMP
                     foreach (var sub in (player as NetPlayer).InputSubscriptions.Subscriptions.ToArray())
                     {
                         using var _ = new Optick.Event($"{player.Name}.InputSubscriptions.Fire");
-                        sub(player, (UserInterface.InputType)inputType, key, timestamp);
+                        sub(player, (UserInterface.InputType)inputType, key, control, timestamp);
                     }
                 }
                 catch (Exception e)

@@ -144,7 +144,7 @@ namespace NVMP
             return false;
         }
 
-        public Task PlayerInputUpdate(INetPlayer player, InputType inputType, Keyboard.ScanCodes key, ulong timestamp)
+        public Task PlayerInputUpdate(INetPlayer player, InputType inputType, Keyboard.ScanCodes key, Keyboard.ControlCodes code, ulong timestamp)
         {
             return Task.CompletedTask;
         }

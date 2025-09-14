@@ -137,6 +137,7 @@ namespace NVMP.Delegates
 
         [In] uint inputType,
         [In] Keyboard.ScanCodes key,
+        [In] Keyboard.ControlCodes control,
         [In] ulong timeStamp
     );
 
