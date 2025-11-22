@@ -131,6 +131,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "NetPlayer_SendGenericChatMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendGenericChatMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
 
+        [DllImport("Native", EntryPoint = "NetPlayer_SendMovieMakerScript")]
+        private static extern void Internal_SendMovieMakerScript(IntPtr self, string message, bool interruptable);
+
         [DllImport("Native", EntryPoint = "NetPlayer_SendFeedMessage", CharSet = CharSet.Unicode)]
         private static extern void Internal_SendFeedMessage(IntPtr self, [MarshalAs(UnmanagedType.LPWStr)] string id, [MarshalAs(UnmanagedType.LPWStr)] string message, byte r = 255, byte g = 255, byte b = 255, float fontSize = 18.0f);
 
@@ -481,6 +484,16 @@ namespace NVMP.Entities
                 color = Color.White;
             }
             Internal_SendGenericChatMessage(__UnmanagedAddress, message, color.Value.R, color.Value.G, color.Value.B, fontSize);
+        }
+
+        public bool SendMovieMakerScript(string script, bool interruptable)
+        {
+            int maxScriptLength = 1024 * 4;
+            if (script.Length > maxScriptLength)
+                return false;
+
+            Internal_SendMovieMakerScript(__UnmanagedAddress, script, interruptable);
+            return true;
         }
 
         public void SendFeedMessageWithID(string id, string message, Color? color, float fontSize)

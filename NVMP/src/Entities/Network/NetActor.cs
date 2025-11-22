@@ -119,6 +119,9 @@ namespace NVMP.Entities
         [DllImport("Native", EntryPoint = "GameNetActor_RemoveAllItems")]
         private static extern void Internal_RemoveAllItems(IntPtr self);
 
+        [DllImport("Native", EntryPoint = "GameNetActor_PushOverheadMessage")]
+        private static extern void Internal_PushOverheadMessage(IntPtr self, string message);
+
         [DllImport("Native", EntryPoint = "GameNetActor_Kill")]
         private static extern void Internal_Kill(IntPtr self);
 
@@ -142,6 +145,13 @@ namespace NVMP.Entities
 
         [DllImport("Native", EntryPoint = "GameNetActor_SetGravityMult")]
         private static extern void Internal_SetGravityMult(IntPtr self, float gravityMult);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_GetCanKnockdown")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        private static extern bool Internal_GetCanKnockDown(IntPtr self);
+
+        [DllImport("Native", EntryPoint = "GameNetActor_SetCanKnockdown")]
+        private static extern void Internal_SetCanKnockDown(IntPtr self, bool state);
 
         [DllImport("Native", EntryPoint = "GameNetActor_GetKnockedState")]
         private static extern int Internal_GetKnockedState(IntPtr self);
@@ -422,6 +432,11 @@ namespace NVMP.Entities
             Internal_RemoveAllItems(__UnmanagedAddress);
         }
 
+        public void PushOverheadMessage(string message)
+        {
+            Internal_PushOverheadMessage(__UnmanagedAddress, message);
+        }
+
         public void Kill()
         {
             Internal_Kill(__UnmanagedAddress);
@@ -609,6 +624,12 @@ namespace NVMP.Entities
             {
                 return (int)Internal_GetActorValue(__UnmanagedAddress, NetActorValues.XP);
             }
+        }
+
+        public bool CanKnockDown
+        {
+            get => Internal_GetCanKnockDown(__UnmanagedAddress);
+            set => Internal_SetCanKnockDown(__UnmanagedAddress, value);
         }
 
         public uint Caps

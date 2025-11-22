@@ -93,6 +93,11 @@ namespace NVMP.Entities
 		public uint Caps { get; set; }
 
 		/// <summary>
+		/// Sets if the actor can be knocked down or not.
+		/// </summary>
+		public bool CanKnockDown { get; set; }
+
+		/// <summary>
 		/// Restrains or unrestrians the player, this prevents movement of players - and prevents AI from running on NPCs.
 		/// </summary>
 		/// <remarks>
@@ -195,6 +200,12 @@ namespace NVMP.Entities
 		/// Removes all items from this actor's inventory
 		/// </summary>
 		public void RemoveAllItems();
+
+		/// <summary>
+		/// Emits an overhead message.
+		/// </summary>
+		/// <param name="message"></param>
+		public void PushOverheadMessage(string message);
 
 		/// <summary>
 		/// Summons an animation on the actor using the specified idle form.

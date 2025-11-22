@@ -316,6 +316,13 @@ namespace NVMP.Entities
         public void SendGenericChatMessage(string message, Color? color = null, float fontSize = 18.0f);
 
         /// <summary>
+        /// Sends a movie maker script and immediately plays it. This is a camera track.
+        /// </summary>
+        /// <param name="script">Scripted camera track</param>
+        /// <param name="interruptable">Player can interrupt/skip the track mid-playback</param>
+        public bool SendMovieMakerScript(string script, bool interruptable);
+
+        /// <summary>
         /// Sends a message to the player's chat box
         /// </summary>
         /// <param name="sender"></param>
